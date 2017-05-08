@@ -1,0 +1,228 @@
+/*
+Theme Name:     Able Mediation
+Theme URI:      http://ablemediation.com/
+Description:    Styles for internet explorer version 8 and below
+Author:         Martin Bagshaw
+Author URI:     http://martinbagshaw.co.uk/
+Template:       twentytwelve                             
+Version:        1
+*/
+
+/* Colours */
+/* green - #70bf44
+   dark grey - #777373
+   line grey - #dbd7d7
+   light grey - #f0f0f0 
+   rgba(100, 100, 100, 0.3) = #646464
+   
+   opacity prefixes to 6 digit colour code:
+   
+   0 = 0
+   0.1 = 19
+   0.2 = 33
+   0.3 = 4c
+   0.4 = 66
+   0.5 = 7f
+   0.6 = 99
+   0.7 = b2
+   0.8 = cc
+   0.9 = e5
+   1 = ff
+*/
+
+
+/* -------------------------------------------------------- */
+/* 2012 theme resets / button bits */
+.ie .fb-like{overflow:hidden;}
+.ie .fb-like a{height:44px;font-size:1px;display:block;}
+.ie footer[role="contentinfo"] .fb-like{background:url('../images/icons/fb-like-ie.png') no-repeat 0 0;}
+
+
+/*.ie .home #content > article,
+.ie .page-id-27 #content > article{margin-bottom:0;padding-bottom:0;border-bottom:0;}*/
+
+
+/* -------------------------------------------------------- */
+/* main widths/ padding */
+/* background */
+.ie body.custom-background-empty {background-color:#f0f0f0;}
+.ie body .site, .ie footer[role="contentinfo"] {padding:0;}
+.ie body .site {background-color:#f0f0f0;box-shadow:none;margin:0;width:100%;max-width:100% !important;}
+.ie header[role="banner"], .ie footer[role="contentinfo"], .ie .wrapper{margin:0 auto;max-width:960px;}
+
+/* left/ right */
+.ie .left, .ie .right{display:inline-block;vertical-align:top;width:50%;}
+.ie .left {float:left;}
+.ie .right {text-align:right;float:right;}
+
+/* sidebar */
+.ie body.template-front-page .site-content,
+.ie body.single-attachment .site-content,
+.ie body.full-width .site-content {width:70%;float:left;}
+.ie .widget-area{width:24%;float:right;}
+
+
+
+
+
+/* -------------------------------------------------------- */
+/* header */
+/* logo */
+.ie #branding,.ie .alignleft,.ie .profile-left,.ie .author-description,.ie .comment header{float:left;}
+.ie #contact,.ie .alignright,.ie .profile-right,.ie .button,.ie .widget-caption{float:right;}
+.ie .comment-meta{clear:both;display:block;}
+
+.ie #logo, .ie #title{text-align:left;}
+.ie #logo{margin-left:34px;}
+
+/* contact */
+.ie #contact{margin:20px 0 0;}
+.ie #contact .left {white-space:nowrap;}
+
+
+
+/* ---------- */
+/* menu */
+.ie .menu-toggle, .ie .menu-toggle.toggled-on, .ie .main-navigation, .ie .main-navigation ul.nav-menu {display:block;}
+.ie .main-navigation ul.nav-menu li{display:inline-block;}
+.main-navigation ul.nav-menu, .main-navigation div.nav-menu > ul{text-align:left;}
+
+/* menus */
+.ie .main-navigation li{margin-right:40px;}
+.ie #footernavigation{display:inline-block;}
+.ie #footernavigation li{display:inline;}
+.ie #footernavigation li:first-child{margin-right:30px;}
+.ie .menu-toggle{display:none;}
+/* services sub menu */
+.ie .main-navigation li ul{z-index:5;width:inherit;}
+.ie .main-navigation li ul li{width:100%;margin:0;padding:0 5px 0 0;border-bottom:2px solid #f0f0f0;}
+.ie .main-navigation li ul li:last-child{border-bottom:none;}
+.ie .main-navigation li ul li a{width:inherit;padding:5px 0;background:transparent;white-space:nowrap;text-indent:4px;border-bottom:none;}
+/* sub menu hover and :not(current) */
+.ie #site-navigation .sub-menu li a{background:#777373;color:#fff;border-bottom:none;}
+.ie #site-navigation .sub-menu li a:hover, .ie #site-navigation .sub-menu .current-menu-item a{background:#70bf44;}
+
+
+
+/* current menu items */
+.ie .main-navigation .current-menu-item > a, .ie .main-navigation .current-menu-ancestor > a, .ie .main-navigation .current_page_item > a, .ie .main-navigation .current_page_ancestor > a,
+.ie #footernavigation .current-menu-item > a{color:#70bf44;border-bottom:3px solid #70bf44;}
+
+
+
+
+
+
+/* ------------- */
+/* footer */
+.ie footer[role="contentinfo"] .left{width:55%;margin-bottom:0;padding-bottom:0;border-bottom:none;margin-right:40px;}
+.ie footer[role="contentinfo"] .right{width:35%;}
+.ie footer[role="contentinfo"] .right aside{max-width:125px;}
+.ie footer[role="contentinfo"] .right aside img{max-width:auto;width:auto;}
+.ie .widget img{max-width:auto;width:auto;}
+.ie ul.social li a:hover,.ie ul.social li a:focus,.ie ul.social li a:active{-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";filter:alpha(opacity=75);}
+
+
+
+
+
+/* ---------- */
+.comment header{width:225px;border-right:2px solid #dbd7d7;}
+
+
+
+
+
+
+
+/* ------------------------------- */
+/* page content */
+/* a) home page */
+.ie .entry-header.intro{box-shadow:0 2px 6px #4c646464;
+background:transparent;
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f70bf44,endColorstr=#7f70bf44);
+zoom:1;}
+
+
+/* slider caption */
+.ie .slider-container{height:240px;overflow:hidden;}
+.ie .widget-caption{display:block;margin:10px 0;padding:10px;position:absolute;top:0;right:0;bottom:0;width:24%;box-shadow:none;
+background:transparent;
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#b2ffffff,endColorstr=#b2ffffff);
+zoom:1;}
+.ie .widget-caption .widget p{width:auto;display:block;float:none;}
+.ie .widget-caption .widget img{width:auto;display:block;margin-top:-20px;}
+
+
+
+/* ----- */
+/* top section */
+.ie .home .site-content article.wrapper,
+.ie .home .site-content article.wrapper:first-child{margin:0;padding:0;border:0;}
+/* box links */
+.ie .box{margin-bottom:20px;}
+.ie .left.box, .ie .right.box{width:47.5%;}
+.ie .left.box{margin-bottom:0;margin-right:20px;}
+.ie .box h2 {font-size:18px;line-height:1.5;}
+.ie .left.box h2{position:absolute;left:0;right:auto;bottom:0;}
+.ie .right.box h2{position:absolute;left:auto;right:0;bottom:0;}
+/* box hover */
+.box a:hover > img,.box a:focus > img,.box a:active > img{-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";filter:alpha(opacity=75);display:block;}
+
+
+
+/* ----- */
+/* b) our mediators page */
+.ie .profile-left{width:225px;height:280px;}
+.ie .profile-left img {max-width:125%;max-height:125%;}
+.ie .profile-right{width:64%;height:245px;overflow:hidden;}
+/* image widget */
+.ie .image-widget{overflow:hidden;}
+.ie .widget-area .widget .box h3{width:100%;top:auto;left:0;bottom:0;}
+.ie .image-widget img{width:100%;}
+
+
+/* ----- */
+/* c) family mediation page */
+.ie #post-25 span img{width:300px;height:256px;}
+
+
+/* ----- */
+/* d) services */
+/* wide box */
+.ie .box.wide{height:200px;}
+.ie .box.wide img{width:50%;}
+/* wide box */
+.box.wide a:hover{
+	background:transparent;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#b2ffffff,endColorstr=#b2ffffff);
+	zoom:1;}
+
+
+/* ----- */
+/* g) contact */
+.ie #ealing,.ie #richmond,.ie #northfields,.ie #euston,.ie #brentford{width:500px;height:300px;}
+
+/* ----- */
+/* h) referrals */
+.ie .left .button{float:none;}
+
+/* ninja forms */
+#ninja_forms_form_2_cont{
+	background:transparent;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3370bf44,endColorstr=#3370bf44);
+	zoom:1;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

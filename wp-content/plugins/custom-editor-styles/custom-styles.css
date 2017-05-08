@@ -1,0 +1,38 @@
+a.button {
+	background: -webkit-linear-gradient(top, #d5d5d5, #c0c0c0);
+	border-radius: 3px;
+	box-shadow: 0 2px 0 #aaa;
+	color: #333;
+	display: inline-block;
+	font-weight: bold;
+	padding: 5px 10px;
+	text-shadow: 0 1px 0 #eee;
+}
+
+a.button:hover {
+	background: -webkit-linear-gradient(top, #e5e5e5, #d0d0d0);
+	text-decoration: none;
+}
+
+.callout {
+	background: #ffffe0;
+	border: #f8e36b solid 1px;
+	margin: 1em;
+	padding: 1em 1em 0.5em;
+}
+
+.callout p {
+	margin: 0 0 0.5em;
+}
+
+.fm1{background:#f08c8c;}
+.fm2{background:#f0be8c;}
+.fm3{background:#ffffe0;}
+.fm4{background:#c2e19f;}
+.fm5{background:#a3dae5;}
+.fm6{background:#abcdef;}
+.fm7{background:#9da3ef;}
+.fm8{background:#c282cd;}
+.fm9{background:#9396b7;}
+.highlight{background:#599b35;color:#fff;text-decoration:none;padding:4px 3px;margin:0 -3px;}
+.fb-like{display:block;background:url("fb-like.png") no-repeat left;}

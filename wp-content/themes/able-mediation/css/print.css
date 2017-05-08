@@ -1,0 +1,46 @@
+/*
+Theme Name:  Able Mediation
+Description: Print Stylesheet
+Author:      Martin Bagshaw
+Author URI:  http://www.martinbagshaw.co.uk
+*/
+@media print {
+/* font sizes and colour */
+.entry-header h2,.profile h2{font-size:0.45cm;}
+.entry-content h3{font-size:0.4cm;}
+p,li,a{font-size:0.35cm;}
+/* highlight */
+.entry-content h2 span{color:#599b35;}
+/* green */
+#title h1 span,#contact h2 a,.entry-header h2,.entry-content h3,article h2,.underline h2,a,.comments-area article header cite,li.bypostauthor cite span{color:#599b35;}
+/* grey */
+#title h1,.entry-title,#contact h2,p,ul,ul li,ol, ol li,#post-5 ul,#post-5 li,.profile-right h3,.entry-content h3,.entry-content h3,h2.comments-title,#comments{color:#6a6666;}
+
+
+
+/* layout */
+#branding{float:left;}
+#contact{float:right;margin-top:1.35cm;}
+
+/* profile */
+.profile-left{width:30%;margin-right:0.5cm;float:left;}
+.profile-left img{max-width:100%;}
+.profile-right{width:60%;float:left;height:auto !important;}
+/* contact */
+#ealing, #richmond{width:75%;}
+
+
+/* remove */
+.button,#post-25 article.wrapper,#post-25 article p > a,#post-27 img,#post-34 a:after,#comments header a:after{display:none;}
+/* show */
+#post-25 article:last-child a:first-child{display:inline;}
+#content a:after{content:" [" attr(href) "] ";font-weight:bold; }
+
+
+/* borders */
+#masthead,#post-25 ul:first-child,.site-content article, .archive-header {border-bottom: 0.05cm solid #DBD7D7;}
+.underline h3{border-bottom:none;}
+
+
+
+}

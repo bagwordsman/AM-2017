@@ -1,0 +1,133 @@
+@charset "UTF-8";
+/*
+Theme Name:  Able Mediation
+Description: Admin Stylesheet
+Author:      Martin Bagshaw
+Author URI:  http://www.martinbagshaw.co.uk
+*/
+
+/* colors
+green:           #70bf44
+light green:     #8dcc6a
+lighter green:   #9cd37d
+blue:            #3a5795
+*/
+
+/* --- */
+.red{color:#e10033;}
+.orange{color:#dd823b;}
+.green{color:#a2f685;}
+.grey{color:#777373;}
+.midgrey{color:#dbd7d7;}
+
+/* --- */
+.orangespan,.greenspan,.greyspan,.customspan{display:inline-block;padding:0 3px;margin-right:5px;color:#fff;}
+h3.orangespan,h3.greenspan,h3.greyspan{padding:4px 6px;}
+.orangespan{background-color:#dd823b;}
+.greenspan{background-color:#70bf44;}
+.greyspan{background-color:#777373;}
+
+
+/* ------------ */
+label, span{cursor:auto;}
+
+
+/* ------------ */
+h3.guide,
+label[for=phone] h3,
+label[for=referrallink] h3,
+label[for=captiongreentext] h3,
+label[for=footerlogogreenheading] h3{font-family:'Asap', sans-serif;font-size:18px;line-height:21px;font-weight:700;margin:0 0 20px;}
+#dashboard-widgets h3.guide{color:white;padding:0 5px;}
+
+/* ------------ */
+/* #wpadminbar{background-color:#70bf44;}*/
+
+/* ------------ */
+/* dashboard widget */
+h3.guide{margin-bottom:10px;}
+ul.sublist{list-style:disc;margin-bottom:20px;padding-left:20px;}
+ul.sublist span.description{font-style:normal;}
+
+
+/* --------------------------------------------------------------------------- */
+/* 1./ highlight meta fields for SEO */
+#the-list input[value="Title Tag"], .metatitle {background-color:#f6859e;color:#000;}/* red */
+#the-list input[value="Meta Description"], .metadescription {background-color:#f6bf85;color:#000;}/* orange */
+#the-list input[value="Meta Keywords"], .metakeywords {background-color:#a2f685;color:#000;}/* green */
+
+
+
+
+
+/* ------------------------- */
+/* 2./ User Profile */
+/* i) borders */
+tr.user-phone-wrap,
+tr.user-referrallink-wrap,
+tr.user-captiongreentext-wrap,
+tr.user-footerlogogreenheading-wrap {border-top:2px solid #dbd7d7;}
+tr.user-footerlogo3title-wrap {border-bottom:2px solid #dbd7d7;}
+
+/* a) company details */
+input[name="twitter"]{background-color:#28aae1;color:#fff;}/* light blue */
+input[name="facebook"]{background-color:#3a5795;color:#fff;}/* blue */
+input[name="googleplus"]{background-color:#dd4b39;color:#fff;}/* red */
+input[name="linkedin"]{background-color:#0097bd;color:#fff;}/* blue */
+/* b) referral */
+/* c) caption */
+.form-table tr.user-captiongreentext-wrap td{padding:60px 10px 0;}/* top row */
+/* d) image */
+.adminimage{display:inline-block;border:1px solid #dbd7d7;}
+.adminimage img{display:block;}
+
+/* e) partner logos */
+tr[class*="user-footerlogo"] img{max-width:200px;}
+
+
+
+
+/* ------------------------- */
+/* 3./ Pages - multiple content blocks */
+/* a) home */
+input[name="call-now-text"]{background-color:#dd823b;color:#fff;}/* orange */
+input[name="first-column-heading-highlighted-text"]{background-color:#70bf44;color:#fff;}/* green */
+input[name="facebook-link-full-url"]{background-color:#3a5795;color:#fff;}/* blue */
+input[name="first-box-heading"],
+input[name="second-box-heading-leave-blank-for-full-width-linked-box"]{background-color:#777373;color:#fff;}/* grey */
+
+/* b) our mediators */
+
+/* c) family mediation */
+input[name="first-question"],
+input[name="second-question"],
+input[name="third-question"],
+input[name="fourth-question"],
+input[name="fifth-question"],
+input[name="sixth-question"],
+input[name="seventh-question"],
+input[name="eight-question"],
+input[name="ninth-question"],
+input[name="tenth-question"],
+input[name="eleventh-question"],
+input[name="twelfth-question"]{color:#70bf44;}
+input[name="first-question-id"],
+input[name="second-question-id"],
+input[name="third-question-id"],
+input[name="fourth-question-id"],
+input[name="fifth-question-id"],
+input[name="sixth-question-id"],
+input[name="seventh-question-id"],
+input[name="eight-question-id"],
+input[name="ninth-question-id"],
+input[name="tenth-question-id"],
+input[name="eleventh-question-id"],
+input[name="twelfth-question-id"]{color:#e10033;}
+
+/* d) our services (parent) - in admin-services.css */
+
+
+
+
+
+

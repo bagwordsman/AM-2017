@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/*
+Theme Name:  Able Mediation
+Description: Admin Stylesheet
+Author:      Martin Bagshaw
+Author URI:  http://www.martinbagshaw.co.uk
+*/
+
+/* colors
+green:           #70bf44
+light green:     #8dcc6a
+lighter green:   #9cd37d
+blue:            #3a5795
+*/
+
+/* --- */
+.red{color:#e10033;}
+.orange{color:#dd823b;}
+.green{color:#a2f685;}
+.grey{color:#777373;}
+.midgrey{color:#dbd7d7;}
+
+/* --- */
+.orangespan,.greenspan,.greyspan{display:inline-block;padding:0 3px;margin-right:5px;color:#fff;}
+h3.orangespan,h3.greenspan,h3.greyspan{padding:4px 6px;}
+.orangespan{background-color:#dd823b;}
+.greenspan{background-color:#70bf44;}
+.greyspan{background-color:#777373;}
+
+
+
+
+/* ------------------------- */
+/* 3./ Pages - multiple content blocks */
+/* a) our services (parent) - in admin-services.css */
+input[name="first-box-heading"],
+input[name="second-box-heading-leave-blank-for-full-width-linked-box"],
+input[name="third-box-heading"],
+input[name="fourth-box-heading-leave-blank-for-full-width-linked-box"],
+input[name="fifth-box-heading"],
+input[name="sixth-box-heading-leave-blank-for-full-width-linked-box"]{background-color:#70bf44;color:#fff;}/* green */
