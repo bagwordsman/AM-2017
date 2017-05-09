@@ -1014,8 +1014,10 @@ ul.social li a img {
 
 #post-25 article h3 {
     margin-top: 0
+    border-bottom: 3px solid transparent;
 }
 
+#post-25 article .underline h3,
 .underline h3 {
     color: #70bf44;
     border-bottom: 3px solid #70bf44;
