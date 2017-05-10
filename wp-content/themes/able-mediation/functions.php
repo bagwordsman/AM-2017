@@ -115,6 +115,8 @@ function load_scripts() {
 		wp_register_script('flexslider', 'https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js', 'jquery', '2.6.3', true);
 		wp_enqueue_script('flexslider');
 		wp_enqueue_script('flex-control', get_stylesheet_directory_uri(). '/js/flex-control.js', array('jquery','flexslider'), '1.0', true);
+		// better youtube embed
+		wp_enqueue_script('youtube-embed', get_stylesheet_directory_uri(). '/js/youtube-embed.js', false, '1.0', true );
 	}
 	// d) quote author styling - all other pages //
 	if (!is_page_template('page-templates/home-page.php') && !is_page_template('our-mediators.php')){
