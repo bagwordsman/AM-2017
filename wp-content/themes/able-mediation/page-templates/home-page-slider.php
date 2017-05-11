@@ -126,12 +126,12 @@ get_header(); ?>
                     	<h1 class="entry-title"><?php the_title(); ?></h1>
                         <?php
                         $maincontent = the_content();
-						$callnow = get_the_block('Call Now Text', array(
-						'type'          => 'one-liner',
-						'apply_filters' => false
-						) );
-						if ($maincontent != '') {echo $maincontent;}
-						if ($callnow != '') {echo '<span class="orangespan"><i class="fa fa-phone" aria-hidden="true"></i><p>'.$callnow.'</p></span>';}?>
+												$callnow = get_the_block('Call Now Text', array(
+												'type'          => 'one-liner',
+												'apply_filters' => false
+												) );
+												if ($maincontent != '') {echo $maincontent;}
+												if ($callnow != '') {echo '<span class="orangespan"><i class="fa fa-phone" aria-hidden="true"></i><p>'.$callnow.'</p></span>';}?>
                     </header>
                     <div class="entry-content wrapper">
 

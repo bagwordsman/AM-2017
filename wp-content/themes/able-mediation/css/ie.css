@@ -4,7 +4,7 @@ Theme URI:      http://ablemediation.com/
 Description:    Styles for internet explorer version 8 and below
 Author:         Martin Bagshaw
 Author URI:     http://martinbagshaw.co.uk/
-Template:       twentytwelve                             
+Template:       twentytwelve
 Version:        1
 */
 
@@ -12,11 +12,11 @@ Version:        1
 /* green - #70bf44
    dark grey - #777373
    line grey - #dbd7d7
-   light grey - #f0f0f0 
+   light grey - #f0f0f0
    rgba(100, 100, 100, 0.3) = #646464
-   
+
    opacity prefixes to 6 digit colour code:
-   
+
    0 = 0
    0.1 = 19
    0.2 = 33
@@ -35,7 +35,6 @@ Version:        1
 /* 2012 theme resets / button bits */
 .ie .fb-like{overflow:hidden;}
 .ie .fb-like a{height:44px;font-size:1px;display:block;}
-.ie footer[role="contentinfo"] .fb-like{background:url('../images/icons/fb-like-ie.png') no-repeat 0 0;}
 
 
 /*.ie .home #content > article,
@@ -212,17 +211,3 @@ zoom:1;}
 	background:transparent;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3370bf44,endColorstr=#3370bf44);
 	zoom:1;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-

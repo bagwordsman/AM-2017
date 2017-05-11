@@ -139,7 +139,6 @@ a.fb-like:active{color:#fff;background-color:#3c5b9a;text-decoration:none;}
 
 /* ------------------- */
 /* highlights */
-/* override new soliloquy styles */
 .highlight{color:#fff !important;background:#70bf44 !important;padding:4px 3px !important;margin-right:5px;}
 .highlight a{color:#fff;pointer-events: auto;}
 .highlight a:hover{background:#777373;color:#fff;padding:4px 3px;margin:0 -3px;}
@@ -151,10 +150,9 @@ a.fb-like:active{color:#fff;background-color:#3c5b9a;text-decoration:none;}
 .greyspan{background-color:#777373;}
 
 /* call now - orangespan */
-.orangespan .fa:before{color:#dd823b;vertical-align:middle;padding-top:2px;}
-.orangespan .fa.fa-phone{background-color:#fff;border-radius:11px;font-size:18px;height:22px;margin-right:11px;text-align:center;width:22px;}
+.orangespan .fa:before{position:absolute;top:3px;left:4px;color:#dd823b;}
+.orangespan .fa.fa-phone{position:relative;vertical-align:middle;border-radius:11px;font-size:18px;height:22px;margin-right:11px;text-align:center;width:22px;background-color:#fff;}
 .orangespan p {display:inline;color:#fff;}
-
 
 
 
@@ -216,14 +214,6 @@ body,.site {background-color:#f0f0f0;}
 #contact .right {float:right;text-align:right;}
 #contact .right a.button{margin-top:15px;margin-left:15px;}
 
-/*
-#contact .left a{color:#777373;}
-#contact .left a:hover{color:#70bf44;}
-#contact li{display:block;margin-bottom:8px;}
-#contact img, #contact h3, #contact h3 a{display:inline-block;vertical-align:middle;}
-#contact img{margin-right:8px;width:21px;height:21px;}
-*/
-
 /* contact methods */
 .contact li {display:block;font-family:"Asap",sans-serif;font-weight:700;line-height:2;}
 .contact li,
@@ -233,10 +223,10 @@ body,.site {background-color:#f0f0f0;}
 .contact li a:active{color:#70bf44;}
 
 /* contact icons */
-.contact li .fa {width:22px;height:22px;border-radius:11px;margin-right:11px;font-size:18px;text-align:center;background-color:#777373;}
-.contact li .fa:before {vertical-align:middle;padding-top:3px;color:#F0F0F0;}
+.contact li .fa {position:relative;vertical-align:middle;width:22px;height:22px;border-radius:11px;margin-right:11px;font-size:18px;text-align:center;background-color:#777373;}
+.contact li .fa:before {position:absolute;top:3px;left:4px;color:#F0F0F0;}
 .contact li .fa.fa-envelope{font-size:15px;}
-.contact li .fa.fa-envelope:before{padding-top:6px;}
+.contact li .fa.fa-envelope:before{top:4px;}
 
 
 
@@ -340,11 +330,7 @@ ul.logocontainer li img{max-width:120px;max-height:120px;vertical-align:middle;m
 /* social */
 .social,.social li{display:inline-block;}
 .social li{margin:0 4px;}
-/*
-ul.social li a{display:block;transition:opacity 0.3s ease-in-out;}
-ul.social li a:hover,ul.social li a:focus,ul.social li a:active{opacity:0.7;}
-ul.social li a img{border-radius:4px;}
- */
+/* social icons */
 .social li .fa{font-size:36px;}
 .social li .fa.fa-twitter-square:before{color:#28AAE1;}
 .social li .fa.fa-facebook-square:before{color:#3C5B9A;}
@@ -511,12 +497,12 @@ body.page-template-page-templatesself-referrals-php .button{float:none;margin:0 
 /* g) 404 page
 ---------------- */
 /* Search Form */
-/* a) black container on 404 page */
-#pagesearch{width:auto;background-color:transparent;padding:0;margin-top:20px;}
-/* b) in menu */
-.searchcontainer{position:relative;margin-top:8px;display:block;vertical-align:middle;}
+.searchcontainer{position:relative;display:block;margin-top:20px;display:block;vertical-align:middle;}
+/* text input */
 #searchform input[type="text"]{width:100%;height:32px;border-radius:16px;box-sizing:border-box;-moz-box-sizing:border-box;margin:0;padding:0 10px;border:1px solid transparent;font-size:16px;line-height:16px;color:#ccc;}
 #searchform input[type="text"]:focus{border:1px solid #70bf44;color:#303030;box-shadow: 1px 2px 5px rgba(112, 191, 68, .3);}
+/* button */
+/*
 #searchform input[type="submit"]{border:none;width:32px;height:32px;border-radius:16px;background-image:url('images/icons/search.png');background-repeat:no-repeat;background-position:center center;background-color:transparent;
 color:transparent;cursor:pointer;font-size:12px;text-shadow:none;margin:0;padding:0;position:absolute;top:0;bottom:0;right:0;transition:background-color ease-in-out 0.2s;}
 #searchform input[type="submit"]:hover,
@@ -528,6 +514,42 @@ color:transparent;cursor:pointer;font-size:12px;text-shadow:none;margin:0;paddin
 	background-color:#70bf44;
 	background-image:url('images/icons/search-white.png');
 	box-shadow: 1px 2px 3px rgba(112, 191, 68, .3);
+}
+*/
+#searchform input[type="submit"],
+#searchform .fa{
+  position: absolute;
+  right:0;
+  top:0;
+  bottom:0;
+  width:32px;
+  height:32px;
+  border-radius:16px;
+  font-family:'FontAwesome';
+  font-size:24px;
+  background-color:#fff;
+  transition:background-color ease-in-out 0.3s;
+}
+#searchform .fa.fa-search{
+  pointer-events:none;
+}
+#searchform .fa:before{
+  position:absolute;
+  top:4px;
+  left:6px;
+  font-size:21px;
+  color:#70bf44;
+}
+#searchform input[type="submit"]:hover + .fa,
+#searchform input[type="submit"]:focus + .fa,
+#searchform input[type="submit"]:active + .fa{
+  background-color:#70bf44;
+  box-shadow: 1px 2px 3px rgba(112, 191, 68, .3);
+}
+#searchform input[type="submit"]:hover + .fa:before,
+#searchform input[type="submit"]:focus + .fa:before,
+#searchform input[type="submit"]:active + .fa:before{
+  color:#fff;
 }
 
 

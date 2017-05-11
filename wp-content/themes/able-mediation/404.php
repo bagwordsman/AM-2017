@@ -16,11 +16,9 @@ get_header(); ?>
 			<header class="entry-header">
             	<h1 class="entry-title"><?php _e( '404: Page Not found', 'twentytwelve' ); ?></h1>
                 <p><?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'twentytwelve' ); ?></p>
-            	<div id="pagesearch">
-                    <div class="searchcontainer">
-						<?php get_search_form(); ?>
-                    </div><!-- #pagesearch -->
-                </div>
+            	<div class="searchcontainer">
+								<?php get_search_form(); ?>
+							</div><!-- #pagesearch -->
             </header>
 
 
