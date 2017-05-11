@@ -210,15 +210,29 @@ body,.site {background-color:#f0f0f0;}
 /* contact */
 #contact .left {float:left;text-align:left;}
 #contact .right {float:right;text-align:right;}
+#contact .right a.button{margin-top:15px;margin-left:15px;}
 
+/*
 #contact .left a{color:#777373;}
 #contact .left a:hover{color:#70bf44;}
 #contact li{display:block;margin-bottom:8px;}
 #contact img, #contact h3, #contact h3 a{display:inline-block;vertical-align:middle;}
 #contact img{margin-right:8px;width:21px;height:21px;}
+*/
 
-#contact .right a.button{margin-top:15px;margin-left:15px;}
+/* contact methods */
+.contact li {display:block;font-family:"Asap",sans-serif;font-weight:700;line-height:2;}
+.contact li,
+.contact li a {vertical-align:middle;color:#777373;transition:all ease-in-out 0.3s;}
+.contact li a:hover,
+.contact li a:focus,
+.contact li a:active{color:#70bf44;}
 
+/* contact icons */
+.contact li .fa {width:22px;height:22px;border-radius:11px;margin-right:11px;font-size:18px;text-align:center;background-color:#777373;}
+.contact li .fa:before {vertical-align:middle;padding-top:3px;color:#F0F0F0;}
+.contact li .fa.fa-envelope{font-size:15px;}
+.contact li .fa.fa-envelope:before{padding-top:6px;}
 
 
 

@@ -52,6 +52,9 @@ function load_css() {
 	// ie css in header.php
 	//add print css
 	wp_register_style('ablemediation-print', get_stylesheet_directory_uri() . '/css/print.css', false, false, 'print');
+	// add font awesome icons
+	wp_register_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' );
+	wp_enqueue_style('font-awesome');
 	// add css for home page slider
 	if (is_page_template('page-templates/home-page-slider.php')){
 		wp_register_style('flexslider-css', get_stylesheet_directory_uri(). '/css/flexslider.css' );
