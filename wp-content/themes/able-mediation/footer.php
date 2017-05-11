@@ -59,10 +59,10 @@
 		}
 		?>
         <p class="author"><strong>Website design and build by</strong>
-        <a title="Martin Bagshaw Graphic Designer" target="_blank" <?php if (!is_page( 42 )) echo 'rel="nofollow"'; ?> href="http://www.martinbagshaw.co.uk">Martin Bagshaw</a>
+        <a title="Martin Bagshaw Graphic Designer and Frontend Developer" target="_blank" <?php if (!is_page( 42 )) echo 'rel="nofollow"'; ?> href="http://www.martinbagshaw.co.uk">Martin Bagshaw</a>
         </p>
     </div><!-- .left -->
-    
+
     <div class="right">
         <?php // footer logo heading
 		if ($footerlogogreenheading != '' || $footerlogoheading != '') echo '<h3>';
@@ -137,19 +137,17 @@
 		if ($twitter != '' || $facebook != '' || $googleplus != '' || $linkedin != '' ) echo '
 		<ul class="social">';
 			if ($twitter != '')
-        	echo '<li><a target="_blank" href="'.$twitter.'"><img src="'.get_bloginfo('stylesheet_directory').'/images/icons/social-icons/twitter.png" alt="Follow Able Mediation on Twitter" width="32" height="32"></a></li>';
+        	echo '<li><a target="_blank" href="'.$twitter.'"><i class="fa fa-twitter-square" aria-hidden="true"></i><span class="assistive-text">Follow '.$name.' on Twitter</span></a></li>';
 			if ($facebook != '')
-        	echo '<li><a target="_blank" href="'.$facebook.'"><img src="'.get_bloginfo('stylesheet_directory').'/images/icons/social-icons/facebook.png" alt="Follow Able Mediation on Facebook" width="32" height="32"></a></li>';
+        	echo '<li><a target="_blank" href="'.$facebook.'"><i class="fa fa-facebook-square" aria-hidden="true"></i><span class="assistive-text">Follow '.$name.' on Facebook</span></a></li>';
 			if ($googleplus != '')
-        	echo '<li><a target="_blank" href="'.$googleplus.'"  rel="publisher"><img src="'.get_bloginfo('stylesheet_directory').'/images/icons/social-icons/google-plus.png" alt="Add Able Mediation to your Social Circles on Googleplus" width="32" height="32"></a></li>';
+        	echo '<li><a target="_blank" href="'.$googleplus.'" rel="publisher"><i class="fa fa-google-plus-square" aria-hidden="true"></i><span class="assistive-text">Add '.$name.' to your Social Circles on Googleplus</span></a></li>';
 			if ($linkedin != '')
-        	echo '<li><a target="_blank" href="'.$linkedin.'"><img src="'.get_bloginfo('stylesheet_directory').'/images/icons/social-icons/linkedin.png" alt="Follow Able Mediation on Linkedin" width="32" height="32"></a></li>';
+        	echo '<li><a target="_blank" href="'.$linkedin.'"><i class="fa fa-google-plus-square" aria-hidden="true"></i><span class="assistive-text">Follow '.$name.' on Linkedin</span></a></li>';
 			if ($twitter != '' || $facebook != '' || $googleplus != '' || $linkedin != '' ) echo '
 		</ul><!-- .social -->';
 		?>
-        <div class="share">
-        	<span class="st_sharethis_large" title="Share via Social Media Platforms"></span>
-        </div><!-- .share -->
+
     </div><!-- .right -->
 
 </footer><!-- #colophon -->

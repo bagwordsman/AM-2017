@@ -41,15 +41,17 @@ get_header(); ?>
 	  $slide10 = get_the_block('Slide 10 image', array(
 	  'apply_filters' => false
 	  ) );
-	  
-	  // caption
+
+	  // site title
+		$name = get_the_author_meta('companyname',1);
+		// caption
 	  $green = get_the_author_meta('captiongreentext',1);
 	  $main = get_the_author_meta('captiontext',1);
 	  $link = get_the_author_meta('captionlink',1);
 	  $linktext = get_the_author_meta('captionlinktext',1);
 	  $main2 = get_the_author_meta('captiontext2',1);
 	  $logo = get_the_author_meta('logotoggle',1);
-	  
+
 	  $green = get_the_block('Image Slider Caption <span class="greenspan">Green Text</span>', array(
 	  'type'          => 'one-liner',
 	  'apply_filters' => false
@@ -75,7 +77,7 @@ get_header(); ?>
 	  'apply_filters' => false
 	  ) );
 	  ?>
-      
+
 
 <div class="slider-container">
 
@@ -93,7 +95,7 @@ get_header(); ?>
 			  if ($slide10 != '') echo '<li>'.html_entity_decode($slide10).'</li>'; ?>
 		</ul><!-- #slider -->
 	</div><!-- .flexslider -->
-    
+
     <?php if ($main != '') echo '
 	<div class="widget-caption">
 	<aside class="widget">
@@ -106,20 +108,20 @@ get_header(); ?>
 		if ($logo != '') echo '<img src="'.get_bloginfo('stylesheet_directory').'/images/legal-aid-logo-small.png" alt="Qualify for Legal Aid in Family Mediation" />';
 	if ($main != '') echo '
 	</aside><!-- .widget -->
-</div><!-- .widget-caption -->'; ?>  
-    
+</div><!-- .widget-caption -->'; ?>
+
 </div><!-- .slider-container -->
 
 
 
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
-        
-        
+
+
         	<?php while ( have_posts() ) : the_post(); ?>
-            
+
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                
+
                 	<header class="entry-header intro">
                     	<h1 class="entry-title"><?php the_title(); ?></h1>
                         <?php
@@ -128,14 +130,14 @@ get_header(); ?>
 						'type'          => 'one-liner',
 						'apply_filters' => false
 						) );
-						if ($maincontent != '') {echo $maincontent;} 
-						if ($callnow != '') {echo '<span class="orangespan phone">'.$callnow.'</span>';}?>
+						if ($maincontent != '') {echo $maincontent;}
+						if ($callnow != '') {echo '<span class="orangespan"><i class="fa fa-phone" aria-hidden="true"></i><p>'.$callnow.'</p></span>';}?>
                     </header>
                     <div class="entry-content wrapper">
-                    
-                    
-					<?php // functions for content blocks			  
-					
+
+
+					<?php // functions for content blocks
+
 					$highlight = get_the_block('First Column Heading (Highlighted Text)', array(
 					'type'          => 'one-liner',
 					'apply_filters' => false
@@ -158,9 +160,9 @@ get_header(); ?>
 					$column2content = get_the_block('Second Column Content (leave blank for full width column)', array(
 					'apply_filters' => false
 					) );
-					
-					
-					
+
+
+
 					$box1heading = get_the_block('First Box Heading', array(
 					'type'          => 'one-liner',
 					'apply_filters' => false
@@ -171,7 +173,7 @@ get_header(); ?>
 					$box1link = get_the_block('First Box Link - Enter link in (parent-page/child-page) format, e.g. the red text here: http://www.ablemediation.com/<span class="red">our-services/children-in-mediation</span>.', array(
 					'type'          => 'one-liner',
 					'apply_filters' => false
-					) );	
+					) );
 					$box2heading = get_the_block('Second Box Heading (leave blank for full width linked box)', array(
 					'type'          => 'one-liner',
 					'apply_filters' => false
@@ -192,20 +194,21 @@ get_header(); ?>
 						// left and right divs if both present
                     	if ($column1content != '' && $column2content != '')
 						echo '<div class="left">'; ?>
-                        
+
 								<?php
                                 // column 1  a) fb
 								if ($column1content != '' && $fb != '') echo '
 							  	<h3><span class="highlight">'.html_entity_decode($highlight).'</span>'.html_entity_decode($column1heading).'</h3>'.
 								html_entity_decode($column1content).'
-								<div class="fb-like">
-									<a href="'.html_entity_decode($fb).'" target="_blank" title="Like Our Facebook Page">Like us</a>
-								</div>'; 
+								<a class="fb-like" href="'.html_entity_decode($fb).'" target="_blank" title="Like the '.$name.' Facebook Page">
+										Like Our Facebook Page
+										<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+								</a>';
 								// b) no fb
 								if ($column1content != '' && $fb = '') echo '
 							  	<h3><span class="highlight">'.html_entity_decode($column1heading).'</span></h3>'.
 								html_entity_decode($column1content);?>
-                                
+
 						<?php // left and right divs
                     	if ($column1content != '' && $column2content != '')
 						echo '</div><!-- .left -->
@@ -215,9 +218,9 @@ get_header(); ?>
 						      </div><!-- .right -->';
 					if ($column1content != '' || $column2content != '')
 					echo '</article><!-- .wrapper -->'; ?>
-                    
-                    
-                    
+
+
+
                     <?php // Row 2: linked boxes
 					if ($box1heading != '' && $box2heading != '')
 					echo '<article class="wrapper">
@@ -234,7 +237,7 @@ get_header(); ?>
 								</a>
                             </div><!-- .right -->
 					      </article><!-- .wrapper -->';
-						  
+
 					if ($box1heading != '' && $box2heading = '')
 					echo '<article class="wrapper">
 							<a href="'.html_entity_decode($box1link).'">
@@ -242,19 +245,19 @@ get_header(); ?>
 								html_entity_decode($box1image).'
 							</a>
 					      </article><!-- .wrapper -->';?>
-                  
+
                     </div><!-- .entry-content wrapper -->
                     <footer class="entry-meta">
 						<?php edit_post_link( __( 'Edit', 'twentytwelve' ), '<span class="edit-link">', '</span>' ); ?>
                     </footer><!-- .entry-meta -->
-                    
+
                 </article><!-- #post -->
 			<?php endwhile; // end of the loop. ?>
 		</div><!-- #content -->
 	</div><!-- #primary -->
-    
-	
-    
+
+
+
     <div id="secondary" class="widget-area" role="complementary">
 		<?php
         	if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Home Page') ) : ?>
