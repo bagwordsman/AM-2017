@@ -113,7 +113,7 @@ function load_scripts() {
 	}
 	// c) quote author styling and flexslider - home page //
 	if (is_page_template('page-templates/home-page.php')  || is_page_template('page-templates/home-page-slider.php')){
-		wp_enqueue_script('quote-author-home', get_stylesheet_directory_uri(). '/js/quote-author-home.js#asyncload', array('jquery'), '1.0', true );
+		//wp_enqueue_script('quote-author-home', get_stylesheet_directory_uri(). '/js/quote-author-home.js#asyncload', array('jquery'), '1.0', true );
 		// image slider
 		wp_register_script('flexslider', 'https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js', 'jquery', '2.6.3', true);
 		wp_enqueue_script('flexslider');

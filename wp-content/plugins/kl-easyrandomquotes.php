@@ -27,7 +27,7 @@ class kl_easyrandomquotes {
 		global $erq_page;
 		$erq_page = add_menu_page(__( 'Random Quote', 'easy-random-quotes' ), __( 'Random Quote', 'easy-random-quotes' ), 'administrator', __FILE__, array( &$this, 'page' ) );
 		add_action( 'admin_head-'.$erq_page, array( &$this, 'update') );
-		
+
 
 	}
 
@@ -153,6 +153,7 @@ class kl_easyrandomquotes {
 					echo '<tr>';
 					echo '<th class="check-column"><input type="checkbox" name="erq_del[' . $id . ']" /></th>';
 					echo '<td><textarea name="erq_quote[' . $id . ']" rows="6" cols="60">' . stripslashes( $quote ) . '</textarea></td>';
+					//echo '<td><input name="erq_quote[' . $id . ']" type="text">' . stripslashes( $author ) . '</input></td>';
 					echo '<td>[erq id=' . $id . ']</td>';
 					echo '</tr>';
 				}
@@ -233,7 +234,22 @@ class kl_easyrandomquotes_widget extends WP_Widget {
 		extract( $args );
 		echo $before_widget;
 		if ( $instance[ 'title' ] ) echo $before_title . apply_filters( 'widget_title', $instance[ 'title' ] ) . $after_title;
-		echo '<p>' . erq_shortcode( ) . '</p>';
+		//echo '<p>' . erq_shortcode( ) . '</p>';
+
+		// make an array
+		$fullquote = erq_shortcode();
+		$pieces = explode(".", $fullquote);
+
+		$quote = array_pop($pieces);
+		echo '<p>';
+		print_r($pieces);
+		echo '</p>';
+		echo '<br/><span class="cite">' . $quote . '</span>';
+
+
+		//$cite = end($pieces);
+		//echo '<br/><span class="cite">' . $cite . '</span>';
+
 		echo $after_widget;
 	}
 
