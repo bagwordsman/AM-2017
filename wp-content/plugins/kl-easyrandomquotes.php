@@ -1,25 +1,25 @@
 <?php
 /*
  * Plugin Name: Easy Random Quotes
- * Plugin URI: http://trepmal.com/plugins/easy-random-quotes/
- * Description: Insert quotes and pull them randomly into your pages and posts (via shortcodes) or your template (via template tags).
- * Author: Kailey Lampert
- * Version: 1.7
- * Author URI: http://kaileylampert.com/
+ * Plugin URI: https://martinbagshaw.co.uk
+ * Description: <strong style="color:#e10033;">DO NOT UPDATE THIS PLUGIN</strong>. Insert quotes and pull them randomly into your pages and posts (via shortcodes) or your template (via template tags).
+ * Author: Martin Bagshaw
+ * Version: 1
+ * Author URI: https://martinbagshaw.co.uk
  * License: GPLv2 or later
  * TextDomain: easy-random-quotes
  * DomainPath: lang/
  */
 
-$kl_easyrandomquotes = new kl_easyrandomquotes();
+$mb_easyrandomquotes = new mb_easyrandomquotes();
 
-class kl_easyrandomquotes {
+class mb_easyrandomquotes {
 
-	function kl_easyrandomquotes( ) {
+	function mb_easyrandomquotes( ) {
 		add_action( 'admin_menu', array( &$this, 'menu' ) );
 		add_action( 'contextual_help', array( &$this, 'help'), 10, 3 );
 
-		add_action( 'widgets_init', 'kl_easyrandomquotes_load_widget' );
+		add_action( 'widgets_init', 'mb_easyrandomquotes_load_widget' );
 		add_shortcode( 'erq', 'erq_shortcode' );
 	}
 
@@ -218,14 +218,14 @@ function erq_shortcode( $atts=array() ) {
 }
 
 /* widget */
-function kl_easyrandomquotes_load_widget() {
-	register_widget( 'kl_easyrandomquotes_widget' );
+function mb_easyrandomquotes_load_widget() {
+	register_widget( 'mb_easyrandomquotes_widget' );
 }
 
-class kl_easyrandomquotes_widget extends WP_Widget {
+class mb_easyrandomquotes_widget extends WP_Widget {
 
-	function kl_easyrandomquotes_widget() {
-		$widget_ops = array( 'classname' => 'kl-erq', 'description' => __( 'Displays random quotes', 'easy-random-quotes' ) );
+	function mb_easyrandomquotes_widget() {
+		$widget_ops = array( 'classname' => 'quote', 'description' => __( 'Displays random quotes', 'easy-random-quotes' ) );
 		$control_ops = array();
 		$this->WP_Widget( 'kl-erq', __( 'Easy Random Quotes', 'easy-random-quotes' ), $widget_ops, $control_ops );
 	}
@@ -240,15 +240,16 @@ class kl_easyrandomquotes_widget extends WP_Widget {
 		$fullquote = erq_shortcode();
 		$pieces = explode(".", $fullquote);
 
+		// omit the last item in the array - this will be the author / citation
 		$quote = array_pop($pieces);
 		echo '<p>';
-		print_r($pieces);
+		// add in the full stop after each sentence
+		foreach ($pieces as $key => $sentence) {
+		    echo $sentence . '.';
+		}
 		echo '</p>';
+		// add the quote author or citation
 		echo '<br/><span class="cite">' . $quote . '</span>';
-
-
-		//$cite = end($pieces);
-		//echo '<br/><span class="cite">' . $cite . '</span>';
 
 		echo $after_widget;
 	}

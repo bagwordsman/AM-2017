@@ -45,9 +45,9 @@
 
 <footer id="colophon" role="contentinfo" class="wrapper">
 
-    <div class="left">
+    <div class="footer-left">
     	<?php // footer menu
-        wp_nav_menu( array( 'theme_location' => 'footernavigation', 'container' => false,'items_wrap' => '<ul id="footernavigation" class="%2$s">%3$s</ul>', ) );
+        wp_nav_menu( array( 'theme_location' => 'footernavigation', 'container' => false,'items_wrap' => '<ul id="footernavigation" class="footermenu">%3$s</ul>', ) );
 		if ($name != '') {
 			echo '<p><strong>Copyright '.date("Y").'</strong>  '.$name.'</p>';
 		}
@@ -63,7 +63,7 @@
         </p>
     </div><!-- .left -->
 
-    <div class="right">
+    <div class="footer-right">
         <?php // footer logo heading
 		if ($footerlogogreenheading != '' || $footerlogoheading != '') echo '<h3>';
 		if ($footerlogogreenheading != '') echo '<span class="green">'.$footerlogogreenheading.'</span> ';

@@ -103,29 +103,27 @@ function load_scripts() {
 
 
 // 2./ specific pages
-	// a) family mediation nav //
-	if (is_page_template('page-templates/family-mediation.php')){
-		wp_enqueue_script('fam-nav', get_stylesheet_directory_uri(). '/js/fam-nav.js#asyncload', array('jquery'), '1.0', true);
-	}
-	// b) - 1 self-referrals nav //
-	if (is_page_template('page-templates/self-referrals.php')){
-		wp_enqueue_script('referral-nav', get_stylesheet_directory_uri(). '/js/referral-nav.js#asyncload', array('jquery'), '1.0', true);
-	}
-	// c) quote author styling and flexslider - home page //
+// a) home page //
 	if (is_page_template('page-templates/home-page.php')  || is_page_template('page-templates/home-page-slider.php')){
-		//wp_enqueue_script('quote-author-home', get_stylesheet_directory_uri(). '/js/quote-author-home.js#asyncload', array('jquery'), '1.0', true );
-		// image slider
+		// flexslider
 		wp_register_script('flexslider', 'https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js', 'jquery', '2.6.3', true);
 		wp_enqueue_script('flexslider');
 		wp_enqueue_script('flex-control', get_stylesheet_directory_uri(). '/js/flex-control.js', array('jquery','flexslider'), '1.0', true);
 		// better youtube embed
 		wp_enqueue_script('youtube-embed', get_stylesheet_directory_uri(). '/js/youtube-embed.js', false, '1.0', true );
 	}
-	// d) quote author styling - all other pages //
-	if (!is_page_template('page-templates/home-page.php') && !is_page_template('our-mediators.php')){
-		wp_enqueue_script('quote-author', get_stylesheet_directory_uri(). '/js/quote-author.js#asyncload', array('jquery'), '1.0', true);
+
+	// b) family mediation nav //
+	if (is_page_template('page-templates/family-mediation.php')){
+		wp_enqueue_script('fam-nav', get_stylesheet_directory_uri(). '/js/fam-nav.js#asyncload', array('jquery'), '1.0', true);
 	}
-	// e) our mediators page //
+
+	// c) - 1 self-referrals nav //
+	if (is_page_template('page-templates/self-referrals.php')){
+		wp_enqueue_script('referral-nav', get_stylesheet_directory_uri(). '/js/referral-nav.js#asyncload', array('jquery'), '1.0', true);
+	}
+
+	// d) our mediators page //
 	if (is_page_template('page-templates/our-mediators.php')){
 		wp_enqueue_script('mediators', get_stylesheet_directory_uri(). '/js/mediators.js#asyncload', array('jquery'), '1.0', true);
 	}
@@ -156,26 +154,26 @@ add_action('init', 'replace_jquery');
 
 // Remove Stuff //
 // ------------------ //
-// dequeue styles and scripts //
-function dequeue_stuff() {
+// everywhere - dequeue css //
+function dequeue_css() {
 	wp_dequeue_style( 'twentytwelve-fonts' );
 	wp_dequeue_style( 'twentytwelve-ie' );
-	}
-add_action( 'wp_print_styles', 'dequeue_stuff' );
+}
+add_action( 'wp_print_styles', 'dequeue_css' );
 
 
-// remove dashicons - render blocking above fold stuff
-function deregister_styles()    {
+// client side and not logged in - deregister css and js
+function deregister_css_js()    {
    if (!is_admin() && !is_user_logged_in()) {
-   	wp_deregister_style( 'dashicons' );
+			wp_deregister_style( 'dashicons' );
+			wp_deregister_script( 'thickbox' );
    }
 }
-add_action( 'wp_print_styles', 'deregister_styles', 100 );
+add_action( 'wp_print_styles', 'deregister_css_js', 100 );
 
 
 // remove emojis
 function disable_wp_emojicons() {
-
   // all actions related to emojis
   remove_action( 'admin_print_styles', 'print_emoji_styles' );
   remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -204,39 +202,41 @@ function disable_emojicons_tinymce( $plugins ) {
 // remove default page templates (works in more modern versions of wordpress)
 function remove_page_templates( $templates ) {
     unset( $templates['page-templates/front-page.php'] );
-	unset( $templates['page-templates/full-width.php'] );
+		unset( $templates['page-templates/full-width.php'] );
     return $templates;
 }
 add_filter( 'theme_page_templates', 'remove_page_templates' );
 // remove background and header options in admin panel //
-add_action( 'after_setup_theme','remove_twentytwelve_options', 100 );
 function remove_twentytwelve_options() {
 	remove_custom_background();
 	remove_custom_image_header();
 }
+add_action( 'after_setup_theme','remove_twentytwelve_options', 100 );
 // Remove top dashboard widget //
+// who is user number 25?
 if (is_admin(25)){
-function rc_my_welcome_panel() {
-	?>
-    <script type="text/javascript">
-/* Hide default welcome message */
-jQuery(document).ready( function($)
-{
-	$('div#welcome-panel').hide();
-});
-</script>
+function remove_default_welcome_panel() {
+?>
+	<script type="text/javascript">
+	/* Hide default welcome message */
+	jQuery(document).ready( function($){
+		$('div#welcome-panel').hide();
+	});
+	</script>
 <?php
 }
-add_action( 'welcome_panel', 'rc_my_welcome_panel' );
+add_action( 'welcome_panel', 'remove_default_welcome_panel' );
 }
+
+
 // Remove unneccessary fields from admin panel //
- add_filter('user_contactmethods','hide_profile_fields',10,1);
-       function hide_profile_fields( $contactmethods ) {
-       unset($contactmethods['aim']);
-       unset($contactmethods['jabber']);
-       unset($contactmethods['yim']);
-       return $contactmethods;
-       }
+add_filter('user_contactmethods','hide_profile_fields',10,1);
+	function hide_profile_fields( $contactmethods ) {
+	unset($contactmethods['aim']);
+	unset($contactmethods['jabber']);
+	unset($contactmethods['yim']);
+	return $contactmethods;
+}
 
 // add post thumnail support //
 add_theme_support( 'post-thumbnails' );
@@ -249,13 +249,122 @@ add_theme_support( 'post-thumbnails' );
 
 
 
+
+
+
+
 // Admin side //
 // --------------------- //
-// enqueue admin styles //
-function load_custom_wp_admin_style() {
-	wp_enqueue_style('admin', get_stylesheet_directory_uri(). '/css/admin.css' );// css for all admin pages
+// load admin css and js //
+function admin_css_js($hook) {
+	// css for all admin pages
+	wp_enqueue_style('admin', get_stylesheet_directory_uri(). '/css/admin.css' );
+	// js for user profile - removes duplicate desciption box. Needs to be loaded in footer
+	if ( $hook == 'profile.php' || $hook == 'user-edit.php' ) {
+		wp_enqueue_script('bioeditor', get_stylesheet_directory_uri(). '/js/admin/visual-editor-biography.js', false, false, true );
+	}
 }
-add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+add_action( 'admin_enqueue_scripts', 'admin_css_js' );
+
+
+
+
+
+
+
+
+// ----------------------- //
+// edit user biography with TinyMCE visual editor
+class KLVisualBiographyEditor {
+	private $name = 'Visual Biography Editor';
+
+	/**
+	 * Setup WP hooks
+	 */
+	public function __construct() {
+		// Add a visual editor if the current user is an Author role or above and WordPress is v3.3+
+		if ( function_exists('wp_editor') ) {
+
+			// Add the WP_Editor
+			add_action( 'show_user_profile', array($this, 'visual_editor') );
+			add_action( 'edit_user_profile', array($this, 'visual_editor') );
+
+			// Don't sanitize the data for display in a textarea
+			add_action( 'admin_init', array($this, 'save_filters') );
+
+			// Load required JS
+			add_action( 'admin_enqueue_scripts', array($this, 'load_javascript'), 10, 1 );
+
+			// Add content filters to the output of the description
+			add_filter( 'get_the_author_description', 'wptexturize' );
+			add_filter( 'get_the_author_description', 'convert_chars' );
+			add_filter( 'get_the_author_description', 'wpautop' );
+		}
+		// Display a message if the requires aren't met
+		else {
+			add_action( 'admin_notices', array($this, 'update_notice') );
+		}
+	}
+
+	/**
+	 * Friendly notice if WP is out of date
+	 */
+	public function update_notice() {
+
+		// Notification is for administrators only
+		if ( !current_user_can('administrator') )
+			return;
+
+		?>
+		<div class="updated">
+			<p>The <strong><?php echo $this->name; ?></strong> plugin requires WordPress 3.3 or higher. Update WordPress or <a href="<?php echo get_admin_url(null, 'plugins.php'); ?>">de-activate the plugin</a>.</p>
+		</div>
+		<?php
+	}
+
+	/**
+	 *	Create Visual Editor - Add TinyMCE editor to replace the "Biographical Info" field in a user profile
+	 */
+	public function visual_editor( $user ) {
+
+		// Contributor level user or higher required
+		if ( !current_user_can('edit_posts') )
+			return;
+		?>
+		<table class="form-table">
+			<tr>
+				<th><label for="description"><?php _e('Biographical Info'); ?></label></th>
+				<td>
+					<?php
+					$description = get_user_meta( $user->ID, 'description', true);
+					wp_editor( $description, 'description' );
+					?>
+					<p class="description"><?php _e('Share a little biographical information to fill out your profile. This may be shown publicly.'); ?></p>
+				</td>
+			</tr>
+		</table>
+		<?php
+	}
+	/**
+	 * Remove textarea filters from description field
+	 */
+	public function save_filters() {
+		// Contributor level user or higher required
+		if ( !current_user_can('edit_posts') )
+			return;
+		remove_all_filters('pre_user_description');
+	}
+}
+
+$kpl_visual_editor_biography = new KLVisualBiographyEditor();
+
+
+
+
+
+
+
+
 
 
 
@@ -264,23 +373,23 @@ add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 // company details
 	   function my_new_contactmethods( $contactmethods ) {
        $contactmethods['phone'] = '<h3 class="greyspan">Company Details</h3><p>a) 0800 Phone Number</br><em>Enter to display in the header area</em></p>' ;
-	   $contactmethods['mobilephone'] = '<p>b) Mobile Phone Number</br><em>Enter to display in the header area</em></p>';
-	   $contactmethods['facebook'] = '<p>c) Facebook Page Link</br><em>Enter full url, for example: <span class="red">https://www.facebook.com/AbleMediation</em></p>' ;
-	   $contactmethods['twitter'] = '<p>d) Twitter Profile Link</br><em>Enter full url to display Twitter profile link.</p>' ;
-	   $contactmethods['googleplus'] = '<p>e) Google Plus Page Link</br><em>Enter full url to display Google Plus Page link.</em></p>' ;
-	   $contactmethods['linkedin'] = '<p>f) Linkedin Profile Link</br><em>Enter full url to display Linkedin profile link.</p>' ;
-	   $contactmethods['companyname'] = '<p>g) Company Name</br><em>Enter to display in the footer area</em></p>';
+		   $contactmethods['mobilephone'] = '<p>b) Mobile Phone Number</br><em>Enter to display in the header area</em></p>';
+		   $contactmethods['facebook'] = '<p>c) Facebook Page Link</br><em>Enter full url, for example: <span class="red">https://www.facebook.com/AbleMediation</em></p>' ;
+		   $contactmethods['twitter'] = '<p>d) Twitter Profile Link</br><em>Enter full url to display Twitter profile link.</p>' ;
+		   $contactmethods['googleplus'] = '<p>e) Google Plus Page Link</br><em>Enter full url to display Google Plus Page link.</em></p>' ;
+		   $contactmethods['linkedin'] = '<p>f) Linkedin Profile Link</br><em>Enter full url to display Linkedin profile link.</p>' ;
+		   $contactmethods['companyname'] = '<p>g) Company Name</br><em>Enter to display in the footer area</em></p>';
        $contactmethods['companynumber'] = '<p>h) Registered Company Number</br><em>Enter to display in the footer area</em></p>';
-	   $contactmethods['registeredaddress'] = '<p>i) Registered Company Address</br><em>Enter to display in the footer area</em></p>';
-// referral
-	   $contactmethods['referrallink'] = '<h3 class="orangespan">Referral Page</h3><p>a) Referral Page link</br><em>enter full url, for example: <span class="red">http://www.ablemediation.com/referrals</em></span></p>' ;
-	   $contactmethods['referraltext'] = '<p>b) Referral Page Text</br><span class="orangespan">text for the button.</span></p>' ;
-	   $contactmethods['referralnewtab'] = '<p>c) Referral Page New Window</br><em>enter any text to open the link in a new tab.</em></p>' ;
-// footer logos
-	   $contactmethods['footerlogogreenheading'] = '<h3 class="greenspan">Footer Logos</h3><p>a) Footer Logo Green Heading</br><span class="greenspan">Green text</span><em> in the footer area</em></p>';
-	   $contactmethods['footerlogoheading'] = '<p>b) Footer Logo Heading</br><span class="greyspan">Grey text</span> <em>in the footer area</em></p>';
-	   // footer logo 1
-	   $contactmethods['footerlogo1'] = '<p>c) i/ First Footer Logo</br>
+		   $contactmethods['registeredaddress'] = '<p>i) Registered Company Address</br><em>Enter to display in the footer area</em></p>';
+			 // referral
+		   $contactmethods['referrallink'] = '<h3 class="orangespan">Referral Page</h3><p>a) Referral Page link</br><em>enter full url, for example: <span class="red">http://www.ablemediation.com/referrals</em></span></p>' ;
+		   $contactmethods['referraltext'] = '<p>b) Referral Page Text</br><span class="orangespan">text for the button.</span></p>' ;
+		   $contactmethods['referralnewtab'] = '<p>c) Referral Page New Window</br><em>enter any text to open the link in a new tab.</em></p>' ;
+			 // footer logos
+		   $contactmethods['footerlogogreenheading'] = '<h3 class="greenspan">Footer Logos</h3><p>a) Footer Logo Green Heading</br><span class="greenspan">Green text</span><em> in the footer area</em></p>';
+		   $contactmethods['footerlogoheading'] = '<p>b) Footer Logo Heading</br><span class="greyspan">Grey text</span> <em>in the footer area</em></p>';
+		   // footer logo 1
+		   $contactmethods['footerlogo1'] = '<p>c) i/ First Footer Logo</br>
 	   		<em>Upload a footer logo</em></p>
 			<img class="footerlogo1" src="'.
 			get_bloginfo('stylesheet_directory'). '/images/logo-default.png"/>
@@ -525,19 +634,19 @@ function remove_some_widgets(){
     unregister_sidebar( 'sidebar-1' );
     unregister_sidebar( 'sidebar-2' );
     unregister_sidebar( 'sidebar-3' );
-	unregister_widget( 'WP_Widget_Pages' );
-	unregister_widget( 'WP_Widget_Calendar' );
-	// unregister_widget( 'WP_Widget_Archives' );
-	unregister_widget( 'WP_Widget_Links' );
-	unregister_widget( 'WP_Widget_Meta' );
-	unregister_widget( 'WP_Widget_Search' );
-	// unregister_widget( 'WP_Widget_Recent_Posts' );
-	// unregister_widget( 'WP_Widget_Recent_Comments' );
-	unregister_widget( 'WP_Widget_RSS' );
-	// unregister_widget( 'WP_Widget_Tag_Cloud' );
-	unregister_widget( 'WP_Nav_Menu_Widget' );
-	// unregister_widget( 'WP_Widget_Text' );
-	// unregister_widget( 'WP_Widget_Categories' );
+		unregister_widget( 'WP_Widget_Pages' );
+		unregister_widget( 'WP_Widget_Calendar' );
+		// unregister_widget( 'WP_Widget_Archives' );
+		unregister_widget( 'WP_Widget_Links' );
+		unregister_widget( 'WP_Widget_Meta' );
+		unregister_widget( 'WP_Widget_Search' );
+		// unregister_widget( 'WP_Widget_Recent_Posts' );
+		// unregister_widget( 'WP_Widget_Recent_Comments' );
+		unregister_widget( 'WP_Widget_RSS' );
+		// unregister_widget( 'WP_Widget_Tag_Cloud' );
+		unregister_widget( 'WP_Nav_Menu_Widget' );
+		// unregister_widget( 'WP_Widget_Text' );
+		// unregister_widget( 'WP_Widget_Categories' );
 }
 add_action( 'widgets_init', 'remove_some_widgets', 11 );
 
@@ -674,11 +783,11 @@ function google_maps() {
 		echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDApA44NzVrUmgronW53dRcmNGvJsiiepY&amp;sensor=false" type="text/javascript"></script>';
 		// wp_enqueue_script('brentford', get_stylesheet_directory_uri(). '/js/contact/brentford.js');
 
-		wp_enqueue_script('ealing', get_stylesheet_directory_uri(). '/js/contact/ealing.js#asyncload', '', '1.0', true);
-  		wp_enqueue_script('richmond', get_stylesheet_directory_uri(). '/js/contact/richmond.js#asyncload', '', '1.0', true);
-  		wp_enqueue_script('central-london', get_stylesheet_directory_uri(). '/js/contact/central-london.js#asyncload', '', '1.0', true);
-  		wp_enqueue_script('northfields', get_stylesheet_directory_uri(). '/js/contact/northfields.js#asyncload', '', '1.0', true);
-		wp_enqueue_script('hammersmith', get_stylesheet_directory_uri(). '/js/contact/hammersmith.js#asyncload', '', '1.0', true);
+			wp_enqueue_script('ealing', get_stylesheet_directory_uri(). '/js/contact-maps/ealing.js#asyncload', '', '1.0', true);
+  		wp_enqueue_script('richmond', get_stylesheet_directory_uri(). '/js/contact-maps/richmond.js#asyncload', '', '1.0', true);
+  		wp_enqueue_script('central-london', get_stylesheet_directory_uri(). '/js/contact-maps/central-london.js#asyncload', '', '1.0', true);
+  		wp_enqueue_script('northfields', get_stylesheet_directory_uri(). '/js/contact-maps/northfields.js#asyncload', '', '1.0', true);
+			wp_enqueue_script('hammersmith', get_stylesheet_directory_uri(). '/js/contact-maps/hammersmith.js#asyncload', '', '1.0', true);
 
 		//wp_enqueue_script('able-maps', get_stylesheet_directory_uri(). '/js/able-maps.min.js'); - future attempt to combine maps
 		// http://stackoverflow.com/questions/4074520/how-to-display-multiple-google-maps-per-page-with-api-v3

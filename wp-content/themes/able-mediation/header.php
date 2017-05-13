@@ -129,11 +129,11 @@ else if(!is_404() && !is_home()) {
 
             	<?php if ($referrallink != '' && $referraltext != '' && (!empty($referralnewtab))) echo '
 				<div class="right">
-					<a class="button orange" href="'.$referrallink.'" target="_blank">'.$referraltext.'</a>
+					<a class="refer" href="'.$referrallink.'" target="_blank">'.$referraltext.'</a>
 				</div>';
 					if ($referrallink != '' && $referraltext != '' && (empty($referralnewtab))) echo '
 				<div class="right">
-					<a class="button orange" href="'.$referrallink.'">'.$referraltext.'</a>
+					<a class="refer" href="'.$referrallink.'">'.$referraltext.'</a>
 				</div>'; ?>
 
         	</div><!-- #contact -->

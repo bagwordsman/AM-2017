@@ -18,7 +18,7 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 			<header class="archive-header">
-				<h1 class="archive-title"><?php printf( __( 'Posts Tagged: %s', 'twentytwelve' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
+				<h1 class="archive-title"><?php printf( __( 'Posts Tagged: %s', 'twentytwelve' ), '<span class="tagged-title">' . single_tag_title( '', false ) . '</span>' ); ?></h1>
 
 			<?php if ( tag_description() ) : // Show an optional tag description ?>
 				<div class="archive-meta"><?php echo tag_description(); ?></div>
@@ -47,11 +47,11 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</section><!-- #primary -->
-    
+
     <div id="secondary" class="widget-area" role="complementary">
 		<?php
         	if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Blog Pages') ) : ?>
 		<?php endif;?>
 	</div><!-- #secondary -->
-    
+
 <?php get_footer(); ?>

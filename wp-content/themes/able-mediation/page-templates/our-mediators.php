@@ -41,7 +41,7 @@ get_header(); ?>
 ?>
 
 <section class="profile">
-    <div class="profile-left"> 
+    <div class="profile-left">
          <?php if ( get_the_author_meta('image', $curauth->ID) != null){
 			 echo '<img src="'.esc_attr(get_the_author_meta('image', $curauth->ID)).'" alt="'.$curauth->display_name.', Mediator at Able Mediation"/>';
 		 }else{
@@ -49,22 +49,25 @@ get_header(); ?>
 		 }?>
     </div><!-- .profile-left -->
     <div class="profile-right">
-    	<?php if ( $curauth->display_name ) 
+    	<?php if ( $curauth->display_name )
 			echo '<h2>'.$curauth->display_name.'</h2>';
 			if ( $curauth->user_description ) :
-			the_author_meta( description, $authorID);?>
+			the_author_meta( description, $authorID);
+
+			// var_dump(the_author_meta( description, $authorID));
+			 ?>
     	<?php endif; ?>
     </div><!-- .profile-right -->
-    <a class="button" title="Click to read more">Click to read more</a>  
+    <a class="button" title="Click to read more">Click to read more</a>
 </section><!-- .profile -->
- 
+
 <?php endif; ?>
-<?php endforeach; ?>            
+<?php endforeach; ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
-    
-    
+
+
     <?php // functions sidebar linked image
 		$sidebarheading = get_the_block('Sidebar Image Heading', array(
 		'type' => 'one-liner',
@@ -72,7 +75,7 @@ get_header(); ?>
 		) );
 		$sidebarimage = get_the_block('Sidebar Image (do not link the image)', array(
 		'apply_filters' => false
-		) ); 
+		) );
 		$sidebarcaption = get_the_block('<span class="greenspan">Sidebar Image Caption</span>', array(
 		'type' => 'one-liner',
 		'apply_filters' => false
@@ -85,17 +88,17 @@ get_header(); ?>
 		'type' => 'one-liner',
 		'apply_filters' => false
 		) ); ?>
-        
-        
+
+
     <?php // Sidebar Image - start container
 	    if ($sidebarimage != '')
 		echo '<div id="secondary" class="widget-area" role="complementary">
 			      <aside class="widget image-widget">'; ?>
-                  
+
                   <?php // Heading
                       if ($sidebarheading != '')
 					  echo '<h3 class="widget-title">'.html_entity_decode($sidebarheading).'</h3>';
-					  // Image 
+					  // Image
 					  // a) box
 					  if ($sidebarimage != '')
 					  echo '<div class="box">';
@@ -107,7 +110,7 @@ get_header(); ?>
 					  		echo '<h3 class="greenspan">'.html_entity_decode($sidebarcaption).'</h3>';
 							// d) image
 					  		echo html_entity_decode($sidebarimage); ?>
-                      
+
                   	<?php // b) wrapping link
 					  	if ($sidebarimage != '')
 					  	echo '</div>';
@@ -119,7 +122,7 @@ get_header(); ?>
     <?php // Sidebar Image - end container
 	    if ($sidebarimage != '')
 		    echo '</aside><!-- .widget -->
-		     </div><!-- #secondary -->'; ?>    
-    
+		     </div><!-- #secondary -->'; ?>
+
 
 <?php get_footer(); ?>
