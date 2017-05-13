@@ -1,0 +1,16 @@
+# keep these files out of the repo:
+/wp-content/themes/twenty*
+/wp-content/upgrade
+/wp-content/uploads
+/sitemap.*
+/wp-config.php
+*.sql
+robots.txt
+css-js-compressor.php
+php.ini
+
+# hidden files
+*.DS_Store
+*Thumbs.db
+*.sass-cache*
+*~imageoptim~
