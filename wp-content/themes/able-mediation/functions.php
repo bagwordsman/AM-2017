@@ -293,7 +293,7 @@ class KLVisualBiographyEditor {
 			add_action( 'admin_init', array($this, 'save_filters') );
 
 			// Load required JS
-			add_action( 'admin_enqueue_scripts', array($this, 'load_javascript'), 10, 1 );
+			//add_action( 'admin_enqueue_scripts', array($this, 'load_javascript'), 10, 1 );
 
 			// Add content filters to the output of the description
 			add_filter( 'get_the_author_description', 'wptexturize' );
