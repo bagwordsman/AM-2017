@@ -27,10 +27,10 @@ function ie_fonts() {
 add_action('wp_head', 'ie_fonts');
 
 // add google analytics //
-add_action('wp_footer', 'add_googleanalytics');
-function add_googleanalytics() { ?>
+//add_action('wp_footer', 'add_googleanalytics');
+//function add_googleanalytics() {
 
-<script>
+//<script>
   //(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   //(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   //m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -39,8 +39,8 @@ function add_googleanalytics() { ?>
   //ga('create', 'UA-93508129-1', 'auto');
   //ga('send', 'pageview');
 
-</script>
-<?php }
+//</script>
+//<?php }
 
 // add secondary menu in the footer //
 register_nav_menus( array(

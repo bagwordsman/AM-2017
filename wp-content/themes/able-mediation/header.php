@@ -21,7 +21,13 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width" />
-<!--<meta name="google-site-verification" content="6Zk7qrlPn49rq2PXj139zbeDcXE0JQa32_nn8b3d79s" />-->
+<?php
+// if the site url does not contain 'localhost' (i.e. IS LIVE), add google site verification
+$url = get_site_url();
+if (strpos($url, 'localhost') == false){
+	echo '<meta name="google-site-verification" content="6Zk7qrlPn49rq2PXj139zbeDcXE0JQa32_nn8b3d79s" />';
+}
+?>
 <title>
 <?php // title tag
 $blogtitle = get_post_meta(14,'Title Tag',true);
@@ -98,8 +104,6 @@ else if(!is_404() && !is_home()) {
 					echo '<span class="able">'.$nameParts[0]. "\n" .'</span>'.$nameParts[1];?></h1>
             	</div><!-- #title -->
         	</div><!-- #branding -->
-
-					<!--<img src="'. get_bloginfo('stylesheet_directory') .'/images/icons/phone.png" alt="phone us" width="21" height="21" />-->
 
 
         	<div id="contact">
