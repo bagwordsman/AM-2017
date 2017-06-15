@@ -451,6 +451,9 @@ function footerlogo_js() {
 
 	window.send_to_editor = function(html) {
 	imgurl = jQuery('img',html).attr('src');
+
+console.log(jQuery('img',html));
+
 	jQuery('#footerlogo1').val(imgurl);
 	tb_remove();
 	}
