@@ -1,0 +1,1223 @@
+/* Admin Stylesheet
+
+1 - Custom Fields - for page meta
+2 - Colour classes - used somewhere - e.g. by jquery for linked page boxes
+3 - Able Theme Options Tab
+4 - Able Theme Options Page
+5 - ACF (advanced custom fields)
+        - home page
+        - default page
+
+6 - Mediator Profile Pages
+
+
+
+*/
+/*
+–––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* 1 - Custom Fields - for page meta */
+
+#the-list input[value="Title Tag"], .metatitle {background-color:#f6859e;color:#000;}/* red */
+#the-list input[value="Meta Description"], .metadescription {background-color:#f6bf85;color:#000;}/* orange */
+#the-list input[value="Meta Keywords"], .metakeywords {background-color:#a2f685;color:#000;}/* green */
+
+
+
+/*
+–––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* 2 - Colour classes - could be used somewhere - e.g. by jquery for linked page boxes
+
+find the tints to use by going to http://www.colorhexa.com:
+  - take the darkest colour, then subtract 2 to get mid and lightest
+
+*/
+
+/* green */
+.green--text {color:#70bf44;}
+.green--text.light {color:#8ccb69;}
+.green--text.lighter {color:#a9d88e;}
+.green--text.lightest {color:#c5e5b4;}
+.green--background {background-color:#a9d88e;}
+.green--dark {color:#599836;}
+
+/* orange */
+.orange--text {color:#f07f37;}
+.orange--text.light {color:#f3965b;}
+.orange--text.lighter {color:#f5ae80;}
+.orange--background {background-color:#f5ae80;}
+.orange--dark {background-color:#cb580f;}
+
+/* blue */
+.blue--text {color:#339cff;}
+.blue--text.light {color:#4ca8ff;}
+.blue--text.lighter {color:#7fc1ff;}
+.blue--background {background-color:#7fc1ff;}
+.blue--dark {color:#659acc;}
+
+/* red */
+.red--text {color:#da291c;}
+.red--text.light {color:#e75348;}
+.red--text.lighter {color:#ec746b;}
+.red--background {background-color:#ec746b;}
+.red--dark {color:#961c13;}
+
+/* purple */
+.purple--text {color:#551a8b;}
+
+/* black */
+.black--text {color:#000;}
+
+/* yellow */
+.yellow--text {color:#edd44b;}
+
+/* grey */
+.grey--text {color:#6a6a6a;}
+.grey--text.lighter {color:#c0c0c0;}
+.grey--text.lightest {color:#f0f0f0;}
+.grey--dark {color:#545454;}
+
+
+
+
+
+
+/* hidden class */
+.hidden {display:none;}
+
+/*
+–––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* 3 - Able Theme Options Tab */
+/* page marker */
+#toplevel_page_sandbox a,
+#toplevel_page_sandbox a .dashicons-admin-tools:before {color:#70bf44;}
+#toplevel_page_sandbox a:hover,
+#adminmenu #toplevel_page_sandbox.current.menu-top a {background-color:#70bf44;color:#000;}
+/* icon colour */
+#adminmenu #toplevel_page_sandbox a:hover div.wp-menu-image:before,
+#adminmenu #toplevel_page_sandbox a.current div.wp-menu-image:before {color:#000;}
+/* hover on current */
+#adminmenu #toplevel_page_sandbox.current.menu-top a:hover {background-color:#8ccb69;}
+/* focus styles */
+#adminmenu #toplevel_page_sandbox a:focus,
+#adminmenu #toplevel_page_sandbox.current.menu-top a:focus {background-color:#a9d88e;color:#000;}
+#adminmenu #toplevel_page_sandbox a:focus .dashicons-admin-tools:before
+#adminmenu #toplevel_page_sandbox a:focus div.wp-menu-image:before {color:#000;}
+
+
+
+
+
+
+/*
+–––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* 4 - Able Theme Options Page */
+
+/* typography */
+.AM2017--options form {font-size:62.5%;}
+.AM2017--options form,
+.AM2017--options form p,
+.AM2017--options form th,
+.AM2017--options form label,
+.in-header-and-footer,
+.in-page,
+.wp-core-ui .AM2017--options form .button,
+.wp-core-ui .AM2017--options form .button-primary,
+.AM2017--options form input[type="text"],
+.AM2017--options form select {
+  font-size:1.6rem;line-height:1.6;font-weight:400;
+  font-family:'Asap', Helvetica, Arial, sans-serif;color:#6a6a6a;
+}
+.AM2017--options h1,
+.AM2017--options h2,
+.AM2017--options h3,
+.AM2017--options h4,
+.AM2017--options h5,
+.AM2017--options h6,
+.wrap .in-header-and-footer h1,
+.wrap .in-page h1 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.8;
+  color:#6a6a6a;
+}
+.AM2017--options h1,
+.wrap .in-header-and-footer h1,
+.wrap .in-page h1 { font-size: 3.0rem; letter-spacing: 0.02rem; }
+.AM2017--options h2 { font-size: 2.4rem; letter-spacing: 0.04rem; }
+.AM2017--options h3 { font-size: 2.1rem; letter-spacing: 0.05rem;}
+.AM2017--options h4 { font-size: 1.8rem; letter-spacing: 0.06rem; }
+.AM2017--options h5 { font-size: 1.5rem; letter-spacing: 0.07rem; }
+.AM2017--options h6 { font-size: 1.2rem; letter-spacing: 0; }
+
+.AM2017--options form p,
+.AM2017--options form th,
+.AM2017--options form label,
+.AM2017--options form input[type="text"],
+.AM2017--options form select {font-size: 1.2rem;}
+
+
+
+
+
+/* form styles */
+.AM2017--options form{position:relative;margin-top:45px;padding-top:30px;border-top:1px dotted #aaa;}
+.AM2017--options form.first{border-top:none;margin-top:0;padding-top:0;}/* first/nth child didnt work */
+.AM2017--options form .fa{width:40px;font-size:32px;margin-right:16px;margin-top:-4px;vertical-align:middle;text-align:center;}
+.AM2017--options form .extra-label{font-weight:normal;}
+.AM2017--options form input[type="text"]{display:block;min-width:50%;}
+/* remove logo size input fields */
+.AM2017--options form .invisible{visibility:hidden;}
+.AM2017--options form .invisible input[type="text"]{height:0;}
+
+/* sections - header and footer, and in page options */
+.in-header-and-footer {position:relative;padding-left:20px;padding-right:20px;padding-bottom:140px;}
+.in-header-and-footer > h1 {
+  position:relative;text-align:center;
+  color:#fff !important;
+  text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+  3px 4px 10px rgba(0,0,0,0.25);
+}
+
+.in-page {padding-top:30px;background-color:#fff;padding-left:20px;padding-right:20px;}
+.in-page > h1 {
+  position:relative;text-align:center;
+  color:#fff !important;
+  text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+  3px 4px 10px rgba(0,0,0,0.25);
+}
+
+/* content dividers */
+.divider {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+.divider:before,
+.divider:after {
+    content: "";
+    left: -20px;
+    position: absolute;
+    right: 20px;
+}
+.divider:before {
+    height: 220px;
+    top: -20px;
+    transform: skew(0deg, 8deg);
+}
+.divider:after {
+    height: 220px;
+    top: -20px;
+    transform: skew(0deg, -8deg);
+}
+.divider.white,
+.divider.white:before,
+.divider.white:after {
+  background-color: #fff;
+}
+
+
+
+
+/* button styles */
+.wp-core-ui .AM2017--options form .button,
+.wp-core-ui .AM2017--options form .button-primary {
+  box-shadow:none;text-shadow:none;/* resets come first */
+  display: inline-block;
+  height: 48px;
+  padding: 0 10px;
+  color: #70bf44;
+  text-align: center;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 3px solid #70bf44;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all ease-in-out 0.25s;
+}
+
+.wp-core-ui .AM2017--options form .button:hover,
+.wp-core-ui .AM2017--options form .button:focus,
+.wp-core-ui .AM2017--options form .button-primary:hover,
+.wp-core-ui .AM2017--options form .button-primary:focus {
+  color:#fff;
+  outline: 0;
+  background-color:#70bf44;
+  text-shadow:1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+/* text input styles */
+.AM2017--options form input[type="text"] {
+  border:2px solid #6a6a6a;;
+}
+.AM2017--options form input[type="text"]:focus {
+  color:#70bf44;
+  border:2px solid #70bf44;
+  box-shadow:none;
+}
+
+/* dropdown styles */
+/* reset */
+.wp-admin .AM2017--options select {
+  height:auto;
+  line-height:auto;
+  padding:3px 5px;
+}
+.AM2017--options form select {
+  border:2px solid #6a6a6a;
+  min-width:200px;
+}
+
+
+
+
+
+/* checkbox styles */
+.AM2017--options form input[type="radio"],
+.AM2017--options form input[type="checkbox"] {
+    box-shadow: none;
+    border: 2px solid #6a6a6a;
+    color: #6a6a6a;
+    height: 24px;
+    min-width: 24px;
+    width: 24px;
+}
+
+
+
+
+
+
+
+
+
+/* Options Page - specific styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* wide left columns */
+.wide th {min-width:340px;}
+
+/* 1./ Company Options */
+/* default fa icon styles set above */
+
+/* 2./ Logos */
+.logogroup img{display:block;max-width:200px;}
+.logogroup input[type="button"]{margin:10px 0;}
+.logogroup label {display:block;margin:10px 0;}
+.AM2017--options form #ouraffiliatestitle,
+.AM2017--options form .logogroup input[type="text"]{display:block;min-width:62.5%;}
+
+/* 3./ Social Media */
+.fa.fa-facebook{color:#3c5b9a;}
+.fa.fa-twitter{color:#28aae1;}
+.fa.fa-google-plus{color:#dd4b39;}
+.fa.fa-linkedin{color:#0077b5;}
+
+/* 4./ Tweet */
+.AM2017--options form.tweet input[type="text"] {display:block;min-width:80%;}
+/* help icon */
+.AM2017--options form.tweet td {position:relative;}
+.AM2017--options form.tweet .fa.fa-question {
+  position:absolute;top:23px;right:calc(20% - 48px);
+  cursor:pointer;
+}
+.AM2017--options form.tweet .fa.fa-question:hover {color:#70bf44;}
+/* screenshot image */
+.embeddedtweet--info {
+  width:calc(80% - 4px);
+  font-family:'Lato', sans-serif;font-style:italic;
+  font-size:1.2rem;
+  margin-bottom:10px;
+}
+.embeddedtweet--info img {max-width:100%;margin-top:20px;margin-bottom:5px;border:2px solid #70bf44;}
+
+/* Tweet Colour Scheme */
+#tweetcolour_scheme.green {color:#70bf44;}
+#tweetcolour_scheme.orange {color:#f07f37;}
+#tweetcolour_scheme.blue {color:#339cff;}
+#tweetcolour_scheme.red {color:#da291c;}
+#tweetcolour_scheme.dark-grey {color:#6a6a6a;}
+
+
+/* 5./ Google Map */
+.top-margin--4-2 {margin-top:4.2rem;}
+.top-margin--5-8 {margin-top:5.8rem;}
+.top-margin--10 {margin-top:10rem;}
+
+
+/* map height slider - with jquery-ui */
+.v-slider,
+.slider-info {display:inline-block;vertical-align:top;}
+
+/* a) readonly text input */
+.AM2017--options form input[type="text"].slider-value {
+  min-width:none !important;padding:0;border:0;
+  background-color:none;color:#70bf44;box-shadow:none;
+}
+.AM2017--options form input[type="text"].slider-value:focus {border:0;}
+input[readonly].slider-value {background-color:#fff;}
+
+/* b) slider */
+.v-slider {
+  height:200px;
+  margin-right:.75rem;
+}
+.v-slider .ui-slider-handle {cursor:pointer;}
+.v-slider .ui-state-focus,
+.v-slider .ui-state-active {
+  outline:none;
+  background:#70bf44;
+  border:1px solid color:#599836 !important;/* dark green */
+}
+
+
+
+/* 6./ Blog Widgets */
+
+/* bg colour */
+.widget-bg-preview.green {background-color:#70bf44;}
+.widget-bg-preview.orange {background-color:#f07f37;}
+.widget-bg-preview.blue {background-color:#339cff;}
+.widget-bg-preview.red {background-color:#da291c;}
+.widget-bg-preview.light-grey {background-color:#f0f0f0;}
+.widget-bg-preview.dark-grey {background-color:#6a6a6a;}
+
+/* bg opacity */
+#bg-colour-brush.green,
+#blog_widget_bg_colour.green,
+#bg-opacity_icon.green {color:#70bf44;}
+#bg-colour-brush.orange,
+#blog_widget_bg_colour.orange,
+#bg-opacity_icon.orange {color:#f07f37;}
+#bg-colour-brush.blue,
+#blog_widget_bg_colour.blue,
+#bg-opacity_icon.blue {color:#339cff;}
+#bg-colour-brush.red,
+#blog_widget_bg_colour.red,
+#bg-opacity_icon.red {color:#da291c;}
+#bg-colour-brush.light-grey,
+#blog_widget_bg_colour.light-grey,
+#bg-opacity_icon.light-grey {color:#f0f0f0;}
+#bg-colour-brush.dark-grey,
+#blog_widget_bg_colour.dark-grey,
+#bg-opacity_icon.dark-grey {color:#6a6a6a;}
+
+/* bg image */
+.bg-img_group img{display:block;max-width:100%;}
+.bg-img_group input[type="button"]{margin:10px 0;}
+.bg-img_group label {display:block;margin:10px 0;}
+.AM2017--options form input[type="text"]#blog_widget_bg_image {width:100%;}
+
+/* theme / colour scheme */
+#widget-theme.light {color:#edd44b;}
+#widget-theme.dark {color:#000;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 5 - ACF (advanced custom fields)
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* Defult WP style overrides */
+/* featured image - hero image */
+#poststuff #postimagediv h2 {
+  background-color:#70bf44;
+  color:#fff;
+  font-size:16px;
+  line-height:1.6em;
+}
+#poststuff #postimagediv .inside:before{
+  content:'Upload a Hero Image. This should be at least 1800px wide - for wide screens.';
+  display:inline-block;
+  color:#000;
+  font-size:16px;
+  line-height:1.6em;
+}
+
+
+
+
+
+
+/* typography */
+#titlediv #title,
+.acf_postbox p.label,
+.acf_postbox p.label label,
+#poststuff #acf_471302 h2, {
+  font-size:62.5%;
+}
+#titlediv #title,
+.acf_postbox p.label,
+.acf_postbox p.label label,
+#poststuff #acf_471302 h2 {
+  font-size:1.6rem;line-height:1.6;font-weight:400;
+  font-family:'Asap', Helvetica, Arial, sans-serif;color:#6a6a6a;
+}
+
+
+/* small text */
+.acf_postbox p.label { font-size:1.2rem; }
+/* medium text */
+.acf_postbox p.label label,
+#poststuff #acf_471302 h2 { font-size:1.6rem;font-weight:700; }
+/* large text */
+#titlediv #title { font-size:2.4rem;font-weight:700;letter-spacing:0.04rem; }
+
+
+
+
+
+/*
+–––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* ACF (Advanced Custom Fields) */
+
+/*
+1./ Field Groups in All Page Templates
+    - Second Section(s)
+    - Last Section
+    - Optional Linked Page
+
+2./ Home Page Field Groups
+    - Home Page Hero
+    - Home Page Second Section
+    - Home Page Third Section
+
+*/
+
+
+
+
+
+/*
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+1./ Field Groups in All Page Templates
+*/
+
+/* -------------------- */
+/* Second Section(s)
+#acf-field-second_section_id p.label:after {
+  color: #da291c;
+  content: "your-ID";
+  display: inline-block;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  margin-left: 0.75rem;
+  padding: 0.25rem 0.75rem;
+}
+*/
+
+/* Linking IDs */
+#acf-field-second_section_id .section-id {}
+.acf_postbox p.label.section-id {color:#551a8b;}
+.acf_postbox p.label.section-id span {font-weight:bold;}
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------- */
+/* Last Section */
+/* a) background */
+#acf_471324.acf_postbox.no_box {
+  margin-top:5rem;margin-bottom:5rem;
+  padding:1rem 2rem 1.5rem;
+  background-color:#fff;
+}
+/* b) input fields */
+#acf_471324.acf_postbox .field input[type="text"],
+#acf_471324.acf_postbox .field select,
+#acf_471324.acf_postbox .field textarea {
+  font-size:1.2rem;font-weight:400;
+  height:38px;line-height:38px;
+  box-shadow:none;
+  color:#6a6a6a;border:2px solid #6a6a6a;
+}
+#acf_471324.acf_postbox .field input[type="text"]:focus,
+#acf_471324.acf_postbox .field select:focus,
+#acf_471324.acf_postbox .field textarea:focus {
+  box-shadow:none;
+  border:2px solid #f07f37;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------- */
+/* Optional Linked Page */
+
+/* ------------- */
+/* a) background */
+#acf_471302.acf_postbox {
+  border:none;
+  box-shadow:none;
+}
+#acf_471302.green {background-color:#a9d88e;}
+#acf_471302.orange {background-color:#f5ae80;}
+#acf_471302.blue {background-color:#7fc1ff;}
+#acf_471302.red {background-color:#ec746b;}
+
+/* b) sectons */
+#acf_471302.acf_postbox > .inside > .field {
+  padding-left:2rem;padding-right:2rem;
+  border-top:2px solid #fff;
+}
+/* c) headings */
+#poststuff #acf_471302 h2,
+#acf_471302.acf_postbox p.label,
+#acf_471302.acf_postbox p.label label {
+  color:#fff;
+  text-shadow:none;
+}
+#poststuff #acf_471302 h2 {
+  padding:1rem 2rem;
+  text-shadow:1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+#acf_471302.acf_postbox p.label label {
+  text-shadow:1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+/* d) arrow toggle */
+#acf_471302.postbox .handlediv {
+  width:3.6rem;height:4.55rem;
+}
+#acf_471302.postbox .handlediv .toggle-indicator{
+  color:#fff;
+}
+#acf_471302.postbox .toggle-indicator:before{
+  font-size:3rem;
+  margin-right:2rem;
+}
+/* e) input fields */
+#acf_471302.acf_postbox .field input[type="text"],
+#acf_471302.acf_postbox .field select,
+#acf_471302.acf_postbox .field textarea {
+  font-size:1.2rem;font-weight:400;
+  height:38px;line-height:38px;
+  box-shadow:none;
+  color:#6a6a6a;
+}
+#acf_471302.acf_postbox .field input[type="text"]:focus,
+#acf_471302.acf_postbox .field select:focus,
+#acf_471302.acf_postbox .field textarea:focus {
+  box-shadow:none;
+}
+
+/* f) separator */
+#acf_471302 #acf-linked_page_content p.label:after {
+  content:'Use the horizontal line tool (-) to split the image from the description.';
+  display:inline-block;
+  margin-left:.75rem;
+  padding:.25rem .75rem;
+  color:#fff;
+  font-size:1.2rem;
+  line-height:1.2rem;
+}
+/* line separator (<hr />) icon - in place of horizontal line tool */
+#acf_471302 #mceu_639 {color:#fff;}
+#acf_471302 #mceu_639 .mce-ico {color:#fff;}
+
+
+/* ---------------------------------------------------- */
+
+/*
+light
+dark
+mid
+
+find the tints to use by going to http://www.colorhexa.com, taking the darkest colour, then subtracting 2 to get mid and lightest
+
+
+green
+#a9d88e - bg
+#70bf44 - textarea border, dropdown closed
+#8ccb69 - dropdown open
+
+orange
+#f5ae80 - bg
+#f07f37 - textarea border, dropdown closed
+#f3965b - dropdown open
+uses blue (#7fc1ff) for highlight and focus. The rest use orange(#f07f37)
+
+blue
+#7fc1ff - bg
+#339cff - textarea border, dropdown closed
+#4ca8ff - dropdown open
+
+red
+#ec746b - bg
+#da291c - textarea border, dropdown closed
+#e75348 - dropdown open
+uses blue (#7fc1ff) for highlight and focus. The rest use orange(#f07f37)
+
+*/
+
+
+
+/* optional linked page - colours (added with jquery) */
+/* -------- */
+/* a) green */
+/* i) arrow toggle */
+#acf_471302.acf_postbox.green > .handlediv {background-color:#8ccb69;}
+#acf_471302.acf_postbox.green.closed > .handlediv {background-color:#70bf44;}
+/* ii) input fields */
+#acf_471302.acf_postbox.green .field input[type="text"],
+#acf_471302.acf_postbox.green .field select,
+#acf_471302.acf_postbox.green .field textarea {border:2px solid #70bf44;}
+#acf_471302.acf_postbox.green .field input[type="text"]:focus,
+#acf_471302.acf_postbox.green .field select:focus,
+#acf_471302.acf_postbox.green .field textarea:focus {border:2px solid #f07f37;}/* orange */
+/* iii) separator */
+#acf_471302.acf_postbox.green #acf-linked_page_content p.label:after {background-color:#f07f37;}/* orange */
+/* line separator (<hr />) icon - in place of horizontal line tool */
+#acf_471302.acf_postbox.green #mceu_639 {background-color:#f07f37;}
+#acf_471302.acf_postbox.green #mceu_639:hover {background-color:#8ccb69;}
+
+/* -------- */
+/* b) orange */
+/* i) arrow toggle */
+#acf_471302.acf_postbox.orange > .handlediv {background-color:#f3965b;}
+#acf_471302.acf_postbox.orange.closed > .handlediv {background-color:#f07f37;}
+/* ii) input fields */
+#acf_471302.acf_postbox.orange .field input[type="text"],
+#acf_471302.acf_postbox.orange .field select,
+#acf_471302.acf_postbox.orange .field textarea {border:2px solid #f07f37;}
+#acf_471302.acf_postbox.orange .field input[type="text"]:focus,
+#acf_471302.acf_postbox.orange .field select:focus,
+#acf_471302.acf_postbox.orange .field textarea:focus {border:2px solid #339cff;}/* blue */
+/* iii) separator */
+#acf_471302.acf_postbox.orange #acf-linked_page_content p.label:after {background-color:#339cff;}/* blue */
+/* line separator (<hr />) icon - in place of horizontal line tool */
+#acf_471302.acf_postbox.orange #mceu_639 {background-color:#339cff;}
+#acf_471302.acf_postbox.orange #mceu_639:hover {background-color:#4ca8ff;}
+
+/* -------- */
+/* c) blue */
+/* i) arrow toggle */
+#acf_471302.acf_postbox.blue > .handlediv {background-color:#4ca8ff;}
+#acf_471302.acf_postbox.blue.closed > .handlediv {background-color:#339cff;}
+/* ii) input fields */
+#acf_471302.acf_postbox.blue .field input[type="text"],
+#acf_471302.acf_postbox.blue .field select,
+#acf_471302.acf_postbox.blue .field textarea {border:2px solid #339cff;}
+#acf_471302.acf_postbox.blue .field input[type="text"]:focus,
+#acf_471302.acf_postbox.blue .field select:focus,
+#acf_471302.acf_postbox.blue .field textarea:focus {border:2px solid #f07f37;}/* orange */
+/* iii) separator */
+#acf_471302.acf_postbox.blue #acf-linked_page_content p.label:after {background-color:#f07f37;}/* orange */
+/* line separator (<hr />) icon - in place of horizontal line tool */
+#acf_471302.acf_postbox.blue #mceu_639 {background-color:#f07f37;}
+#acf_471302.acf_postbox.blue #mceu_639:hover {background-color:#f3965b;}
+
+/* -------- */
+/* d) red */
+/* i) arrow toggle */
+#acf_471302.acf_postbox.red > .handlediv {background-color:#e75348;}
+#acf_471302.acf_postbox.red.closed > .handlediv {background-color:#da291c;}
+/* ii) input fields */
+#acf_471302.acf_postbox.red .field input[type="text"],
+#acf_471302.acf_postbox.red .field select,
+#acf_471302.acf_postbox.red .field textarea {border:2px solid #da291c;}
+#acf_471302.acf_postbox.red .field input[type="text"]:focus,
+#acf_471302.acf_postbox.red .field select:focus,
+#acf_471302.acf_postbox.red .field textarea:focus {border:2px solid #339cff;}/* orange */
+/* iii) separator */
+#acf_471302.acf_postbox.red #acf-linked_page_content p.label:after {background-color:#339cff;}/* blue */
+/* line separator (<hr />) icon - in place of horizontal line tool */
+#acf_471302.acf_postbox.red #mceu_639 {background-color:#339cff;}
+#acf_471302.acf_postbox.red #mceu_639:hover {background-color:#4ca8ff;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+2./ Home Page Field Groups
+*/
+
+/* -------------------- */
+/* Home Page Hero */
+/* a) background */
+#acf_471344.acf_postbox.no_box {
+  margin-top:5rem;margin-bottom:5rem;
+  padding:1rem 2rem 1.5rem;
+}
+/* b) headings */
+#acf_471344.acf_postbox p.label,
+#acf_471344.acf_postbox p.label label {
+  color:#fff;
+  text-shadow:none;
+}
+#acf_471344.acf_postbox p.label label {
+  text-shadow:1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+/* c) colours */
+#acf_471344.acf_postbox.no_box.green {background:#a9d88e;}
+#acf_471344.acf_postbox.no_box.orange {background:#f5ae80;}
+#acf_471344.acf_postbox.no_box.blue {background:#7fc1ff;}
+#acf_471344.acf_postbox.no_box.transparent {background:#ababab;}
+
+
+
+
+
+
+/* -------------------- */
+/* Home Page Second Section */
+/* a) background */
+#acf_471346.acf_postbox.no_box {
+  margin-top:5rem;margin-bottom:5rem;
+  padding:1rem 2rem 1.5rem;
+  background-color:#fff;
+}
+/* b) input fields */
+#acf_471346.acf_postbox .field input[type="text"],
+#acf_471346.acf_postbox .field select,
+#acf_471346.acf_postbox .field textarea {
+  font-size:1.2rem;font-weight:400;
+  height:38px;line-height:38px;
+  box-shadow:none;
+  color:#6a6a6a;border:2px solid #6a6a6a;
+}
+#acf_471346.acf_postbox .field input[type="text"]:focus,
+#acf_471346.acf_postbox .field select:focus,
+#acf_471346.acf_postbox .field textarea:focus {
+  box-shadow:none;
+  border:2px solid #f07f37;
+}
+/* c) home page sidebar */
+#acf-second_section_sidebar,
+#acf-second_section_sidebar_colour {margin-right:10rem;}
+#acf-second_section_sidebar.green,
+#acf-second_section_sidebar.orange,
+#acf-second_section_sidebar.blue,
+#acf-second_section_sidebar.red {margin-top:2.5rem;padding-top:1.5rem;}
+
+#acf-second_section_sidebar.green {border-top:10px solid #70bf44;}
+#acf-second_section_sidebar_colour .label.green label {color:#70bf44;text-shadow:none;}
+
+#acf-second_section_sidebar.orange {border-top:10px solid #f07f37;}
+#acf-second_section_sidebar_colour .label.orange label {color:#f07f37;text-shadow:none;}
+
+#acf-second_section_sidebar.blue {border-top:10px solid #7fc1ff;}
+#acf-second_section_sidebar_colour .label.blue label {color:#7fc1ff;text-shadow:none;}
+
+#acf-second_section_sidebar.red {border-top:10px solid #da291c;}
+#acf-second_section_sidebar_colour .label.red label {color:#da291c;text-shadow:none;}
+
+
+
+
+
+/* -------------------- */
+/* Home Page Third Section */
+/* a) divider */
+#acf-column_1,
+#acf-column_2,
+#acf-column_3 {
+  position:relative;
+  margin-top:5rem;padding-top:5rem;
+}
+#acf-column_1:before,
+#acf-column_2:before,
+#acf-column_3:before {
+  font-family: 'FontAwesome';font-size:5rem;
+  content: "\f107";
+  color: #6a6a6a;
+  position:absolute;top:0;left:50%;
+}
+
+/* b) input fields */
+#acf_470781.acf_postbox .field input[type="text"],
+#acf_470781.acf_postbox .field select,
+#acf_470781.acf_postbox .field textarea {
+  font-size:1.2rem;font-weight:400;
+  height:38px;line-height:38px;
+  box-shadow:none;
+  color:#6a6a6a;border:2px solid #6a6a6a;
+}
+#acf_470781.acf_postbox .field input[type="text"]:focus,
+#acf_470781.acf_postbox .field select:focus,
+#acf_470781.acf_postbox .field textarea:focus {
+  box-shadow:none;
+  border:2px solid #f07f37;
+}
+
+/* c) blue button */
+.acf_postbox p.label label[for="acf-field-column_1_button_text"],
+.acf_postbox p.label label[for="acf-field-column_2_button_text"],
+.acf_postbox p.label label[for="acf-field-column_3_button_text"],
+.acf_postbox p.label label[for="acf-field-column_1_button_link"],
+.acf_postbox p.label label[for="acf-field-column_2_button_link"],
+.acf_postbox p.label label[for="acf-field-column_3_button_link"] {
+  display: inline-block;
+  height: 48px;
+  padding: 0 10px;
+  margin-right:2.5rem;
+  color: #7fc1ff;
+  text-align: center;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 3px solid #7fc1ff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: none;
+  text-shadow:none !important;
+}
+.acf_postbox p.label label[for="acf-field-column_1_button_link"],
+.acf_postbox p.label label[for="acf-field-column_2_button_link"],
+.acf_postbox p.label label[for="acf-field-column_3_button_link"] {
+  color:#551a8b;
+  border: 3px solid #551a8b;
+}
+
+/* d) CTA and green button */
+#acf-end_of_content_cta_text{
+  margin-top:5rem;
+}
+.acf_postbox p.label label[for="acf-field-end_of_content_cta_text"],
+.acf_postbox p.label label[for="acf-field-end_of_content_cta_link"],
+.acf_postbox p.label label[for="acf-field-end_of_content_cta_colour"] {
+  display: inline-block;
+  height: 48px;
+  padding: 0 10px;
+  margin-right:2.5rem;
+  color: #70bf44;
+  text-align: center;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 3px solid #70bf44;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: none;
+  text-shadow:none !important;
+}
+.acf_postbox p.label label[for="acf-field-end_of_content_cta_colour"] {
+  color:#6a6a6a;
+  border-top-color:#70bf44;
+  border-right-color:#f07f37;
+  border-bottom-color:#7fc1ff;
+  border-left-color:#da291c;
+}
+.acf_postbox p.label label[for="acf-field-end_of_content_cta_link"] {
+  color:#551a8b;
+  border: 3px solid #551a8b;
+}
+
+
+
+
+
+
+
+
+/*
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+2./ Default Page Field Groups
+*/
+
+/* -------------------- */
+/* Default Page First Section */
+/* a) green sidebar - only green because it has a blockquote though */
+#acf-first_section_sidebar,
+#acf-first_section_sidebar_colour {margin-left:10rem;}
+#acf-first_section_sidebar.green,
+#acf-first_section_sidebar.orange,
+#acf-first_section_sidebar.blue,
+#acf-first_section_sidebar.red {margin-top:2.5rem;padding-top:1.5rem;}
+
+#acf-first_section_sidebar.green {border-top:10px solid #70bf44;}
+#acf-first_section_sidebar_colour .label.green label {color:#70bf44;text-shadow:none;}
+
+#acf-first_section_sidebar.orange {border-top:10px solid #f07f37;}
+#acf-first_section_sidebar_colour .label.orange label {color:#f07f37;text-shadow:none;}
+
+#acf-first_section_sidebar.blue {border-top:10px solid #7fc1ff;}
+#acf-first_section_sidebar_colour .label.blue label {color:#7fc1ff;text-shadow:none;}
+
+#acf-first_section_sidebar.red {border-top:10px solid #da291c;}
+#acf-first_section_sidebar_colour .label.red label {color:#da291c;text-shadow:none;}
+
+
+
+
+
+
+
+/* -------------------- */
+/* Default Page Second Section */
+/* a) background */
+#acf_471520.acf_postbox.no_box {
+  margin-top:5rem;margin-bottom:5rem;
+}
+/* b) input fields */
+#acf_471520.acf_postbox .field input[type="text"],
+#acf_471520.acf_postbox .field select,
+#acf_471520.acf_postbox .field textarea {
+  font-size:1.2rem;font-weight:400;
+  height:38px;line-height:38px;
+  box-shadow:none;
+  color:#6a6a6a;border:2px solid #6a6a6a;
+}
+#acf_471520.acf_postbox .field input[type="text"]:focus,
+#acf_471520.acf_postbox .field select:focus,
+#acf_471520.acf_postbox .field textarea:focus {
+  box-shadow:none;
+  border:2px solid #f07f37;
+}
+
+
+
+
+/* -------------------- */
+/* Default Page Column Divider */
+#acf-second_section_columns p.label:before {
+  content:'Use the horizontal line tool (-) to separate out columns.';
+  display:inline-block;
+  padding:2px 6px;
+  color:#fff;
+  background-color:#70bf44;
+  text-shadow:none;
+}
+
+/* line separator (<hr />) icon */
+#acf-second_section_columns #mceu_319 {color:#fff;background-color:#70bf44;}
+#acf-second_section_columns #mceu_319:hover {background-color:#8ccb69;border-color:transparent;}
+#acf-second_section_columns #mceu_319 .mce-ico {color:#fff;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+–––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* 6 - Mediator Profile Pages */
+
+/* typography */
+#mediator-profile,
+#mediator-profile label,
+#mediator-profile p,
+#mediator-profile ~ p.submit input[type="submit"] {
+  font-size:62.5%;font-size:1.6rem;line-height:1.6;font-weight:400;
+  font-family:'Asap', Helvetica, Arial, sans-serif;color:#6a6a6a;
+}
+#mediator-profile h3 {
+  font-size:2.4rem;font-weight:700;letter-spacing:0.04rem;
+  color:#fff;text-shadow:1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+#mediator-profile label,
+#mediator-profile p {
+  font-size:1.2rem;
+  color:#fff;
+}
+#mediator-profile label {
+  padding:2px 5px;box-sizing:border-box;
+  background-color:#70bf44;
+}
+#mediator-profile .description {
+  font-family:'Lato', sans-serif;
+  font-size:1.2rem;
+  color:#6a6a6a;
+}
+
+
+/* shortcode */
+#mediator-profile .shortcode-info {color:#6a6a6a;}
+#mediator-profile .shortcode-info span {font-weight:bold;}
+
+/* container */
+#mediator-profile {
+  background-color: #a9d88e;
+  margin-bottom: 2.5rem;
+  margin-top: 5rem;
+  padding: 1rem 2rem 1.5rem;
+}
+
+#mediator-profile .form-table th {
+  width:300px;
+}
+
+
+
+/* form elements */
+#mediator-profile input[type="text"] {
+    border: 2px solid #6a6a6a;
+    box-shadow: none;
+    color: #6a6a6a;
+    font-size: 1.2rem;
+    font-weight: 400;
+    height: 38px;
+    line-height: 38px;
+}
+#mediator-profile input[type="text"]:focus {
+    border: 2px solid #dd823b;
+}
+
+/* button(s) */
+#mediator-profile input#uploadimage,
+#mediator-profile ~ p.submit input[type="submit"] {
+    display: inline-block;
+    height: 48px;
+    padding: 0 10px;
+    margin-left:1rem;
+    color: #dd823b;
+    text-align: center;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 42px;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-shadow:none;
+    box-shadow:none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 3px solid #dd823b;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all ease-in-out 0.25s;
+}
+
+#mediator-profile input#uploadimage:hover,
+#mediator-profile input#uploadimage:focus,
+#mediator-profile ~ p.submit input[type="submit"]:hover,
+#mediator-profile ~ p.submit input[type="submit"]:focus {
+  cursor:pointer;
+  color:#fff;
+  outline: 0;
+  background-color:#dd823b;
+  text-shadow:1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+/* hidden text fields for image width and height */
+/* remove logo size input fields */
+#mediator-profile .invisible{visibility:hidden;}
+#mediator-profile .invisible input[type="text"]{height:0;}
+
+
+
+
+
+
+/*  <--read more--> */
+#mediator-profile label[for="description"]:after {
+  content:"Separate the excerpt from the full text by inserting a 'read more' tag";
+  font-size:1rem;
+  display:inline-block;
+  margin-top:1rem;
+  margin-right:-6px;/* stops parent colour background from displaying */
+  padding:2px 6px;
+  color:#fff;
+  background-color:#dd823b;
+  text-shadow:none;
+  cursor:none;
+}
+
+/* read more separator (<!--more-->) icon */
+#mediator-profile #mceu_11 {color:#fff;background-color:#dd823b;}
+#mediator-profile #mceu_11:hover {background-color:#e39b62;border-color:transparent;}
+#mediator-profile #mceu_11 .mce-ico {color:#fff;}
+
+
+
+
+
+
+
+/* Update User button */
+#mediator-profile ~ p.submit input[type="submit"] {
+  height: 96px;
+  margin-bottom:2.5rem;padding: 0 20px;
+  font-size: 42px;letter-spacing: .2rem;
+  color:#70bf44;
+  border: 6px solid #70bf44;border-radius: 8px;
+  float:right;
+}
+#mediator-profile ~ p.submit input[type="submit"]:hover,
+#mediator-profile ~ p.submit input[type="submit"]:focus {
+  background-color:#70bf44;
+}

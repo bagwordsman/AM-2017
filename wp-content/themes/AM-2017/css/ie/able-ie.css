@@ -1,0 +1,260 @@
+@charset "UTF-8";
+/* CSS Document */
+/* for the poor deprived souls who still use ie8 and below */
+
+
+
+/* container and columns */
+.ie .container {width:90%;}
+.ie .columns { margin-left: 4%; }
+.ie .columns:first-child { margin-left: 0; }
+
+.ie .three.columns                  { width: 22%;            }
+.ie .four.columns                   { width: 30.6666666667%; }
+.ie .five.columns                   { width: 39.3333333333%; }
+.ie .six.columns                    { width: 48%;            }
+.ie .seven.columns                  { width: 56.6666666667%; }
+
+
+/* 1rem = 10px */
+
+
+
+/* --------------------- */
+/* header */
+.ie .header {padding-top:20px;padding-bottom:20px;}
+/* logo */
+.ie .logo,
+.ie .site-title{text-align:left;}
+.ie .header .contact{text-align:right;}
+
+
+
+/* --------------------- */
+/* nav */
+.ie .assistive-text,
+.ie .site .screen-reader-text {
+	position: absolute !important;
+	left:0;top:-40px;
+}
+
+.ie .nav {padding-bottom:38px;}
+
+/* hide toggle */
+.ie #toggle,
+.rsnav-toggle {
+  display:none;
+}
+
+/* large menu styles */
+.ie .rsnav-menu {
+  display: block;
+  opacity: 1;
+  max-width: 100%;
+  width: 100%;
+  margin-bottom:0;
+  height: 38px;
+  background-color: transparent;
+  border-top:none;
+  text-align:center;
+  position:absolute;
+  z-index:99;
+}
+
+/* first tier */
+.ie .rsnav-menu > li {
+  float:left;
+  display: inline-block;
+  position: relative;
+  padding:0 12px;
+  top: 0;
+}
+.ie .rsnav-menu li a {
+  color: #000;
+  padding: 0;
+  background-color:transparent;
+}
+.ie .rsnav-menu li a:hover,
+.ie .rsnav-menu li a:focus,
+.ie .rsnav-menu li.current_page_item > a,
+.ie .rsnav-menu li.current_page_ancestor > a,
+.ie .rsnav-menu li.current-menu-ancestor > a,
+.ie .rsnav-menu li.current-menu-parent > a{
+  background-color:transparent;
+  color: #f07f37;
+  padding: 0;
+  border-bottom: 2px solid #f07f37;
+}
+
+/* second tier */
+.ie .rsnav-menu li ul {
+  display: none;
+  position: absolute;
+  padding-top:5px;
+  top:38px;
+  left: 0;
+  margin: 0;
+  min-width: 300px;
+  z-index: 9999;
+}
+.ie .rsnav-menu li:hover ul {
+  display:block;
+}
+.ie .rsnav-menu li ul li a {
+  padding: 0;
+  background-color:#f07f37;
+  color:#fff;
+}
+.ie .rsnav-menu li ul li a:hover,
+.ie .rsnav-menu li ul li a:focus,
+.ie .rsnav-menu li ul li.current_page_item a {
+  padding: 0;
+  background-color:#e36311;
+  color:#fff;
+}
+
+
+
+
+
+
+/* --------------------- */
+/* content */
+.ie .hero h1 {
+  margin-top:80px;padding:12px 20px;box-shadow:7px 7px 12px #000;
+}
+
+/* home page */
+.ie .home .hero {max-height:400px;min-height:auto;}
+.ie .home .hero img {min-height:auto;max-width:100%;}
+.ie .home .hero > div {position:absolute;}
+
+/* reset column widths */
+.ie .home .hero .seven.columns {width:56%; float:left; }
+.ie .home .hero .five.columns {width:37%; float:right; margin-left:4%; margin-top:20px; padding:12px 20px; background-color:#000;}
+
+/* text resets */
+.ie .home .hero h1 {margin-top:30px;}
+/* arrow pointer */
+.ie .arrow {margin-top:30px;margin-bottom:30px;}
+/* hero button */
+.ie .home .hero .seven.columns .button {
+  height:auto;
+  padding:12px 20px;
+  font-size:36px;border-bottom-width:6px;
+}
+
+/* hero blockquote */
+.ie .home .hero .five.columns blockquote p:first-child {padding-left:10px;border-left:5px solid #f07f37;}
+
+
+
+
+
+/* content */
+
+/* in page content / after hero */
+.ie .top-right-CTA {left:5%;right:5%;bottom:0;}
+.ie .column-thumb h3 {left:20%;right:20%;}
+
+/* 3 columns */
+.ie .container p > img {margin:50px auto 0;}
+.ie .column-thumb {margin-bottom:20px;}
+.ie .column-thumb h3 {bottom:50px;padding:10px 15px;}
+.ie .column-thumb .button {margin-top:20px;}
+
+
+.ie #content .six.columns,
+.ie #secondary .six.columns {text-align:right;}
+
+.ie #content .six.columns:first-child,
+.ie #secondary .six.columns:first-child {text-align:left;}
+
+
+/* call to action buttons */
+.ie #cta-band {margin-top:40px;margin-bottom:40px;padding-top:40px;padding-bottom:40px;}
+
+
+/* --------- */
+/* split into 2 columns at this size */
+.ie #brands-band {display:table;width:100%;margin-top:40px;background-color:#f07f37;}
+.ie #brands-band .left {
+  font-size:36px;
+  width:26%;text-align:left;float:left;
+  background-color:#f07f37;
+}
+.ie #brands-band .right {
+  width:74.0%;text-align:right;float:right;
+  background-color:#e6e6e6;
+}
+.ie #brands-band img {margin:0;margin-left:40px;}
+.ie #brands-band img:first-child {margin-left:0;}
+
+/* brands band divider */
+/* point right at large sizes */
+.ie .brands-band--divider {width:100%;height:100%;top:0;}
+.ie .brands-band--divider:before,
+.ie .brands-band--divider:after{left:auto;top:0;bottom:0;}
+
+.ie .brands-band--divider:before {
+    width: 100%;
+    height: 100%;
+    left:100%;
+    top: 0;
+    transform: skew(25deg, 0deg);
+    z-index: 2;
+}
+.ie .brands-band--divider:after {
+    width: 100%;
+    height: 100%;
+    left:100%;
+    top: 0;
+    transform: skew(-25deg, 0deg);
+    z-index: 2;
+}
+
+
+/* non highlighted headings */
+.ie .container.raw-heading h1,
+.ie .container.raw-heading h2,
+.ie .container.raw-heading h3 {max-width:85%;margin:0 auto 20px;}
+
+/* in page call to action button */
+.ie .container.cta {padding-top:30px;}
+
+.ie .container.heading h2,
+.ie .container.heading h3 {display:inline-block;margin-top:30px;margin-bottom:30px;padding:12px 20px;}
+
+
+/* forms */
+.ninja-forms-cont {
+  margin:60px 0;
+  padding:60px 40px;
+  box-shadow:7px 7px 12px #ddd;
+}
+.ninja-forms-all-fields-wrap > div.ninja-forms-error {
+  margin-bottom:10px;
+  padding:10px 20px;
+}
+
+/* blog */
+.ie .blog #content .four.columns  { width: 22%; }
+.ie .blog #content .four.columns  { width: 13.3333333333%; }
+
+
+
+
+
+/* --------------------- */
+/* footer */
+.ie #footer .three.columns { width: 22%; }
+.ie #footer .four.columns { width: 29%; }
+.ie #footer .five.columns { width: 37%; }
+/* remove border */
+.ie #footer .container:first-child,
+.ie #footer .container:first-child .four.columns,
+.ie #footer .container:first-child .five.columns {margin-top:0;padding-top:20px;border-top:none;}
+.ie #footer .footer-menu li {display:block; margin:0; margin-top:20px; margin-bottom:10px;}
+/* footer credits */
+.ie #footer .four.columns {text-align:right;float:right;}
+.ie #footer .container:first-child .four.columns {text-align:left;float:left;}
