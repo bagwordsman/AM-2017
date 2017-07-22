@@ -14,6 +14,7 @@
 		// 3 - Affiliated Organisations Logos
 		// 4 - Display a Google Map of Your Location
 		// 5 - Styling Options for the Blog
+		// 6 - Google Analytics Tracking ID - helper
 
 
 
@@ -534,6 +535,68 @@
 		// d) set width of image background
 		var width = $('.widget-image-preview').width();
 		$('.widget-bg-preview').css('width', width);
+
+
+
+
+
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// 6 - Google Analytics Tracking ID - helper
+		// a) copy twitter link info
+		$('.AM2017--options form.google_analytics .fa').hover(function(event){
+		  event.preventDefault();
+		  $('.google_analytics--info').removeClass('hidden');
+		});
+
+
+		// analytics_id - if an ID has been added...
+		analytics_id = jQuery("input[id^='google_analytics']").val()
+		if (jQuery("input[id^='google_analytics']").val()) {
+		  // If background image has been uploaded, change the button text to 'Replace'
+		  jQuery('.google_analytics #submit').val('Update Google Analytics Tracking ID');
+		}
+
+
+
+
+
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// 7 - Lazyloading
+
+		var checked = 'Enable Lazyloading';
+		var unchecked = 'Disable Lazyloading';
+
+
+		if ( $("input[id^='lazyloading']").is(":checked") ) {
+			console.log('checked');
+			$('.lazyloading #submit').val(checked);
+		} else {
+			console.log('unchecked');
+			$('.lazyloading #submit').val(unchecked);
+		}
+
+
+		$("input[id^='lazyloading']").change(function() {
+				if ( $(this).is(":checked") ) {
+						$('.lazyloading #submit').val(checked);
+				} else {
+						$('.lazyloading #submit').val(unchecked);
+				}
+		})
+
+
+
+
+
+
+
+
+
+
 
 
 

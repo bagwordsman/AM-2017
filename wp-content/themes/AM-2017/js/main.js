@@ -77,4 +77,34 @@ $('.mediator-profile .button').click(function(event){
 });
 
 
+
+
+
+// ---------------------------
+// anchor link offset - compensate for fixed header
+/*
+if an #ID is the the address bar:
+  - offset the top by the (fixed) header height + header for the section
+  - h2 + bottom margin = 64px
+  - on load used due to required ninja form scripts loading last (jquery can't calculate offset)
+*/
+
+// get any id from the url
+var id = window.location.hash; // console.log(id);
+console.log(id);
+
+if (id) {
+  $(window).scrollTop( $(id).offset().top) //
+  $(id).addClass('padded'); // padded = header height + h2 height
+}
+
+
+
+
+
+// ---------------------------
+// lazyloading
+
+
+// end whole document
 });

@@ -315,7 +315,7 @@ body {
 .hero > div a:hover{background-color:#70bf44;}
 /* hero h1 */
 .hero h1 {
-  display:block;line-height:1.8;margin-top:5rem;text-align:center;
+  display:block;line-height:1.8;margin-top:10rem;text-align:center;
   color:#fff;text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 /* hero divider */
@@ -576,6 +576,26 @@ body {
 
 /* images */
 .container p > img {display:block;max-width:100%;height:auto;margin:1.5rem auto 3rem;}
+#content .container img {
+  display:block;
+  max-width:100%;
+  margin:3rem auto;
+}
+/* lazyloaded images - in content, ACF, and (hopefully) galleries */
+.no-js #content .container img.lazy {
+  display:none;
+}
+#content .container img.loading-icon {
+  max-width:auto;width:auto;min-height:144px;
+  padding:1rem;box-sizing:border-box;
+  background-color:#f0f0f0;
+  background-image:url('../img/loading-icon.gif');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+
 
 /* captions */
 .wp-caption-text {font-style:italic;color:#636363;padding-left:1em;padding-right:1em;}
@@ -617,14 +637,50 @@ div[class*="gallery"] img {max-width:100%;height:auto;border:0 !important;margin
 
 
 
+/* referral forms */
+/*
+padding-top:203px;/* 141 + 62 (fixed header + h2-inc. bottom margin)
+ - ideally, padded class needs to be created on the fly
+*/
+.padded {padding-top:203px;}
+/*
+.no-js #self-referral-form {
+  padding-top:203px;
+}
+.no-js #solicitor-referral-form {
+  padding-top:203px;
+}
+padding-top:203px;/* 141 + 62 (fixed header + h2-inc. bottom margin)
+*/
 
-/* map */
+
+
+
+
+
+
+
+
+/* google map */
 #able-map-content {width:100%;min-height:250px;margin:0 auto 5rem;}
 /* pop up address in google map */
 .gmap-infobox {text-align:center;}
 .infobox--title {margin:0;line-height:1.5;}
 .infobox--text {margin:0;line-height:3;}
 .infobox--link {margin:0;line-height:1.5;}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

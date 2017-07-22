@@ -120,6 +120,7 @@ find the tints to use by going to http://www.colorhexa.com:
 .AM2017--options form label,
 .in-header-and-footer,
 .in-page,
+.functionality,
 .wp-core-ui .AM2017--options form .button,
 .wp-core-ui .AM2017--options form .button-primary,
 .AM2017--options form input[type="text"],
@@ -134,7 +135,8 @@ find the tints to use by going to http://www.colorhexa.com:
 .AM2017--options h5,
 .AM2017--options h6,
 .wrap .in-header-and-footer h1,
-.wrap .in-page h1 {
+.wrap .in-page h1,
+.wrap .functionality h1 {
   margin-top: 0;
   margin-bottom: 1rem;
   font-weight: 700;
@@ -143,7 +145,8 @@ find the tints to use by going to http://www.colorhexa.com:
 }
 .AM2017--options h1,
 .wrap .in-header-and-footer h1,
-.wrap .in-page h1 { font-size: 3.0rem; letter-spacing: 0.02rem; }
+.wrap .in-page h1,
+.wrap .functionality h1 { font-size: 3.0rem; letter-spacing: 0.02rem; }
 .AM2017--options h2 { font-size: 2.4rem; letter-spacing: 0.04rem; }
 .AM2017--options h3 { font-size: 2.1rem; letter-spacing: 0.05rem;}
 .AM2017--options h4 { font-size: 1.8rem; letter-spacing: 0.06rem; }
@@ -179,13 +182,27 @@ find the tints to use by going to http://www.colorhexa.com:
   3px 4px 10px rgba(0,0,0,0.25);
 }
 
-.in-page {padding-top:30px;background-color:#fff;padding-left:20px;padding-right:20px;}
+.in-page {background-color:#fff;position:relative;padding-left:20px;padding-right:20px;padding-bottom:140px;}
 .in-page > h1 {
   position:relative;text-align:center;
   color:#fff !important;
   text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
   3px 4px 10px rgba(0,0,0,0.25);
 }
+
+.functionality {
+  position:relative;
+  background-color:#dbdbdb;
+  padding-top:30px;padding-left:20px;padding-right:20px;
+  margin-bottom:30px;
+}
+.functionality > h1 {
+  position:relative;text-align:center;
+  color:#fff !important;
+  text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+  3px 4px 10px rgba(0,0,0,0.25);
+}
+
 
 /* content dividers */
 .divider {
@@ -210,11 +227,28 @@ find the tints to use by going to http://www.colorhexa.com:
     top: -20px;
     transform: skew(0deg, -8deg);
 }
+/* divider colours */
 .divider.white,
 .divider.white:before,
 .divider.white:after {
   background-color: #fff;
 }
+.divider.grey,
+.divider.grey:before,
+.divider.grey:after {
+  background-color: #f0f0f0;
+}
+.divider.mid-grey,
+.divider.mid-grey:before,
+.divider.mid-grey:after {
+  background-color: #dbdbdb;
+}
+.divider.dark-grey,
+.divider.dark-grey:before,
+.divider.dark-grey:after {
+  background-color: #6a6a6a;
+}
+
 
 
 
@@ -425,7 +459,23 @@ input[readonly].slider-value {background-color:#fff;}
 
 
 
-
+/* 7./ Google Analytics */
+.AM2017--options form.google_analytics input[type="text"] {display:block;min-width:80%;}
+/* help icon */
+.AM2017--options form.google_analytics td {position:relative;}
+.AM2017--options form.google_analytics .fa.fa-question {
+  position:absolute;top:23px;right:calc(20% - 48px);
+  cursor:pointer;
+}
+.AM2017--options form.google_analytics .fa.fa-question:hover {color:#70bf44;}
+/* screenshot image */
+.google_analytics--info {
+  width:calc(80% - 4px);
+  font-family:'Lato', sans-serif;font-style:italic;
+  font-size:1.2rem;
+  margin-bottom:10px;
+}
+.google_analytics--info img {max-width:100%;margin-top:20px;margin-bottom:5px;border:2px solid #70bf44;}
 
 
 
