@@ -430,6 +430,10 @@ body {
 .whitewrapper {background-color:#fff;}
 .greywrapper {background-color:#f0f0f0;}
 
+/* gradient backgrounds */
+.white-green-grad {background:linear-gradient(180deg, #fff 0%, #70bf44 100%) repeat scroll 0 0}
+
+
 /* right container */
 .five.columns.green,
 .five.columns.orange,

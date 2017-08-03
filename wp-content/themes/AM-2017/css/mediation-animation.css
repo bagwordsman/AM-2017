@@ -1,0 +1,55 @@
+/*
+Theme Name:     AM2017
+Theme URI:      https://www.ablemediation.com/
+Description:    Mediation Presentation css
+Author:         Martin Bagshaw
+Author URI:     http://martinbagshaw.co.uk/
+Version:        1
+*/
+
+
+
+
+/* Fixed columns */
+/* note: this needs to be added inline with js */
+.fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 600px;
+  width: 100%;
+  /* width and height AND position should adapt to the size of the SVG
+  as well as the actual column width - class dependent */
+}
+.fixed .container {
+  bottom: 0;
+  height: auto;
+  left: 0;
+  right:0;
+  max-width: 90%;
+  position: absolute;
+}
+
+
+
+/* SVGs */
+svg {width:100%;}
+
+/* MIAMS
+.MIAMS {
+    bottom: 0;
+    height: auto;
+    left: 50%;
+    max-width: 100%;
+    position: absolute;
+}
+*/
+
+/* line */
+.MIAMS__line {}
+
+/* letters */
+.MIAMS__m-one {}
+.MIAMS__i {}
+.MIAMS__m-two {}
