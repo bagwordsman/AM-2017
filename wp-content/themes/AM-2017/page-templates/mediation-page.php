@@ -8,19 +8,8 @@ get_header(); ?>
 
 <div id="content" role="main">
 
-			<div class="hero">
-						<?php
-						$styling_options = get_option ( 'sandbox_theme_styling_options' );
-						$heromesh = $styling_options['heromesh'];
-						// hero image - post thumbnail (if set)
-						if (has_post_thumbnail()) {
-								the_post_thumbnail('full');
-						// output default img from theme (if not set)
-						} else {
-								echo '<img src="'. get_bloginfo('stylesheet_directory'). '/img/default-hero/able-default-hero.jpg" alt="'.get_bloginfo('name').'"/>';
-						}
-						?>
-						<div <?php if ($heromesh) echo 'class="mesh"'; ?>>
+			<div class="presentation-cover">
+						<div>
 								<div class="container">
 										<h1><?php
 										// display the <h1> heading with ACF
@@ -30,28 +19,21 @@ get_header(); ?>
 											the_title();
 										}
 										?></h1>
-								</div>
-						</div>
-						<span class="divider white"></span>
-			</div><!-- hero -->
+										<?php
+										// main content area - first section
+										while ( have_posts() ) : the_post();
+											the_content();
+										endwhile;
+										?>
+								</div><!-- container -->
+						</div>			
+			</div><!-- presentation-cover -->
 
 
 			<div class="whitewrapper white-green-grad">
 
 
 
-				<?php
-				// main content area - first section
-				while ( have_posts() ) : the_post(); ?>
-
-				<div class="container">
-						<?php //the_content(); ?>
-				</div><!-- container -->
-
-				<?php
-				// end main content area
-				endwhile;
-				?>
 
 
 
@@ -85,6 +67,7 @@ get_header(); ?>
 
 
 				<script>
+
 				'use strict';
 
 

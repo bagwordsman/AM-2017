@@ -1,0 +1,31 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+   width="597.273px" height="534.5px" viewBox="0 0 597.273 534.5" enable-background="new 0 0 597.273 534.5" xml:space="preserve">
+<g id="Layer_1" display="none">
+  <path display="inline" fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" d="M2.5,2.5c0,0,0,477.5,0,499
+    S13.625,532,33,532c9,0,16.375-2,24.5-5s497.076-191.911,497.076-191.911"/>
+</g>
+<g id="Layer_1_--_2" display="none">
+  <path display="inline" fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" d="M2.5,2.5c0,0,0,477.5,0,499
+    S13.625,532,33,532c9,0,16.375-2,24.5-5c3.313-1.223,86.591-33.364,184.062-71.004c18.616-7.188,37.748-169.417,56.941-176.829
+    c18.101-6.99,36.254,140.838,54.076,133.954c106.967-41.316,201.996-78.032,201.996-78.032"/>
+</g>
+<g id="Layer_1_--3" display="none">
+
+    <path display="inline" fill="none" stroke="#000000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+    M2.5,2.5c0,0,0,477.5,0,499S13.625,532,33,532c9,0,16.375-2,24.5-5c3.313-1.223,184.062-71.004,184.062-71.004l56.941-176.829
+    l54.076,133.954l201.996-78.032"/>
+</g>
+<g id="Layer_1_--4">
+  <path fill="none" stroke="#000000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+    M2.5,2.5c0,0,0,477.5,0,499S13.625,532,33,532c9,0,16.375-2,24.5-5c3.313-1.223,234.664-91.045,234.664-91.045l46.307-162.811
+    l43.311,128.2l212.992-82.278"/>
+
+    <polyline fill="none" stroke="#000000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+    48.5,529.833 94.807,367.021 138.218,495.239 184.525,332.428 227.835,460.628 	"/>
+
+    <polyline fill="none" stroke="#000000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+    415.164,387.705 461.471,224.894 504.883,353.111 551.189,190.3 594.5,318.5 	"/>
+
+    <line fill="none" stroke="#000000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="259.5" y1="308" x2="259.5" y2="448"/>
+</g>
+</svg>
