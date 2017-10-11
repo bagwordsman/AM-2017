@@ -1,0 +1,68 @@
+// Able Mediation - scss theme variables
+
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// colours
+$able-green : #70bf44;
+$able-grey : #6a6a6a;
+$able-lightgrey : #f0f0f0;
+
+
+$orange : #f07f37;
+$blue : #7fc1ff;
+$red : #e74e42;
+
+
+
+
+
+
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// font families
+$font-main : 'Asap', Helvetica, Arial, sans-serif;
+$font-main-size-xxs : 1.6em;
+$font-main-size : 1.8em;
+$font-main-line-height: 1.6;
+$font-main-weight: 400;
+
+$font-blockquote : 'Lato', sans-serif;
+
+$font-icons : 'FontAwesome';
+
+
+
+
+
+
+
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// make sure variable names correspond to different breakpoints - i.e. 90% was the width at 660px
+// grid and dimensions
+$container-width_xxs : 95%;
+$container-width_xs : 90%;
+$container-width_xl : 1160px;
+
+
+// breakpoints
+$break-xxs : 550px;
+$break-xs : 660px;
+$break-s : 768px;
+$break-m : 860px;
+$break-l : 980px;
+$break-xl : 1160px;
+$break-xxl : 1200px;
+$break-xxxl : 1800px;
+
+
+
+
+
+
+
+
+
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// SPECIFIC ELEMENTS
+
+// tooltip
+$tooltip-bg : #4d4d4d;
+$tooltip-fg : #dddddd;

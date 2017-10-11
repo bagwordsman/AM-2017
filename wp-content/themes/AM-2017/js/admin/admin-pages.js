@@ -59,7 +59,7 @@
 
 		// -----------------------
 		// page ID helper
-		
+
 		// second section
 		$('input[name="fields[field_596e4f15db272]"]').change(sectionID);
 		$('input[name="fields[field_596e4f15db272]"]').each(sectionID);

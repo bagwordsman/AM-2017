@@ -614,6 +614,9 @@ div[class*="gallery"] img {max-width:100%;height:auto;border:0 !important;margin
 
 
 
+
+
+
 /* Mediator Profiles - Shortcodes */
 /* all images */
 .mediator-profile img {vertical-align:middle;margin-left:2rem;}
@@ -635,6 +638,228 @@ div[class*="gallery"] img {max-width:100%;height:auto;border:0 !important;margin
 /* read full profile -section */
 .full-profile {display:block;}
 .full-profile.hidden {display:none;}
+
+
+
+
+
+
+
+
+
+
+
+
+/* _________________________________ */
+
+
+
+
+/* Services (parent page) */
+.serviceswrapper {
+  display : block;
+  box-sizing : border-box;
+  width : 100%;
+  overflow : hidden;
+  position:relative;
+  margin-bottom:80px;/* related to divider - normally position bottom:80px; on it */
+}
+.serviceswrapper > div:first-child {
+  float: none;
+  display: block;
+  margin: 0 auto;
+}
+.serviceswrapper > div:first-child:after {
+  content:"";
+  display:table;
+  clear:both;
+}
+/* reset - stop overlay of colour when hovered (last 2 elements) */
+.serviceswrapper .divider {
+  z-index:10;
+  bottom:0px;
+}
+
+
+
+
+/* half */
+.half__left,
+.half__right{display:block;box-sizing:border-box;padding:0 2rem 3rem;}
+
+
+/* thumbnails */
+.thumbnail {position:relative;background-repeat:no-repeat;background-size:cover;box-sizing:border-box;}
+.thumbnail .overlay {
+  position:absolute;
+  top:0;right:0;bottom:0;left:0;
+  z-index:2;
+  opacity:0;
+  transition: opacity ease-in-out .25s;
+}
+/* square thumbnails - for browsers that recognise vw */
+.half__left.thumbnail,
+.half__right.thumbnail{min-height:300px;height:100vw;}
+/* thumbnail text */
+/* a) container */
+.info {
+  display:inline-block;
+  position:relative;
+  transition:all ease-in-out .25s;
+  background-color:rgba(113, 191, 71, .75);
+  padding:1.5rem 2.5rem;
+  box-sizing: border-box;
+  border-radius:0 0 1.5rem 1.5rem;
+  z-index:3;
+  width:100%;
+}
+
+/* c) title */
+.title {
+  display : inline;
+  vertical-align : middle;
+  color : white;
+}
+.title h2,
+.title .fa {
+  display:inline-block;
+  margin:0;
+  font-size: 2.4rem; letter-spacing: 0.04rem;
+}
+.title .fa {
+  margin-left:1.25rem;
+  padding:.7rem;
+  box-sizing: border-box;
+  border:2px solid white;
+  border-radius: 2rem;
+  width:4rem;height:4rem;
+  text-align:center;
+  cursor:pointer;
+  background-color:transparent;
+  transition: all ease-in-out .25s;
+}
+.title .fa:hover {
+  background-color:#70bf44;
+  transform:scale(1.1);
+}
+
+/* d) description */
+.description {
+  margin:0;
+  color:white;
+  display:none;
+}
+
+
+/* thumbnail images:hover */
+.thumbnail .overlay:hover,
+.thumbnail .overlay:focus,
+.thumbnail .overlay:active{cursor:pointer;opacity:.25;}
+/* text effects */
+.thumbnail .overlay:hover + .info {z-index:4;}
+
+
+
+
+
+/* assistive text - for accessibility, anchor links need to contain text */
+/* note: having this in spans did not work too well */
+.assistive-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px);
+    position: absolute !important;
+    white-space: nowrap;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+.assistive-text:focus {
+    clip: auto !important;
+    display: block;
+    height: auto;
+    left: 5px;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
+
+
+
+
+
+/* media queries */
+@media screen and (min-width: 600px) {
+
+	/* - - - - - - - - - - */
+	/* half */
+	.half__left,
+	.half__right{width:50%;float:left;}/* width:50vw; */
+	.half__right{text-align:right;}
+	/* thumbnail images */
+	.half__left.thumbnail,
+	.half__right.thumbnail{width:50%;height:50vw;max-height:430px;}/* width:50vw; - next breakpoint: 860/2 */
+
+  /* text size
+  .title h2,
+  .title .fa {font-size:2.7rem;}
+  */
+
+}
+
+
+@media screen and (min-width: 860px) {
+  .half__left.thumbnail,
+	.half__right.thumbnail{max-height:512px;}/* next breakpoint: 1024/2 */
+}
+
+@media screen and (min-width: 1024px) {
+	/* half */
+	.half__left{padding-left:4rem;}
+	.half__right{padding-right:4rem;}
+  /*
+  .half__left.thumbnail,
+	.half__right.thumbnail{max-height:610px;}
+  */
+}
+
+@media screen and (min-width: 1220px) {
+  /* half */
+	.half__left{padding-left:8rem;}
+	.half__right{padding-right:8rem;}
+  /*
+  .half__left.thumbnail,
+	.half__right.thumbnail{max-height:720px;}
+  */
+}
+
+
+
+/* _________________________________ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Services > Court Forms (etc) - Accordion */
+.accordion {
+  text-align: left;
+}
+
+
+
+
+
+
 
 
 

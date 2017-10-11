@@ -21,14 +21,14 @@ $( 'html' ).removeClass('no-js');
 
 // ---------------------------
 // tooltip
-$(function() {
-  $( '*' ).tooltip();
-});
+// $(function() {
+//   $( '*' ).tooltip();
+// });
 
 // add element id/ class for negative tooltip
-$('#footer').tooltip({
-    tooltipClass: 'ui-tooltip-negative'
-});
+// $('#footer').tooltip({
+//     tooltipClass: 'ui-tooltip-negative'
+// });
 
 
 
@@ -91,7 +91,7 @@ if an #ID is the the address bar:
 
 // get any id from the url
 var id = window.location.hash; // console.log(id);
-console.log(id);
+//console.log(id);
 
 if (id) {
   $(window).scrollTop( $(id).offset().top) //
@@ -104,6 +104,52 @@ if (id) {
 
 // ---------------------------
 // lazyloading
+
+
+
+
+
+
+
+
+
+
+// ---------------------------
+// services parent page
+
+// show page description on + click
+var desc = $('.serviceswrapper .fa');
+
+
+// loop through each + icon
+$( desc ).each(function(e) {
+
+  // on click event
+  $(this).on('click', function( event ){
+      event.preventDefault;
+
+      // show description
+      if ( $( this ).hasClass( 'fa-plus' ) ) {
+          $( this ).removeClass('fa-plus');
+          $( this ).addClass('fa-minus');
+          $( this ).parent().next().slideToggle( '250' );
+      } else {
+        $( this ).addClass('fa-plus');
+        $( this ).removeClass('fa-minus');
+        $( this ).parent().next().slideToggle( '250' );
+      }
+
+  });
+
+}); // end desc each function
+
+
+
+
+
+
+
+
 
 
 // end whole document
