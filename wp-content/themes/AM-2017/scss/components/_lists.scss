@@ -1,0 +1,58 @@
+// lists
+ul {
+  list-style : disc inside;
+  #content .container & {
+    list-style-position : outside;
+    margin-left : 1.8rem;
+  }
+}
+
+ol {
+  list-style: decimal inside;
+}
+ol, ul {
+  padding-left: 0;
+  margin-top: 0;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 90%;
+}
+
+// li
+li {
+  margin-bottom: 1rem;
+  // page content
+  #content .container & {
+    margin-bottom : .5rem;
+  }
+  // checklist - stars
+  .sub-columns & {
+    position : relative;
+    padding-left : 3rem;
+    list-style : none;
+    &:before {
+      position : absolute;
+      top : 0;
+      left : 0;
+      font-family : 'FontAwesome';
+      content : "\f00c";
+      color : $orange;
+    }
+  }
+}
+
+// .sub-columns li {
+//   position:relative;
+//   padding-left:3rem;
+//   list-style:none;
+// }
+// .sub-columns li:before {
+//   font-family: 'FontAwesome';
+//   content: "\f00c";
+//   color: #f07f37;
+//   position:absolute;top:0;left:0;
+// }

@@ -1,0 +1,203 @@
+// Services parent page
+.serviceswrapper {
+    display : block;
+    box-sizing : border-box;
+    width : 100%;
+    overflow : hidden;
+    position : relative;
+    margin-top : 25px; // note - can't have overlap as with other pages
+    margin-bottom : 80px; // related to divider - normally bottom:80px on it
+
+    // main container for tiles
+    > div:first-child {
+      float: none;
+      display: block;
+      margin: 0 auto;
+      &:after {
+        content : "";
+        display : table;
+        clear : both;
+      }
+    }
+
+    // downward pointer - a reset to stop overlay of colour when hovered
+    .divider {
+      z-index : 10;
+      bottom : 0px;
+    }
+}
+
+
+
+
+// tiles / thumbnails
+.thumbnail {
+  position : relative;
+  background-repeat : no-repeat;
+  background-size : cover;
+  box-sizing : border-box;
+  // left and right
+  &.half__left,
+  &.half__right {
+    min-height:300px;
+    height:100vw; // make thumbnails square
+    display : block;
+    box-sizing: border-box;
+    padding : 0 2rem 3rem;
+    
+    // media queries on left and right
+    @media (min-width : 600px) {
+      width:50%;
+      height:50vw;
+      max-height:430px;
+      float:left;
+    }
+    @media (min-width : 860px) {
+      max-height:512px; // next breakpoint: 1024/2
+    }
+  }
+
+  // media queries - separate to left and right
+  @media (min-width : 600px) {
+    &.half__right {
+      text-align:right;
+    }
+  }
+  @media (min-width : 1024px) {
+    &.half__left {
+      padding-left : 4rem;
+    }
+    &.half__right {
+      padding-right : 4rem;
+    }
+  }
+  @media (min-width : 1220px) {
+    &.half__left {
+      padding-left : 8rem;
+    }
+    &.half__right {
+      padding-right : 8rem;
+    }
+  }
+
+  // links
+  .overlay {
+    position : absolute;
+    top : 0;
+    right : 0;
+    bottom : 0;
+    left : 0;
+    z-index : 2;
+    opacity : 0;
+    transition : opacity ease-in-out .25s;
+    &:hover,
+    &:focus,
+    &:active {
+      cursor : pointer;
+      opacity : .25;
+      // does this actually let the info section still be clickable???
+      + .info {
+        z-index:4;
+      }
+    }
+  }
+
+  // title and description container
+  .info {
+    position : relative;
+    width : 100%;
+    z-index : 3;
+    display : inline-block;
+    background-color : rgba(113, 191, 71, .75); // use opacity var
+    padding : 1.5rem 2.5rem;
+    box-sizing : border-box;
+    border-radius : 0 0 1.5rem 1.5rem;
+    transition : all ease-in-out .25s;
+  }
+  // title
+  .title {
+    display : inline;
+    vertical-align : middle;
+    color : $white;
+    h2, .fa {
+      display : inline-block;
+      margin : 0;
+      font-size : 2.4rem;
+      letter-spacing : 0.04rem;
+    }
+    // icon
+    .fa {
+      margin-left : 1.25rem;
+      padding : .7rem;
+      box-sizing : border-box;
+      border : 2px solid $white;
+      border-radius : 2rem;
+      width : 4rem;
+      height : 4rem;
+      text-align : center;
+      cursor : pointer;
+      background-color :transparent;
+      transition : all ease-in-out .25s;
+      &:hover {
+        background-color : $able-green;
+        transform : scale(1.1);
+      }
+    }
+  }
+  // description
+  .description {
+    margin : 0;
+    color : $white;
+    display : none;
+  }
+
+
+}
+
+
+
+
+  /* media queries */
+// @media screen and (min-width: 600px) {
+    
+//         /* - - - - - - - - - - */
+//         /* half */
+//         .half__left,
+//         .half__right{width:50%;float:left;}/* width:50vw; */
+//         .half__right{text-align:right;}
+//         /* thumbnail images */
+//         .half__left.thumbnail,
+//         .half__right.thumbnail{width:50%;height:50vw;max-height:430px;}/* width:50vw; - next breakpoint: 860/2 */
+    
+//       /* text size
+//       .title h2,
+//       .title .fa {font-size:2.7rem;}
+//       */
+    
+//     }
+    
+    
+    // @media screen and (min-width: 860px) {
+    //   .half__left.thumbnail,
+    //     .half__right.thumbnail{max-height:512px;}/* next breakpoint: 1024/2 */
+    // }
+    
+    // @media screen and (min-width: 1024px) {
+    //     /* half */
+    //     .half__left{padding-left:4rem;}
+    //     .half__right{padding-right:4rem;}
+    //   /*
+    //   .half__left.thumbnail,
+    //     .half__right.thumbnail{max-height:610px;}
+    //   */
+    // }
+    
+    // @media screen and (min-width: 1220px) {
+    //   /* half */
+    //     .half__left{padding-left:8rem;}
+    //     .half__right{padding-right:8rem;}
+    //   /*
+    //   .half__left.thumbnail,
+    //     .half__right.thumbnail{max-height:720px;}
+    //   */
+    // }

@@ -12,15 +12,20 @@ function load_css() {
 	// style.css - required by theme
 	wp_register_style('style', get_stylesheet_directory_uri() . '/style.css' );
 	wp_enqueue_style( 'style');
-	// skeleton.css - most styles
-	wp_register_style('newskeleton', get_stylesheet_directory_uri() . '/css/skeleton.css' );
-	wp_enqueue_style( 'newskeleton');
-	// nav.css - better to separate out
-	wp_register_style('oldnav', get_stylesheet_directory_uri() . '/css/nav.css' );
-	wp_enqueue_style( 'oldnav');
-	// font awesome icons - loaded from theme, not a CDN
-	wp_register_style( 'fa-icons', get_stylesheet_directory_uri(). '/css/font-awesome.min.css' );
-	wp_enqueue_style('fa-icons' );
+
+	// // skeleton.css - most styles
+	// wp_register_style('newskeleton', get_stylesheet_directory_uri() . '/css/skeleton.css' );
+	// wp_enqueue_style( 'newskeleton');
+	// // nav.css - better to separate out
+	// wp_register_style('oldnav', get_stylesheet_directory_uri() . '/css/nav.css' );
+	// wp_enqueue_style( 'oldnav');
+	// // font awesome icons - loaded from theme, not a CDN
+	// wp_register_style( 'fa-icons', get_stylesheet_directory_uri(). '/css/font-awesome.min.css' );
+	// wp_enqueue_style('fa-icons' );
+
+	wp_register_style( 'new-compiled-default', get_stylesheet_directory_uri(). '/new-css/style.css' );
+	wp_enqueue_style('new-compiled-default' );
+
 	// add print css
 	wp_register_style('print', get_stylesheet_directory_uri() . '/css/print/AM2017-print.css', false, false, 'print');
 	wp_enqueue_style( 'print');

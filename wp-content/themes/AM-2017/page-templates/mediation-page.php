@@ -30,7 +30,7 @@ get_header(); ?>
 			</div><!-- presentation-cover -->
 
 
-			<div class="whitewrapper white-green-grad">
+			<div class="wrapper-white gradient-white-green">
 
 
 
@@ -122,7 +122,7 @@ get_header(); ?>
 
 
 
-			</div><!-- whitewrapper white-green-grad -->
+			</div><!-- wrapper-white gradient-white-green -->
 
 
 <?php get_footer(); ?>

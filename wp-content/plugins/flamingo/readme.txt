@@ -1,46 +1,21 @@
 === Flamingo ===
 Contributors: takayukister, megumithemes
 Tags: bird, contact, mail, crm
-Requires at least: 4.2
-Tested up to: 4.3
-Stable tag: 1.3
+Requires at least: 4.7
+Tested up to: 4.8.1
+Stable tag: 1.7
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Flamingo manages your contact list on WordPress.
+A trustworthy message storage plugin for Contact Form 7.
 
 == Description ==
 
-Flamingo is a WordPress plugin created to be a total CRM package. With this version, you can manage your contact list and messages submitted via contact form plugins. It has not yet matured, but we are enhancing it rapidly.
+Flamingo is a message storage plugin originally created for [Contact Form 7](https://wordpress.org/plugins/contact-form-7/), which doesn't store submitted messages.
 
-= Translators =
+After activation of the plugin, you'll find *Flamingo* on the WordPress admin screen menu. All messages through contact forms are listed there and are searchable. With Flamingo, you are no longer need to worry about losing important messages due to mail server issues or misconfiguration in mail setup.
 
-* Albanian (sq) - Flor Perzefi
-* Arabic (ar) - Jeremy Varnham
-* Brazilian Portuguese (pt_BR) - Ilton Alberto Junior
-* Burmese (my_MM) - Htoo Aung Kyaw
-* Chinese, Simplified (zh_CN) - ninghao
-* Croatian (hr) - Stjepan Tafra
-* Dutch (nl_NL) - TenSheep
-* French (fr_FR) - Benjamin Cousin
-* German (de_DE) - Christian Becker-Kapraun
-* Hebrew (he_IL) - Dan Stramer
-* Hungarian (hu_HU) - Rózsahegyi Péter
-* Italian (it_IT) - Rosario Capparelli
-* Japanese (ja) - Takayuki Miyoshi
-* Norwegian (nb_NO) - John Kasper Svergja
-* Persian (Farsi; fa_IR) - Morteza Rahmani
-* Portuguese (pt_PT) - BAANNNG
-* Romanian (ro_RO) - Inbox Translation
-* Russian (ru_RU) - Pavel
-* Slovak (sk_SK) - Branco Radenovich
-* Spanish (es_ES) - Israel Ortuño
-* Swedish (sv_SE) - Erik Gripestam Nord
-* Thai (th) - TG Knowledge
-* Turkish (tr_TR) - Ömür YANIKOĞLU
-* Vietnamese (vi_VN) - ICA Design
-
-If you have created your own language pack, or have an update of an existing one, you can send [gettext PO and MO files](http://codex.wordpress.org/Translating_WordPress) to [me](http://ideasilo.wordpress.com/about/) so that I can bundle it into Flamingo. You can download the latest [POT file](http://plugins.svn.wordpress.org/flamingo/trunk/languages/flamingo.pot).
+For more detailed information, please refer to the [Contact Form 7 documentation page](https://contactform7.com/save-submitted-messages-with-flamingo/).
 
 == Installation ==
 
@@ -53,16 +28,18 @@ If you have created your own language pack, or have an update of an existing one
 
 == Changelog ==
 
-= 1.3 =
+= 1.7 =
 
-* Tested up to WordPress 4.3.
-* Requires WordPress 4.2 or higher.
-* Translations for Norwegian and Burmese have been created.
-* New filter hooks: manage_flamingo_contact_posts_columns, manage_flamingo_inbound_posts_columns, manage_flamingo_outbound_posts_columns
-* New action hooks: manage_flamingo_contact_posts_custom_column, manage_flamingo_inbound_posts_custom_column, manage_flamingo_outbound_posts_custom_column
+* New filter: flamingo_add_inbound
+* New filter: flamingo_add_contact
+* New filter: flamingo_htmlize
 
-= 1.2 =
+= 1.6 =
 
-* Tested up to WordPress 4.0.
-* Requires WordPress 3.9 or higher.
-* Translation for Swedish has been created.
+* Tested up to WordPress 4.8.
+* Requires WordPress 4.7 or higher.
+* Added RTL stylesheet.
+* Strengthened capability checking.
+* Removed inappropriate content from h1 headings.
+* Changed the default format of the export CSV.
+* Introduced the flamingo_csv_value_separator and flamingo_csv_quotation filter hooks to enable customizing CSV output.

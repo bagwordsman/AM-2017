@@ -1,0 +1,27 @@
+// blockquotes
+blockquote {
+  margin-top : 3rem;
+  padding : 3rem 0;
+  font-family : 'Lato', sans-serif;
+  p {
+    margin-bottom : 0;
+    text-align : right;
+    font-weight : $normal;
+    &:first-child {
+      margin-bottom : 1rem;
+      padding-left : 2rem;
+      border-left : 1rem solid $able-green;
+      text-align : left;
+      font-size : 1.8rem;
+      font-weight : $light;
+      font-style : italic;
+    }
+  }
+  // media queries
+  @media (min-width: 660px) {
+    padding : 0;
+    p:first-child {
+      font-size : 2.1rem;
+    }
+  } // end media queries
+}

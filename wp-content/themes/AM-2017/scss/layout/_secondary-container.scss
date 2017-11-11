@@ -1,0 +1,223 @@
+// #secondary - linked page / call to action container
+// - note: this is an anchor link, not a div
+#secondary {
+  display : block;
+  border-top : 5px solid $able-grey;
+  // thumbnail and text
+  > div {
+    overflow : hidden;
+    text-align : center;
+    position : relative;
+  }
+
+  
+  // thumbnail
+  .thumbnail {
+    max-height : 30rem;
+    // heading
+    h3 {
+      z-index : 1;
+      position : absolute;
+      top : 0;
+      bottom : 0;
+      left : 0;
+      right : 0;
+      margin : 0;
+      padding : 2rem 3.5rem;
+      box-sizing : border-box;
+      font-size : 4rem;
+      line-height : 26rem;
+      font-weight : $bold;
+      text-align : center;
+      color : $white;
+      text-shadow : $shadow-down-right_thin;
+      transition : all ease-in-out .3s;
+    }
+    // image
+    img {
+      margin : 0;
+      max-width : 100%;
+      height : auto;
+      opacity : .75;
+      transition : all ease-in-out .3s;
+    }
+  }
+
+  
+  // text
+  .text {
+    min-height : 12.5rem;
+    // paragraph
+    p {
+      z-index : 2;
+      margin : 0;
+      padding : 2rem 3.5rem;
+      box-sizing : border-box;
+      position : absolute;
+      top : 0;
+      bottom : 0;
+      left : 0;
+      right : 0;
+      font-size : 3rem;
+      line-height : 8.5rem;
+      text-align : center;
+      letter-spacing : 0.03rem;
+      color : $white;
+      transition : all ease-in-out .3s;
+    }
+  }
+
+  
+  // hover
+  &:hover .thumbnail img {opacity : .5;}
+  &:hover .thumbnail h3 {text-shadow : $shadow-down-right_thick;}
+  &:hover .secondary--divider {bottom : 15px;}
+  &:hover .text p {text-shadow : $shadow-down-right_thin}
+
+
+
+  // colour options
+  &.green .thumbnail,
+  &.green .text,
+  &.green .secondary--divider:before,
+  &.green .secondary--divider:after {
+    background-color : $able-green;
+  }
+  
+  &.orange .thumbnail,
+  &.orange .text,
+  &.orange .secondary--divider:before,
+  &.orange .secondary--divider:after {
+    background-color : $orange;
+  }
+  
+  &.blue .text,
+  &.blue .thumbnail,
+  &.blue .secondary--divider:before,
+  &.blue .secondary--divider:after {
+    background-color : $blue;
+  }
+  
+  &.red .text,
+  &.red .thumbnail,
+  &.red .secondary--divider:before,
+  &.red .secondary--divider:after {
+    background-color : $red_dark;
+  }
+
+
+  // media queries
+  @media (min-width: 980px) {
+    display : table;
+    width : 100%;
+    max-height : 20rem;
+    > div {
+      height : 30rem;
+    }
+    // left
+    .thumbnail {
+      width : 74%;
+      float : left;
+      position : relative;
+      overflow : hidden;
+      h3 {
+        font-size : 5rem;
+      }
+    }
+    // right
+    .text {
+      width : 26%;
+      float : right;
+      p {
+        line-height : 5rem;
+        top : 20%;
+      }
+    }
+
+  } // end media queries
+
+
+}
+
+
+
+
+
+
+
+// ______________________________________
+
+
+
+
+
+
+
+// - - - -
+// pointer / divider - last child of .thumbnail
+.secondary--divider {
+  position : absolute;
+  left : 0;
+  right : 0;
+  bottom : 30px;
+  width : 100%;
+  background-color : transparent;
+  transition : all ease-in-out .3s;
+  // point downwards
+  &:before, &:after {
+    content : "";
+    position : absolute;
+    left : 0;
+    right : 0;
+    top : 1rem;
+    height : 15rem;
+    z-index : 1;
+  }
+  // left side
+  &:before {
+    transform : skew(0deg, 10deg);
+  }
+  // right side
+  &:after {
+    transform : skew(0deg, -10deg);
+  }
+
+  
+  // media queries
+  @media (min-width: 980px) {
+    width : 100%;
+    height : 100%;
+    top : 0;
+    // top and bottom
+    &:before,
+    &:after {
+      left : auto;
+      top : 0;
+      bottom : 0;
+    }
+    // top
+    &:before {
+        width : 100%;
+        height : 100%;
+        left:100%;
+        top : 0;
+        transform : skew(25deg, 0deg);
+        z-index: 2;
+    }
+    // bottom
+    &:after {
+        width : 100%;
+        height : 100%;
+        left :100%;
+        top : 0;
+        transform : skew(-25deg, 0deg);
+        z-index: 2;
+    }
+    // hover
+    #secondary:hover & {
+      left : -15px;
+    }
+
+  } // end media queries
+
+}

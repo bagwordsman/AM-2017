@@ -1,0 +1,248 @@
+// Header
+// - try to keep all the padding offset stuff for the top in this file
+
+// reset admin bar - only applies when logged in
+#wpadminbar {
+  position : fixed;
+}
+
+
+
+
+.header {
+  height : auto; // 230px   make this a setting - or better a calculation
+  position : fixed;
+  z-index : 99; // could set z-index in settings to keep track of this
+  width : 100%;
+  clear : both;
+  padding-top : 0; // 2rem;
+  background-color : $able-lightgrey;
+  border-bottom : 5px solid $able-grey;
+  box-sizing : border-box;
+  box-shadow : $shadow-down-right;
+
+  
+  // media queries
+  // @media (min-width: 980px) {
+  //   // height : 230px;
+  //   &.scrolled {
+  //     height : 192px;
+  //   }
+  // }
+
+  
+  
+  
+  
+ 
+  
+  // - - - - - -
+  // logo and button container only
+  > .container {
+    padding-top : 1rem;
+    padding-bottom : 2rem;
+  }
+
+
+
+
+  
+  
+  // - - - - - -
+  // probably best to just do this all with javascript. calculate heights on the fly and all:
+  // - - - - - -
+  // content padding
+  + #content {
+    padding-top : 270px;
+  }
+  &.has-cookie-bar + #content {
+    padding-top : 310px; // cookie bar = 70px small, 2 line (should be 340px, but requires some overlap)
+  }
+  &.scrolled + #content {
+    padding-top : 240px;
+  }
+  &.scrolled.has-cookie-bar + #content {
+    padding-top : 280px; // +70px (should be 310px, but requires some overlap)
+  }
+  
+  
+  // media queries: 1 - subtract 70
+  @media (min-width: 550px) {
+    + #content {
+      padding-top : 200px;
+    }
+    &.has-cookie-bar + #content {
+      padding-top : 240px;
+    }
+    &.scrolled + #content {
+      padding-top : 170px;
+    }
+    &.scrolled.has-cookie-bar + #content {
+      padding-top : 210px;
+    }
+  }
+
+  // media queries: 1 - subtract 40
+  @media (min-width: 1160px) {
+    + #content {
+      padding-top : 160px;
+    }
+    &.has-cookie-bar + #content {
+      padding-top : 200px;
+    }
+    &.scrolled + #content {
+      padding-top : 130px;
+    }
+    &.scrolled.has-cookie-bar + #content {
+      padding-top : 170px;
+    }
+  }
+  // - - - - - -
+
+
+
+
+
+
+
+
+  
+  // - - - - - -
+  // scrolled
+  &.scrolled {
+    // height : 192px; // logo from 113 to 75 = 38 (subtract 38)
+    
+    // remove padding to make shorter
+    > .container {
+      padding-bottom : 0;
+    }
+    // reduce logo size
+    .logo img {
+      width : auto;
+      height : 75px;
+      transition : all ease .3s;
+    }
+
+  }
+
+
+  
+  
+  // - - - - - -
+  // left/top: logo
+  .three.columns {
+    padding-top : 5rem;
+    // logo
+    &.logo {
+      a {
+        text-decoration : none;
+      }
+      img {
+        display : block;
+        margin : 0 auto;
+      }
+    }
+    // media queries
+    @media (min-width: 550px) {
+      padding-top : 0;
+      width : 22%;
+      text-align : left;
+    }
+  }
+
+
+  // - - - - - -
+  // right/bottom: call us button
+  .nine.columns {
+    text-align : center;
+    // button
+    .button {
+      margin-bottom : 0;
+      // button becomes a bar
+      position:absolute;
+      top : 0;
+      left : 0;
+      right : 0;
+      border-radius : 0;
+      // media queries
+      @media (min-width: 550px) {
+        position : relative;
+        top : 0;
+        margin-top : 1.5rem;
+        margin-bottom : 1.5rem;
+        border-radius : 4px;
+      }
+    }
+    // media queries
+    @media (min-width: 550px) {
+      width : 74.0%;
+      text-align : right;
+    }
+    
+  }
+
+
+
+
+  
+  // - - - - - -
+  // media queries
+  // @media (min-width: 550px) {
+  //   // logo and call us button
+  //   .three.columns {
+  //     padding-top : 0;
+  //     width : 22%;
+  //     text-align : left;
+  //   }
+  //   .nine.columns {
+  //     width:74.0%;
+  //     text-align:right;
+  //     a.button {
+  //       position:relative;
+  //       top:0;
+  //       border-radius:4px;
+  //     }
+  //   }
+  // } // end media queries
+
+
+} // end header
+
+
+
+
+/* doesn't seem to do anything, but leaving in
+ - maybe a logged in thing
+ */
+// .header.scrolled > .container:first-child {
+//   padding-top:1rem;padding-bottom:0;
+//   transition: all ease .3s;
+// }
+
+
+
+
+
+
+
+
+
+
+
+// @media (min-width: 550px) {
+//     /* logo and call us */
+//     .header .three.columns {
+//       padding-top:0;
+//       width:22%;
+//       text-align:left;
+//     }
+//     .header .nine.columns {
+//       width:74.0%;
+//       text-align:right;
+//     }
+//     .header .nine.columns a.button {
+//       position:relative;
+//       top:0;
+//       border-radius:4px;
+//     }
+// }

@@ -1,0 +1,60 @@
+// images - includes captions and lazyloading
+
+
+// images in the content
+#content .container img {
+  display : block;
+  max-width : 100%;
+  margin : 3rem auto;
+}
+.container p > img {
+  // display : block;
+  // max-width : 100%;
+  height : auto;
+  margin : 1.5rem auto 3rem;
+}
+
+
+// lazyloaded images - in content, ACF, and (hopefully) galleries
+.no-js #content .container img.lazy {
+  display:none;
+}
+#content .container img.loading-icon {
+  max-width : auto;
+  width : auto;
+  min-height : 144px;
+  padding : 1rem;
+  box-sizing : border-box;
+  background-color : $able-lightgrey;
+  background-image : url('../img/loading-icon.gif'); // define this in variables
+  background-repeat : no-repeat;
+  background-position : center center;
+}
+
+
+// captions
+.wp-caption-text {
+  font-style : italic;
+  color : $able-darkergrey;
+  padding-left : 1em;
+  padding-right : 1em;
+}
+
+// gallery images - reset inline styles added by WP
+div[class*="gallery"] {
+  margin : 5rem auto 3rem !important;
+  img {
+    max-width : 100%;
+    height : auto;
+    border : 0 !important;
+    margin : 1rem;
+  }
+}
+.gallery img {
+  margin-top : 0;
+  a,
+  a:hover,
+  a:active {
+    border:0 !important;
+  }
+}

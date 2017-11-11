@@ -64,7 +64,7 @@ get_header();
 
 
 	<!-- second section -->
-	<div class="whitewrapper">
+	<div class="wrapper-white">
 			<div class="container container--right">
 			<?php
 			$header_2 = get_field('second_section_header');
@@ -86,7 +86,7 @@ get_header();
 			?>			
 			</div><!-- container -->
 	<span class="divider grey"></span>
-	</div><!-- whitewrapper -->
+	</div><!-- wrapper-white -->
 
 
 
@@ -112,11 +112,11 @@ get_header();
 			$cta_buttoncolour = get_field('end_of_content_cta_colour');
 
 			if ($header_3 || $content_3) {
-			echo '<div class="greywrapper">';
+			echo '<div class="wrapper-grey">';
 			}
 
 					// columns header and intro
-					echo ( $header_3 ? ('<div class="container container--center narrow"><h3>'. $header_3 .'</h3>' . $content_3 . '</div>')  : '');
+					echo ( $header_3 ? ('<div class="container container--center container-narrow"><h3>'. $header_3 .'</h3>' . $content_3 . '</div>')  : '');
 
 					// start column container
 					echo ( $c1 || $c2 || $c3 ? ('<div class="container container--center">')  : '');
@@ -134,7 +134,7 @@ get_header();
 					echo ( $c1 || $c2 || $c3 ? ('</div>')  : '');
 
 					// end of content CTA
-					echo ( $cta ? ('<div class="container container--center narrow"><a href="'. $cta_buttonlink .'" class="button'. ( $cta_buttoncolour ? (' ' . $cta_buttoncolour)  :  ' green') .'">'. $cta .'</a></div>')  : '');
+					echo ( $cta ? ('<div class="container container--center container-narrow"><a href="'. $cta_buttonlink .'" class="button'. ( $cta_buttoncolour ? (' ' . $cta_buttoncolour)  :  ' green') .'">'. $cta .'</a></div>')  : '');
 
 
 			if ($header_3 || $content_3) {
@@ -146,7 +146,7 @@ get_header();
 			$content_4 = get_field('last_content');
 
 			// columns header and intro
-			echo ( $header_4 ? ('<div class="container container--center narrow"><h3>'. $header_4 .'</h3>' . $content_4 . '</div>')  : '');
+			echo ( $header_4 ? ('<div class="container container--center container-narrow"><h3>'. $header_4 .'</h3>' . $content_4 . '</div>')  : '');
 
 ?>
 </div><!-- #content -->

@@ -1,0 +1,314 @@
+// page content - everything in #content div
+#content {
+  min-height : 300px;
+  padding-bottom : 4rem;
+  
+  // see .header - needs to change depending upon context
+  // check services parent page for an example
+  // padding-top : 230px;
+  
+
+
+  
+  // - - - -
+  // container-narrower column with top border
+  &>div:not(.hero) {
+    .five.columns {
+      padding-top : 2.5rem;
+      border-top : 10px solid;
+      
+      // green
+      &.green {
+        border-top-color : $able-green;
+        a {
+          color : $able-green;
+          &:hover {
+            color : $able-green_dark;
+          }
+        }
+      }
+
+      // orange
+      &.orange {
+        border-top-color : $orange;
+        a {
+          color : $orange;
+          &:hover {
+              color : $orange_dark;
+          }
+        }
+      }
+
+      // blue
+      &.blue {
+        border-top-color : $blue;
+        a {
+        color : $blue;
+            &:hover {
+                color : $blue_dark;
+            }
+        }
+      }
+
+      // red
+      &.red {
+        border-top-color : $red;
+        a {
+        color : $red;
+          &:hover {
+              color : $red_dark;
+          }
+        }
+      }
+
+
+
+
+      // - - - -
+      // home page
+      @media (min-width: 980px) {
+        .home & {
+          margin-left : 0;
+        }
+      }
+      
+
+
+
+    } // end five columns
+  }
+
+
+} // end #content
+
+
+
+
+
+
+
+
+// - - - -
+// wrapping containers
+%wrapper {
+  overflow : hidden;
+  position : relative;
+  padding-bottom : 220px;
+}
+.wrapper-white {
+  @extend %wrapper;
+  background-color : $white;
+}
+.wrapper-grey {
+  @extend %wrapper;
+  background-color : $able-lightgrey;
+}
+
+
+
+// - - - -
+// center container
+.container--center {
+  margin-top : 3rem;
+  margin-bottom : 6rem;
+  text-align : center;
+}
+
+
+
+// - - - -
+// gradient backgrounds
+.gradient-white-green {
+  background : $vertical-green;
+}
+
+
+
+// - - - -
+// media queries
+@media (min-width: 980px) {
+  // right container - reverse the float
+  .container--right .seven.columns {
+    float : right;
+    margin-left : 4%;
+  }
+  // container-narrow container
+  .container-narrow {
+    float : none;
+    display : block;
+    margin : 0 auto;
+    width : 56.6667%;
+  }
+}
+
+
+
+
+
+
+// ______________________________________
+
+
+
+
+
+
+
+// - - - -
+// three stage columns - with pointers
+.four.columns.stage {
+  position : relative;
+  width : 100%;
+  margin-left : 0;
+  margin-top : 2.5rem;
+  padding-top : 5rem;
+  box-sizing : border-box;
+  border-top : 5px solid transparent;
+  border-image: $fade-in-out-center_horizontal;
+  &:first-child {
+    margin-top : 0;
+    padding-top : 0;
+    border-image : none;
+  }
+
+  // media queries
+  @media (min-width: 980px) {
+    position : relative;
+    min-height : 38rem;
+    width : 30.6666666667%;
+    margin-left : 2%;
+    padding-left : 2%;
+    border-top : 0;
+    border-left : 5px solid transparent;
+    border-image : $fade-in-out-center_vertical;
+    &:first-child {
+      margin-top : 2.5rem;
+      padding-top : 5rem;
+      margin-left : 0;
+      padding-left : 0;
+    }
+    .button--container {
+      position : absolute;
+      left : calc(4% + 8px);
+      right : 0;
+      bottom : 0;
+    }
+  }
+
+} // end columns
+
+
+
+
+// - - - -
+// pointers
+.columns--divider {
+  position : absolute;
+  top : -5px;
+  left : calc(50% - 50px);
+  width : 100px;
+  height : 5px;
+  background-color : $able-lightgrey;
+  // point downwards
+  &:before, &:after {
+    content:"";
+    position:absolute;
+    top:12px;
+    height:100%;
+    border-bottom:5px solid $able-grey;
+  }
+  // left side
+  &:before {
+    width:51%;
+    left:0;
+    transform: skew(0deg, 25deg);
+  }
+  // right side
+  &:after {
+    width:50%;
+    right:0;
+    transform: skew(0deg, -25deg);
+  }
+
+  // media queries
+  @media (min-width: 980px) {
+    top : calc(50% - 50px);
+    left : -5px;
+    width : 5px;
+    height : 100px;
+    // point rightwards
+    &:before, &:after {
+      left : 0;
+      width : 17px;
+      border-bottom : none;
+      border-right : 5px solid $able-grey;
+    }
+    // top side
+    &:before {
+      top : 0;
+      height : 50%;
+      transform : skew(25deg, 0deg);
+    }
+    // bottom side
+    &:after {
+      top:auto;
+      bottom:0;
+      height:51%;
+      transform: skew(-25deg, 0deg);
+    }
+  }
+
+} // end pointers
+
+
+
+/* For devices larger than 980px */
+@media (min-width: 980px) {
+
+  // .four.columns.stage {
+  //   position:relative;
+  //   min-height:38rem;
+  //   width:30.6666666667%;margin-left:2%;padding-left:2%;
+  //   border-top:0;
+  //   border-left:5px solid transparent;
+  //   border-image: linear-gradient(to top, #f0f0f0, $able-grey 35%, $able-grey 65%, #f0f0f0 100%) 1 1 1 1;
+  // }
+  // .four.columns.stage:first-child {
+  //   margin-top:2.5rem;padding-top:5rem;
+  //   margin-left:0;padding-left:0;
+  // }
+  // .four.columns.stage .button--container {
+  //   position:absolute;
+  //   bottom:0;left:calc(4% + 8px);right:0;
+  // }
+
+  // .columns--divider {
+  //   top:calc(50% - 50px);left:-5px;
+  //   width:5px;height:100px;
+  // }
+  // .columns--divider:before {
+  //   width:17px;height:50%;
+  //   left:0;top:0;
+  //   transform: skew(25deg, 0deg);
+  //   border-bottom:none;
+  //   border-right:5px solid $able-grey;
+  // }
+  // .columns--divider:after {
+  //   width:17px;height:51%;
+  //   left:0;top:auto;
+  //   bottom:0;
+  //   transform: skew(-25deg, 0deg);
+  //   border-bottom:none;
+  //   border-right:5px solid $able-grey;
+  // }
+
+
+}
+
+
+
+
+
+
+
+

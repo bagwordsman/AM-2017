@@ -51,16 +51,16 @@ function recursive_unserialize_replace( $from = '', $to = '', $data = '', $seria
  * We split large tables into 50,000 row blocks when dealing with them to save
  * on memmory consumption.
  *
- * @param mysql  $connection The db connection object
+ * @param wpc_wpdb  $wpcdb      The db wrapper object
  * @param string $search     What we want to replace
  * @param string $replace    What we want to replace it with.
  * @param array  $tables     The tables we want to look at.
  *
  * @return array    Collection of information gathered during the run.
  */
-function icit_srdb_replacer( $connection, $search = '', $replace = '', $tables = array( ) ) {
+function icit_srdb_replacer( $wpcdb, $search = '', $replace = '', $tables = array( ) ) {
 	global $guid, $exclude_cols;
-
+	
 	$report = array( 'tables' => 0,
 					 'rows' => 0,
 					 'change' => 0,
@@ -77,13 +77,13 @@ function icit_srdb_replacer( $connection, $search = '', $replace = '', $tables =
 			$columns = array( );
 
 			// Get a list of columns in this table
-		    $fields = mysql_query( 'DESCRIBE ' . $table, $connection );
-			while( $column = mysql_fetch_array( $fields ) )
+			$fields = $wpcdb->query( 'DESCRIBE ' . $table );
+			while( $column = $wpcdb->fetch_array( $fields ) )
 				$columns[ $column[ 'Field' ] ] = $column[ 'Key' ] == 'PRI' ? true : false;
 
 			// Count the number of rows we have in the table if large we'll split into blocks, This is a mod from Simon Wheatley
-			$row_count = mysql_query( 'SELECT COUNT(*) FROM ' . $table, $connection );
-			$rows_result = mysql_fetch_array( $row_count );
+			$row_count = $wpcdb->query( 'SELECT COUNT(*) FROM ' . $table );
+			$rows_result = $wpcdb->fetch_array( $row_count );
 			$row_count = $rows_result[ 0 ];
 			if ( $row_count == 0 )
 				continue;
@@ -97,12 +97,12 @@ function icit_srdb_replacer( $connection, $search = '', $replace = '', $tables =
 				$start = $page * $page_size;
 				$end = $start + $page_size;
 				// Grab the content of the table
-				$data = mysql_query( sprintf( 'SELECT * FROM %s LIMIT %d, %d', $table, $start, $end ), $connection );
+				$data = $wpcdb->query( sprintf( 'SELECT * FROM %s LIMIT %d, %d', $table, $start, $end ) );
 
 				if ( ! $data )
-					$report[ 'errors' ][] = mysql_error( );
+					$report[ 'errors' ][] = $wpcdb->error();
 
-				while ( $row = mysql_fetch_array( $data ) ) {
+				while ( $row = $wpcdb->fetch_array( $data ) ) {
 
 					$report[ 'rows' ]++; // Increment the row counter
 					$current_row++;
@@ -123,19 +123,19 @@ function icit_srdb_replacer( $connection, $search = '', $replace = '', $tables =
 						// Something was changed
 						if ( $edited_data != $data_to_fix ) {
 							$report[ 'change' ]++;
-							$update_sql[] = $column . ' = "' . mysql_real_escape_string( $edited_data ) . '"';
+							$update_sql[] = $column . ' = "' . $wpcdb->real_escape_string( $edited_data ) . '"';
 							$upd = true;
 						}
 
 						if ( $primary_key )
-							$where_sql[] = $column . ' = "' . mysql_real_escape_string( $data_to_fix ) . '"';
+							$where_sql[] = $column . ' = "' . $wpcdb->real_escape_string( $data_to_fix ) . '"';
 					}
 
 					if ( $upd && ! empty( $where_sql ) ) {
 						$sql = 'UPDATE ' . $table . ' SET ' . implode( ', ', $update_sql ) . ' WHERE ' . implode( ' AND ', array_filter( $where_sql ) );
-						$result = mysql_query( $sql, $connection );
+						$result = $wpcdb->query( $sql );
 						if ( ! $result )
-							$report[ 'errors' ][] = mysql_error( );
+							$report[ 'errors' ][] = $wpcdb->error( );
 						else
 							$report[ 'updates' ]++;
 

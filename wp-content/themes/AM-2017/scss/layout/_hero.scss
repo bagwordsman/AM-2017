@@ -1,0 +1,204 @@
+// Hero image section
+.hero {
+  // all pages
+  overflow : hidden;
+  position : relative;
+  max-height : 40rem;
+  margin-bottom : 5rem;
+  background-color : $able-green;
+  // layout
+  img {
+    width : auto;
+    height : auto;
+    opacity : .75;
+    min-height : 25rem;
+    max-height : 50rem;
+    // media queries - adjust image
+    @media (min-width: 980px) {
+      max-width : 100%;
+      max-height : none;
+    }
+    @media (min-width: 1800px) {
+      width : 100%;
+      max-height : 100%;
+    }
+  }
+  //
+  > div {
+    position:absolute;
+    top : 0;
+    right : 0;
+    bottom : 0;
+    left : 0;
+    z-index : 3;
+  }
+  // non-heading text - applies to home page only
+  > div,
+  > div a {
+    color : $white;
+  }
+  > div a:hover {
+    background-color : $able-green;
+  }
+  // h1 - all pages
+  h1 {
+    display : block;
+    margin-top : 7.5rem;
+    text-align : center;
+    color : $white;
+    text-shadow : $text-outline;
+  }
+  // divider
+  .divider {
+    bottom : 0;
+  }
+
+
+
+  // - - - -
+  // mesh - all pages
+  .mesh {
+    padding : 0;
+    background:rgba(0, 0, 0, 0.25) url("../img/mesh.png") repeat scroll 0 0;
+    + .divider:before,
+    + .divider:after {
+      z-index : 3;
+    }
+  }
+
+  
+  // // - - - -
+  // // media queries - all pages - adjust image
+  // @media (min-width: 980px) {
+  //   // image
+  //   img {
+  //     max-width : 100%;
+  //     max-height : none;
+  //   }
+  // }
+  // @media (min-width: 1800px) {
+  //   img {
+  //     width : 100%;
+  //     max-height : 100%;
+  //   }
+  // }
+
+
+  
+  
+  
+  
+  
+  
+  // could split the following into home page partial - and css file:
+  // ____________________________________________
+  // - - - -
+  // Hero - home page only
+  .home & {
+    max-height : 85rem;
+    img {
+      max-height : 85rem;
+    }
+    // reset - different breakpoints for columns
+    .columns {
+      width : 100%;
+      margin-left : 0;
+      &.seven {
+        padding-left : 2.5rem;
+        padding-right : 2.5rem;
+      }
+    }
+
+  } // end home page (within .hero)
+
+
+  
+  // - - - -
+  // overlay - applies to home page only
+  .hero--overlay {
+    margin-top : 3rem;
+    padding : 2.5rem;
+    box-sizing : border-box;
+    border-radius : 1.5rem;
+    box-shadow : $shadow-down-right;
+    // colour tints
+    &.green {
+      background-color : rgba( $able-green, .75 )
+    }
+    &.orange {
+      background-color : rgba( $orange, .75 )
+    }
+    &.blue {
+      background-color : rgba( $blue, .75 )
+    }
+    // link hover - needs to be within .hero
+    a:hover {
+      background-color : $able-grey;
+    }
+    // list reset
+    ul {
+      margin-bottom : 0;
+    }
+
+    // media queries
+    @media (min-width: 980px) {
+      // absolute position on overlay
+      position : absolute;
+      right : 0;
+      top : 0;
+      &.green,
+      &.orange,
+      &.blue {
+        margin-top : 0;
+        padding : 5rem 2.5rem 2.5rem;
+        border-radius : 0 0 1.5rem 1.5rem;
+      }
+    } // end media queries
+  }
+
+  
+
+
+  
+  // - - - -
+  // media queries - home page
+  .home & {
+    @media (min-width: 980px) {
+      // .home .hero {max-height:85rem;} - check to see if required
+      img {
+        max-width : 100%;
+      }
+      > div {
+        position : absolute;
+      }
+      h1 {
+        text-align : left;
+      }
+
+      // reset column widths
+      .seven.columns {
+        width : 56.6666666667%;
+        padding-left : 0;
+        padding-right : 0;
+      }
+      .five.columns {
+        width : 39.3333333333%;
+        margin-left : 4%;
+      }
+    }
+    @media (min-width: 1200px) {
+      max-height : 55rem;
+    }
+
+  }
+
+  
+
+
+  
+  
+
+
+
+
+} // end hero

@@ -1,0 +1,118 @@
+/*
+Basic Stylesheet
+ - includes everything for any page of the Able Mediation Website
+ - put together for a reference point
+ - duplicate this, and omit what isn't required when building different pages
+
+ NOTES:
+ - reset currently in style.css (top level of the theme)
+ - variables must be imported first
+ - try to import frame (layout) first, followed by components
+ - try to import stuff at the top of the screen first
+ - import home page and landing page stuff first
+
+ TESTING:
+ - by changing output css in AM-css-js.php
+ - may have to experiment with ordering of the cascade
+
+*/
+@import "variables/AM-variables", // have to import variables first: used in all partials - also import mixins first
+        
+        // - - -
+        // basic structure - top of page
+        "components/base",
+        "layout/grid",
+        "layout/header",
+        "layout/hero",
+        "layout/content-containers",
+        "layout/content-dividers",
+        // bottom of the page
+        "layout/secondary-container",
+        "layout/affiliated-container",
+        "layout/footer",
+        // blog - lower priority
+        "layout/blog",
+        "layout/blog-widgets",
+        
+        // - - -
+        // high priority components - top of pages
+        "components/cookie-bar",
+        "components/nav",
+        "components/buttons",
+        "components/typography",
+        "components/lists",
+        "components/images",
+
+        // - - -
+        // libraries
+        "libraries/font-awesome.min", // note: this could be stripped down - just for accordions
+        "libraries/jquery-ui.min",
+
+        // - - -
+        // medium priority components - middle of pages
+        "components/forms",
+        "components/blockquotes",
+        "components/accordion",
+        "components/google-map",
+        // low priority components
+        "components/assistive-text",
+
+        
+
+        // individual pages
+        "page-specific/mediator-profiles",
+        "page-specific/services-parent";
+
+
+
+/*
+order in original css:
+
+ - reset.css (style.css)
+ - skeleton (skeleton.css)
+        - grid
+        - base
+        - layout (divider - white and grey)
+        - cookie bar
+        - header and logo
+        - hero and home hero
+        - all pages content (left and right 5 / 7 columns layout)
+        - 3 stage columns       // content-containers 
+        - column dividers       // content-containers 
+        - buttons
+        - list items
+        - images (inc. lazyload icon stuff)       // images 
+        - captions       // images 
+        - mediator profile img (and name cards)
+        - services parent page (and thumbnails)
+        - assistive text
+        - media queries - for services parent
+        - accordions (refactor / minimise jquery ui css, and stop it interfering with title / tooltips)
+        - google maps
+        - linked page (secondary)
+
+        - media queries - align
+        - media queries - home columns
+        - blog
+        - affiliated logos
+        - footer
+        - twitter
+        - social media
+        - typography - inc. links
+        - tooltip
+        - buttons (inc. media queries)
+
+        - forms
+        - searchform
+        - ninja forms
+
+        - lists
+        - blockquote
+        - tables
+        - spacing and utilities
+ - nav (nav.css)
+ - font awesome
+ - print
+
+
+*/ 

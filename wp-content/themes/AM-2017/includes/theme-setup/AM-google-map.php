@@ -60,11 +60,8 @@ function google_map_shortcode_handler($atts, $content=null) {
 
 		// Output the Google Map
 		return '
-		<div id="able-map-content" style="height:'. $map_height .'px"></div>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=' . $api_key . '" type="text/javascript"></script>
-
-		<script>
+		<div id="able-map-content" style="height:'. $map_height .'px"></div><script src="https://maps.googleapis.com/maps/api/js?key=' . $api_key . '" type="text/javascript"></script>
+    <script>
 		var locations = [
 		  [\'' . $location_1_name . '\', \'' . $location_1_address . '\', \'' . 'http://maps.google.com/?q=' . $location_1_address . '\' ],
 		  [\'' . $location_2_name . '\', \'' . $location_2_address . '\', \'' . 'http://maps.google.com/?q=' . $location_2_address . '\' ],

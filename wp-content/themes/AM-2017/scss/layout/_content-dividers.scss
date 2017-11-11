@@ -1,0 +1,32 @@
+// content dividers
+.divider {
+    bottom: 80px;
+    position: absolute;
+    width: 100%;
+    // point downwards
+    &:before, &:after {
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        height: 220px;
+        top: -20px;
+    }
+    // left side
+    &:before {
+        transform: skew(0deg, 8deg);
+    }
+    // right side
+    &:after {
+        transform: skew(0deg, -8deg);
+    }
+    // white
+    &.white, &.white:before, &.white:after {
+        background-color : $white;
+    }
+    // grey
+    &.grey, &.grey:before, &.grey:after {
+        background-color : $able-lightgrey;
+    }
+    
+}

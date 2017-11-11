@@ -1,0 +1,177 @@
+// Base Styles
+
+// need to define what this file is really about - an extend of the reset.scss?
+
+// NOTE
+// html is set to 62.5% so that all the REM measurements throughout Skeleton
+// are based on 10px sizing. So basically 1.8rem = 18px :)
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: $font-main;
+  color: $able-grey;
+}
+
+
+// referral form padding class
+.padded {padding-top:203px;}
+
+/*
+.no-js #self-referral-form {
+  padding-top:203px;
+}
+.no-js #solicitor-referral-form {
+  padding-top:203px;
+}
+padding-top:203px;/* 141 + 62 (fixed header + h2-inc. bottom margin)
+*/
+
+
+
+
+
+// - - - - - -
+// Spacing
+button,
+.button {
+  margin-bottom: 3rem; }
+input,
+textarea,
+select,
+fieldset {
+  margin-bottom: 1.5rem; }
+pre,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+  margin-bottom: 2.5rem;
+}
+
+
+
+
+
+// - - - - - -
+// alignment classes
+@media (min-width: 660px) {
+
+  .alignleft,
+  .container p > img.alignleft {
+    float : left;
+    margin-right : 4.5rem;
+  }
+
+  .alignright,
+  .container p > img.alignright {
+    float : right;
+    margin-left : 4.5rem;}
+
+  .aligncenter,
+  .container p > img.aligncenter {
+    display : block;
+    margin : 0 auto 3rem;
+  }
+
+}
+
+
+
+
+
+// - - - - - -
+// Utilities - not used
+.u-full-width {
+  width: 100%;
+  box-sizing: border-box; }
+.u-max-full-width {
+  max-width: 100%;
+  box-sizing: border-box; }
+.u-pull-right {
+  float: right; }
+.u-pull-left {
+  float: left;
+}
+
+
+
+
+
+// - - - - - -
+// Tables - could be worthy of their own partial
+th,
+td {
+  padding : 12px 15px;
+  text-align : left;
+  border-bottom : 1px solid $able-midgrey;
+  &:first-child {
+    padding-left : 0;
+  }
+  &:last-child {
+    padding-right : 0;
+  }
+}
+
+
+
+
+
+
+// - - - - - -
+// Line
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid $able-midgrey;
+}
+
+
+
+
+
+
+// - - - - - -
+// Tooltip - phased out
+.ui-tooltip {
+  position : absolute;
+  max-width : 30rem;
+  background-color : $able-darkergrey;
+  color : $able-midgrey;
+  padding : .5em;
+  font-size : 1.4rem;
+  line-height : 1;
+  &-negative {
+    background-color : $able-midgrey;
+    color : $able-darkergrey;
+  }
+}
+
+
+
+
+
+
+// - - - - - -
+// Code
+code {
+  padding: .2rem .5rem;
+  margin: 0 .2rem;
+  font-size: 90%;
+  white-space: nowrap;
+  background : $able-lightgrey;
+  border : 1px solid $able-midgrey;
+  border-radius: 4px;
+  pre > & {
+    display : block;
+    padding : 1rem 1.5rem;
+    white-space : pre;
+  }
+}

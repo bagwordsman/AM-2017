@@ -1,15 +1,64 @@
 // Able Mediation - scss theme variables
 
+
+
 //––––––––––––––––––––––––––––––––––––––––––––––––––
-// colours
+// able colours
 $able-green : #70bf44;
 $able-grey : #6a6a6a;
+
+// greys
+$able-darkergrey : #545454; // from single posts nav
+$able-darkgrey : #b3b3b3; // from footer
+$able-middarkgrey : #c0c0c0; // from single posts nav
+$able-midgrey : #dbdbdb; // from nav
 $able-lightgrey : #f0f0f0;
 
+// black and white
+$white : #ffffff;
+$black : #000000;
 
+
+// able green variations
+$able-green_darker : darken( $able-green, 20% ); // not used
+$able-green_dark : darken( $able-green, 10% ); // was #599836.
+$able-green_light : lighten( $able-green, 10% ); // was #a9d88e Also #8ccb69 on categories widget
+$able-green_lighter : lighten( $able-green, 20% ); // was #c5e5b4
+// another green - from .nav. used $able-green_light instead
+
+
+// able grey variations
+
+
+
+
+// - - - - - -
+// extra colours
 $orange : #f07f37;
 $blue : #7fc1ff;
 $red : #e74e42;
+// another red - from #secondary: #da291c. used $red_dark instead
+
+// extra colour variations
+$orange_dark : darken( $orange, 10% );
+$blue_dark : darken( $blue, 10% );
+$red_dark : darken( $red, 10% );
+
+// extra colour variations - for buttons
+$orange_light : lighten( $orange, 10% ); // was #f3965b
+$blue_light : lighten( $blue, 10% );
+$red_light : lighten( $red, 10% );
+
+
+
+
+// - - - - - -
+// social icon colours
+$facebook : #3c5b9a;
+$twitter : #28aae1;
+$google : #dd4b39;
+$linkedin : #0077b5;
+
 
 
 
@@ -19,14 +68,48 @@ $red : #e74e42;
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 // font families
 $font-main : 'Asap', Helvetica, Arial, sans-serif;
+$font-blockquote : 'Lato', sans-serif;
+$font-icons : 'FontAwesome';
+
+// font sizes
+
+
+// font weights
+$light : 300;
+$normal : 400;
+$bold : 700;
+
+
+
+// line heights
 $font-main-size-xxs : 1.6em;
 $font-main-size : 1.8em;
 $font-main-line-height: 1.6;
-$font-main-weight: 400;
 
-$font-blockquote : 'Lato', sans-serif;
 
-$font-icons : 'FontAwesome';
+
+
+
+
+
+
+
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// measurements - in rem
+$space-s1 : 1rem;
+$space-s2 : 1.5rem;
+$space-s3 : 2rem;
+$space-s4 : 2.5rem;
+$space-s5 : 3rem;
+
+
+
+
+
+
+
+
+
 
 
 
@@ -59,10 +142,34 @@ $break-xxxl : 1800px;
 
 
 
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// outlines
+$text-outline : -1px -1px 0 $black, 1px -1px 0 $black, -1px 1px 0 $black, 1px 1px 0 $black;
+
+// shadows
+$shadow-down-right : 0.25rem 0.25rem .5rem rgba(0, 0, 0, 0.25);
+// box-shadow : 2px 2px 8px rgba(0, 0, 0, 0.25); - from header
+
+$shadow-down-right_thin : 1px 1px 2px rgba(0, 0, 0, 0.5);
+$shadow-down-right_thick : 2px 2px 3px rgba(0, 0, 0, 0.5);
+
+
+
+// gradients
+$vertical-green : linear-gradient(180deg, $white 0%, $able-green 100%) repeat scroll 0 0;
+$fade-in-out-center_horizontal : linear-gradient(to right, $able-lightgrey, $able-grey 35%, $able-grey 65%, $able-lightgrey 100%) 1 1 1 1;
+$fade-in-out-center_vertical : linear-gradient(to top, $able-lightgrey, $able-grey 35%, $able-grey 65%, $able-lightgrey 100%) 1 1 1 1;
+
+
+
+
+
+
+
 
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 // SPECIFIC ELEMENTS
 
 // tooltip
-$tooltip-bg : #4d4d4d;
-$tooltip-fg : #dddddd;
+// $tooltip-bg : #4d4d4d;
+// $tooltip-fg : #dddddd;

@@ -41,7 +41,7 @@ get_header(); ?>
 			// main content area - first section
 			while ( have_posts() ) : the_post(); ?>
 
-			<div class="whitewrapper">
+			<div class="wrapper-white">
 					<?php
 					$sidebar_1 = get_field('first_section_sidebar');
 					$sidebar_1_colour = get_field('first_section_sidebar_colour');
@@ -67,13 +67,13 @@ get_header(); ?>
 
 					<?php if ($logos_1) {
 							echo '
-							<div class="container container--center narrow">
+							<div class="container container--center container-narrow">
 									'. $logos_1 .'
 							</div>';
 					}
 					?>
 			<span class="divider grey"></span>
-			</div><!-- whitewrapper -->
+			</div><!-- wrapper-white -->
 
 			<?php
 			// end main content area
@@ -108,11 +108,11 @@ get_header(); ?>
 
 
 			if ($header_2 || $content_2) {
-			echo '<div class="greywrapper"'.( $id_2 ? (' id="'.$id_2.'" ')  : '').'>';
+			echo '<div class="wrapper-grey"'.( $id_2 ? (' id="'.$id_2.'" ')  : '').'>';
 			}
 
 			// grey coloured content area - header and intro
-			echo ( $header_2 ? ('<div class="container container--center narrow"><h2>'. $header_2 .'</h2>' . $content_2 . '</div>')  : '');
+			echo ( $header_2 ? ('<div class="container container--center container-narrow"><h2>'. $header_2 .'</h2>' . $content_2 . '</div>')  : '');
 
 
 			// column container
@@ -226,11 +226,11 @@ get_header(); ?>
 
 
 			// output header
-			echo ( $header_3 ? ('<div class="container container--center narrow"'.( $id_3 ? (' id="'.$id_3.'" ')  : '').'><h3>'. $header_3 .'</h3></div>') : '');
+			echo ( $header_3 ? ('<div class="container container--center container-narrow"'.( $id_3 ? (' id="'.$id_3.'" ')  : '').'><h3>'. $header_3 .'</h3></div>') : '');
 			// fullwidth option applies to content only
-			echo ( $content_3 ? ('<div'. ( $fullwidth_3 ? ('') : ' class="container container--center narrow"') . '>' . $content_3 . '</div>')  : '');
+			echo ( $content_3 ? ('<div'. ( $fullwidth_3 ? ('') : ' class="container container--center container-narrow"') . '>' . $content_3 . '</div>')  : '');
 			//. ( $header_3 ? ('<h3>'. $header_3 .'</h3>') : '') .
-			//. ( $fullwidth_3 ? ('') : ' class="container container--center narrow"') .
+			//. ( $fullwidth_3 ? ('') : ' class="container container--center container-narrow"') .
 
 
 

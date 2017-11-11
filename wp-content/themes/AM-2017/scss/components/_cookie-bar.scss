@@ -1,0 +1,30 @@
+// Cookie Bar
+.cookies {
+  visibility : hidden; // hide by default
+  background-color : $able-midgrey;
+  color : $able-darkgrey;
+  font-size : 1.6rem;
+  line-height : 1.6;
+  text-align : center;
+  .has-cookie-bar & {
+    visibility : visible;
+  }
+  .container {
+    padding-top : 1rem;
+    padding-bottom : 1rem;
+  }
+  // hide button
+  .hide {
+    background-color : $able-darkgrey;
+    color : $able-midgrey;
+    cursor : pointer;
+    display : inline;
+    padding : 0.25rem 0.5rem;
+    margin-left : 2rem;
+    white-space : nowrap;
+    &:hover {
+      background-color : $able-grey;
+      color : $white;
+    }
+  }
+}

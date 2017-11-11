@@ -1,15 +1,14 @@
 <?php
 /*
 Plugin Name: Flamingo
-Plugin URI: http://flamingo-eggs.com/
-Description: Flamingo manages your contact list on WordPress.
+Description: A trustworthy message storage plugin for Contact Form 7.
 Author: Takayuki Miyoshi
 Text Domain: flamingo
 Domain Path: /languages/
-Version: 1.3
+Version: 1.7
 */
 
-define( 'FLAMINGO_VERSION', '1.3' );
+define( 'FLAMINGO_VERSION', '1.7' );
 
 define( 'FLAMINGO_PLUGIN', __FILE__ );
 
@@ -28,6 +27,7 @@ define( 'FLAMINGO_PLUGIN_URL',
 
 require_once FLAMINGO_PLUGIN_DIR . '/includes/functions.php';
 require_once FLAMINGO_PLUGIN_DIR . '/includes/formatting.php';
+require_once FLAMINGO_PLUGIN_DIR . '/includes/csv.php';
 require_once FLAMINGO_PLUGIN_DIR . '/includes/capabilities.php';
 require_once FLAMINGO_PLUGIN_DIR . '/includes/class-contact.php';
 require_once FLAMINGO_PLUGIN_DIR . '/includes/class-inbound-message.php';
@@ -36,8 +36,9 @@ require_once FLAMINGO_PLUGIN_DIR . '/includes/user.php';
 require_once FLAMINGO_PLUGIN_DIR . '/includes/comment.php';
 require_once FLAMINGO_PLUGIN_DIR . '/includes/akismet.php';
 
-if ( is_admin() )
+if ( is_admin() ) {
 	require_once FLAMINGO_PLUGIN_DIR . '/admin/admin.php';
+}
 
 /* Init */
 

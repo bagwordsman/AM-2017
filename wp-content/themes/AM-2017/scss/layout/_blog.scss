@@ -1,0 +1,266 @@
+// Blog
+
+
+
+// - - - -
+// a) blogroll / blog index page
+.blog #content {
+  > .container {
+    padding : 5rem 0;
+    box-sizing : border-box;
+    border-top : 5px solid $able-grey;
+    // reset
+    &.no-top {
+      padding-top : 0;
+      border-top : none;
+    }
+  }
+  // post title
+  h2 a {
+    font-size : 3.6rem;
+    text-decoration : none;
+  }
+
+}
+
+
+
+// blog pages navigation
+.nav-links {
+  .prev {
+    margin-right : 1.5rem;
+  }
+  .next {
+    margin-left : 1.5rem;
+  }
+  .page-numbers.current {
+    background-color : $able-green;
+    color : $white;
+    margin-left : .75rem;
+    margin-right : .75rem;
+    padding : .35rem .7rem;
+    box-sizing : border-box;
+  }
+}
+
+
+
+// - - - -
+// b) archives (tags and categories)
+// index / blogroll
+.archive #content {
+  > .container {
+    padding : 5rem 0;
+    box-sizing : border-box;
+    border-top : 5px solid $able-grey;
+    &.no-top {
+      padding-top : 0;
+      border-top : none;
+    }
+  }
+  h2 a {
+    font-size : 3.6rem;
+    text-decoration : none;
+  }
+}
+// ii) hero heading
+.archive h1 span {
+  margin-left : 1.5rem;
+  padding : .35rem .7rem;
+  box-sizing : border-box;
+  background-color : $able-green;
+  color : $white;
+  border : 1px solid $black;
+}
+
+
+
+// - - - -
+// c) single posts
+
+// headings - reset multi importer changes - still required?
+.single #content .hero > div a {text-decoration:none;}
+.single .hero > div a:hover {background-color:transparent;}
+// images - multi importer
+.ftpimagefix img {margin-right:3rem;}
+
+
+
+// - - - -
+// single post content reset
+.single #content {
+  padding-bottom : 0;
+  // remove border where single post nav is displaying
+  + #blog-widgets {
+    border-top : 0;
+  }
+}
+
+// single post nav
+.nav-single {
+  margin-top : 3rem;
+  // title
+  &--title {
+    display : inline-block;
+    text-align : center;
+    margin : 0 auto;
+    background-color : $able-grey;
+    color : $white;
+    padding : 0 1rem;
+    box-sizing : border-box;
+  }
+  // remove border where single post nav is displaying
+  + #blog-widgets {
+    border-top : 0;
+  }
+}
+
+
+// previous and next
+%nav {
+  display : block;
+  padding : 3rem 0;
+  box-sizing : border-box;
+  vertical-align : middle;
+  #content & {
+    text-decoration : none;
+  }
+  h3 {
+    position : relative;
+    margin-bottom : 0;
+  }
+}
+
+// prev
+.nav-previous {
+  @extend %nav;
+  border-top : 5px solid $able-grey;
+  h3 {
+    padding-left : 3.5rem;
+    &:before {
+      font-family : 'FontAwesome';
+      content : "\f053";
+      position : absolute;
+      top : 0;
+      left : 0;
+    }
+  }
+}
+
+// next
+.nav-next {
+  @extend %nav;
+  border-bottom : 5px solid $able-grey;
+  h3 {
+    padding-right : 3.5rem;
+    text-align : right;
+    &:after {
+      font-family : 'FontAwesome';
+      content : "\f054";
+      position : absolute;
+      top : 0;
+      right : 0;
+    }
+  }
+}
+
+
+// no thumb prev
+#content a.nav-previous.no_thumb {
+  color : $able-green;
+  background-color : $able-green_lighter;
+  &:hover,
+  &:focus {
+    padding-left : 6rem;
+    color : $able-green_dark;
+    background-color : $able-green_light;
+  }
+}
+
+// no thumb next
+#content a.nav-next.no_thumb {
+  color : $able-grey;
+  background-color : $able-lightgrey;
+  &:hover,
+  &:focus {
+    padding-left : 6rem;
+    color : $able-darkergrey;
+    background-color : $able-middarkgrey
+  }
+}
+
+// has thumb
+.has_thumb {
+  position : relative;
+  min-height : 18.86rem;
+  padding-top : 7rem;
+  padding-bottom : 7rem;
+  background-size : cover;
+  background-position : center 20%;
+  a {
+    position : absolute;
+    top : 0;
+    bottom : 0;
+    left : 0;
+    right : 0;
+    background-color : $able-green;
+    opacity : 0;
+    transition : opacity 0.25s ease-in-out 0s;
+    z-index : 2;
+    &:hover,
+    &:focus,
+    &:active {
+      cursor : pointer;
+      opacity : .25;
+    }
+  }
+  h3 {
+    display : inline-block;
+    padding-right : 1rem;
+    box-sizing : border-box;
+    color : $white;
+    z-index : 4; // stops translucency on hover
+    pointer-events : none;
+    
+  }
+  // prev
+  &.nav-previous h3 {
+    padding-left : 4.5rem;
+    padding-right : 1rem;
+    background-color : $able-green;
+    &:before {
+      left : 1rem;
+    }
+  }
+  // next
+  &.nav-next h3 {
+    padding-left : 1rem;
+    padding-right : 4.5rem;
+    background-color : $able-grey;
+    &:after {
+      right : 1rem;
+    }
+  }
+  // prev
+  &.nav-previous a {
+    background-color : $able-green;
+  }
+  // next
+  &.nav-next a {
+    background-color : $able-grey;
+  }
+}
+
+
+
+
+
+// index page / blogroll - thumbnail widths
+.blog #content .four.columns {
+  @media (min-width: 860px) {
+    width : 22%;
+  }
+  @media (min-width: 1160px) {
+    width : 13.3333333333%;
+  }
+}

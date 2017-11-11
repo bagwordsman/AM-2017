@@ -83,9 +83,9 @@ get_header(); ?>
 
 
 
-			<div class="whitewrapper">
+			<div class="wrapper-white">
 
-					<div class="container container--center narrow">
+					<div class="container container--center container-narrow">
 							<h1><?php
 							// display the <h1> heading with ACF
 							if (get_field('h1_heading')) {
@@ -98,7 +98,7 @@ get_header(); ?>
 					</div><!-- container -->
 
 					<span class="divider grey"></span>
-			</div><!-- whitewrapper -->
+			</div><!-- wrapper-white -->
 
 			<?php
 			// end main content area
@@ -123,16 +123,16 @@ get_header(); ?>
 			$fullwidth_3 = get_field('last_section_-_full_width');
 
 
-			echo '<div class="greywrapper">';
+			echo '<div class="wrapper-grey">';
 
 
 
 			// output header
-			echo ( $header_3 ? ('<div class="greywrapper"><div class="container container--center narrow"'.( $id_3 ? (' id="'.$id_3.'" ')  : '').'><h3>'. $header_3 .'</h3></div>') : '');
+			echo ( $header_3 ? ('<div class="wrapper-grey"><div class="container container--center container-narrow"'.( $id_3 ? (' id="'.$id_3.'" ')  : '').'><h3>'. $header_3 .'</h3></div>') : '');
 			// fullwidth option applies to content only
-			echo ( $content_3 ? ('<div'. ( $fullwidth_3 ? ('') : ' class="container container--center narrow"') . '>' . $content_3 . '</div>')  : '');
+			echo ( $content_3 ? ('<div'. ( $fullwidth_3 ? ('') : ' class="container container--center container-narrow"') . '>' . $content_3 . '</div>')  : '');
 			//. ( $header_3 ? ('<h3>'. $header_3 .'</h3>') : '') .
-			//. ( $fullwidth_3 ? ('') : ' class="container container--center narrow"') .
+			//. ( $fullwidth_3 ? ('') : ' class="container container--center container-narrow"') .
 
 
 			echo '</div>';

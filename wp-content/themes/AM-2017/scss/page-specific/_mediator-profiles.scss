@@ -1,0 +1,67 @@
+// Mediator Profiles - made with shortcodes
+
+// mediator image
+.profile-pic {
+  position : relative;
+  margin-bottom : 3rem;
+  img {
+    margin-left : 0;
+    max-width : 100%;
+    height : auto;
+  }
+}
+
+// mediator bio
+.name-card {
+  position : absolute;
+  left : 0;
+  right : 0;
+  bottom : 0;
+  padding : 1rem 2rem;
+  box-sizing : border-box;
+  background-color : $able-green;
+  color : $white;
+  h3, p {
+    margin : 0;
+  }
+}
+
+// read full profile - button
+.mediator-profile .button {
+  float : right;
+  .no-js & {
+    display : none;
+  }
+}
+
+// read full profile - section */
+.full-profile {
+  display : block;
+  &.hidden {
+    display : none;
+  }
+  img {
+    display : inline-block;
+    margin-left : 2rem;
+    a & {
+      transition : all ease-in-out .3s;
+    }
+    a:hover &  {
+      opacity : .75;
+    }
+  }
+  // a:hover img {
+  //   opacity : .75;
+  // }
+}
+
+// reset here
+#content .container .full-profile img {
+  display : inline-block;
+  vertical-align : middle;
+  margin : 0 0 0 2rem;
+}
+
+
+
+

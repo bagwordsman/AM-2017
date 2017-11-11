@@ -1,0 +1,229 @@
+// Blog Page Widgets
+
+
+
+// - - - -
+// widget area and theme
+#blog-widgets {
+  position : relative;
+  border-top : 5px solid $able-grey;
+  background-size : cover;
+  background-position : center 20%;
+  // put contents above overlay
+  > .container {
+    z-index : 4;
+  }
+}
+// overlay
+.widget-overlay {
+  position : absolute;
+  top : 0;
+  bottom : 0;
+  left : 0;
+  right : 0;
+  z-index : 2;
+  &.default {
+    background-color : $white;
+  }
+  &.green {
+    background-color : $able-green;
+  }
+  &.orange {
+    background-color : $orange;
+  }
+  &.blue {
+    background-color : $blue;
+  }
+  &.red {
+    background-color : $red_dark;
+  }
+  &.light-grey {
+    background-color : $able-lightgrey;
+  }
+  &.dark-grey {
+    background-color : $able-grey;
+  }
+}
+
+
+
+// - - - -
+// widget padding and alignment - are these used elsewhere?
+.container {
+  &.center {
+    text-align : center;
+  }
+  &.right {
+    text-align : right;
+  }
+  &.widgets {
+    padding-top : 2rem;
+    padding-bottom : 2rem;
+  }
+}
+
+
+
+// - - - -
+// right aligned h3 title
+.blog-widgets--title {
+  display : inline-block;
+  margin : 0;
+  background-color : $able-grey;
+  color : $white;
+  padding : 0 1rem;
+  box-sizing : border-box;
+}
+
+
+
+// - - - -
+// widget titles
+.widget h4 {
+  display : inline-block;
+}
+
+
+
+// - - - -
+// categories
+.widget_categories {
+  h4 {
+    font-size : 2.7rem;
+    letter-spacing : 0.04rem;
+    margin-bottom : 2rem;
+    padding : 0 1rem;
+    box-sizing : border-box;
+    background-color : $able-green;
+    color : $white;
+    border : 1px solid $black;
+    text-shadow : $text-outline;
+  }
+  // li
+  .cat-item {
+    list-style : none;
+    margin-bottom : 0;
+    a {
+      display : inline-block;
+      vertical-align : middle;
+      margin-bottom : 2rem;
+      padding : .35rem 3.5rem .35rem 1rem;
+      box-sizing : border-box;
+      background-color : $able-green;
+      color : $white;
+      position : relative;
+      &:after {
+        font-family : 'FontAwesome';
+        content : "\f054";
+        position : absolute;
+        right : 1.5rem;
+        transition : all ease-in-out .3s;
+      }
+      &:hover {
+        background-color : $able-green_light;
+        color : $white;
+      }
+      &:hover:after {
+        right : .75rem;
+      }
+    }
+  }
+}
+
+
+
+// - - - -
+// latest posts
+.widget_recent_entries {
+  h4 {
+    font-size : 2.7rem;
+    letter-spacing : 0.04rem;
+    margin-bottom : 2rem;
+  }
+  li {
+    margin-bottom : 1.5rem;
+  }
+  // not currently used
+  .post-date {
+    display : inline-block;
+    margin-left : .75rem;
+    padding : 0.35rem 0.7rem;
+    box-sizing : border-box;
+    line-height : 1;
+  }
+  // light theme
+  .light & {
+    h4, li, a {
+      color : $white;
+    }
+    a {
+      text-decoration : underline;
+      &:hover {
+        color : $able-midgrey;
+      }
+    }
+    .post-date {
+      background-color : $able-grey;
+      color : $white;
+    }
+  }
+  // dark theme
+  .dark & {
+    h4, li, a {
+      color : $able-grey;
+    }
+    a {
+      text-decoration : underline;
+      &:hover {
+        color : $able-darkergrey;
+      }
+    }
+    .post-date {
+      background-color : $able-lightgrey;
+      color : $able-grey;
+    }
+  }
+
+}
+
+
+
+// - - - -
+// tags
+.widget_tag_cloud h4 {
+  border-color : $white;
+  border-radius : 3.6rem;
+  padding-left : 4.8rem;
+  position : relative;
+  &:before {
+    content : '\2022';
+    position : absolute;
+    left : 0.5rem;
+    top : -4rem;
+    font-size : 6rem;
+  }
+}
+.tagcloud a {
+  position : relative;
+  padding : .25rem .75rem .25rem 1.5rem;
+  border : .2em solid transparent;
+  border-radius : 5rem;
+  background-color : $white;
+  color : $blue_dark;
+  &:before {
+    content : '\2022';
+    position : absolute;
+    left : 0.5rem;
+    top : -.75rem;
+    font-size : 2rem;
+    color : $blue_dark;
+  }
+  &:hover {
+    border : .2em solid $white;
+    background-color : $blue_dark;
+    color : $white;
+  }
+  &:hover:before {
+    color : $white;
+  }
+}

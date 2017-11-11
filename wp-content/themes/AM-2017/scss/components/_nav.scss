@@ -1,0 +1,341 @@
+/* nav css */
+
+
+/* Assistive text
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.assistive-text,
+.site .screen-reader-text {
+	position : absolute !important;
+	clip : rect(1px, 1px, 1px, 1px);
+}
+.assistive-text:focus{
+	background : $white;
+	border: 2px solid #ddd;
+	clip : auto !important;
+	color : $able-grey;
+	display : block;
+	font-size : 2rem;
+	padding : 1rem;
+	position : absolute;
+	top : 1rem;
+	left : 1rem;
+	z-index : 100000; /* Above WP toolbar */
+}
+
+/* Menu Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+body{ -webkit-animation: bugfix infinite 1s; }
+@-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
+
+// nav container
+.nav {
+	position : relative;
+}
+// no bullets
+.main-menu li {
+	list-style : none;
+	a {
+		text-decoration : none;
+	}
+}
+
+// micro clearfix - is this needed?
+.rsnav-clearfix:before,
+.rsnav-clearfix:after { display: table; content: ""; }
+.rsnav-clearfix:after { clear: both; }
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// checkbox - display menu if toggle checked
+
+// hide toggle and label by default
+#toggle,
+.main-toggle {
+	display : none;
+}
+
+#toggle:checked {
+	~ .main-menu {
+		display : block;
+		opacity : 1;
+	}
+	+ .main-toggle:after{
+		content : 'Close Menu';
+		background-color : $able-green_light;
+	}
+}
+
+
+// label
+.main-toggle {
+	display : block;
+	position : relative;
+	cursor : pointer;
+	-webkit-touch-callout : none;
+	-webkit-user-select : none;
+	user-select : none;
+	z-index : 2;
+	margin : 0;
+	// display the text 'Main Menu'
+	&:after {
+		float: none;
+		display : block;
+		max-width: 100%;
+		margin : 1.5rem auto 0;
+		padding : 0 5rem;
+		box-sizing : border-box;
+		text-align : center;
+		content : 'Main Menu';
+		font-size : 2.4rem;
+		letter-spacing : 0.04rem;
+		line-height : 2.4;
+		font-weight : $bold;
+		color : $white;
+		background-color :$able-green;
+		transition : all 0.3s ease-in-out;
+	}
+	// hover colour
+	&:hover:after {
+		background-color : $able-green_light;
+	}
+}
+
+
+
+// - - - - - - - - - -
+// small
+.main-menu {
+	position: static;
+	right : 0;
+	display : none;
+	max-width : 100%;
+	opacity : 0;
+	// margin : 0 auto 2rem;
+	margin : 0 auto;
+	border-top : 2px solid $able-grey;
+	li {
+		margin:0;
+		a {
+			position : relative;
+			display : block;
+			width : 100%;
+			height : 38px;
+			padding-left : 5%;
+			box-sizing:border-box;
+			font-weight : $bold;
+			line-height : 38px;
+			color : $able-grey;
+			border-top : 2px solid $able-grey;
+			transition: all 0.3s ease-in-out;
+			&:before {
+				transition: all 0.3s ease-in-out;
+			}
+		}
+
+		// 1st item - no top border
+		&:first-child a {
+			border-top:0;
+		}
+
+		
+		// - - - - - - - -
+		// hover behaviour - 1st tier
+		a:hover,
+		a:focus,
+		&.current_page_item > a,
+		&.current_page_ancestor > a {
+			color : $able-green;
+			background-color : $able-midgrey;
+		}
+		// current page marker
+		&.current_page_item > a:before,
+		&.current_page_ancestor > a:before {
+			font-family : 'FontAwesome';
+			content : "\f054";
+			padding-right : 1.25%;
+		}
+		&.current_page_item > a:hover:before,
+		&.current_page_ancestor > a:hover:before {
+			padding-right:2.5%;
+		}
+
+
+		// - - - - - - - -
+		// second and third tier
+		ul {
+			position : relative;
+			display : none; // don't need to display it, but a relative position is required
+			top : 0;
+			li a {
+				background-color : transparent;
+				color : $white;
+				&:hover,
+				&:focus,
+				&.current_page_item a {
+					background-color : $able-green;
+					color : $able-grey;
+				}
+			}
+			// third tier
+			li li a {
+				background-color : transparent;
+				color : $able-grey;
+			}
+			li li a:hover,
+			li li a:focus,
+			li li.current_page_item a {
+				background-color : $able-green;
+				color : $able-grey;
+			}
+		}
+	}
+} // end .main-menu
+
+
+
+
+
+
+
+// - - - - - - - - - -
+// large
+@media (min-width: 768px) {
+
+	.nav {
+		padding-bottom : 76px; // 2 x 38px
+	}
+
+	// hide toggle
+	#toggle,
+	.main-toggle {
+		display : none;
+	}
+
+	.main-menu {
+		display: block;
+		opacity: 1;
+		max-width : 100%;
+		width : 100%;
+		margin-bottom : 0;
+		height : 38px;
+		background-color : transparent;
+		border-top : none;
+		text-align : center;
+		position : absolute;
+		z-index : 99;
+		// all list items
+		li {
+			// first tier
+			a {
+				position : relative;
+				padding : 0;
+				border-top : 0;
+				color : $able-grey;
+				background-color :transparent;
+			}
+			&.current_page_item > a:before,
+			&.current_page_ancestor > a:before,
+			a:hover:before,
+			a:focus:before {
+				content : "";
+				padding-right : 0;
+			}
+			&.current_page_item > a:hover:before,
+			&.current_page_ancestor > a:hover:before {
+				padding-right:0;
+			}
+			// hover and current page marker
+			a:hover,
+			a:focus,
+			&.current_page_item > a,
+			&.current_page_ancestor > a,
+			&.current-menu-ancestor > a,
+			&.current-menu-parent > a{
+				background-color : transparent;
+				color : $able-green;
+				padding : 0;
+			}
+			// first tier with children
+			&.menu-item-has-children > a {
+				padding-right : 2.5rem;
+				&:before {
+					position : absolute;
+					top : 0;
+					right : 0;
+					font-family: 'FontAwesome';
+					content : "\f078";
+				  }
+			}
+
+			// - - - - - -
+			// second tier
+			ul {
+				display : none;
+				position : absolute;
+				top : 38px;
+				left : 0;
+				padding-top : 5px;
+				margin : 0;
+				min-width : 280px; // width of the dropdown
+				z-index : 9999; // do a z-index audit
+				li {
+					a {
+						padding : 0;
+						background-color : $able-grey;
+						color : $white;
+						border-top : 2px solid $able-lightgrey;
+					}
+					// reset
+					&:first-child a {
+						border-top : 0;
+					}
+					// hover
+					a:hover
+					a:focus,
+					&.current_page_item a {
+						padding : 0;
+						background-color : $able-green;
+						color : $white;
+						border-top : 2px solid $able-green;
+					}
+					// border-top reset
+					&:first-child a:hover,
+					&:first-child a:focus,
+					&.current_page_item:first-child a {
+						border-top:0;
+					}
+					
+				} // end ul li
+				
+			}
+			// show the dropdown
+			&:hover ul {
+				display : block;
+			}
+
+		}
+		// top level list items
+		> li {
+			position : relative;
+			top : 0;
+			display : inline-block;
+			padding : 0 1.5rem;
+		}
+
+	}
+
+}
+
+
+
+
+
+
+
+// - - - - - - - - - -
+// extra large
+@media (min-width: 1160px) {
+	.nav {
+		padding-bottom : 38px;
+	}
+}

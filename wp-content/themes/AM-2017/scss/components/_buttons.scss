@@ -1,0 +1,121 @@
+// Buttons
+
+// clear with solid border
+a.button,
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display : inline-block;
+  height : 48px;
+  padding : 0 10px;
+  
+  text-align : center;
+  font-size : 21px;
+  font-weight : $bold;
+  line-height : 42px;
+  letter-spacing : .1rem;
+  text-decoration : none;
+  white-space : nowrap;
+
+  color : $able-green;
+  background-color : transparent;
+  border : 3px solid $able-green;
+  border-radius : 4px;
+  cursor : pointer;
+  box-sizing : border-box;
+  transition : all ease-in-out 0.25s;
+
+  // remove underline if in content
+  #content & {
+    text-decoration : none;
+  }
+
+  // icons
+  .fa {
+    vertical-align : middle;
+    margin-top : -8px;
+    margin-left : 8px;
+  }
+
+  // normal weight text
+  span {
+    font-weight : $normal;
+    margin-right : 10px;
+  }
+
+  // - - - - - - - -
+  // hover and focus
+  &:hover,
+  &:focus {
+    cursor : pointer;
+    color : $white;
+    outline : 0;
+    background-color : $able-green;
+    text-shadow : $shadow-down-right_thin;
+  }
+
+  // - - - - - - - -
+  // colours
+  
+  // orange
+  &.orange,
+  &.orange:visited {
+    color : $orange;
+    border-color : $orange;
+    &:hover {
+      color : $white;
+      background-color : $orange_light;
+      border-color : $orange_light;
+    }
+    // header button
+    .contact & {
+      line-height : 48px;
+      border : 0;
+      color : $white;
+      background-color : $orange;
+      &:hover,
+      &:focus,
+      &:visited:hover {
+        border : 0;
+        background-color : $orange_light;
+      }
+    }
+  }
+  
+  // blue
+  &.blue,
+  &.blue:visited {
+  color : $blue;
+  border-color : $blue;
+    &:hover {
+        color : $white;
+        background-color : $blue;
+        border-color : $blue;
+    }
+  }
+
+  // red
+  &.red,
+  &.red:visited {
+  color : $red;
+  border-color : $red;
+      &:hover {
+          color : $white;
+          background-color : $red;
+          border-color : $red;
+      }
+  }
+
+  
+  // - - - - - - - -
+  // media queries
+  @media (min-width : 660px) {
+    font-size : 27px;
+  }
+
+
+
+
+} // end button
