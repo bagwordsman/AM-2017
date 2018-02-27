@@ -5451,7 +5451,7 @@ body .ui-tooltip {
       .twitter-text .tweet-time a:hover {
         color: #8dcc6a !important; }
 
-#twitter-actions {
+.twitter-actions {
   width: 75px;
   float: right;
   margin-right: 5px;

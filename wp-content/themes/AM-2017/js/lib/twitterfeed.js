@@ -14,6 +14,7 @@ jQuery(document).ready(function( $ ) {
     displaylimit = numbers[displaylimit];
     var twitterprofile = $("#twitter-feed").attr("data-profile");
     var screenname = $("#twitter-feed").attr("data-user");
+    var absPath = $("#twitter-feed").attr("data-path"); // hacky / lazy, but it will work for getting the JSON at any page level
     
     // other stuff:
     var showdirecttweets = false;
@@ -33,9 +34,9 @@ jQuery(document).ready(function( $ ) {
     headerHTML += '<a class="profile" href="https://twitter.com/'+twitterprofile+'" target="_blank">';
     headerHTML += '<h3>'+screenname+'</h3><p>@'+twitterprofile+'</p>';
     headerHTML += '</a>';
-	headerHTML += '<a class="bird" href="https://twitter.com/" target="_blank"><img src="../wp-content/themes/AM-2017/img/twitter-bird-light.png" width="34" style="float:left;padding:3px 12px 0px 6px" alt="twitter bird" /></a>';
+	headerHTML += '<a class="bird" href="https://twitter.com/" target="_blank"><img src="'+ absPath + '/img/twitter-bird-light.png" width="34" style="float:left;padding:3px 12px 0px 6px" alt="twitter bird" /></a>';
 	headerHTML += '</div>';
-	loadingHTML += '<div id="loading-container"><img src="images/ajax-loader.gif" width="32" height="32" alt="tweet loader" /></div>';
+	loadingHTML += '<div id="loading-container"><img src="'+ absPath + '/img/ajax-loader.gif" width="32" height="32" alt="tweet loader" /></div>';
 	
 	$('#twitter-feed').html(headerHTML + loadingHTML);
 	 
@@ -43,7 +44,9 @@ jQuery(document).ready(function( $ ) {
     
     // display the latest tweet
     // - this will output the number of tweets defined in get-tweets-1.1.php
-    $.getJSON('../wp-content/themes/AM-2017/get-tweets-1.1.php', 
+    // - I need an abosolute path to the get-tweets JSON
+    
+    $.getJSON(absPath + '/get-tweets-1.1.php', 
         function(feeds) {   
 		   //alert(feeds);
             var feedHTML = '';
@@ -77,8 +80,6 @@ jQuery(document).ready(function( $ ) {
 				 if (feeds[i].text.substr(0,1) == "@") {
 					 isdirect = true;
 				 }
-				 
-				//console.log(feeds[i]);
 				 
 				 // Generate twitter feed HTML based on selected options
 				 if (((showretweets == true) || ((isaretweet == false) && (showretweets == false))) && ((showdirecttweets == true) || ((showdirecttweets == false) && (isdirect == false)))) { 
@@ -126,28 +127,19 @@ jQuery(document).ready(function( $ ) {
              
             $('#twitter-feed').html(feedHTML);
 			
-			//Add twitter action animation and rollovers
+			// toggle colour class when tweet is hovered over
 			if (showtweetactions == true) {				
-				// $('.twitter-article').hover(function(){
-				// 	$(this).find('#twitter-actions').css({'display':'block', 'opacity':0, 'margin-top':-20});
-				// 	$(this).find('#twitter-actions').animate({'opacity':1, 'margin-top':0},200);
-				// }, function() {
-				// 	$(this).find('#twitter-actions').animate({'opacity':0, 'margin-top':-20},120, function(){
-				// 		$(this).css('display', 'none');
-				// 	});
-                // });	
                 $('.twitter-article').hover(function(){
                     $(this).addClass('hovered');
 				}, function() {
 					$(this).removeClass('hovered');
                 });	
 			
-				//Add new window for action clicks
-			
-				$('#twitter-actions a').click(function(){
-					var url = $(this).attr('href');
-				  window.open(url, 'tweet action window', 'width=580,height=500');
-				  return false;
+				// modal action clicks - make this nicer
+				$('.twitter-actions a').click(function(){
+                    var url = $(this).attr('href');
+                    window.open(url, 'tweet action window', 'width=580,height=500');
+                    return false;
 				});
 			}
 			
@@ -156,6 +148,8 @@ jQuery(document).ready(function( $ ) {
 		var error = "";
 			 if (jqXHR.status === 0) {
                error = 'Connection problem. Check file path and www vs non-www in getJSON request';
+            
+            // getting 404 errors if not on child pages (i.e. if on home page, or grandchild page)
             } else if (jqXHR.status == 404) {
                 error = 'Requested page not found. [404]';
             } else if (jqXHR.status == 500) {

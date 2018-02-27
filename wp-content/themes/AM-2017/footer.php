@@ -144,8 +144,9 @@ echo '
         $tweetprofile = $tweet_options['twitter_profile'];
         $tweetuser = $tweet_options['twitter_user'];
         $tweetamount = $tweet_options['no_tweets'];
+        $uri = get_stylesheet_directory_uri();
         // lib/twitterfeed.js targets this div:
-        echo '<div id="twitter-feed" data-profile="'.$tweetprofile.'" data-user="'.$tweetuser.'" data-tweets="'.$tweetamount.'"></div>';
+        echo '<div id="twitter-feed" data-profile="'.$tweetprofile.'" data-user="'.$tweetuser.'" data-tweets="'.$tweetamount.'" data-path="'.$uri.'"></div>';
 
 
 
