@@ -134,34 +134,53 @@ echo '
 					</ul>';
 
 
-        // tweet
-        $tweet_link = get_option ( 'sandbox_theme_tweet_options' );
-        $tweetheading = $tweet_link['embeddedtweetheading'];
+        
+        
+        // twitter
+        $tweet_options = get_option ( 'sandbox_theme_tweet_options' );
+        $tweetheading = $tweet_options['tweet_heading'];
         echo ( $tweetheading ? ('<h4>'. $tweetheading .'</h4>')  : '');
 
-        $tweet = $tweet_link['embeddedtweet'];
-        $tweet_id = filter_var($tweet, FILTER_SANITIZE_NUMBER_INT);
-        $tweetlinkcolour = $tweet_link['tweetcolour'];
+        $tweetprofile = $tweet_options['twitter_profile'];
+        $tweetuser = $tweet_options['twitter_user'];
+        $tweetamount = $tweet_options['no_tweets'];
+        // lib/twitterfeed.js targets this div:
+        echo '<div id="twitter-feed" data-profile="'.$tweetprofile.'" data-user="'.$tweetuser.'" data-tweets="'.$tweetamount.'"></div>';
 
-        if ($tweet != '') echo '
-        <div id="twitter-tweet"></div>
-        <script src="https://platform.twitter.com/widgets.js"></script>
-        <script>
-        twttr.widgets.createTweet(
-          "'. $tweet_id .'",
-          document.getElementById("twitter-tweet"),
-          {
-            align: "left",
-            '. ( $tweetlinkcolour ? ('linkColor : "#'. $tweetlinkcolour .'",')  : '') .'
-          })
 
-          .then(function (el) {
-            console.log("Tweet displayed.")
-          }
-        );
-        </script>
-        '. ( $tweetlinkcolour ? ('<style>#twitter-tweet iframe {border:2px solid #'. $tweetlinkcolour .' !important;}</style>')  : '') .'
-        ';
+
+        // old tweet stuff - enter url of specific tweet
+
+        // $tweet_link = get_option ( 'sandbox_theme_tweet_options' );
+        
+
+        // $tweet = $tweet_link['embeddedtweet'];
+        // $tweet_id = filter_var($tweet, FILTER_SANITIZE_NUMBER_INT);
+
+        // // var_dump($tweet_id);
+
+
+        // $tweetlinkcolour = $tweet_link['tweetcolour'];
+
+        // if ($tweet != '') echo '
+        // <div id="twitter-tweet"></div>
+        // <script src="https://platform.twitter.com/widgets.js"></script>
+        // <script>
+        // twttr.widgets.createTweet(
+        //   "'. $tweet_id .'",
+        //   document.getElementById("twitter-tweet"),
+        //   {
+        //     align: "left",
+        //     '. ( $tweetlinkcolour ? ('linkColor : "#'. $tweetlinkcolour .'",')  : '') .'
+        //   })
+
+        //   .then(function (el) {
+        //     console.log("Tweet displayed.")
+        //   }
+        // );
+        // </script>
+        // '. ( $tweetlinkcolour ? ('<style>#twitter-tweet iframe {border:2px solid #'. $tweetlinkcolour .' !important;}</style>')  : '') .'
+        // ';
 
 
 

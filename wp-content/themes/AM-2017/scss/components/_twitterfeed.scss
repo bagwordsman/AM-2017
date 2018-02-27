@@ -1,0 +1,223 @@
+// twitter feed - displays latest tweet on all pages
+// NOTE: styling this like default / previous tweet, some colours not theme colours
+
+
+#loading-container {
+    padding : 16px 0px 16px 0px;
+    text-align : center;
+}
+
+
+// main tweet container
+#twitter-feed {
+    width : 100%;
+    overflow : auto; // required to contain tweets
+    margin : auto;
+    // padding : 20px 20px 11.6px 20px;
+    // box-sizing : border-box;
+    border-radius : 5px;
+    border : 1px solid $able-midgrey;
+    font-size : 16px;
+    line-height : 1.4;
+    font-family : Arial, sans-serif;
+    background-color : $white;
+    color : $able-grey;
+}
+
+
+
+
+// _____________________________
+// twitter-header - able mediation's profile
+.twitter-header {
+    position : relative;
+    padding : 20px;
+    box-sizing : border-box;
+}
+.bird {
+    position : absolute;
+    top : 20px;
+    right : 20px;
+    width : 1.25em;        
+}
+.profile {
+    display : inline-block;
+    h3 {
+        margin : 0px;
+        padding : 0px;
+        font-size : 18px;
+        font-weight : $bold;
+        line-height : 1;
+        letter-spacing : 0;
+        color : $black;
+    }
+    p {
+        margin : 0px;
+        font-size : 14px;
+        color : #697882;
+    }
+    &:hover p {
+        color : $able-green_light;
+    }
+}
+ 
+
+
+
+ 
+
+
+// _____________________________
+// individual tweets
+.twitter-article {
+    width : 100%;
+    float : left;
+    padding : 20px;
+    box-sizing : border-box;
+    border-top : 1px solid $able-midgrey;
+    position : relative;
+    &.hovered {
+        background-color : #f5f8fa;
+    }
+}
+
+
+// retweet
+.retweet-indicator {
+    height : 20px;
+    font-size : 14px;
+
+    background-image : url('../img/tweet-actions.png');
+    background-repeat : no-repeat;
+    background-position : -25px -16px;
+    // margin-top : 3px;
+    // float : left;
+    position : absolute;
+    top : 20px;
+    left : 72px;
+    padding-left : 25px; // room for icon
+}
+
+
+
+// avatar / profile pic
+.twitter-pic {
+    position : absolute;
+    top : 45px;
+    img {
+        float : left;
+        border-radius : 21px;
+        border : none;
+    }
+}
+ 
+
+
+
+
+// text styling
+.twitter-text {
+    width : 100%;
+    float : left;
+    font-size : 14px;
+    padding-left : 52px;
+    padding-top : 25px;
+    box-sizing : border-box;
+    // profile link
+    .tweetprofilelink {
+        margin-bottom : 6px;
+        line-height : 1.2;
+        a {
+            color : $black !important;
+            &:hover {
+                color : $able-green_light !important;
+            }
+        }
+    }
+    // tweet
+    p {
+        margin : 0px;
+        line-height : 1.4;
+        a {
+            color : $able-green !important;
+        }
+    }
+    // time
+    .tweet-time {
+        margin-top : 3px;
+        a {
+            color : $able-green !important;
+            &:hover {
+                color : $able-green_light !important;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+// .twitter-text a,  h1 a {
+//     color: #00acee;
+//     text-decoration: none;
+// }
+// .twitter-text a:hover,  h1 a:hover {
+//     text-decoration: underline;
+//     color: #00acee;
+// }
+ 
+
+ 
+// .tweetprofilelink a {
+//     color:#444;
+// }
+// .tweetprofilelink a:hover {
+//     color:#444;
+// }
+
+
+
+
+
+// feed actions - reply, retweet, like
+#twitter-actions {
+    width:75px;
+    float:right;
+    margin-right:5px;
+    margin-top:3px;
+    display : block;
+}
+.intent {
+    width:25px;
+    height:16px;
+    float:left;
+}
+.intent a{
+    width:25px;
+    height:16px;
+    display:block;
+    background-image:url('../img/tweet-actions.png');
+    float:left;
+}
+.intent a:hover{
+    background-position:-25px 0px;
+} 
+ 
+#intent-retweet a{
+    background-position:0px -17px;
+}
+#intent-retweet a:hover{
+    background-position:-25px -17px;
+}
+#intent-fave a{
+    background-position:0px -36px;
+}
+#intent-fave a:hover{
+    background-position:-25px -36px;
+} 
+ 

@@ -23,7 +23,7 @@ function sandbox_theme_intialize_map_options() {
 	add_settings_field(
     	'gmap_api_key',
     	'<h4>General Settings for Map</h4>
-			<i class="fa fa-key" aria-hidden="true"></i>Google Maps API Key',
+		<i class="fa fa-key" aria-hidden="true"></i>Google Maps API Key',
     	'sandbox_gmap_api_callback',
     	'sandbox_theme_map_options',
     	'map_settings_section'

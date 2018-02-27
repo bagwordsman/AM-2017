@@ -9,7 +9,9 @@
 // to be audited / redone with SASS
 function load_css() {
 	// ie css in header.php
+
 	// style.css - required by theme
+	// NOTE: this is in the root of the theme, and acts as a reset
 	wp_register_style('style', get_stylesheet_directory_uri() . '/style.css' );
 	wp_enqueue_style( 'style');
 
@@ -23,7 +25,7 @@ function load_css() {
 	// wp_register_style( 'fa-icons', get_stylesheet_directory_uri(). '/css/font-awesome.min.css' );
 	// wp_enqueue_style('fa-icons' );
 
-	wp_register_style( 'new-compiled-default', get_stylesheet_directory_uri(). '/new-css/style.css' );
+	wp_register_style( 'new-compiled-default', get_stylesheet_directory_uri(). '/css/style.css' );
 	wp_enqueue_style('new-compiled-default' );
 
 	// add print css
@@ -65,7 +67,13 @@ if (!is_admin()) {
 	// ii)
 	// cookies script for cookie bar, and learning page markers for visited page background images
 	wp_enqueue_script('jquery-cookie', get_stylesheet_directory_uri(). '/js/lib/jquery.cookie.js', array('jquery'), '1.0', true  );
-	// iii) main js (includes tooltip) //
+	
+	
+	// iii) twitter
+	wp_enqueue_script('twitter', get_stylesheet_directory_uri(). '/js/lib/twitterfeed.js', array('jquery'), '1.0', true  );
+
+
+	// iv) main js (includes tooltip) //
 	wp_enqueue_script('main', get_stylesheet_directory_uri(). '/js/main.js', array('jquery','jquery-cookie'), '1.0', true  ); // 'jquery-ui'
 
 }

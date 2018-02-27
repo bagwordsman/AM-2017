@@ -34,33 +34,40 @@ function sandbox_menu_page_display() {
         <h2>Able Mediation Theme Options</h2>
         <!-- Make a call to the WordPress function for rendering errors when settings are saved. -->
         <div class="in-header-and-footer">
-						<?php settings_errors(); ?>
-		        <!-- Create the forms that will be used to render our options -->
-						<h1>Header and Footer Options</h1>
-						<!-- 1 - company details -->
-		        <form method="post" action="options.php" class="first wide">
-		            <?php settings_fields( 'sandbox_theme_company_options' ); ?>
-								<?php do_settings_sections( 'sandbox_theme_company_options' ); ?>
-		            <?php submit_button('Save Changes to Company Details'); ?>
-						</form>
-						<!-- 2 - company logos -->
-						<form method="post" action="options.php">
-								<?php settings_fields( 'sandbox_theme_logo_options' ); ?>
-								<?php do_settings_sections( 'sandbox_theme_logo_options' ); ?>
-								<?php submit_button('Save Changes to Your Company Logos'); ?>
-						</form>
-						<!-- 3 - social network links -->
-		        <form method="post" action="options.php">
-		            <?php settings_fields( 'sandbox_theme_social_options' ); ?>
-								<?php do_settings_sections( 'sandbox_theme_social_options' ); ?>
-		            <?php submit_button('Save Changes to Social Options'); ?>
-						</form>
-						<!-- 4 - tweet -->
-						<form method="post" action="options.php" class="wide tweet">
-						    <?php settings_fields( 'sandbox_theme_tweet_options' ); ?>
-						    <?php do_settings_sections( 'sandbox_theme_tweet_options' ); ?>
-						    <?php submit_button('Embed Tweet'); ?>
-						</form>
+		<?php settings_errors(); ?>
+		<!-- Create the forms that will be used to render our options -->
+			<h1>Header and Footer Options</h1>
+			
+			<!-- 1 - company details -->
+			<form method="post" action="options.php" class="first wide">
+			<?php settings_fields( 'sandbox_theme_company_options' ); ?>
+						<?php do_settings_sections( 'sandbox_theme_company_options' ); ?>
+			<?php submit_button('Save Changes to Company Details'); ?>
+			</form>
+
+			<!-- 2 - company logos -->
+			<form method="post" action="options.php">
+				<?php settings_fields( 'sandbox_theme_logo_options' ); ?>
+				<?php do_settings_sections( 'sandbox_theme_logo_options' ); ?>
+				<?php submit_button('Save Changes to Your Company Logos'); ?>
+			</form>
+
+			<!-- 3 - social network links -->
+			<form method="post" action="options.php">
+				<?php settings_fields( 'sandbox_theme_social_options' ); ?>
+				<?php do_settings_sections( 'sandbox_theme_social_options' ); ?>
+				<?php submit_button('Save Changes to Social Options'); ?>
+			</form>
+
+			<!-- 4 - tweet -->
+			<form method="post" action="options.php" class="wide tweet">
+				<?php settings_fields( 'sandbox_theme_tweet_options' ); ?>
+				<?php do_settings_sections( 'sandbox_theme_tweet_options' ); ?>
+				<?php submit_button('Display Tweet(s)'); ?>
+			</form>
+
+
+			
 						<!-- 5 - affiliated organisations logos -->
 		        <form method="post" action="options.php">
 		            <?php settings_fields( 'sandbox_theme_affiliates_options' ); ?>
@@ -544,28 +551,36 @@ function sandbox_theme_intialize_tweet_options() {
     } // end if
 	add_settings_section(
     	'tweet_settings_section',          // ID used to identify this section and with which to register options
-    	'Embed a Tweet <i class="fa fa-twitter" aria-hidden="true"></i>',                   // Title to be displayed on the administration page
+    	'Show Latest Tweet(s) <i class="fa fa-twitter" aria-hidden="true"></i>',                   // Title to be displayed on the administration page
     	'sandbox_tweet_options_callback',  // Callback used to render the description of the section
     	'sandbox_theme_tweet_options'      // Page on which to add this section of options
 	);
 	add_settings_field(
-    	'embeddedtweetheading',
-    	'<i class="fa fa-header black--text" aria-hidden="true"></i>Heading to introduce Tweet',
-    	'sandbox_embeddedtweetheading_callback',
+    	'tweet_heading',
+    	'<i class="fa fa-header black--text" aria-hidden="true"></i>Heading to introduce Twitter Feed',
+    	'sandbox_tweet_heading_callback',
+    	'sandbox_theme_tweet_options',
+    	'tweet_settings_section'
+	);
+	// new
+	add_settings_field(
+    	'twitter_profile',
+    	'<i class="fa fa-tag" aria-hidden="true"></i>Twitter Profile',
+    	'sandbox_twitter_profile_callback',
     	'sandbox_theme_tweet_options',
     	'tweet_settings_section'
 	);
 	add_settings_field(
-    	'embeddedtweet',
-    	'<i class="fa fa-link purple--text" aria-hidden="true"></i>Tweet URL / Link',
-    	'sandbox_embeddedtweet_callback',
+    	'twitter_user',
+    	'<i class="fa fa-user" aria-hidden="true"></i>Twitter User Name',
+    	'sandbox_twitter_user_callback',
     	'sandbox_theme_tweet_options',
     	'tweet_settings_section'
 	);
 	add_settings_field(
-    	'tweetcolour',
-    	'<i class="fa fa-paint-brush" id="tweetcolour_scheme" aria-hidden="true"></i>Tweet Colour Scheme',
-    	'sandbox_tweetcolour_callback',
+    	'no_tweets',
+    	'<i class="fa fa-hashtag" aria-hidden="true"></i>Number of Tweets to Display',
+    	'sandbox_no_tweets_callback',
     	'sandbox_theme_tweet_options',
     	'tweet_settings_section'
 	);
@@ -578,69 +593,63 @@ function sandbox_theme_intialize_tweet_options() {
 add_action( 'admin_init', 'sandbox_theme_intialize_tweet_options' );
 
 function sandbox_tweet_options_callback() {
-    echo '<p>Copy and paste the URL / link to the Tweet you wish to embed here. This will display in the footer.</p>';
+    echo '<p>Display your latest Tweets in the footer. Please note that more settings (which are currently hard-coded) are required to do this.</p>';
 } // end sandbox_general_options_callback
 
-function sandbox_embeddedtweetheading_callback() {
+function sandbox_tweet_heading_callback() {
     $options = get_option( 'sandbox_theme_tweet_options' );
     $url = '';
-    if( isset( $options['embeddedtweetheading'] ) ) {
-        $url = $options['embeddedtweetheading'];
+    if( isset( $options['tweet_heading'] ) ) {
+        $url = $options['tweet_heading'];
     } // end if
     // Render the output
-    echo '<input type="text" id="embeddedtweetheading" name="sandbox_theme_tweet_options[embeddedtweetheading]" value="' . $options['embeddedtweetheading'] . '" />';
-} // end sandbox_embeddedtweetheading_callback
+    echo '<input type="text" id="tweet_heading" name="sandbox_theme_tweet_options[tweet_heading]" value="' . $options['tweet_heading'] . '" />';
+} // end sandbox_tweet_heading_callback
 
-function sandbox_embeddedtweet_callback() {
+
+
+// new - settings - latest tweet(s)
+
+// twitter profile
+function sandbox_twitter_profile_callback() {
     $options = get_option( 'sandbox_theme_tweet_options' );
     $url = '';
-    if( isset( $options['embeddedtweet'] ) ) {
-        $url = $options['embeddedtweet'];
+    if( isset( $options['twitter_profile'] ) ) {
+        $url = $options['twitter_profile'];
     } // end if
     // Render the output
-    echo '<input type="text" id="embeddedtweet" name="sandbox_theme_tweet_options[embeddedtweet]" value="' . $options['embeddedtweet'] . '" />
-		<i title="How do I find the URL / Link of the Tweet I want to Embed?" class="fa fa-question" aria-hidden="true"></i>
-		<div class="embeddedtweet--info hidden">
-		<img src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/tweet-copy-info.jpg"/>
-		<p>Click the Drop Down arrow next to the Tweet to find the link to copy and paste into the above text field</p>
-		</div>';
-} // end sandbox_embeddedtweet_callback
+    echo '<input type="text" id="twitter_profile" name="sandbox_theme_tweet_options[twitter_profile]" value="' . $options['twitter_profile'] . '" />';
+} // end sandbox_twitter_profile_callback
 
 
-
-// Tweet Colour Scheme
-function sandbox_tweetcolour_callback() {
+// twitter user
+function sandbox_twitter_user_callback() {
     $options = get_option( 'sandbox_theme_tweet_options' );
-    if( isset( $options['tweetcolour'] ) ) {
-        $options['tweetcolour'];
+    $url = '';
+    if( isset( $options['twitter_user'] ) ) {
+        $url = $options['twitter_user'];
     } // end if
     // Render the output
+    echo '<input type="text" id="twitter_user" name="sandbox_theme_tweet_options[twitter_user]" value="' . $options['twitter_user'] . '" />';
+} // end sandbox_twitter_user_callback
+
+
+// number of tweets
+function sandbox_no_tweets_callback() {
+    $options = get_option( 'sandbox_theme_tweet_options' );
+    if( isset( $options['no_tweets'] ) ) {
+        $options['no_tweets'];
+    } // end if
+    // Render the output
+		// selected="selected"
     echo '
-		<ul id="tweetcolour">
-				<li>
-				    <input type="radio" id="tweetcolour_green" name="sandbox_theme_tweet_options[tweetcolour]" value="70bf44" '. ( $options['tweetcolour'] == '70bf44' ? ('checked="checked" class="green--background"')  : '') .' />
-				    <label for="tweetcolour_green">Green</label>
-				</li>
-				<li>
-				    <input type="radio" id="tweetcolour_orange" name="sandbox_theme_tweet_options[tweetcolour]" value="f07f37" '. ( $options['tweetcolour'] == 'f07f37' ? ('checked="checked" class="green--background"')  : '') .' />
-				    <label for="tweetcolour_orange">Orange</label>
-				</li>
-        <li>
-            <input type="radio" id="tweetcolour_blue" name="sandbox_theme_tweet_options[tweetcolour]" value="339cff" '. ( $options['tweetcolour'] == '339cff' ? ('checked="checked" class="green--background"')  : '') .' />
-            <label for="tweetcolour_blue">Blue</label>
-        </li>
-        <li>
-            <input type="radio" id="tweetcolour_red" name="sandbox_theme_tweet_options[tweetcolour]" value="da291c" '. ( $options['tweetcolour'] == 'da291c' ? ('checked="checked" class="green--background"')  : '') .' />
-            <label for="tweetcolour_red">Red</label>
-        </li>
-				<li>
-				    <input type="radio" id="tweetcolour_dark-grey" name="sandbox_theme_tweet_options[tweetcolour]" value="6a6a6a" '. ( $options['tweetcolour'] == '6a6a6a' ? ('checked="checked" class="green--background"')  : '') .' />
-				    <label for="tweetcolour_dark-grey">Dark Grey</label>
-				</li>
-		</ul>
-		';
-} // end sandbox_tweetcolour_callback
-
+    <select id="no_tweets" name="sandbox_theme_tweet_options[no_tweets]" ' . selected( isset( $options['no_tweets'] ) ? $options['no_tweets'] : false ) . '>
+        <option value="one" '. ( $options['no_tweets'] == one ? ('selected="selected" class="green--background"')  : '') .' >one</option>
+		<option value="two" '. ( $options['no_tweets'] == two ? ('selected="selected" class="green--background"')  : '') .' >two</option>
+		<option value="three" '. ( $options['no_tweets'] == three ? ('selected="selected" class="green--background"')  : '') .' >three</option>
+    </select>
+    ';
+} // end sandbox_no_tweets_callback
 
 
 
