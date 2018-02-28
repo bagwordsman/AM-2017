@@ -47,6 +47,9 @@ require_once( __DIR__ . '/includes/theme-setup/AM-google-map.php');
 // -------- Accordion Shortcode --------
 require_once( __DIR__ . '/includes/theme-setup/AM-accordion.php');
 
+// -------- Disclaimer Shortcode --------
+require_once( __DIR__ . '/includes/theme-setup/AM-disclaimer.php');
+
 
 
 

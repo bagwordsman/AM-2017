@@ -90,13 +90,13 @@ if an #ID is the the address bar:
 */
 
 // get any id from the url
-var id = window.location.hash; // console.log(id);
+// var id = window.location.hash; // console.log(id);
 //console.log(id);
 
-if (id) {
-  $(window).scrollTop( $(id).offset().top) //
-  $(id).addClass('padded'); // padded = header height + h2 height
-}
+// if (id) {
+//   $(window).scrollTop( $(id).offset().top) //
+//   $(id).addClass('padded'); // padded = header height + h2 height
+// }
 
 
 
@@ -118,30 +118,37 @@ if (id) {
 // services parent page
 
 // show page description on + click
-var desc = $('.serviceswrapper .fa');
+var desc = $('.serviceswrapper .button');
 
 
-// loop through each + icon
-$( desc ).each(function(e) {
+// on button click event
+$(desc).on('click', function(e){
+    e.preventDefault;
+    var expndBtn = e.target;
+    // console.log(expndBtn);
 
-  // on click event
-  $(this).on('click', function( event ){
-      event.preventDefault;
+    // show description
+    if ( $( 'i', expndBtn ).hasClass('fa-chevron-down') ) {
+      // button chevrons
+      // $( 'i', expndBtn ).removeClass('fa-chevron-down');
+      // $( 'i', expndBtn ).addClass('fa-chevron-up');
+      
+      // alter the display
+      // $( expndBtn ).closest('.title').next().slideToggle('250');
+      $( expndBtn ).closest('.info').addClass('add-summary');
+      $( expndBtn ).remove();
+      
+    }
+    // else {
+    //   // button chevrons
+    //   $( 'i', expndBtn ).addClass('fa-chevron-down');
+    //   $( 'i', expndBtn ).removeClass('fa-chevron-up');
+    //   // alter the display
+    //   $( expndBtn ).closest('.title').next().slideToggle( '250' );
+    // }
 
-      // show description
-      if ( $( this ).hasClass( 'fa-plus' ) ) {
-          $( this ).removeClass('fa-plus');
-          $( this ).addClass('fa-minus');
-          $( this ).parent().next().slideToggle( '250' );
-      } else {
-        $( this ).addClass('fa-plus');
-        $( this ).removeClass('fa-minus');
-        $( this ).parent().next().slideToggle( '250' );
-      }
+});
 
-  });
-
-}); // end desc each function
 
 
 

@@ -494,6 +494,8 @@ code {
         color: #e74e42; }
         #content > div:not(.hero) .five.columns.red a:hover {
           color: #da2a1c; }
+    #content > div:not(.hero) .five.columns.none {
+      border-top-color: transparent; }
     @media (min-width: 980px) {
       .home #content > div:not(.hero) .five.columns {
         margin-left: 0; } }
@@ -510,9 +512,10 @@ code {
   background-color: #f0f0f0; }
 
 .container--center {
-  margin-top: 3rem;
-  margin-bottom: 6rem;
   text-align: center; }
+  .container--center ul {
+    text-align: left;
+    margin-left: 2.5rem; }
 
 .gradient-white-green {
   background: linear-gradient(180deg, #ffffff 0%, #70bf44 100%) repeat scroll 0 0; }
@@ -527,6 +530,15 @@ code {
     display: block;
     margin: 0 auto;
     width: 56.6667%; } }
+.disclaimer {
+  border: 5px solid #70bf44;
+  border-radius: 2.5rem;
+  margin-bottom: 2.5rem;
+  padding: 2.5rem;
+  box-sizing: border-box; }
+  .disclaimer p {
+    margin-bottom: 0; }
+
 .four.columns.stage {
   position: relative;
   width: 100%;
@@ -540,21 +552,30 @@ code {
     margin-top: 0;
     padding-top: 0;
     border-image: none; }
+  .four.columns.stage img {
+    max-width: 50% !important; }
   @media (min-width: 980px) {
     .four.columns.stage {
       position: relative;
-      min-height: 38rem;
+      height: 65rem;
       width: 30.6666666667%;
       margin-left: 2%;
       padding-left: 2%;
       border-top: 0;
       border-left: 5px solid transparent;
       border-image: linear-gradient(to top, #f0f0f0, #6a6a6a 35%, #6a6a6a 65%, #f0f0f0 100%) 1 1 1 1; }
+      .home .four.columns.stage {
+        min-height: 38rem;
+        height: auto; }
+      .page-id-1862 .four.columns.stage {
+        height: 55rem; }
       .four.columns.stage:first-child {
         margin-top: 2.5rem;
         padding-top: 5rem;
         margin-left: 0;
         padding-left: 0; }
+      .four.columns.stage img {
+        max-width: 90% !important; }
       .four.columns.stage .button--container {
         position: absolute;
         left: calc(4% + 8px);
@@ -1495,12 +1516,12 @@ a.button, .button, button, input[type="submit"], input[type="reset"], input[type
       color: #ffffff;
       background-color: #f49d66;
       border-color: #f49d66; }
-    .contact a.button.orange, .contact a.button.orange:visited, .contact .button.orange, .contact .button.orange:visited, .contact button.orange, .contact button.orange:visited, .contact input[type="submit"].orange, .contact input[type="submit"].orange:visited, .contact input[type="reset"].orange, .contact input[type="reset"].orange:visited, .contact input[type="button"].orange, .contact input[type="button"].orange:visited {
+    .contact a.button.orange, .info a.button.orange, .contact a.button.orange:visited, .info a.button.orange:visited, .contact .button.orange, .info .button.orange, .contact .button.orange:visited, .info .button.orange:visited, .contact button.orange, .info button.orange, .contact button.orange:visited, .info button.orange:visited, .contact input[type="submit"].orange, .info input[type="submit"].orange, .contact input[type="submit"].orange:visited, .info input[type="submit"].orange:visited, .contact input[type="reset"].orange, .info input[type="reset"].orange, .contact input[type="reset"].orange:visited, .info input[type="reset"].orange:visited, .contact input[type="button"].orange, .info input[type="button"].orange, .contact input[type="button"].orange:visited, .info input[type="button"].orange:visited {
       line-height: 48px;
       border: 0;
       color: #ffffff;
       background-color: #f07f37; }
-      .contact a.button.orange:hover, .contact a.button.orange:focus, .contact a.button.orange:visited:hover, .contact a.button.orange:visited:hover, .contact a.button.orange:visited:focus, .contact a.button.orange:visited:visited:hover, .contact .button.orange:hover, .contact .button.orange:focus, .contact .button.orange:visited:hover, .contact .button.orange:visited:hover, .contact .button.orange:visited:focus, .contact .button.orange:visited:visited:hover, .contact button.orange:hover, .contact button.orange:focus, .contact button.orange:visited:hover, .contact button.orange:visited:hover, .contact button.orange:visited:focus, .contact button.orange:visited:visited:hover, .contact input[type="submit"].orange:hover, .contact input[type="submit"].orange:focus, .contact input[type="submit"].orange:visited:hover, .contact input[type="submit"].orange:visited:hover, .contact input[type="submit"].orange:visited:focus, .contact input[type="submit"].orange:visited:visited:hover, .contact input[type="reset"].orange:hover, .contact input[type="reset"].orange:focus, .contact input[type="reset"].orange:visited:hover, .contact input[type="reset"].orange:visited:hover, .contact input[type="reset"].orange:visited:focus, .contact input[type="reset"].orange:visited:visited:hover, .contact input[type="button"].orange:hover, .contact input[type="button"].orange:focus, .contact input[type="button"].orange:visited:hover, .contact input[type="button"].orange:visited:hover, .contact input[type="button"].orange:visited:focus, .contact input[type="button"].orange:visited:visited:hover {
+      .contact a.button.orange:hover, .contact a.button.orange:focus, .contact a.button.orange:visited:hover, .info a.button.orange:hover, .info a.button.orange:focus, .info a.button.orange:visited:hover, .contact a.button.orange:visited:hover, .contact a.button.orange:visited:focus, .contact a.button.orange:visited:visited:hover, .info a.button.orange:visited:hover, .info a.button.orange:visited:focus, .info a.button.orange:visited:visited:hover, .contact .button.orange:hover, .contact .button.orange:focus, .contact .button.orange:visited:hover, .info .button.orange:hover, .info .button.orange:focus, .info .button.orange:visited:hover, .contact .button.orange:visited:hover, .contact .button.orange:visited:focus, .contact .button.orange:visited:visited:hover, .info .button.orange:visited:hover, .info .button.orange:visited:focus, .info .button.orange:visited:visited:hover, .contact button.orange:hover, .contact button.orange:focus, .contact button.orange:visited:hover, .info button.orange:hover, .info button.orange:focus, .info button.orange:visited:hover, .contact button.orange:visited:hover, .contact button.orange:visited:focus, .contact button.orange:visited:visited:hover, .info button.orange:visited:hover, .info button.orange:visited:focus, .info button.orange:visited:visited:hover, .contact input[type="submit"].orange:hover, .contact input[type="submit"].orange:focus, .contact input[type="submit"].orange:visited:hover, .info input[type="submit"].orange:hover, .info input[type="submit"].orange:focus, .info input[type="submit"].orange:visited:hover, .contact input[type="submit"].orange:visited:hover, .contact input[type="submit"].orange:visited:focus, .contact input[type="submit"].orange:visited:visited:hover, .info input[type="submit"].orange:visited:hover, .info input[type="submit"].orange:visited:focus, .info input[type="submit"].orange:visited:visited:hover, .contact input[type="reset"].orange:hover, .contact input[type="reset"].orange:focus, .contact input[type="reset"].orange:visited:hover, .info input[type="reset"].orange:hover, .info input[type="reset"].orange:focus, .info input[type="reset"].orange:visited:hover, .contact input[type="reset"].orange:visited:hover, .contact input[type="reset"].orange:visited:focus, .contact input[type="reset"].orange:visited:visited:hover, .info input[type="reset"].orange:visited:hover, .info input[type="reset"].orange:visited:focus, .info input[type="reset"].orange:visited:visited:hover, .contact input[type="button"].orange:hover, .contact input[type="button"].orange:focus, .contact input[type="button"].orange:visited:hover, .info input[type="button"].orange:hover, .info input[type="button"].orange:focus, .info input[type="button"].orange:visited:hover, .contact input[type="button"].orange:visited:hover, .contact input[type="button"].orange:visited:focus, .contact input[type="button"].orange:visited:visited:hover, .info input[type="button"].orange:visited:hover, .info input[type="button"].orange:visited:focus, .info input[type="button"].orange:visited:visited:hover {
         border: 0;
         background-color: #f49d66; }
   a.button.blue, a.button.blue:visited, .button.blue, .button.blue:visited, button.blue, button.blue:visited, input[type="submit"].blue, input[type="submit"].blue:visited, input[type="reset"].blue, input[type="reset"].blue:visited, input[type="button"].blue, input[type="button"].blue:visited {
@@ -1584,6 +1605,18 @@ a {
     color: #599b35; }
   #content a {
     text-decoration: underline; }
+
+.red-text {
+  color: #e74e42; }
+
+a.red-text {
+  color: #ffffff;
+  background-color: #e74e42;
+  padding: 2px;
+  box-sizing: border-box;
+  text-decoration: none !important; }
+  a.red-text:hover {
+    background-color: #ed786f; }
 
 ul {
   list-style: disc inside; }
@@ -5765,34 +5798,20 @@ NOTES:
   background-repeat: no-repeat;
   background-size: cover;
   box-sizing: border-box; }
-  .thumbnail.half__left, .thumbnail.half__right {
+  .thumbnail.third {
     min-height: 300px;
     height: 100vw;
-    display: block;
-    box-sizing: border-box;
-    padding: 0 2rem 3rem; }
-    @media (min-width: 600px) {
-      .thumbnail.half__left, .thumbnail.half__right {
+    display: block; }
+    @media (min-width: 660px) {
+      .thumbnail.third {
         width: 50%;
         height: 50vw;
         max-height: 430px;
         float: left; } }
-    @media (min-width: 860px) {
-      .thumbnail.half__left, .thumbnail.half__right {
-        max-height: 512px; } }
-  @media (min-width: 600px) {
-    .thumbnail.half__right {
-      text-align: right; } }
-  @media (min-width: 1024px) {
-    .thumbnail.half__left {
-      padding-left: 4rem; }
-    .thumbnail.half__right {
-      padding-right: 4rem; } }
-  @media (min-width: 1220px) {
-    .thumbnail.half__left {
-      padding-left: 8rem; }
-    .thumbnail.half__right {
-      padding-right: 8rem; } }
+    @media (min-width: 1200px) {
+      .thumbnail.third {
+        width: 33.333333333%;
+        height: 33.333333333vw; } }
   .thumbnail .overlay {
     position: absolute;
     top: 0;
@@ -5809,42 +5828,43 @@ NOTES:
         z-index: 4; }
   .thumbnail .info {
     position: relative;
-    width: 100%;
+    max-width: auto;
     z-index: 3;
     display: inline-block;
     background-color: rgba(112, 191, 68, 0.75);
-    padding: 1.5rem 2.5rem;
+    padding: 2rem 2.5rem;
     box-sizing: border-box;
-    border-radius: 0 0 1.5rem 1.5rem;
+    border-radius: 0 0 1.5rem 0;
     transition: all ease-in-out .25s; }
-  .thumbnail .title {
-    display: inline;
-    vertical-align: middle;
-    color: #ffffff; }
-    .thumbnail .title h2, .thumbnail .title .fa {
-      display: inline-block;
-      margin: 0;
-      font-size: 2.4rem;
-      letter-spacing: 0.04rem; }
-    .thumbnail .title .fa {
-      margin-left: 1.25rem;
-      padding: .7rem;
-      box-sizing: border-box;
-      border: 2px solid #ffffff;
-      border-radius: 2rem;
-      width: 4rem;
-      height: 4rem;
-      text-align: center;
-      cursor: pointer;
-      background-color: transparent;
-      transition: all ease-in-out .25s; }
-      .thumbnail .title .fa:hover {
-        background-color: #70bf44;
-        transform: scale(1.1); }
-  .thumbnail .description {
-    margin: 0;
+    .thumbnail .info.add-summary {
+      max-width: 90%; }
+      .thumbnail .info.add-summary .description {
+        display: block;
+        max-width: 100%; }
+  .thumbnail .title h2 {
     color: #ffffff;
-    display: none; }
+    font-size: 2.4rem;
+    letter-spacing: 0.04rem;
+    line-height: 1.6; }
+  .thumbnail .description {
+    color: #ffffff;
+    display: none;
+    max-width: 0%;
+    transition: all ease-in-out .25s; }
+    .thumbnail .description p {
+      margin: 0; }
+    .thumbnail .description a.button {
+      margin: 1.25rem 0 0; }
+  .thumbnail .button,
+  .thumbnail a.button {
+    margin: 0 0 1.25rem;
+    font-size: 2.1rem;
+    color: #ffffff;
+    border-color: #ffffff; }
+    .thumbnail .button .fa,
+    .thumbnail a.button .fa {
+      margin-top: -4px;
+      pointer-events: none; }
 
 /*
 order in original css:

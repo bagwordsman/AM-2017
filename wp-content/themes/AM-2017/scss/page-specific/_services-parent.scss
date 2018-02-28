@@ -37,48 +37,27 @@
   background-size : cover;
   box-sizing : border-box;
   // left and right
-  &.half__left,
-  &.half__right {
-    min-height:300px;
-    height:100vw; // make thumbnails square
-    display : block;
-    box-sizing: border-box;
-    padding : 0 2rem 3rem;
-    
+  &.third {
+    min-height : 300px;
+    height : 100vw; // make thumbnails square
+    display : block;    
     // media queries on left and right
-    @media (min-width : 600px) {
-      width:50%;
-      height:50vw;
-      max-height:430px;
-      float:left;
+    @media (min-width : 660px) {
+      width : 50%;
+      height : 50vw;
+      max-height : 430px;
+      float : left;
     }
-    @media (min-width : 860px) {
-      max-height:512px; // next breakpoint: 1024/2
+    @media (min-width : 1200px) {
+      width : 33.333333333%;
+      height : 33.333333333vw;
     }
+
   }
 
-  // media queries - separate to left and right
-  @media (min-width : 600px) {
-    &.half__right {
-      text-align:right;
-    }
-  }
-  @media (min-width : 1024px) {
-    &.half__left {
-      padding-left : 4rem;
-    }
-    &.half__right {
-      padding-right : 4rem;
-    }
-  }
-  @media (min-width : 1220px) {
-    &.half__left {
-      padding-left : 8rem;
-    }
-    &.half__right {
-      padding-right : 8rem;
-    }
-  }
+
+
+
 
   // links
   .overlay {
@@ -97,7 +76,7 @@
       opacity : .25;
       // does this actually let the info section still be clickable???
       + .info {
-        z-index:4;
+        z-index : 4;
       }
     }
   }
@@ -105,50 +84,61 @@
   // title and description container
   .info {
     position : relative;
-    width : 100%;
+    // width : 90%;
+    max-width : auto;
     z-index : 3;
     display : inline-block;
     background-color : rgba($able-green, .75); // could use an opacity var
-    padding : 1.5rem 2.5rem;
+    padding : 2rem 2.5rem;
     box-sizing : border-box;
-    border-radius : 0 0 1.5rem 1.5rem;
+    border-radius : 0 0 1.5rem 0;
     transition : all ease-in-out .25s;
-  }
-  // title
-  .title {
-    display : inline;
-    vertical-align : middle;
-    color : $white;
-    h2, .fa {
-      display : inline-block;
-      margin : 0;
-      font-size : 2.4rem;
-      letter-spacing : 0.04rem;
-    }
-    // icon
-    .fa {
-      margin-left : 1.25rem;
-      padding : .7rem;
-      box-sizing : border-box;
-      border : 2px solid $white;
-      border-radius : 2rem;
-      width : 4rem;
-      height : 4rem;
-      text-align : center;
-      cursor : pointer;
-      background-color :transparent;
-      transition : all ease-in-out .25s;
-      &:hover {
-        background-color : $able-green;
-        transform : scale(1.1);
+    &.add-summary {
+      max-width : 90%;
+      .description {
+        display : block;
+        max-width : 100%;
       }
     }
+
+    // @media (min-width : 1400px) {
+    //   width : 75%;
+    // }
+  }
+
+
+  // title
+  .title h2 {
+    color : $white;
+    font-size: 2.4rem;
+    letter-spacing: 0.04rem;
+    line-height : 1.6;
   }
   // description
   .description {
-    margin : 0;
     color : $white;
     display : none;
+    max-width : 0%;
+    transition : all ease-in-out .25s;
+    p {
+      margin : 0;
+    }
+    a.button {
+      margin : 1.25rem 0 0;
+    }
+  }
+
+  // buttons
+  .button,
+  a.button {
+    margin : 0 0 1.25rem;
+    font-size: 2.1rem;
+    color : $white;
+    border-color : $white;
+    .fa {
+      margin-top : -4px;
+      pointer-events : none;
+    }
   }
 
 

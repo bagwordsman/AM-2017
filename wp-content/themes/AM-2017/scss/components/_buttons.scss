@@ -69,8 +69,11 @@ input[type="button"] {
       background-color : $orange_light;
       border-color : $orange_light;
     }
-    // header button
-    .contact & {
+    // solid background buttons:
+    // - header CTA button
+    // - services page parent excerpt reveal
+    .contact &,
+    .info & {
       line-height : 48px;
       border : 0;
       color : $white;

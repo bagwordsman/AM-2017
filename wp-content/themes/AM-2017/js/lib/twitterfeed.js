@@ -151,19 +151,19 @@ jQuery(document).ready(function( $ ) {
             
             // getting 404 errors if not on child pages (i.e. if on home page, or grandchild page)
             } else if (jqXHR.status == 404) {
-                error = 'Requested page not found. [404]';
+                error = 'JSON for Twitter Feed: not found. [404]';
             } else if (jqXHR.status == 500) {
-                error = 'Internal Server Error [500].';
+                error = 'JSON for Twitter Feed: Internal Server Error [500].';
             } else if (exception === 'parsererror') {
-                error = 'Requested JSON parse failed.';
+                error = 'JSON for Twitter Feed: parse failed.';
             } else if (exception === 'timeout') {
-                error = 'Time out error.';
+                error = 'JSON for Twitter Feed: Time out error.';
             } else if (exception === 'abort') {
-                error = 'Ajax request aborted.';
+                error = 'JSON for Twitter Feed: Ajax request aborted.';
             } else {
                 error = 'Uncaught Error.\n' + jqXHR.responseText;
             }	
-       		alert("error: " + error);
+       		console.log("error: " + error);
     });
     
 

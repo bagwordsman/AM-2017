@@ -51,7 +51,7 @@ h6 {
   em { font-style:italic; }
   
   
-//Links
+// Links
 a {
   color : $able-green;
   outline : 0 none;
@@ -62,5 +62,21 @@ a {
   }
   #content & {
     text-decoration : underline;
+  }
+}
+
+
+// text highlighting
+.red-text{
+  color : $red;
+}
+a.red-text {
+  color : $white;
+  background-color : $red;
+  padding : 2px;
+  box-sizing : border-box;
+  text-decoration : none !important;
+  &:hover {
+    background-color : lighten( $red, 10% );
   }
 }

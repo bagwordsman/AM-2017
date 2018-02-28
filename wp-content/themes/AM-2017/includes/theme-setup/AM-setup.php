@@ -6,7 +6,7 @@
 
 
 
-// 1) register menus, post formats, and post thumbnails
+// 1) register menus, post formats, and post thumbnails, add post excerpt
 function AM2017_setup() {
 
 	// support a variety of post formats.
@@ -17,10 +17,10 @@ function AM2017_setup() {
 	register_nav_menu('quicklinks-menu',__( 'Footer Quick Links Menu', 'AM2017' ));
 	// custom image size for featured images, displayed on "standard" posts
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+    set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+    add_post_type_support( 'page', 'excerpt' );
 }
 add_action( 'after_setup_theme', 'AM2017_setup' );
-
 
 
 

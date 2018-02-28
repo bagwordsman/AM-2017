@@ -25,16 +25,27 @@
 
 		function defaultSidebarColour() {
 		    $('#acf-first_section_sidebar').removeClass('none green orange blue red').addClass(this.value);
-				$('#acf-first_section_sidebar_colour .label').removeClass('none green orange blue red').addClass(this.value);
+			$('#acf-first_section_sidebar_colour .label').removeClass('none green orange blue red').addClass(this.value);
 		}
 
+		// second section
+		$('input[name="fields[field_5a96f5e2ec133]"]').change(defaultSidebarColour_second); // when user selects
+		$('input[name="fields[field_5a96f5e2ec133]"]:checked').each(defaultSidebarColour_second); // onload
+
+		function defaultSidebarColour_second() {
+		    $('#acf-second_section_sidebar').removeClass('none green orange blue red').addClass(this.value);
+			$('#acf-second_section_sidebar_colour .label').removeClass('none green orange blue red').addClass(this.value);
+		}
+
+		
+		
 		// 2 - home page
 		$('input[name="fields[field_595c0e7230aff]"]').change(homeSidebarColour); // when user selects
 		$('input[name="fields[field_595c0e7230aff]"]:checked').each(homeSidebarColour); // onload
 
 		function homeSidebarColour() {
 		    $('#acf-second_section_sidebar').removeClass('none green orange blue red').addClass(this.value);
-				$('#acf-second_section_sidebar_colour .label').removeClass('none green orange blue red').addClass(this.value);
+			$('#acf-second_section_sidebar_colour .label').removeClass('none green orange blue red').addClass(this.value);
 		}
 
 
