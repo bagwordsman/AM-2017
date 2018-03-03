@@ -31,9 +31,11 @@ require_once( __DIR__ . '/includes/theme-setup/AM-fonts.php');
 // 4) blog - set post excerpt length and add 'read more'
 require_once( __DIR__ . '/includes/theme-setup/AM-setup.php');
 
+require_once( __DIR__ . '/includes/theme-setup/AM-menus.php');
+
 
 // -------- Mediation Presentation --------
-require_once( __DIR__ . '/includes/theme-setup/AM-mediation-presentation.php');
+// require_once( __DIR__ . '/includes/theme-setup/AM-mediation-presentation.php');
 
 
 // -------- Mediator Profiles --------

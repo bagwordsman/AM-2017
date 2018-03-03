@@ -1,11 +1,11 @@
 // Services parent page
+// - containers within downward pointing arrow
 .serviceswrapper {
     display : block;
     box-sizing : border-box;
     width : 100%;
     overflow : hidden;
     position : relative;
-    margin-top : 25px; // note - can't have overlap as with other pages
     margin-bottom : 80px; // related to divider - normally bottom:80px on it
 
     // main container for tiles

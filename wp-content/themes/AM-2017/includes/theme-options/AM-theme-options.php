@@ -40,9 +40,9 @@ function sandbox_menu_page_display() {
 			
 			<!-- 1 - company details -->
 			<form method="post" action="options.php" class="first wide">
-			<?php settings_fields( 'sandbox_theme_company_options' ); ?>
-						<?php do_settings_sections( 'sandbox_theme_company_options' ); ?>
-			<?php submit_button('Save Changes to Company Details'); ?>
+				<?php settings_fields( 'sandbox_theme_company_options' ); ?>
+				<?php do_settings_sections( 'sandbox_theme_company_options' ); ?>
+				<?php submit_button('Save Changes to Company Details'); ?>
 			</form>
 
 			<!-- 2 - company logos -->
@@ -68,54 +68,53 @@ function sandbox_menu_page_display() {
 
 
 			
-						<!-- 5 - affiliated organisations logos -->
-		        <form method="post" action="options.php">
-		            <?php settings_fields( 'sandbox_theme_affiliates_options' ); ?>
-								<?php do_settings_sections( 'sandbox_theme_affiliates_options' ); ?>
-		            <?php submit_button('Save Changes to Affiliated Organisations Logos'); ?>
-						</form>
-						<!-- 6 - styling options -->
-						<form method="post" action="options.php" class="wide">
-						    <?php settings_fields( 'sandbox_theme_styling_options' ); ?>
-						    <?php do_settings_sections( 'sandbox_theme_styling_options' ); ?>
-						    <?php submit_button('Save Changes to Your Styling Options'); ?>
-						</form>
-						<div class="divider white"></div>
-				</div><!-- .in-header-and-footer -->
+			<!-- 5 - affiliated organisations logos -->
+			<form method="post" action="options.php">
+				<?php settings_fields( 'sandbox_theme_affiliates_options' ); ?>
+					<?php do_settings_sections( 'sandbox_theme_affiliates_options' ); ?>
+				<?php submit_button('Save Changes to Affiliated Organisations Logos'); ?>
+			</form>
+			<!-- 6 - styling options -->
+			<form method="post" action="options.php" class="wide">
+				<?php settings_fields( 'sandbox_theme_styling_options' ); ?>
+				<?php do_settings_sections( 'sandbox_theme_styling_options' ); ?>
+				<?php submit_button('Save Changes to Your Styling Options'); ?>
+			</form>
+			<div class="divider white"></div>
+		</div><!-- .in-header-and-footer -->
 
-				<div class="in-page">
-						<h1>In Page Options</h1>
-						<!-- 1 - google map of location -->
-						<form method="post" action="options.php" class="first wide">
-						    <?php settings_fields( 'sandbox_theme_map_options' ); ?>
-						    <?php do_settings_sections( 'sandbox_theme_map_options' ); ?>
-						    <?php submit_button('Save Changes to Your Google Map'); ?>
-						</form>
-						<!-- 2 - blog styling -->
-						<form method="post" action="options.php" class="wide">
-						    <?php settings_fields( 'sandbox_theme_blog_options' ); ?>
-						    <?php do_settings_sections( 'sandbox_theme_blog_options' ); ?>
-						    <?php submit_button('Save Changes to Blog Styling'); ?>
-						</form>
-						<div class="divider mid-grey"></div>
+		<div class="in-page">
+			<h1>In Page Options</h1>
+			<!-- 1 - google map of location -->
+			<form method="post" action="options.php" class="first wide">
+				<?php settings_fields( 'sandbox_theme_map_options' ); ?>
+				<?php do_settings_sections( 'sandbox_theme_map_options' ); ?>
+				<?php submit_button('Save Changes to Your Google Map'); ?>
+			</form>
+			<!-- 2 - blog styling -->
+			<form method="post" action="options.php" class="wide">
+				<?php settings_fields( 'sandbox_theme_blog_options' ); ?>
+				<?php do_settings_sections( 'sandbox_theme_blog_options' ); ?>
+				<?php submit_button('Save Changes to Blog Styling'); ?>
+			</form>
+			<div class="divider mid-grey"></div>
+		</div><!-- .in-page -->
 
-				</div><!-- .in-page -->
-
-				<div class="functionality">
-						<h1>Functionality Options</h1>
-						<!-- 1 - Google Analytics -->
-						<form method="post" action="options.php" class="first wide google_analytics">
-								<?php settings_fields( 'sandbox_theme_google_analytics_options' ); ?>
-								<?php do_settings_sections( 'sandbox_theme_google_analytics_options' ); ?>
-								<?php submit_button('Apply Google Analytics'); ?>
-						</form>
-						<!-- 2 - lazyloading of images -->
-						<form method="post" action="options.php" class="wide lazyloading">
-								<?php settings_fields( 'sandbox_theme_lazyloading_options' ); ?>
-								<?php do_settings_sections( 'sandbox_theme_lazyloading_options' ); ?>
-								<?php submit_button('Enable Lazyloading'); ?>
-						</form>
-				</div><!-- .functionality -->
+		<div class="functionality">
+			<h1>Functionality Options</h1>
+			<!-- 1 - Google Analytics -->
+			<form method="post" action="options.php" class="first wide google_analytics">
+				<?php settings_fields( 'sandbox_theme_google_analytics_options' ); ?>
+				<?php do_settings_sections( 'sandbox_theme_google_analytics_options' ); ?>
+				<?php submit_button('Apply Google Analytics'); ?>
+			</form>
+			<!-- 2 - lazyloading of images -->
+			<form method="post" action="options.php" class="wide lazyloading">
+				<?php settings_fields( 'sandbox_theme_lazyloading_options' ); ?>
+				<?php do_settings_sections( 'sandbox_theme_lazyloading_options' ); ?>
+				<?php submit_button('Enable Lazyloading'); ?>
+			</form>
+		</div><!-- .functionality -->
 
     </div><!-- /.wrap -->
 <?php

@@ -4,7 +4,8 @@
  *
  * Displays all of the <head> section and everything up till <div id="main">
  */
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" <?php language_attributes(); ?>>
 <![endif]-->
@@ -64,10 +65,10 @@ $site_title = get_bloginfo('name');
 $logo_options = get_option ( 'sandbox_theme_logo_options' );
 // Main logo - width and height
 $mainlogo = $logo_options['mainlogo'];
-$mainlogo_Width = $logo_options['MLwidth'];
-$mainlogo_Width = preg_replace("/[^0-9,.]/", "", $mainlogo_Width);
-$mainlogo_Height = $logo_options['MLheight'];
-$mainlogo_Height = preg_replace("/[^0-9,.]/", "", $mainlogo_Height);
+// $mainlogo_Width = $logo_options['MLwidth'];
+// $mainlogo_Width = preg_replace("/[^0-9,.]/", "", $mainlogo_Width);
+// $mainlogo_Height = $logo_options['MLheight'];
+// $mainlogo_Height = preg_replace("/[^0-9,.]/", "", $mainlogo_Height);
 // Icons
 $appletouch = $logo_options['appletouch'];
 $favicon = $logo_options['favicon'];
@@ -83,63 +84,65 @@ if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.
 </head>
 <body <?php body_class(); ?>>
 
-<div class="page">
-	<div class="page-wrap">
+<?php echo '
 
-				<!-- header section -->
-				<?php
-				echo '<div class="header'. ( is_active_sidebar( 'cookies' ) ? (' has-cookie-bar') : '') .'" role="banner">';
-					// cookies
-					if (!preg_match('/(site url)/', $_SERVER['HTTP_REFERER'])) {
-						if ( is_active_sidebar( 'cookies' ) ) {
-							dynamic_sidebar( 'cookies' );
-						}
-					} ?>
-					<div class="container">
+<div class="page'. ( is_active_sidebar( 'cookies' ) ? (' has-cookie-bar') : '') .'">
+	<div class="page-wrap">';
+	
+	// header section
+	// . ( is_active_sidebar( 'cookies' ) ? (' has-cookie-bar') : '') .'" 
 
-              <div class="three columns logo">
-                  <!-- add logo from theme options -->
-                  <?php
-									echo '
-									<a href="' . esc_url( home_url( '/' ) ) . '">' .
-											( $mainlogo ? ('<img class="logo--custom" src="' . $mainlogo .'" alt="'. $site_title .'" width="'. $mainlogo_Width .'" height="' . $mainlogo_Height .'" />')  : '<img src="'. get_bloginfo('stylesheet_directory'). '/img/AM-logo.png" alt="'. $site_title .'" width="200" height="113" />' ) . '
-									</a>';
-                  ?>
-              </div><!-- three columns -->
+	// site title
+	$parts = preg_split('/\s+/', $site_title);
+	$able = $parts[0];
+	$mediation = $parts[1];
 
-              <div class="nine columns contact">
-                  <!-- phone or find out more button -->
-                  <?php
-                  // company details
-                  $company_options = get_option ( 'sandbox_theme_company_options' );
-                  $phone = $company_options['company_phone'];
-									// get dialable number from phone
-									$search = array(' ', '(', ')', '-');
-									$replace = array('', '', '', '');
-									$dial = str_replace($search, $replace, $phone);
-									// find out more button to be added - A/B testing
-
-                  if ($phone != '') echo '
-                    <a class="button orange" href="tel:'.$dial.'" title="call us"><span>Call Us:</span>'.$phone.'</a>';
-									?>
-              </div><!-- nine columns -->
-
-        	</div><!-- container -->
+	
+	// get variables from theme options
+	$company_options = get_option ( 'sandbox_theme_company_options' );
+	$phone = $company_options['company_phone'];
+	// convert phone to dialable number
+	$search = array(' ', '(', ')', '-');
+	$replace = array('', '', '', '');
+	$dial = str_replace($search, $replace, $phone);
 
 
-        	<!-- main menu -->
-					<!-- used to have a container around it -->
-        	<div class="nav" role="navigation">
-            	<input id="toggle" type="checkbox">
-							<label class="main-toggle" onclick="" for="toggle"></label>
-							<a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'base' ); ?>"><?php _e( 'Skip to content', 'AM2017' ); ?></a>
-                <ul class="main-menu">
-										<?php
-										// function to remove <div> and <ul> which wrap the menu by default
-										wp_nav_menu_unwrap();
-										?>
-                </ul>
-        	</div><!-- .nav -->
+	// may need to look at logo size for new header - could use an svg, or bg image
+	echo '
+		<div class="header" role="banner">
+
+			<div class="container">
+				<div class="three columns logo">
+					<a class="logo" href="' . esc_url( home_url( '/' ) ) . '">' .
+						( $mainlogo ? ('<img src="' . $mainlogo .'" alt="'. $site_title .'" width="'. $mainlogo_Width .'" height="' . $mainlogo_Height .'" />')  : '<img src="'. get_bloginfo('stylesheet_directory'). '/img/AM-logo.png" alt="'. $site_title .'" width="200" height="113" />' ) . '
+						<div class="site-title"><span>' . $able .' </span>' . $mediation . '</div>
+					</a>
+				</div><!-- three columns -->' .
+				( $phone ? ( '<div class="nine columns contact"><a class="button orange" href="tel:'.$dial.'" title="call us"><span>Call Us:</span>'.$phone.'</a></div><!-- nine columns -->' )  : '') . '
+			</div><!-- container -->
+
+			<div class="nav" role="navigation">
+				<input id="toggle" type="checkbox">
+				<label class="main-toggle" onclick="" for="toggle"></label>
+				<a class="assistive-text" href="#content" title="Skip to content">Skip to content</a>
+				<ul class="main-menu">';
+				// function to remove <div> and <ul> which wrap the menu by default
+				wp_nav_menu_unwrap();
+				echo '
+				</ul>
+			</div><!-- .nav -->
+
+		</div><!-- .header -->
+		';
+
+	
+	// cookies
+	if (!preg_match('/(site url)/', $_SERVER['HTTP_REFERER'])) {
+		if ( is_active_sidebar( 'cookies' ) ) {
+			dynamic_sidebar( 'cookies' );
+		}
+	}
 
 
-        </div><!-- .header -->
+	?>
+

@@ -43,7 +43,7 @@
   // h1 - all pages
   h1 {
     display : block;
-    margin-top : 7.5rem;
+    margin-top : 4rem;
     text-align : center;
     color : $white;
     text-shadow : $text-outline;
@@ -150,7 +150,7 @@
       &.orange,
       &.blue {
         margin-top : 0;
-        padding : 5rem 2.5rem 2.5rem;
+        padding : 4rem 2.5rem 2.5rem;
         border-radius : 0 0 1.5rem 1.5rem;
       }
     } // end media queries

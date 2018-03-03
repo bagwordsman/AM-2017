@@ -89,17 +89,27 @@
       color : $white;
     }
   }
+  p {
+    margin-bottom : 0;
+  }
   // media queries
   @media (min-width: 660px) {
-    p {
-      margin-bottom : 0;
-    }
-    .four.columns {
+    
+    .columns:nth-child(2) {
       text-align : right;
       float : right;
     }
   }
 }
+
+
+.page.has-cookie-bar ~ #footer .site-credits {
+  padding-bottom : 74px;
+  @media (min-width: 660px) {
+    padding-bottom : 88px;
+  }
+}
+
 
 
 

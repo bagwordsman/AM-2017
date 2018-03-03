@@ -1,27 +1,55 @@
 // Cookie Bar
 .cookies {
-  visibility : hidden; // hide by default
+  position : fixed;
+  bottom : 0;
+  width : 100%;
+  height : 58px;
+  z-index : 999;
+  
   background-color : $able-midgrey;
-  color : $able-darkgrey;
+  color : $able-grey;
+  
   font-size : 1.6rem;
-  line-height : 1.6;
+  line-height : 58px;
   text-align : center;
-  .has-cookie-bar & {
-    visibility : visible;
+  @media (min-width: 800px) {
+    font-size : 1.8rem;
+    height : 72px;
   }
+
+  // read more link
+  a {
+    margin-left : .5rem;
+  }
+
+  // container
   .container {
-    padding-top : 1rem;
-    padding-bottom : 1rem;
+    width : 100%;
+    padding : 0;
+    @media (min-width: 800px) {
+      padding : 1rem 20px 0;
+    }
   }
+
+  
   // hide button
   .hide {
-    background-color : $able-darkgrey;
-    color : $able-midgrey;
+    position : absolute;
+    right : 0;
+    top : 0;
+    @media (min-width: 800px) {
+      position : relative;
+    }
+
+    background-color : $able-green;
+    color : $white;
     cursor : pointer;
     display : inline;
-    padding : 0.25rem 0.5rem;
-    margin-left : 2rem;
+    padding : .75rem 1.25rem;
+    margin-left : 1rem;
     white-space : nowrap;
+    font-size : 2.4rem;
+    line-height : 1.8;
     &:hover {
       background-color : $able-grey;
       color : $white;

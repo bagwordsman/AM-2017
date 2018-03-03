@@ -149,47 +149,8 @@ echo '
         echo '<div id="twitter-feed" data-profile="'.$tweetprofile.'" data-user="'.$tweetuser.'" data-tweets="'.$tweetamount.'" data-path="'.$uri.'"></div>';
 
 
-
-        // old tweet stuff - enter url of specific tweet
-
-        // $tweet_link = get_option ( 'sandbox_theme_tweet_options' );
-        
-
-        // $tweet = $tweet_link['embeddedtweet'];
-        // $tweet_id = filter_var($tweet, FILTER_SANITIZE_NUMBER_INT);
-
-        // // var_dump($tweet_id);
-
-
-        // $tweetlinkcolour = $tweet_link['tweetcolour'];
-
-        // if ($tweet != '') echo '
-        // <div id="twitter-tweet"></div>
-        // <script src="https://platform.twitter.com/widgets.js"></script>
-        // <script>
-        // twttr.widgets.createTweet(
-        //   "'. $tweet_id .'",
-        //   document.getElementById("twitter-tweet"),
-        //   {
-        //     align: "left",
-        //     '. ( $tweetlinkcolour ? ('linkColor : "#'. $tweetlinkcolour .'",')  : '') .'
-        //   })
-
-        //   .then(function (el) {
-        //     console.log("Tweet displayed.")
-        //   }
-        // );
-        // </script>
-        // '. ( $tweetlinkcolour ? ('<style>#twitter-tweet iframe {border:2px solid #'. $tweetlinkcolour .' !important;}</style>')  : '') .'
-        // ';
-
-
-
         // social media
 				$social_options = get_option ( 'sandbox_theme_social_options' );
-        // a more direct way of acquiring facebook link
-        //$facebook = ( get_option ( 'sandbox_theme_social_options' )['facebook'] );
-
         $facebook = $social_options['facebook'];
         $twitter = $social_options['twitter'];
 				$googleplus = $social_options['googleplus'];
@@ -246,16 +207,16 @@ echo '
 	<!-- site credits -->
 	<div class="site-credits">
     <div class="container">
-  		<div class="eight columns">
+  		<div class="six columns">
         <?php
   			// company name
   			if ($company_name != '') echo '<p>© '.date("Y ").$company_name.'</p>';
   			// add another footer menu - for privacy poilcy and terms
   			?>
-  		</div><!-- eight columns -->
-  		<div class="four columns">
+  		</div>
+  		<div class="six columns">
         	<a href="http://martinbagshaw.co.uk/" title="Martin Bagshaw Graphic Designer" target="_blank" <?php if (!is_page( 21 )) echo 'rel="nofollow"'; ?>>Website by Martin Bagshaw</a>
-  		</div><!-- four columns -->
+  		</div>
   	</div><!-- container -->
   </div><!-- site-credits -->
 

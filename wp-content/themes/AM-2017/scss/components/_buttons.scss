@@ -32,6 +32,12 @@ input[type="button"] {
     text-decoration : none;
   }
 
+  // home specific - underneath staged columns
+  .home .wrapper-grey > .container & {
+    margin-top : 4rem;
+    margin-bottom : 0;
+  }
+
   // icons
   .fa {
     vertical-align : middle;

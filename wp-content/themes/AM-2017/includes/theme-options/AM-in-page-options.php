@@ -38,26 +38,26 @@ function sandbox_theme_intialize_map_options() {
     	//'map_settings_section'
 	//);
 	add_settings_field(
-      'gmap_height',
-      '<i class="fa fa-arrows-v black--text" aria-hidden="true"></i>Set map height in pixels',
-      'sandbox_gmap_height_callback',
-      'sandbox_theme_map_options',
-      'map_settings_section'
-  );
-  add_settings_field(
-      'gmap_scroll',
-      '<i class="fa fa-binoculars black--text" aria-hidden="true"></i>Zoom in and out with page scroll',
-      'sandbox_gmap_scroll_callback',
-      'sandbox_theme_map_options',
-      'map_settings_section'
-  );
+		'gmap_height',
+		'<i class="fa fa-arrows-v black--text" aria-hidden="true"></i>Set map height in pixels',
+		'sandbox_gmap_height_callback',
+		'sandbox_theme_map_options',
+		'map_settings_section'
+  	);
+  	add_settings_field(
+		'gmap_scroll',
+		'<i class="fa fa-binoculars black--text" aria-hidden="true"></i>Zoom in and out with page scroll',
+		'sandbox_gmap_scroll_callback',
+		'sandbox_theme_map_options',
+		'map_settings_section'
+  	);
 	add_settings_field(
-      'gmap_infowindow',
-      '<i class="fa fa-hand-pointer-o blue--text" aria-hidden="true"></i>Display Marker Location Info on:',
-      'sandbox_gmap_infowindow_callback',
-      'sandbox_theme_map_options',
-      'map_settings_section'
-  );
+		'gmap_infowindow',
+		'<i class="fa fa-hand-pointer-o blue--text" aria-hidden="true"></i>Display Marker Location Info on:',
+		'sandbox_gmap_infowindow_callback',
+		'sandbox_theme_map_options',
+		'map_settings_section'
+  	);
 	add_settings_field(
 	    'gmap_infowindow_address',
 	    '<i class="fa fa-map-marker red--text" aria-hidden="true"></i>Show Location Addresses',
@@ -80,29 +80,29 @@ function sandbox_theme_intialize_map_options() {
 	// location 1
 	// a) location 1 name
 	add_settings_field(
-      'gmap_location_1_name',
-      '<h4>Office Locations</h4>
-			<br>Office Location 1<br>
-			<br><i class="fa fa-home black--text" aria-hidden="true"></i>Name',
-      'sandbox_gmap_location_1_name_callback',
-      'sandbox_theme_map_options',
-      'map_settings_section'
-  );
+		'gmap_location_1_name',
+		'<h4>Office Locations</h4>
+		<br>Office Location 1<br>
+		<br><i class="fa fa-home black--text" aria-hidden="true"></i>Name',
+		'sandbox_gmap_location_1_name_callback',
+		'sandbox_theme_map_options',
+		'map_settings_section'
+  	);
 	// b) location 1 address
 	add_settings_field(
-      'gmap_location_1_address',
-      '<i class="fa fa-map-marker red--text" aria-hidden="true"></i>Address',
-      'sandbox_gmap_location_1_address_callback',
-      'sandbox_theme_map_options',
-      'map_settings_section'
-  );
+		'gmap_location_1_address',
+		'<i class="fa fa-map-marker red--text" aria-hidden="true"></i>Address',
+		'sandbox_gmap_location_1_address_callback',
+		'sandbox_theme_map_options',
+		'map_settings_section'
+  	);
 
 	// location 2
 	// a) location 2 name
 	add_settings_field(
 	    'gmap_location_2_name',
 	    '<br>Office Location 2<br>
-			<br><i class="fa fa-home black--text" aria-hidden="true"></i>Name',
+		<br><i class="fa fa-home black--text" aria-hidden="true"></i>Name',
 	    'sandbox_gmap_location_2_name_callback',
 	    'sandbox_theme_map_options',
 	    'map_settings_section'
@@ -121,7 +121,7 @@ function sandbox_theme_intialize_map_options() {
 	add_settings_field(
 	    'gmap_location_3_name',
 	    '<br>Office Location 3<br>
-			<br><i class="fa fa-home black--text" aria-hidden="true"></i>Name',
+		<br><i class="fa fa-home black--text" aria-hidden="true"></i>Name',
 	    'sandbox_gmap_location_3_name_callback',
 	    'sandbox_theme_map_options',
 	    'map_settings_section'
@@ -140,7 +140,7 @@ function sandbox_theme_intialize_map_options() {
 	add_settings_field(
 	    'gmap_location_4_name',
 	    '<br>Office Location 4<br>
-			<br><i class="fa fa-home black--text" aria-hidden="true"></i>Name',
+		<br><i class="fa fa-home black--text" aria-hidden="true"></i>Name',
 	    'sandbox_gmap_location_4_name_callback',
 	    'sandbox_theme_map_options',
 	    'map_settings_section'
@@ -192,9 +192,9 @@ function sandbox_theme_sanitize_map_options( $input ) {
 
 // construct the map options form
 function sandbox_map_options_callback() {
-    echo '<p>Add your Google Maps API Key, then define general settings for the map, before adding your office locations.</p>
-		 <p>Copy and paste the following shortcode to add your Google Map into pages:</p>
-		 <p><strong>[google-map]</strong></p>';
+	echo '<p>Add your Google Maps API Key, then define general settings for the map, before adding your office locations.</p>
+		<p>Copy and paste the following shortcode to add your Google Map into pages:</p>
+		<p><strong>[google-map]</strong></p>';
 } // end sandbox_map_options_callback
 
 //

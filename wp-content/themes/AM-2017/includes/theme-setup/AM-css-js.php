@@ -29,8 +29,8 @@ function load_css() {
 	wp_enqueue_style('new-compiled-default' );
 
 	// add print css
-	wp_register_style('print', get_stylesheet_directory_uri() . '/css/print/AM2017-print.css', false, false, 'print');
-	wp_enqueue_style( 'print');
+	// wp_register_style('print', get_stylesheet_directory_uri() . '/css/print/AM2017-print.css', false, false, 'print');
+	// wp_enqueue_style( 'print');
 }
 add_action('wp_enqueue_scripts', 'load_css');
 
