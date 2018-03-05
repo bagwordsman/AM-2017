@@ -25,41 +25,51 @@
   transition: top 0.2s ease-in-out;
 
   
-  // set header height
-  height : 148px;
+  
+  // ___________________
+  // scrolled offset
+
+  // top container = 110px
+  // button = 57px
+  // large menu = 38px
+  // small admin bar = 48px
+  // large admin bar = 32px
+  
+  // logged out
   &.up {
-    top : -148px;
+    top : calc(-110px - 57px);
+    @media (min-width: 800px) {
+      top : calc(-110px - 38px);
+    }
   }
 
-  // logged in - offset #wpadminbar
+  // logged in
   .logged-in & {
-    top : 32px;
+    // small (46px high admin bar)
+    top : 46px;
     &.up {
-      top : calc(-32px - 148px);
+      top : calc(-110px - 57px + 46px);
     }
-    @media (max-width: 782px) {
-      top : 46px;
+    // medium + (32px high admin bar)
+    @media (min-width: 782px) {
+      top : 32px;
       &.up {
-        top : calc(-46px - 148px);
+        top : calc(-110px - 57px + 32px);
+      }
+    }
+    // medium / large + (desktop menu)
+    @media (min-width: 800px) {
+      &.up {
+        top : calc(-110px - 38px + 32px);
       }
     }
   }
 
 
 
-  // small menu opened
-  // @media (max-width: 799px) {
-  //   #toggle:checked
-  //   top : calc (-325px - 64px;)
-  // }
+
 
   
-
-
-
-
-
-
 
   // ___________________
   // logo and button container
@@ -74,6 +84,7 @@
     // padding-top : 5rem;
     width : 22%;
     // logo and text container
+    // - probably want to do this without flexbox styles (or use a fallback)
     &.logo a {
       width : 122px;
       text-decoration : none;
@@ -110,17 +121,18 @@
 
       // phone icon for small screens
       @media (max-width: 480px) {
-        position : relative;
-        span {
-          display : none;
-        }
-        &:before {
-          margin-right : 10px;
-          font-family : 'FontAwesome';
-          content : "\f095";
+        &.phone {
+          position : relative;
+          span {
+            display : none;
+          }
+          &:before {
+            margin-right : 10px;
+            font-family : 'FontAwesome';
+            content : "\f095";
+          }
         }
       }
-
     } // end .button 
   }
   

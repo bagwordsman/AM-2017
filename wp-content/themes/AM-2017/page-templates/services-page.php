@@ -69,7 +69,7 @@ get_header(); ?>
 						<?php
 						$excerpt = $post->post_excerpt;
 						if ($excerpt) {
-							echo '<p>'.$excerpt.'</p><a class="button orange" href="'.get_the_permalink().'">Go to Page<i class="fa fa-chevron-right"></i></a>';
+							echo '<p>'.$excerpt.'</p><a class="button orange solid" href="'.get_the_permalink().'">Go to Page<i class="fa fa-chevron-right"></i></a>';
 						} else {
 							$edit_link = get_edit_post_link( $post->post_id );
 							echo 'Site Admin to add post excerpt in:<br> <a class="red-text" href="'.$edit_link.'">page editor > excerpt</a>';

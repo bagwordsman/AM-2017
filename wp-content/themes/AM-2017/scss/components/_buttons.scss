@@ -1,7 +1,32 @@
 // Buttons
 
+@mixin colour($colour_name, $colour_code, $colour_code_light) {
+  &.#{$colour_name},
+  &.#{$colour_name}:visited {
+    color : $colour_code;
+    border-color : $colour_code;
+    &:hover {
+      color : $white;
+      background-color : $colour_code_light;
+      border-color : $colour_code_light;
+    }
+    // solid
+    &.solid {
+    color : $white;
+    background-color : $colour_code;
+    border : 0;
+    line-height : 48px;
+      &:hover {
+          color : $white;
+          background-color : $colour_code_light;
+      }
+    }
+  }
+}
+
+
+
 // clear with solid border
-a.button,
 .button,
 button,
 input[type="submit"],
@@ -27,17 +52,6 @@ input[type="button"] {
   box-sizing : border-box;
   transition : all ease-in-out 0.25s;
 
-  // remove underline if in content
-  #content & {
-    text-decoration : none;
-  }
-
-  // home specific - underneath staged columns
-  .home .wrapper-grey > .container & {
-    margin-top : 4rem;
-    margin-bottom : 0;
-  }
-
   // icons
   .fa {
     vertical-align : middle;
@@ -51,7 +65,6 @@ input[type="button"] {
     margin-right : 10px;
   }
 
-  // - - - - - - - -
   // hover and focus
   &:hover,
   &:focus {
@@ -62,67 +75,47 @@ input[type="button"] {
     text-shadow : $shadow-down-right_thin;
   }
 
-  // - - - - - - - -
-  // colours
-  
-  // orange
-  &.orange,
-  &.orange:visited {
-    color : $orange;
-    border-color : $orange;
-    &:hover {
-      color : $white;
-      background-color : $orange_light;
-      border-color : $orange_light;
-    }
-    // solid background buttons:
-    // - header CTA button
-    // - services page parent excerpt reveal
-    .contact &,
-    .info & {
-      line-height : 48px;
-      border : 0;
-      color : $white;
-      background-color : $orange;
-      &:hover,
-      &:focus,
-      &:visited:hover {
-        border : 0;
-        background-color : $orange_light;
-      }
-    }
-  }
-  
-  // blue
-  &.blue,
-  &.blue:visited {
-  color : $blue;
-  border-color : $blue;
+  // solid button
+  &.solid,
+  &.solid:visited {
+  color : $white;
+  background-color : $able-green;
+  border : 0;
+  line-height : 48px;
     &:hover {
         color : $white;
-        background-color : $blue;
-        border-color : $blue;
+        background-color : $able-green_light;
     }
   }
 
-  // red
-  &.red,
-  &.red:visited {
-  color : $red;
-  border-color : $red;
-      &:hover {
-          color : $white;
-          background-color : $red;
-          border-color : $red;
-      }
+
+  // ________________
+  // context specific
+  // - reset : remove underline if in content
+  #content & {
+    text-decoration : none;
   }
 
-  
-  // - - - - - - - -
+  // - home : underneath staged columns
+  .home .wrapper-grey > .container & {
+    margin-top : 4rem;
+    margin-bottom : 0;
+  }
+
+  // ________________
   // media queries
   @media (min-width : 660px) {
     font-size : 27px;
   }
+
+
+  
+  // ________________
+  // colours
+  // - note that green is the default, and does not need to be restated.
+  @include colour('orange', $orange, $orange_light);
+  @include colour('blue', $blue, $blue_light);
+  @include colour('red', $red, $red_light);
 
 
 

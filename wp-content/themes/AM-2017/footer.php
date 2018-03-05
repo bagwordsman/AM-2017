@@ -35,36 +35,36 @@ $affiliatelogo4 = $affiliate_logo_options['affiliatelogo4'];
 if ($affiliatelogo1 != '' || $affiliatelogo2 != '' || $affiliatelogo3 != '' || $affiliatelogo4 != '')
 echo '
 <div id="affiliates-band" role="complementary">'
-		. ( $ouraffiliatestitle ? ('<div class="container"><h4>'. $ouraffiliatestitle .'</h4></div>')  : '') .'
-		<div class="container">';
-				// echo each of the logos
-				// remove title and assign to '$BL_title'
-				$BL_title = array_shift($affiliate_logo_options);
-				// create a multidimensional array - split into 3 part chunks
-				$logogroup = array_chunk($affiliate_logo_options, 4);
+	. ( $ouraffiliatestitle ? ('<div class="container"><h4>'. $ouraffiliatestitle .'</h4></div>')  : '') .'
+	<div class="container">';
+		// echo each of the logos
+		// remove title and assign to '$BL_title'
+		$BL_title = array_shift($affiliate_logo_options);
+		// create a multidimensional array - split into 3 part chunks
+		$logogroup = array_chunk($affiliate_logo_options, 4);
 
-				// separate out each logo
-				foreach( $logogroup as $logo => $items ) {
-						//var_dump($items);
+		// separate out each logo
+		foreach( $logogroup as $logo => $items ) {
+			//var_dump($items);
 
             // only output logo if a url for it exists
             if ($items[0] != '') {
 
-    						// preg_replace width and height - couldn't sanitise non-numeric data in functions.php
-    						$width = preg_replace("/[^0-9,.]/", "", $items[2]);
-    						$height = preg_replace("/[^0-9,.]/", "", $items[3]);
+				// preg_replace width and height - couldn't sanitise non-numeric data in functions.php
+				$width = preg_replace("/[^0-9,.]/", "", $items[2]);
+				$height = preg_replace("/[^0-9,.]/", "", $items[3]);
 
-    						// output the image
-    						echo '<img src="' . $items[0] .'" alt="' . $items[1] .'" width="' . $width .'" height="' . $height .'" />';
+				// output the image
+				echo '<img src="' . $items[0] .'" alt="' . $items[1] .'" width="' . $width .'" height="' . $height .'" />';
 
             }
 
-				} // end foreach logo
+		} // end foreach logo
 
-		// if any logo is present, close the affiliates-band
-		if ($affiliatelogo1 != '' || $affiliatelogo2 != '' || $affiliatelogo3 != '' || $affiliatelogo4 != '')
-		echo
-		'</div>
+	// if any logo is present, close the affiliates-band
+	if ($affiliatelogo1 != '' || $affiliatelogo2 != '' || $affiliatelogo3 != '' || $affiliatelogo4 != '')
+	echo
+	'</div>
 </div><!-- #affiliates-band -->';
 ?>
 
@@ -73,32 +73,32 @@ echo '
 <div id="footer" role="contentinfo" <?php if ($footerhero) echo 'class="has-hero"'; ?>>
 
 	<!-- company information part of footer -->
-  <div class="company-info">
-	   <div class="container">
+    <div class="company-info">
+	    <div class="container">
 
 			<div class="three columns">
 
-          <?php
-          // Output Menu Title
-          $services_title = wp_get_nav_menu_object( 3 );
-          $services_title = ($services_title -> name);
-          echo ( $services_title ? ('<h4>'. $services_title .'</h4>')  : '<h4>Menu</h4>');
-          ?>
-					<ul class="footer-menu">
+				<?php
+				// Output Menu Title
+				$services_title = wp_get_nav_menu_object( 3 );
+				$services_title = ($services_title -> name);
+				echo ( $services_title ? ('<h4>'. $services_title .'</h4>')  : '<h4>Menu</h4>');
+				?>
+				<ul class="footer-menu">
 					<?php
 					// function to remove <div> and <ul> which wrap the menu by default
 					wp_services_menu_unwrap( array( 'theme_location' => 'services-menu') );
 					?>
-					</ul>
+				</ul>
 			</div>
 
-      <div class="three columns">
-          <?php
-          // Output Menu Title
-          $quicklinks_title = wp_get_nav_menu_object( 52 );
-          $quicklinks_title = ($quicklinks_title -> name);
-          echo ( $quicklinks_title ? ('<h4>'. $quicklinks_title .'</h4>')  : '<h4>Menu</h4>');
-          ?>
+      		<div class="three columns">
+				<?php
+				// Output Menu Title
+				$quicklinks_title = wp_get_nav_menu_object( 52 );
+				$quicklinks_title = ($quicklinks_title -> name);
+				echo ( $quicklinks_title ? ('<h4>'. $quicklinks_title .'</h4>')  : '<h4>Menu</h4>');
+				?>
 					<ul class="footer-menu">
 					<?php
 					// function to remove <div> and <ul> which wrap the menu by default
@@ -122,85 +122,84 @@ echo '
 				$address = $company_options['company_address'];
 
 				if ($phone != '' || $email != '' || $address != '') echo '
-					<h4>Contact Us</h4>
-          <ul class="contact">';
-						if ($phone != '' ) echo '
-						<li><a href="tel:'.$dial.'"><i class="fa fa-phone" aria-hidden="true"></i>'.$phone.'</a></li>';
-						if ($email != '' ) echo '
-						<li><a href="mailto:'.$email.'"><i class="fa fa-envelope" aria-hidden="true"></i>'.$email.'</a></li>';
-            if ($address != '' ) echo '
-						<li><i class="fa fa-home" aria-hidden="true"></i>'.$address.'</li>';
+				<h4>Contact Us</h4>
+				<ul class="contact">';
+				if ($phone != '' ) echo '
+					<li><a href="tel:'.$dial.'"><i class="fa fa-phone" aria-hidden="true"></i>'.$phone.'</a></li>';
+					if ($email != '' ) echo '
+					<li><a href="mailto:'.$email.'"><i class="fa fa-envelope" aria-hidden="true"></i>'.$email.'</a></li>';
+					if ($address != '' ) echo '
+					<li><i class="fa fa-home" aria-hidden="true"></i>'.$address.'</li>';
 				if ($phone != '' || $email != '' || $address != '') echo '
-					</ul>';
+				</ul>';
 
 
         
         
-        // twitter
-        $tweet_options = get_option ( 'sandbox_theme_tweet_options' );
-        $tweetheading = $tweet_options['tweet_heading'];
-        echo ( $tweetheading ? ('<h4>'. $tweetheading .'</h4>')  : '');
+				// twitter
+				$tweet_options = get_option ( 'sandbox_theme_tweet_options' );
+				$tweetheading = $tweet_options['tweet_heading'];
+				echo ( $tweetheading ? ('<h4>'. $tweetheading .'</h4>')  : '');
 
-        $tweetprofile = $tweet_options['twitter_profile'];
-        $tweetuser = $tweet_options['twitter_user'];
-        $tweetamount = $tweet_options['no_tweets'];
-        $uri = get_stylesheet_directory_uri();
-        // lib/twitterfeed.js targets this div:
-        echo '<div id="twitter-feed" data-profile="'.$tweetprofile.'" data-user="'.$tweetuser.'" data-tweets="'.$tweetamount.'" data-path="'.$uri.'"></div>';
+				$tweetprofile = $tweet_options['twitter_profile'];
+				$tweetuser = $tweet_options['twitter_user'];
+				$tweetamount = $tweet_options['no_tweets'];
+				$uri = get_stylesheet_directory_uri();
+				// lib/twitterfeed.js targets this div:
+				echo '<div id="twitter-feed" data-profile="'.$tweetprofile.'" data-user="'.$tweetuser.'" data-tweets="'.$tweetamount.'" data-path="'.$uri.'"></div>';
 
 
-        // social media
+				// social media
 				$social_options = get_option ( 'sandbox_theme_social_options' );
-        $facebook = $social_options['facebook'];
-        $twitter = $social_options['twitter'];
+				$facebook = $social_options['facebook'];
+				$twitter = $social_options['twitter'];
 				$googleplus = $social_options['googleplus'];
-        $linkedin = $social_options['linkedin'];
-        $company_name = $company_options['company_name'];
+				$linkedin = $social_options['linkedin'];
+				$company_name = $company_options['company_name'];
 
 				if ($facebook != '' || $twitter != '' || $googleplus != '' || $linkedin != '') echo '
 				<h4>Follow Us on Social Media</h4>
-        <ul class="social">';
-
+				<ul class="social">';
 
 				if ($facebook != '') echo '
 				<li>
-            <a href="'.$facebook.'" target="_blank">
-            <i class="fa fa-facebook-official" aria-hidden="true"></i>'
-            . ( $company_name ? ( '<div class="assistive-text">'.$company_name.' Facebook</div>' )  : '') .
-            '</a>
-        </li>';
+					<a href="'.$facebook.'" target="_blank">
+					<i class="fa fa-facebook-official" aria-hidden="true"></i>'
+					. ( $company_name ? ( '<div class="assistive-text">'.$company_name.' Facebook</div>' )  : '') .
+					'</a>
+				</li>';
 
-        if ($twitter != '') echo '
-        <li>
-            <a href="'.$twitter.'" target="_blank">
-            <i class="fa fa-twitter-square" aria-hidden="true"></i>'
-            . ( $company_name ? ( '<div class="assistive-text">'.$company_name.' twitter</div>' )  : '') .
-            '</a>
-        </li>';
+				if ($twitter != '') echo '
+				<li>
+					<a href="'.$twitter.'" target="_blank">
+					<i class="fa fa-twitter-square" aria-hidden="true"></i>'
+					. ( $company_name ? ( '<div class="assistive-text">'.$company_name.' twitter</div>' )  : '') .
+					'</a>
+				</li>';
 
-        if ($googleplus != '') echo '
-        <li>
-            <a href="'.$googleplus.'" target="_blank">
-            <i class="fa fa-google-plus-official" aria-hidden="true"></i>'
-            . ( $company_name ? ( '<div class="assistive-text">'.$company_name.' googleplus</div>' )  : '') .
-            '</a>
-        </li>';
+				if ($googleplus != '') echo '
+				<li>
+					<a href="'.$googleplus.'" target="_blank">
+					<i class="fa fa-google-plus-official" aria-hidden="true"></i>'
+					. ( $company_name ? ( '<div class="assistive-text">'.$company_name.' googleplus</div>' )  : '') .
+					'</a>
+				</li>';
 
-        if ($linkedin != '') echo '
-        <li>
-            <a href="'.$linkedin.'" target="_blank">
-            <i class="fa fa-linkedin-square" aria-hidden="true"></i>'
-            . ( $company_name ? ( '<div class="assistive-text">'.$company_name.' linkedin</div>' )  : '') .
-            '</a>
-        </li>';
+				if ($linkedin != '') echo '
+				<li>
+					<a href="'.$linkedin.'" target="_blank">
+					<i class="fa fa-linkedin-square" aria-hidden="true"></i>'
+					. ( $company_name ? ( '<div class="assistive-text">'.$company_name.' linkedin</div>' )  : '') .
+					'</a>
+				</li>';
 
-        if ($facebook != '' || $twitter != '' || $googleplus != '' || $linkedin != '') echo '
+				if ($facebook != '' || $twitter != '' || $googleplus != '' || $linkedin != '') echo '
 				</ul>';
 
 				?>
 			</div><!-- six columns -->
-	</div><!-- container -->
-</div><!-- company-info -->
+		</div><!-- container -->
+	</div><!-- company-info -->
 
 
 
@@ -215,7 +214,7 @@ echo '
   			?>
   		</div>
   		<div class="six columns">
-        	<a href="http://martinbagshaw.co.uk/" title="Martin Bagshaw Graphic Designer" target="_blank" <?php if (!is_page( 21 )) echo 'rel="nofollow"'; ?>>Website by Martin Bagshaw</a>
+        	<a href="http://martinbagshaw.co.uk/" title="Website by Martin Bagshaw" target="_blank" <?php if (!is_page( 21 )) echo 'rel="nofollow"'; ?>>Website by Martin Bagshaw</a>
   		</div>
   	</div><!-- container -->
   </div><!-- site-credits -->

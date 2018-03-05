@@ -1,12 +1,14 @@
 <?php
 // ------------------------------------------------------------------------
 // 3 - Create Theme Options Page
-// 1) Company Options
-// 2) logo Options
-// 3) Social Options
-// 4) Tweet
-// 5) Styling Options
-// 5) affiliates Options
+// 1) company details
+// 2) company logos
+// 3) header call to action
+// 4) social network links
+// 5) tweet
+// 6) affiliated organisations logos
+// 7) styling options
+
 
 
 // ------------------------------------------------------------------------
@@ -52,29 +54,35 @@ function sandbox_menu_page_display() {
 				<?php submit_button('Save Changes to Your Company Logos'); ?>
 			</form>
 
-			<!-- 3 - social network links -->
+			<!-- 3 - header call to action -->
+			<form method="post" action="options.php">
+				<?php settings_fields( 'sandbox_theme_cta_options' ); ?>
+				<?php do_settings_sections( 'sandbox_theme_cta_options' ); ?>
+				<?php submit_button('Save Header Call to Action'); ?>
+			</form>
+
+			<!-- 4 - social network links -->
 			<form method="post" action="options.php">
 				<?php settings_fields( 'sandbox_theme_social_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_social_options' ); ?>
 				<?php submit_button('Save Changes to Social Options'); ?>
 			</form>
 
-			<!-- 4 - tweet -->
+			<!-- 5 - tweet -->
 			<form method="post" action="options.php" class="wide tweet">
 				<?php settings_fields( 'sandbox_theme_tweet_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_tweet_options' ); ?>
 				<?php submit_button('Display Tweet(s)'); ?>
 			</form>
 
-
-			
-			<!-- 5 - affiliated organisations logos -->
+			<!-- 6 - affiliated organisations logos -->
 			<form method="post" action="options.php">
 				<?php settings_fields( 'sandbox_theme_affiliates_options' ); ?>
 					<?php do_settings_sections( 'sandbox_theme_affiliates_options' ); ?>
 				<?php submit_button('Save Changes to Affiliated Organisations Logos'); ?>
 			</form>
-			<!-- 6 - styling options -->
+
+			<!-- 7 - styling options -->
 			<form method="post" action="options.php" class="wide">
 				<?php settings_fields( 'sandbox_theme_styling_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_styling_options' ); ?>
@@ -127,12 +135,13 @@ add_filter('menu_options_filter','sandbox_menu_page_display');
 
 
 // ------------------------------------------------------------------------
-// 1) Company Options
-// 2/ logo Options
-// 3/ Social Options
-// 4/ Tweet
-// 5) Affiliated Companies Logos
-// 6/ Styling Options
+// 1) company details
+// 2) company logos
+// 3) header call to action
+// 4) social network links
+// 5) tweet
+// 6) affiliated organisations logos
+// 7) styling options
 
 
 
@@ -140,7 +149,7 @@ add_filter('menu_options_filter','sandbox_menu_page_display');
 // ------------------------------------------------------------------------
 // header and footer options
 // ------------------------------------------------------------------------
-// 1) Company Options
+// 1) company details
 function sandbox_theme_intialize_company_options() {
 	// If the company options don't exist, create them.
     if( false == get_option( 'sandbox_theme_company_options' ) ) {
@@ -270,7 +279,7 @@ function sandbox_company_email_callback() {
 
 
 // ------------------------------------------------------------------------
-// 2/ logo Options
+// 2) company logos
 function sandbox_theme_intialize_logo_options() {
     // If the logo options don't exist, create them.
     if( false == get_option( 'sandbox_theme_logo_options' ) ) {
@@ -423,10 +432,182 @@ function sandbox_favicon_callback() {
 
 
 
+// ------------------------------------------------------------------------
+// 3) header call to action
+function sandbox_theme_intialize_cta_options() {
+    if( false == get_option( 'sandbox_theme_cta_options' ) ) {
+        add_option( 'sandbox_theme_cta_options' );
+    } // end if
+	add_settings_section(
+    	'cta_settings_section', // ID
+    	'Header Call to Action', // Title
+    	'sandbox_cta_options_callback',  // Callback
+    	'sandbox_theme_cta_options'// Page on which to add this section of options
+	);
+	add_settings_field(
+    	'cta_type',
+    	'Type',
+    	'sandbox_cta_type_callback',
+    	'sandbox_theme_cta_options',
+    	'cta_settings_section'
+	);
+	add_settings_field(
+    	'cta_link',
+    	'<i class="fa fa-link purple--text" aria-hidden="true"></i>Link:<br>enter a url',
+    	'sandbox_cta_link_callback',
+    	'sandbox_theme_cta_options',
+    	'cta_settings_section'
+	);
+	add_settings_field(
+    	'cta_text',
+    	'<i class="fa fa-header" aria-hidden="true"></i>Text:<br>enter button text',
+    	'sandbox_cta_text_callback',
+    	'sandbox_theme_cta_options',
+    	'cta_settings_section'
+	);
+	add_settings_field(
+    	'cta_colour',
+    	'<i class="fa fa-paint-brush blue" id="bg-colour-brush" aria-hidden="true"></i>Colour',
+    	'sandbox_cta_colour_callback',
+    	'sandbox_theme_cta_options',
+    	'cta_settings_section'
+	);
+	register_setting(
+    	'sandbox_theme_cta_options',
+    	'sandbox_theme_cta_options',
+    	'sandbox_theme_sanitize_cta_options'
+	);
+} // end sandbox_theme_intialize_social_options
+add_action( 'admin_init', 'sandbox_theme_intialize_cta_options' );
+
+
+// _______________
+// sanitise header CTA - text fields and radio buttons
+function sandbox_theme_sanitize_cta_options( $input ) {
+    $output = array();
+
+	// loop over the affiliate logo section options
+	foreach( $input as $key => $val ) {
+
+		// the key must be set, in order to get sanitised and output
+		if ( isset ( $input[$key] ) ) {
+
+			// sanitise link as a url
+			if ( $key == 'cta_link' ) {
+				$output['cta_link'] = esc_url_raw( strip_tags( stripslashes( $input['cta_link'] ) ) );
+			}
+			else {
+				// text field
+				$output[$key] = sanitize_text_field( $input[$key] );	
+			}
+
+		} // end if
+	} // end foreach
+	
+    // Return the new collection
+    return apply_filters( 'sandbox_theme_sanitize_cta_options', $output, $input );
+} // end sandbox_theme_sanitize_cta_options
+
+
+
+// _______________
+// callback - instruction text
+function sandbox_cta_options_callback() {
+    echo '<p>Configure the Call to Action button in the header.</p>';
+} // end sandbox_general_options_callback
+
+
+
+
+// _______________
+// callbacks - for each of the fields
+function sandbox_cta_type_callback() {
+    $options = get_option( 'sandbox_theme_cta_options' );
+    if( isset( $options['cta_type'] ) ) {
+        $options['cta_type'];
+    } // end if
+    // Render the output
+    echo '
+	<ul id="cta_type">
+		<li>
+			<input type="radio" id="cta_type_phone" name="sandbox_theme_cta_options[cta_type]" value="phone" '. ( $options['cta_type'] == 'phone' ? ('checked="checked" class="green--background"')  : '') .' />
+			<label for="cta_type_phone">Phone (populated automatically)</label>
+		</li>
+		<li>
+			<input type="radio" id="cta_type_other" name="sandbox_theme_cta_options[cta_type]" value="other" '. ( $options['cta_type'] == 'other' ? ('checked="checked" class="green--background"')  : '') .' />
+			<label for="cta_type_other">Other (enter details below)</label>
+		</li>
+		<li>
+			<input type="radio" id="cta_type_none" name="sandbox_theme_cta_options[cta_type]" value="none" '. ( $options['cta_type'] == 'none' ? ('checked="checked" class="green--background"')  : '') .' />
+			<label for="cta_type_none">No Call to Action</label>
+		</li>
+	</ul>
+	';
+} // end sandbox_cta_link_callback
+
+function sandbox_cta_link_callback() {
+    $options = get_option( 'sandbox_theme_cta_options' );
+    $url = '';
+    if( isset( $options['cta_link'] ) ) {
+        $url = $options['cta_link'];
+    } // end if
+    // Render the output
+    echo '<input type="text" id="cta_link" name="sandbox_theme_cta_options[cta_link]" value="' . $options['cta_link'] . '" />';
+} // end sandbox_cta_link_callback
+
+function sandbox_cta_text_callback() {
+    $options = get_option( 'sandbox_theme_cta_options' );
+    $url = '';
+    if( isset( $options['cta_text'] ) ) {
+        $url = $options['cta_text'];
+    } // end if
+    // Render the output
+    echo '<input type="text" id="cta_text" name="sandbox_theme_cta_options[cta_text]" value="' . $options['cta_text'] . '" />';
+} // end sandbox_cta_text_callback
+
+function sandbox_cta_colour_callback() {
+    $options = get_option( 'sandbox_theme_cta_options' );
+    if( isset( $options['cta_colour'] ) ) {
+        $options['cta_colour'];
+    } // end if
+    // Render the output
+    echo '
+	<ul id="cta_colour">
+		<li>
+			<input type="radio" id="cta_colour_green" name="sandbox_theme_cta_options[cta_colour]" value="green" '. ( $options['cta_colour'] == 'green' ? ('checked="checked" class="green--background"')  : '') .' />
+			<label for="cta_colour_green">Green</label>
+		</li>
+		<li>
+			<input type="radio" id="cta_colour_orange" name="sandbox_theme_cta_options[cta_colour]" value="orange" '. ( $options['cta_colour'] == 'orange' ? ('checked="checked" class="green--background"')  : '') .' />
+			<label for="cta_colour_orange">Orange</label>
+		</li>
+		<li>
+			<input type="radio" id="cta_colour_blue" name="sandbox_theme_cta_options[cta_colour]" value="blue" '. ( $options['cta_colour'] == 'blue' ? ('checked="checked" class="green--background"')  : '') .' />
+			<label for="cta_colour_blue">Blue</label>
+		</li>
+		<li>
+			<input type="radio" id="cta_colour_red" name="sandbox_theme_cta_options[cta_colour]" value="red" '. ( $options['cta_colour'] == 'red' ? ('checked="checked" class="green--background"')  : '') .' />
+			<label for="cta_colour_red">Red</label>
+		</li>
+	</ul>
+	';
+} // end sandbox_cta_colour_callback
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ------------------------------------------------------------------------
-// 3/ Social Options
+// 4) social network links
 function sandbox_theme_intialize_social_options() {
     // If the social options don't exist, create them.
     if( false == get_option( 'sandbox_theme_social_options' ) ) {
@@ -446,11 +627,11 @@ function sandbox_theme_intialize_social_options() {
     	'social_settings_section'
 	);
 	add_settings_field(
-			'twitter',
-			'<i class="fa fa-twitter" aria-hidden="true"></i>Twitter',
-			'sandbox_twitter_callback',
-			'sandbox_theme_social_options',
-			'social_settings_section'
+		'twitter',
+		'<i class="fa fa-twitter" aria-hidden="true"></i>Twitter',
+		'sandbox_twitter_callback',
+		'sandbox_theme_social_options',
+		'social_settings_section'
 	);
 	add_settings_field(
     	'googleplus',
@@ -539,10 +720,8 @@ function sandbox_linkedin_callback() {
 
 
 
-
-
 // ------------------------------------------------------------------------
-// 4/ Tweet
+// 5) tweet
 function sandbox_theme_intialize_tweet_options() {
     // If the tweet options don't exist, create them.
     if( false == get_option( 'sandbox_theme_tweet_options' ) ) {
@@ -659,7 +838,7 @@ function sandbox_no_tweets_callback() {
 
 
 // ------------------------------------------------------------------------
-// 5) Affiliated Companies Logos
+// 6) affiliated organisations logos
 // each affiliate logo needs width and height applied to it
 function sandbox_theme_intialize_affiliates_options() {
     // If the affiliates options don't exist, create them.
@@ -874,25 +1053,26 @@ add_action( 'admin_init', 'sandbox_theme_intialize_affiliates_options' );
 function sandbox_theme_sanitize_affiliates_options( $input ) {
     $output = array();
 
-		// loop over the affiliate logo section options
-		foreach( $input as $key => $val ) {
+	// loop over the affiliate logo section options
+	foreach( $input as $key => $val ) {
 
-				// the key must be set, in order to get sanitised and output
-				if ( isset ( $input[$key] ) ) {
+		// the key must be set, in order to get sanitised and output
+		if ( isset ( $input[$key] ) ) {
 
-					// if the key is the title, sanitise it as a text field
-					if ( $key == 'ouraffiliatestitle' ) {
-							$output['ouraffiliatestitle'] = sanitize_text_field( $input['ouraffiliatestitle'] );
-					// alternative text
-					} elseif (strpos($key, 'alttext') !== false)  {
-								$output[$key] = sanitize_text_field( $input[$key] );
-					} else {
-							// if the key is a path to a logo, sanitise it as a url
-							$output[$key] = esc_url_raw( strip_tags( stripslashes( $input[$key] ) ) );
-					}
+			// if the key is the title, sanitise it as a text field
+			if ( $key == 'ouraffiliatestitle' ) {
+					$output['ouraffiliatestitle'] = sanitize_text_field( $input['ouraffiliatestitle'] );
+			// alternative text
+			} elseif (strpos($key, 'alttext') !== false)  {
+						$output[$key] = sanitize_text_field( $input[$key] );
+			} else {
+					// if the key is a path to a logo, sanitise it as a url
+					$output[$key] = esc_url_raw( strip_tags( stripslashes( $input[$key] ) ) );
+			}
 
-				} // end if
-    } // end foreach
+		} // end if
+	} // end foreach
+	
     // Return the new collection
     return apply_filters( 'sandbox_theme_sanitize_affiliates_options', $output, $input );
 } // end sandbox_theme_sanitize_affiliates_options
@@ -1291,7 +1471,7 @@ function sandbox_AL6height_callback() {
 
 
 // ------------------------------------------------------------------------
-// 6/ Styling Options
+// 7) styling options
 function sandbox_theme_intialize_styling_options() {
     // If the styling options don't exist, create them.
     if( false == get_option( 'sandbox_theme_styling_options' ) ) {

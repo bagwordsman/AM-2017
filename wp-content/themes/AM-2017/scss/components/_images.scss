@@ -2,11 +2,18 @@
 
 
 // images in the content
-#content .container img {
+// #content .container img {
+//   display : block;
+//   max-width : 100%;
+//   margin : 3rem auto;
+// }
+
+div[class*="wrapper-"] img {
   display : block;
   max-width : 100%;
   margin : 3rem auto;
 }
+
 .container p > img {
   // display : block;
   // max-width : 100%;
@@ -40,21 +47,33 @@
   padding-right : 1em;
 }
 
+
+
+
 // gallery images - reset inline styles added by WP
-div[class*="gallery"] {
-  margin : 5rem auto 3rem !important;
+// - used on mediator page - affiliated logos
+// - align styles with -> layout/_affiliated-container.scss
+div[id*="gallery"] > dl.gallery-item {
+  width : 100% !important;
+  float : none !important;
+  margin : 4.5rem auto 0 !important;
   img {
-    max-width : 100%;
     height : auto;
+    width : auto;
+    max-width : 250px;
+    max-height : 200px;
     border : 0 !important;
-    margin : 1rem;
+    margin : 3rem auto;
+    a,
+    a:hover,
+    a:active {
+      border:0 !important;
+    }
   }
-}
-.gallery img {
-  margin-top : 0;
-  a,
-  a:hover,
-  a:active {
-    border:0 !important;
+  @media (min-width: 660px) {
+    width : 33% !important;
+    float : left !important;
+    margin-top : 0 !important; 
   }
+  
 }

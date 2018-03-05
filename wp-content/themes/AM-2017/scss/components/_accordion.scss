@@ -1,24 +1,48 @@
-/*
-Services > Court Forms (etc) - Accordion
-
-NOTES:
- - this could go on any page
- - need to try adding 2+ accordions per page
- - add option to expand all items at one time
- - jquery ui comes with images that I have not included, could be buggy
- - need to be able to set heights of tabs - this is done inline with jquery by the looks of things (202px)
-
-*/
+// accordion
+// - suitable for pages with large content sections that can be hidden and revealed
 
 
-// resets
-.ui-accordion .ui-accordion-header {
-  padding-left : 2.2em;
-  padding-right : 2.2em;
+
+@mixin btnType($state, $colour) {
+  .ui-state-#{$state} .ui-icon,
+  .ui-state-#{$state}.ui-state-hover .ui-icon {
+    background-image : url('../img/ui-icons#{$colour}.png');
+    margin-right : 1rem;
+  }
 }
-.ui-accordion .ui-icon {
-  display : none;
+
+
+
+// ___________________
+// reset jQuery ui css
+
+// - fonts
+.ui-widget {
+  font-family : $font-main;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  @media (min-width : 660px) {
+    font-size: 1.8rem;
+  }
 }
+
+// - button icons
+@include btnType('default', '');
+@include btnType('active', '_white');
+
+
+// - content
+.ui-accordion .ui-accordion-content {
+  padding : 2.5rem 4rem 1rem;
+  line-height: 1.6;
+}
+
+
+
+
+
+
+
 
 
 

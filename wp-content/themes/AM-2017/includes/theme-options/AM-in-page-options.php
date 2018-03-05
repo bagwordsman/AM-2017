@@ -436,7 +436,7 @@ function sandbox_theme_intialize_blog_options() {
 	// Widgets Background
   add_settings_field(
     	'blog_widget_bg_colour',
-			'<i class="fa fa-paint-brush" id="bg-colour-brush" aria-hidden="true"></i>Background Colour',
+		'<i class="fa fa-paint-brush" id="bg-colour-brush" aria-hidden="true"></i>Background Colour',
     	'sandbox_blog_widget_bg_colour_callback',
     	'sandbox_theme_blog_options',
     	'blog_settings_section'
@@ -450,14 +450,14 @@ function sandbox_theme_intialize_blog_options() {
 	);
   add_settings_field(
     	'blog_widget_bg_image',
-			'<i class="fa fa-picture-o" aria-hidden="true"></i>Background Image',
+		'<i class="fa fa-picture-o" aria-hidden="true"></i>Background Image',
     	'sandbox_blog_widget_bg_image_callback',
     	'sandbox_theme_blog_options',
     	'blog_settings_section'
 	);
   add_settings_field(
     	'blog_widget_bg_image_opacity',
-			'<i class="fa fa-arrows-v" id="bg-opacity_icon" aria-hidden="true"></i>Background Image Opacity',
+		'<i class="fa fa-arrows-v" id="bg-opacity_icon" aria-hidden="true"></i>Background Image Opacity',
     	'sandbox_blog_widget_bg_image_opacity_callback',
     	'sandbox_theme_blog_options',
     	'blog_settings_section'
@@ -521,18 +521,18 @@ function sandbox_blog_widget_title_align_callback() {
     // Render the output
     echo '
 		<ul id="blog_widget_title_align">
-				<li>
-						<input type="radio" id="blog_widget_title_align_left" name="sandbox_theme_blog_options[blog_widget_title_align]" value="left" '. ( $options['blog_widget_title_align'] == 'left' ? ('checked="checked" class="green--background"')  : '') .' />
-						<label for="blog_widget_title_align_left">Left (Default)</label>
-				</li>
-				<li>
-				    <input type="radio" id="blog_widget_title_align_center" name="sandbox_theme_blog_options[blog_widget_title_align]" value="center" '. ( $options['blog_widget_title_align'] == 'center' ? ('checked="checked" class="green--background"')  : '') .' />
-				    <label for="blog_widget_title_align_center">Center</label>
-				</li>
-				<li>
-				    <input type="radio" id="blog_widget_title_align_right" name="sandbox_theme_blog_options[blog_widget_title_align]" value="right" '. ( $options['blog_widget_title_align'] == 'right' ? ('checked="checked" class="green--background"')  : '') .' />
-				    <label for="blog_widget_title_align_right">Right</label>
-				</li>
+			<li>
+				<input type="radio" id="blog_widget_title_align_left" name="sandbox_theme_blog_options[blog_widget_title_align]" value="left" '. ( $options['blog_widget_title_align'] == 'left' ? ('checked="checked" class="green--background"')  : '') .' />
+				<label for="blog_widget_title_align_left">Left (Default)</label>
+			</li>
+			<li>
+				<input type="radio" id="blog_widget_title_align_center" name="sandbox_theme_blog_options[blog_widget_title_align]" value="center" '. ( $options['blog_widget_title_align'] == 'center' ? ('checked="checked" class="green--background"')  : '') .' />
+				<label for="blog_widget_title_align_center">Center</label>
+			</li>
+			<li>
+				<input type="radio" id="blog_widget_title_align_right" name="sandbox_theme_blog_options[blog_widget_title_align]" value="right" '. ( $options['blog_widget_title_align'] == 'right' ? ('checked="checked" class="green--background"')  : '') .' />
+				<label for="blog_widget_title_align_right">Right</label>
+			</li>
 		</ul>
 		';
 } // end sandbox_blog_widget_title_align_callback
@@ -551,34 +551,34 @@ function sandbox_blog_widget_bg_colour_callback() {
     // Render the output
     echo '
 		<ul id="blog_widget_bg_colour">
-				<li>
-						<input type="radio" id="blog_widget_bg_colour_default" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="default" '. ( $options['blog_widget_bg_colour'] == 'default' ? ('checked="checked" class="green--background"')  : '') .' />
-						<label for="blog_widget_bg_colour_default">Default (no colour / white)</label>
-				</li>
-				<li>
-				    <input type="radio" id="blog_widget_bg_colour_green" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="green" '. ( $options['blog_widget_bg_colour'] == 'green' ? ('checked="checked" class="green--background"')  : '') .' />
-				    <label for="blog_widget_bg_colour_green">Green</label>
-				</li>
-				<li>
-				    <input type="radio" id="blog_widget_bg_colour_orange" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="orange" '. ( $options['blog_widget_bg_colour'] == 'orange' ? ('checked="checked" class="green--background"')  : '') .' />
-				    <label for="blog_widget_bg_colour_orange">Orange</label>
-				</li>
-        <li>
-            <input type="radio" id="blog_widget_bg_colour_blue" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="blue" '. ( $options['blog_widget_bg_colour'] == 'blue' ? ('checked="checked" class="green--background"')  : '') .' />
-            <label for="blog_widget_bg_colour_blue">Blue</label>
-        </li>
-        <li>
-            <input type="radio" id="blog_widget_bg_colour_red" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="red" '. ( $options['blog_widget_bg_colour'] == 'red' ? ('checked="checked" class="green--background"')  : '') .' />
-            <label for="blog_widget_bg_colour_red">Red</label>
-        </li>
-				<li>
-				    <input type="radio" id="blog_widget_bg_colour_light-grey" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="light-grey" '. ( $options['blog_widget_bg_colour'] == 'light-grey' ? ('checked="checked" class="green--background"')  : '') .' />
-				    <label for="blog_widget_bg_colour_light-grey">Light Grey</label>
-				</li>
-				<li>
-				    <input type="radio" id="blog_widget_bg_colour_dark-grey" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="dark-grey" '. ( $options['blog_widget_bg_colour'] == 'dark-grey' ? ('checked="checked" class="green--background"')  : '') .' />
-				    <label for="blog_widget_bg_colour_dark-grey">Dark Grey</label>
-				</li>
+			<li>
+				<input type="radio" id="blog_widget_bg_colour_default" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="default" '. ( $options['blog_widget_bg_colour'] == 'default' ? ('checked="checked" class="green--background"')  : '') .' />
+				<label for="blog_widget_bg_colour_default">Default (no colour / white)</label>
+			</li>
+			<li>
+				<input type="radio" id="blog_widget_bg_colour_green" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="green" '. ( $options['blog_widget_bg_colour'] == 'green' ? ('checked="checked" class="green--background"')  : '') .' />
+				<label for="blog_widget_bg_colour_green">Green</label>
+			</li>
+			<li>
+				<input type="radio" id="blog_widget_bg_colour_orange" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="orange" '. ( $options['blog_widget_bg_colour'] == 'orange' ? ('checked="checked" class="green--background"')  : '') .' />
+				<label for="blog_widget_bg_colour_orange">Orange</label>
+			</li>
+			<li>
+				<input type="radio" id="blog_widget_bg_colour_blue" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="blue" '. ( $options['blog_widget_bg_colour'] == 'blue' ? ('checked="checked" class="green--background"')  : '') .' />
+				<label for="blog_widget_bg_colour_blue">Blue</label>
+			</li>
+			<li>
+				<input type="radio" id="blog_widget_bg_colour_red" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="red" '. ( $options['blog_widget_bg_colour'] == 'red' ? ('checked="checked" class="green--background"')  : '') .' />
+				<label for="blog_widget_bg_colour_red">Red</label>
+			</li>
+			<li>
+				<input type="radio" id="blog_widget_bg_colour_light-grey" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="light-grey" '. ( $options['blog_widget_bg_colour'] == 'light-grey' ? ('checked="checked" class="green--background"')  : '') .' />
+				<label for="blog_widget_bg_colour_light-grey">Light Grey</label>
+			</li>
+			<li>
+				<input type="radio" id="blog_widget_bg_colour_dark-grey" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="dark-grey" '. ( $options['blog_widget_bg_colour'] == 'dark-grey' ? ('checked="checked" class="green--background"')  : '') .' />
+				<label for="blog_widget_bg_colour_dark-grey">Dark Grey</label>
+			</li>
 		</ul>
 		';
 } // end sandbox_blog_widget_bg_colour_callback
@@ -629,11 +629,11 @@ function sandbox_blog_widget_bg_image_opacity_callback() {
     // Render the output
     echo '
 		<div id="bg_image_slider">
-				<div class="v-slider"></div>
-				<div class="slider-info">
-						<label for="image-opacity">Opacity (%):</label>
-						<input class="slider-value" type="text" id="blog_widget_bg_image_opacity" readonly name="sandbox_theme_blog_options[blog_widget_bg_image_opacity]" value="' . $options['blog_widget_bg_image_opacity'] . '">
-				</div>
+			<div class="v-slider"></div>
+			<div class="slider-info">
+				<label for="image-opacity">Opacity (%):</label>
+				<input class="slider-value" type="text" id="blog_widget_bg_image_opacity" readonly name="sandbox_theme_blog_options[blog_widget_bg_image_opacity]" value="' . $options['blog_widget_bg_image_opacity'] . '">
+			</div>
 		</div>';
 } // end sandbox_blog_widget_bg_image_opacity_callback
 
@@ -658,15 +658,15 @@ function blog_widget_area() {
 	// blog widget area
 	if ( is_active_sidebar( 'blogpages' ) ) {
 
-			echo '
-			<div id="blog-widgets" role="complementary"'. ( $widget_image ? ( ' style="background-image:url('. $widget_image ) .')"' : '') . ( $widget_theme ? ( ' class="'. $widget_theme ) .'"' : '') .'>'.
-					( $widget_title ? ( '<div class="container'. ( $widget_align != 'left' ? ( ' '. $widget_align )  : '') .'"><h3 class="blog-widgets--title">'. $widget_title .'</h3></div>' )  : '') .'
-					<div class="container widgets">
-							'; dynamic_sidebar( 'blogpages' ); echo'
-					</div>
-					'. ( $widget_colour ? ( '<div class="widget-overlay '. $widget_colour ) .'" '. ( $widget_image_opacity != 100 ? ( ' style="opacity:.'. $widget_image_opacity ) .';"' : '') .'></div>' : '') .'
+		echo '
+		<div id="blog-widgets" role="complementary"'. ( $widget_image ? ( ' style="background-image:url('. $widget_image ) .')"' : '') . ( $widget_theme ? ( ' class="'. $widget_theme ) .'"' : '') .'>'.
+			( $widget_title ? ( '<div class="container'. ( $widget_align != 'left' ? ( ' '. $widget_align )  : '') .'"><h3 class="blog-widgets--title">'. $widget_title .'</h3></div>' )  : '') .'
+			<div class="container widgets">
+					'; dynamic_sidebar( 'blogpages' ); echo'
 			</div>
-			';
+			'. ( $widget_colour ? ( '<div class="widget-overlay '. $widget_colour ) .'" '. ( $widget_image_opacity != 100 ? ( ' style="opacity:.'. $widget_image_opacity ) .';"' : '') .'></div>' : '') .'
+		</div>
+		';
 	}
 
 } // end sandbox_blog_widget_title_callback
@@ -675,9 +675,9 @@ function blog_widget_area() {
 
 // load thickbox stuff on admin side only
 if (is_admin()) {
-		wp_enqueue_script('media-upload');
-		wp_enqueue_script('thickbox');
-		wp_enqueue_style('thickbox'); //thickbox styles css
+	wp_enqueue_script('media-upload');
+	wp_enqueue_script('thickbox');
+	wp_enqueue_style('thickbox'); //thickbox styles css
 }
 // hooked into theme logos function
 add_action( 'menu_options_filter', 'sandbox_theme_logo_options' );

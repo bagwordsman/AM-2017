@@ -152,7 +152,7 @@ function menuMedium(resize) {
         // large menu - 
         else {
             if (resize == true) {
-                console.log('resized large menu -> if it is wide enough, swap in original text');
+                // console.log('resized large menu -> if it is wide enough, swap in original text');
                 // test if the screen is wide enough
                 // - this is around 1120px in chrome
                 // - this will probably be quite difficult without original text in the DOM

@@ -1,4 +1,5 @@
 // Forms
+// - WordPress Contact Form 7 css
 input[type="email"],
 input[type="number"],
 input[type="search"],
@@ -60,8 +61,9 @@ label > .label-body {
 }
   
  
+
   
-// - - - - - -
+// _____________________________
 // Searchform
 #searchform {
   position : relative;
@@ -87,11 +89,15 @@ label > .label-body {
     right : 0;
     width : 38px;
     height : 38px;
-    content : "";
-    color : transparent;
+    background-color : $able-green;
+    font-size : 0; // stop 'search' being shown on hover
     padding : 8px;
-    border : 0 !important;
-    border-bottom : 4px solid $orange !important;
+    border : 0;
+    border-radius : 0;
+    &:hover,
+    &:focus {
+      background-color : $able-green_light;
+    }
   }
   // button icon
   .fa {
@@ -107,53 +113,120 @@ label > .label-body {
   
  
   
-// - - - - - -
-// Ninja forms
-.nf-form-cont{
+
+
+// _____________________________
+// Contact Form 7
+.wpcf7-form {
+  position : relative;
   padding : 3.5rem 3.5rem 7rem;
   box-sizing : border-box;
   border : 2px solid $able-grey;
+  text-align : left;
   .wrapper-grey & {
     background-color : $able-midgrey;
   }
 }
 
 
-// required fields
-.nf-form-fields-required {
+
+// _______________
+// red highlighting
+// - required fields
+.wpcf7-form .required {
   position : absolute;
   bottom : 3.5rem;
 }
-.required {
-  color : $red_dark;
+
+// - input entry not valid
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+textarea {
+  &.wpcf7-not-valid {
+    border:2px solid $red;
+    color: $red;
+  }
 }
-// error
-.nf-form-cont .nf-error .ninja-forms-field {
-  border:2px solid $red_dark;
-  color: $red_dark;
+// not valid text
+span.wpcf7-not-valid-tip {
+  color: $red;
+  // div.wpcf7-recaptcha & { 
+
+  // }
 }
 
 
 
-@media (min-width: 980px) {
-  // error
-  .nf-error-wrap.nf-error {
-    padding-bottom : 1.6rem;
+// _______________
+// form components
+.wpcf7-form label {
+  margin-bottom : 10px;
+}
+.wpcf7-form h3 {
+  margin-bottom : 3rem;
+}
+span.wpcf7-list-item { // checkbox
+  margin-left : 0;
+  display : block;
+  &-label {
+    padding-left : 2%;
+    font-weight : $bold;
   }
-  .nf-after-field .nf-error-msg {
-    position : absolute;
-    right : 0;
-    margin-right : 0;
-  }
-  .nf-error-msg.nf-error-field-errors {
-    position : absolute;
-    right : 3.5rem;
-    bottom : 7rem;
-  }
-  // submit - align to the right
-  .container--center .submit-wrap {
-    text-align : right;
-  }
+}
+.wpcf7-text,
+.wpcf7-textarea {
+  width : 100%;
+}
+.wpcf7-textarea {
+  min-height : 200px;
+}
+.wpcf7-submit {
+  float : right;
+  margin-bottom : 2rem;
+}
+
+
+
+// _______________
+// form validation
+div.wpcf7-response-output {
+  width : 100%;
+  margin : 0;
+  padding : 0.5rem 1rem;
+  box-sizing : border-box;
+  color : $white;
+}
+div.wpcf7-validation-errors {
+  margin-top : 5rem;
+  background-color : $red;
+  border : none;
+}
+div.wpcf7-spam-blocked {
+  margin-top : 2.5rem;
+  background-color : $orange;
+  border : none;
+}
+
+// google recaptcha
+// @media (min-width: 550px) {
+  // div.wpcf7-recaptcha {
+    // margin-bottom : 2.5rem;
+    // position : absolute;
+    // bottom : .6rem;
+  // }
+// }
+
+
+
+// _______________
+// form on submit gif
+div.wpcf7 .ajax-loader {
+  background : url('../img/spinner.gif');
+  background-size : cover;
+  background-repeat : no-repeat;
+  width : 32px;
+  height : 32px;
 }
 
 

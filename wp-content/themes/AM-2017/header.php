@@ -78,7 +78,7 @@ if ($appletouch != '') echo '<link rel="apple-touch-icon" sizes="" href="'.$appl
 if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.$favicon.'">';
 ?>
 <!--[if lt IE 9]>
-<link rel="stylesheet" id="ie-css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/ie/nmt-ie.css" type="text/css" media="all" />
+<link rel="stylesheet" id="ie-css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/ie/able-ie.css" type="text/css" media="all" />
 <![endif]-->
 <?php wp_head(); ?>
 </head>
@@ -88,23 +88,47 @@ if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.
 
 <div class="page'. ( is_active_sidebar( 'cookies' ) ? (' has-cookie-bar') : '') .'">
 	<div class="page-wrap">';
-	
-	// header section
-	// . ( is_active_sidebar( 'cookies' ) ? (' has-cookie-bar') : '') .'" 
 
 	// site title
 	$parts = preg_split('/\s+/', $site_title);
 	$able = $parts[0];
 	$mediation = $parts[1];
 
+
+	// header CTA
+	$header_cta = get_option ( 'sandbox_theme_cta_options' );
+	$cta_type = $header_cta['cta_type'];
+	$cta_link = $header_cta['cta_link'];
+	$cta_text = $header_cta['cta_text'];
+	$cta_colour = $header_cta['cta_colour'];
+
 	
-	// get variables from theme options
+	// phone CTA
 	$company_options = get_option ( 'sandbox_theme_company_options' );
 	$phone = $company_options['company_phone'];
 	// convert phone to dialable number
 	$search = array(' ', '(', ')', '-');
 	$replace = array('', '', '', '');
 	$dial = str_replace($search, $replace, $phone);
+
+
+	
+	
+	// determine the type of Call to Action
+	if ($cta_type !== 'none') {
+		$cta = '<div class="nine columns contact">';
+		// phone
+		if ($cta_type == 'phone') {
+			$cta = $cta . '<a class="button '.$cta_colour.' solid phone" href="tel:'.$dial.'" title="call us"><span>Call Us:</span>'.$phone.'</a>';
+		}
+		// other
+		else {
+			$cta = $cta . '<a class="button '.$cta_colour.' solid" href="'.$cta_link.'" title="'.$cta_text.'">'.$cta_text.'</a>';
+		}
+		$cta = $cta . '</div><!-- nine columns -->';
+	}
+	
+	
 
 
 	// may need to look at logo size for new header - could use an svg, or bg image
@@ -117,8 +141,8 @@ if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.
 						( $mainlogo ? ('<img src="' . $mainlogo .'" alt="'. $site_title .'" width="'. $mainlogo_Width .'" height="' . $mainlogo_Height .'" />')  : '<img src="'. get_bloginfo('stylesheet_directory'). '/img/AM-logo.png" alt="'. $site_title .'" width="200" height="113" />' ) . '
 						<div class="site-title"><span>' . $able .' </span>' . $mediation . '</div>
 					</a>
-				</div><!-- three columns -->' .
-				( $phone ? ( '<div class="nine columns contact"><a class="button orange" href="tel:'.$dial.'" title="call us"><span>Call Us:</span>'.$phone.'</a></div><!-- nine columns -->' )  : '') . '
+				</div><!-- three columns -->' . $cta . '
+				
 			</div><!-- container -->
 
 			<div class="nav" role="navigation">

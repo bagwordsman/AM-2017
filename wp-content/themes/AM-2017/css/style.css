@@ -293,19 +293,24 @@ code {
   background-color: #f0f0f0;
   box-sizing: border-box;
   box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
-  transition: top 0.2s ease-in-out;
-  height: 148px; }
+  transition: top 0.2s ease-in-out; }
   .header.up {
-    top: -148px; }
+    top: calc(-110px - 57px); }
+    @media (min-width: 800px) {
+      .header.up {
+        top: calc(-110px - 38px); } }
   .logged-in .header {
-    top: 32px; }
+    top: 46px; }
     .logged-in .header.up {
-      top: calc(-32px - 148px); }
-    @media (max-width: 782px) {
+      top: calc(-110px - 57px + 46px); }
+    @media (min-width: 782px) {
       .logged-in .header {
-        top: 46px; }
+        top: 32px; }
         .logged-in .header.up {
-          top: calc(-46px - 148px); } }
+          top: calc(-110px - 57px + 32px); } }
+    @media (min-width: 800px) {
+      .logged-in .header.up {
+        top: calc(-110px - 38px + 32px); } }
   .header > .container {
     padding-top: 2rem;
     padding-bottom: 2rem; }
@@ -335,11 +340,11 @@ code {
       display: inline-block;
       margin-top: calc((70px - 48px)/2); }
       @media (max-width: 480px) {
-        .header .nine.columns .button {
+        .header .nine.columns .button.phone {
           position: relative; }
-          .header .nine.columns .button span {
+          .header .nine.columns .button.phone span {
             display: none; }
-          .header .nine.columns .button:before {
+          .header .nine.columns .button.phone:before {
             margin-right: 10px;
             font-family: 'FontAwesome';
             content: "\f095"; } }
@@ -447,8 +452,7 @@ code {
       max-height: 55rem; } }
 
 #content {
-  min-height: 300px;
-  padding-bottom: 4rem; }
+  min-height: 300px; }
   #content > div:not(.hero) .five.columns {
     padding-top: 2.5rem;
     border-top: 10px solid; }
@@ -763,17 +767,19 @@ code {
 #affiliates-band {
   background-color: #ffffff;
   padding-top: 3rem;
-  padding-bottom: 3rem; }
+  padding-bottom: 4.5rem;
+  text-align: center; }
   #affiliates-band h4 {
     font-weight: 400;
-    text-align: center;
     margin-bottom: 3rem; }
   #affiliates-band img {
     width: auto;
     height: auto;
+    max-width: 250px;
+    max-height: 200px;
     margin: 1.5rem;
     vertical-align: middle; }
-  @media (min-width: 660px) {
+  @media (min-width: 800px) {
     #affiliates-band img {
       margin: 0;
       margin-left: 3rem; }
@@ -1278,6 +1284,9 @@ code {
 .nav {
   position: relative;
   background-color: #f0f0f0; }
+  @media (min-width: 800px) {
+    .nav {
+      height: 38px; } }
 
 .main-menu li {
   list-style: none; }
@@ -1422,6 +1431,7 @@ code {
       .main-menu li:hover ul li a:hover {
         color: #ffffff; }
     .main-menu li ul {
+      font-size: 90%;
       display: none;
       position: absolute;
       top: 33px;
@@ -1457,7 +1467,7 @@ code {
   .main-menu > li {
     padding: 0 1.5rem; } }
 
-a.button, .button, button, input[type="submit"], input[type="reset"], input[type="button"] {
+.button, button, input[type="submit"], input[type="reset"], input[type="button"] {
   display: inline-block;
   height: 48px;
   padding: 0 10px;
@@ -1475,61 +1485,116 @@ a.button, .button, button, input[type="submit"], input[type="reset"], input[type
   cursor: pointer;
   box-sizing: border-box;
   transition: all ease-in-out 0.25s; }
-  #content a.button,
+  .button .fa,
+  button .fa,
+  input[type="submit"] .fa,
+  input[type="reset"] .fa,
+  input[type="button"] .fa {
+    vertical-align: middle;
+    margin-top: -8px;
+    margin-left: 8px; }
+  .button span,
+  button span,
+  input[type="submit"] span,
+  input[type="reset"] span,
+  input[type="button"] span {
+    font-weight: 400;
+    margin-right: 10px; }
+  .button:hover, .button:focus,
+  button:hover,
+  button:focus,
+  input[type="submit"]:hover,
+  input[type="submit"]:focus,
+  input[type="reset"]:hover,
+  input[type="reset"]:focus,
+  input[type="button"]:hover,
+  input[type="button"]:focus {
+    cursor: pointer;
+    color: #ffffff;
+    outline: 0;
+    background-color: #70bf44;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
+  .button.solid, .button.solid:visited,
+  button.solid,
+  button.solid:visited,
+  input[type="submit"].solid,
+  input[type="submit"].solid:visited,
+  input[type="reset"].solid,
+  input[type="reset"].solid:visited,
+  input[type="button"].solid,
+  input[type="button"].solid:visited {
+    color: #ffffff;
+    background-color: #70bf44;
+    border: 0;
+    line-height: 48px; }
+    .button.solid:hover, .button.solid:visited:hover,
+    button.solid:hover,
+    button.solid:visited:hover,
+    input[type="submit"].solid:hover,
+    input[type="submit"].solid:visited:hover,
+    input[type="reset"].solid:hover,
+    input[type="reset"].solid:visited:hover,
+    input[type="button"].solid:hover,
+    input[type="button"].solid:visited:hover {
+      color: #ffffff;
+      background-color: #8dcc6a; }
   #content .button,
   #content button,
   #content input[type="submit"],
   #content input[type="reset"],
   #content input[type="button"] {
     text-decoration: none; }
-  .home .wrapper-grey > .container a.button, .home .wrapper-grey > .container .button, .home .wrapper-grey > .container button, .home .wrapper-grey > .container input[type="submit"], .home .wrapper-grey > .container input[type="reset"], .home .wrapper-grey > .container input[type="button"] {
+  .home .wrapper-grey > .container .button, .home .wrapper-grey > .container button, .home .wrapper-grey > .container input[type="submit"], .home .wrapper-grey > .container input[type="reset"], .home .wrapper-grey > .container input[type="button"] {
     margin-top: 4rem;
     margin-bottom: 0; }
-  a.button .fa, .button .fa, button .fa, input[type="submit"] .fa, input[type="reset"] .fa, input[type="button"] .fa {
-    vertical-align: middle;
-    margin-top: -8px;
-    margin-left: 8px; }
-  a.button span, .button span, button span, input[type="submit"] span, input[type="reset"] span, input[type="button"] span {
-    font-weight: 400;
-    margin-right: 10px; }
-  a.button:hover, a.button:focus, .button:hover, .button:focus, button:hover, button:focus, input[type="submit"]:hover, input[type="submit"]:focus, input[type="reset"]:hover, input[type="reset"]:focus, input[type="button"]:hover, input[type="button"]:focus {
-    cursor: pointer;
-    color: #ffffff;
-    outline: 0;
-    background-color: #70bf44;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
-  a.button.orange, a.button.orange:visited, .button.orange, .button.orange:visited, button.orange, button.orange:visited, input[type="submit"].orange, input[type="submit"].orange:visited, input[type="reset"].orange, input[type="reset"].orange:visited, input[type="button"].orange, input[type="button"].orange:visited {
+  @media (min-width: 660px) {
+    .button, button, input[type="submit"], input[type="reset"], input[type="button"] {
+      font-size: 27px; } }
+  .button.orange, .button.orange:visited, button.orange, button.orange:visited, input[type="submit"].orange, input[type="submit"].orange:visited, input[type="reset"].orange, input[type="reset"].orange:visited, input[type="button"].orange, input[type="button"].orange:visited {
     color: #f07f37;
     border-color: #f07f37; }
-    a.button.orange:hover, a.button.orange:visited:hover, .button.orange:hover, .button.orange:visited:hover, button.orange:hover, button.orange:visited:hover, input[type="submit"].orange:hover, input[type="submit"].orange:visited:hover, input[type="reset"].orange:hover, input[type="reset"].orange:visited:hover, input[type="button"].orange:hover, input[type="button"].orange:visited:hover {
+    .button.orange:hover, .button.orange:visited:hover, button.orange:hover, button.orange:visited:hover, input[type="submit"].orange:hover, input[type="submit"].orange:visited:hover, input[type="reset"].orange:hover, input[type="reset"].orange:visited:hover, input[type="button"].orange:hover, input[type="button"].orange:visited:hover {
       color: #ffffff;
       background-color: #f49d66;
       border-color: #f49d66; }
-    .contact a.button.orange, .info a.button.orange, .contact a.button.orange:visited, .info a.button.orange:visited, .contact .button.orange, .info .button.orange, .contact .button.orange:visited, .info .button.orange:visited, .contact button.orange, .info button.orange, .contact button.orange:visited, .info button.orange:visited, .contact input[type="submit"].orange, .info input[type="submit"].orange, .contact input[type="submit"].orange:visited, .info input[type="submit"].orange:visited, .contact input[type="reset"].orange, .info input[type="reset"].orange, .contact input[type="reset"].orange:visited, .info input[type="reset"].orange:visited, .contact input[type="button"].orange, .info input[type="button"].orange, .contact input[type="button"].orange:visited, .info input[type="button"].orange:visited {
-      line-height: 48px;
-      border: 0;
+    .button.orange.solid, .button.orange:visited.solid, button.orange.solid, button.orange:visited.solid, input[type="submit"].orange.solid, input[type="submit"].orange:visited.solid, input[type="reset"].orange.solid, input[type="reset"].orange:visited.solid, input[type="button"].orange.solid, input[type="button"].orange:visited.solid {
       color: #ffffff;
-      background-color: #f07f37; }
-      .contact a.button.orange:hover, .contact a.button.orange:focus, .contact a.button.orange:visited:hover, .info a.button.orange:hover, .info a.button.orange:focus, .info a.button.orange:visited:hover, .contact a.button.orange:visited:hover, .contact a.button.orange:visited:focus, .contact a.button.orange:visited:visited:hover, .info a.button.orange:visited:hover, .info a.button.orange:visited:focus, .info a.button.orange:visited:visited:hover, .contact .button.orange:hover, .contact .button.orange:focus, .contact .button.orange:visited:hover, .info .button.orange:hover, .info .button.orange:focus, .info .button.orange:visited:hover, .contact .button.orange:visited:hover, .contact .button.orange:visited:focus, .contact .button.orange:visited:visited:hover, .info .button.orange:visited:hover, .info .button.orange:visited:focus, .info .button.orange:visited:visited:hover, .contact button.orange:hover, .contact button.orange:focus, .contact button.orange:visited:hover, .info button.orange:hover, .info button.orange:focus, .info button.orange:visited:hover, .contact button.orange:visited:hover, .contact button.orange:visited:focus, .contact button.orange:visited:visited:hover, .info button.orange:visited:hover, .info button.orange:visited:focus, .info button.orange:visited:visited:hover, .contact input[type="submit"].orange:hover, .contact input[type="submit"].orange:focus, .contact input[type="submit"].orange:visited:hover, .info input[type="submit"].orange:hover, .info input[type="submit"].orange:focus, .info input[type="submit"].orange:visited:hover, .contact input[type="submit"].orange:visited:hover, .contact input[type="submit"].orange:visited:focus, .contact input[type="submit"].orange:visited:visited:hover, .info input[type="submit"].orange:visited:hover, .info input[type="submit"].orange:visited:focus, .info input[type="submit"].orange:visited:visited:hover, .contact input[type="reset"].orange:hover, .contact input[type="reset"].orange:focus, .contact input[type="reset"].orange:visited:hover, .info input[type="reset"].orange:hover, .info input[type="reset"].orange:focus, .info input[type="reset"].orange:visited:hover, .contact input[type="reset"].orange:visited:hover, .contact input[type="reset"].orange:visited:focus, .contact input[type="reset"].orange:visited:visited:hover, .info input[type="reset"].orange:visited:hover, .info input[type="reset"].orange:visited:focus, .info input[type="reset"].orange:visited:visited:hover, .contact input[type="button"].orange:hover, .contact input[type="button"].orange:focus, .contact input[type="button"].orange:visited:hover, .info input[type="button"].orange:hover, .info input[type="button"].orange:focus, .info input[type="button"].orange:visited:hover, .contact input[type="button"].orange:visited:hover, .contact input[type="button"].orange:visited:focus, .contact input[type="button"].orange:visited:visited:hover, .info input[type="button"].orange:visited:hover, .info input[type="button"].orange:visited:focus, .info input[type="button"].orange:visited:visited:hover {
-        border: 0;
+      background-color: #f07f37;
+      border: 0;
+      line-height: 48px; }
+      .button.orange.solid:hover, .button.orange:visited.solid:hover, button.orange.solid:hover, button.orange:visited.solid:hover, input[type="submit"].orange.solid:hover, input[type="submit"].orange:visited.solid:hover, input[type="reset"].orange.solid:hover, input[type="reset"].orange:visited.solid:hover, input[type="button"].orange.solid:hover, input[type="button"].orange:visited.solid:hover {
+        color: #ffffff;
         background-color: #f49d66; }
-  a.button.blue, a.button.blue:visited, .button.blue, .button.blue:visited, button.blue, button.blue:visited, input[type="submit"].blue, input[type="submit"].blue:visited, input[type="reset"].blue, input[type="reset"].blue:visited, input[type="button"].blue, input[type="button"].blue:visited {
+  .button.blue, .button.blue:visited, button.blue, button.blue:visited, input[type="submit"].blue, input[type="submit"].blue:visited, input[type="reset"].blue, input[type="reset"].blue:visited, input[type="button"].blue, input[type="button"].blue:visited {
     color: #7fc1ff;
     border-color: #7fc1ff; }
-    a.button.blue:hover, a.button.blue:visited:hover, .button.blue:hover, .button.blue:visited:hover, button.blue:hover, button.blue:visited:hover, input[type="submit"].blue:hover, input[type="submit"].blue:visited:hover, input[type="reset"].blue:hover, input[type="reset"].blue:visited:hover, input[type="button"].blue:hover, input[type="button"].blue:visited:hover {
+    .button.blue:hover, .button.blue:visited:hover, button.blue:hover, button.blue:visited:hover, input[type="submit"].blue:hover, input[type="submit"].blue:visited:hover, input[type="reset"].blue:hover, input[type="reset"].blue:visited:hover, input[type="button"].blue:hover, input[type="button"].blue:visited:hover {
+      color: #ffffff;
+      background-color: #b2daff;
+      border-color: #b2daff; }
+    .button.blue.solid, .button.blue:visited.solid, button.blue.solid, button.blue:visited.solid, input[type="submit"].blue.solid, input[type="submit"].blue:visited.solid, input[type="reset"].blue.solid, input[type="reset"].blue:visited.solid, input[type="button"].blue.solid, input[type="button"].blue:visited.solid {
       color: #ffffff;
       background-color: #7fc1ff;
-      border-color: #7fc1ff; }
-  a.button.red, a.button.red:visited, .button.red, .button.red:visited, button.red, button.red:visited, input[type="submit"].red, input[type="submit"].red:visited, input[type="reset"].red, input[type="reset"].red:visited, input[type="button"].red, input[type="button"].red:visited {
+      border: 0;
+      line-height: 48px; }
+      .button.blue.solid:hover, .button.blue:visited.solid:hover, button.blue.solid:hover, button.blue:visited.solid:hover, input[type="submit"].blue.solid:hover, input[type="submit"].blue:visited.solid:hover, input[type="reset"].blue.solid:hover, input[type="reset"].blue:visited.solid:hover, input[type="button"].blue.solid:hover, input[type="button"].blue:visited.solid:hover {
+        color: #ffffff;
+        background-color: #b2daff; }
+  .button.red, .button.red:visited, button.red, button.red:visited, input[type="submit"].red, input[type="submit"].red:visited, input[type="reset"].red, input[type="reset"].red:visited, input[type="button"].red, input[type="button"].red:visited {
     color: #e74e42;
     border-color: #e74e42; }
-    a.button.red:hover, a.button.red:visited:hover, .button.red:hover, .button.red:visited:hover, button.red:hover, button.red:visited:hover, input[type="submit"].red:hover, input[type="submit"].red:visited:hover, input[type="reset"].red:hover, input[type="reset"].red:visited:hover, input[type="button"].red:hover, input[type="button"].red:visited:hover {
+    .button.red:hover, .button.red:visited:hover, button.red:hover, button.red:visited:hover, input[type="submit"].red:hover, input[type="submit"].red:visited:hover, input[type="reset"].red:hover, input[type="reset"].red:visited:hover, input[type="button"].red:hover, input[type="button"].red:visited:hover {
+      color: #ffffff;
+      background-color: #ed786f;
+      border-color: #ed786f; }
+    .button.red.solid, .button.red:visited.solid, button.red.solid, button.red:visited.solid, input[type="submit"].red.solid, input[type="submit"].red:visited.solid, input[type="reset"].red.solid, input[type="reset"].red:visited.solid, input[type="button"].red.solid, input[type="button"].red:visited.solid {
       color: #ffffff;
       background-color: #e74e42;
-      border-color: #e74e42; }
-  @media (min-width: 660px) {
-    a.button, .button, button, input[type="submit"], input[type="reset"], input[type="button"] {
-      font-size: 27px; } }
+      border: 0;
+      line-height: 48px; }
+      .button.red.solid:hover, .button.red:visited.solid:hover, button.red.solid:hover, button.red:visited.solid:hover, input[type="submit"].red.solid:hover, input[type="submit"].red:visited.solid:hover, input[type="reset"].red.solid:hover, input[type="reset"].red:visited.solid:hover, input[type="button"].red.solid:hover, input[type="button"].red:visited.solid:hover {
+        color: #ffffff;
+        background-color: #ed786f; }
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -1624,8 +1689,7 @@ ul ul,
 ul ol,
 ol ol,
 ol ul {
-  margin: 1.5rem 0 1.5rem 3rem;
-  font-size: 90%; }
+  margin: 1.5rem 0 1.5rem 3rem; }
 
 li {
   margin-bottom: 1rem; }
@@ -1643,7 +1707,11 @@ li {
       content: "\f00c";
       color: #f07f37; }
 
-#content .container img {
+#sitemap-list li > ul {
+  padding-left: 4rem;
+  margin-bottom: 0; }
+
+div[class*="wrapper-"] img {
   display: block;
   max-width: 100%;
   margin: 3rem auto; }
@@ -1672,20 +1740,26 @@ li {
   padding-left: 1em;
   padding-right: 1em; }
 
-div[class*="gallery"] {
-  margin: 5rem auto 3rem !important; }
-  div[class*="gallery"] img {
-    max-width: 100%;
+div[id*="gallery"] > dl.gallery-item {
+  width: 100% !important;
+  float: none !important;
+  margin: 4.5rem auto 0 !important; }
+  div[id*="gallery"] > dl.gallery-item img {
     height: auto;
+    width: auto;
+    max-width: 250px;
+    max-height: 200px;
     border: 0 !important;
-    margin: 1rem; }
-
-.gallery img {
-  margin-top: 0; }
-  .gallery img a,
-  .gallery img a:hover,
-  .gallery img a:active {
-    border: 0 !important; }
+    margin: 3rem auto; }
+    div[id*="gallery"] > dl.gallery-item img a,
+    div[id*="gallery"] > dl.gallery-item img a:hover,
+    div[id*="gallery"] > dl.gallery-item img a:active {
+      border: 0 !important; }
+  @media (min-width: 660px) {
+    div[id*="gallery"] > dl.gallery-item {
+      width: 33% !important;
+      float: left !important;
+      margin-top: 0 !important; } }
 
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
@@ -5594,11 +5668,13 @@ label > .label-body {
     right: 0;
     width: 38px;
     height: 38px;
-    content: "";
-    color: transparent;
+    background-color: #70bf44;
+    font-size: 0;
     padding: 8px;
-    border: 0 !important;
-    border-bottom: 4px solid #f07f37 !important; }
+    border: 0;
+    border-radius: 0; }
+    #searchform input[type="submit"]:hover, #searchform input[type="submit"]:focus {
+      background-color: #8dcc6a; }
   #searchform .fa {
     position: absolute;
     top: 8px;
@@ -5608,40 +5684,77 @@ label > .label-body {
     font-size: 21px;
     color: #ffffff; }
 
-.nf-form-cont {
+.wpcf7-form {
+  position: relative;
   padding: 3.5rem 3.5rem 7rem;
   box-sizing: border-box;
-  border: 2px solid #6a6a6a; }
-  .wrapper-grey .nf-form-cont {
+  border: 2px solid #6a6a6a;
+  text-align: left; }
+  .wrapper-grey .wpcf7-form {
     background-color: #dbdbdb; }
 
-.nf-form-fields-required {
+.wpcf7-form .required {
   position: absolute;
   bottom: 3.5rem; }
 
-.required {
-  color: #da2a1c; }
+input[type="text"].wpcf7-not-valid,
+input[type="tel"].wpcf7-not-valid,
+input[type="email"].wpcf7-not-valid,
+textarea.wpcf7-not-valid {
+  border: 2px solid #e74e42;
+  color: #e74e42; }
 
-.nf-form-cont .nf-error .ninja-forms-field {
-  border: 2px solid #da2a1c;
-  color: #da2a1c; }
+span.wpcf7-not-valid-tip {
+  color: #e74e42; }
 
-@media (min-width: 980px) {
-  .nf-error-wrap.nf-error {
-    padding-bottom: 1.6rem; }
+.wpcf7-form label {
+  margin-bottom: 10px; }
 
-  .nf-after-field .nf-error-msg {
-    position: absolute;
-    right: 0;
-    margin-right: 0; }
+.wpcf7-form h3 {
+  margin-bottom: 3rem; }
 
-  .nf-error-msg.nf-error-field-errors {
-    position: absolute;
-    right: 3.5rem;
-    bottom: 7rem; }
+span.wpcf7-list-item {
+  margin-left: 0;
+  display: block; }
+  span.wpcf7-list-item-label {
+    padding-left: 2%;
+    font-weight: 700; }
 
-  .container--center .submit-wrap {
-    text-align: right; } }
+.wpcf7-text,
+.wpcf7-textarea {
+  width: 100%; }
+
+.wpcf7-textarea {
+  min-height: 200px; }
+
+.wpcf7-submit {
+  float: right;
+  margin-bottom: 2rem; }
+
+div.wpcf7-response-output {
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  color: #ffffff; }
+
+div.wpcf7-validation-errors {
+  margin-top: 5rem;
+  background-color: #e74e42;
+  border: none; }
+
+div.wpcf7-spam-blocked {
+  margin-top: 2.5rem;
+  background-color: #f07f37;
+  border: none; }
+
+div.wpcf7 .ajax-loader {
+  background: url("../img/spinner.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px; }
+
 blockquote {
   margin-top: 3rem;
   padding: 3rem 0;
@@ -5664,23 +5777,27 @@ blockquote {
       blockquote p:first-child {
         font-size: 2.1rem; } }
 
-/*
-Services > Court Forms (etc) - Accordion
+.ui-widget {
+  font-family: "Asap", Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6; }
+  @media (min-width: 660px) {
+    .ui-widget {
+      font-size: 1.8rem; } }
 
-NOTES:
- - this could go on any page
- - need to try adding 2+ accordions per page
- - add option to expand all items at one time
- - jquery ui comes with images that I have not included, could be buggy
- - need to be able to set heights of tabs - this is done inline with jquery by the looks of things (202px)
+.ui-state-default .ui-icon,
+.ui-state-default.ui-state-hover .ui-icon {
+  background-image: url("../img/ui-icons.png");
+  margin-right: 1rem; }
 
-*/
-.ui-accordion .ui-accordion-header {
-  padding-left: 2.2em;
-  padding-right: 2.2em; }
+.ui-state-active .ui-icon,
+.ui-state-active.ui-state-hover .ui-icon {
+  background-image: url("../img/ui-icons_white.png");
+  margin-right: 1rem; }
 
-.ui-accordion .ui-icon {
-  display: none; }
+.ui-accordion .ui-accordion-content {
+  padding: 2.5rem 4rem 1rem;
+  line-height: 1.6; }
 
 .accordion {
   text-align: left; }
@@ -5691,7 +5808,7 @@ NOTES:
 #able-map-content {
   width: 100%;
   min-height: 250px;
-  margin: 0 auto 5rem; }
+  margin: 0 auto; }
 
 .gmap-infobox {
   text-align: center; }
@@ -5720,47 +5837,40 @@ NOTES:
     width: auto;
     z-index: 100000; }
 
-.profile-pic {
+@media (min-width: 450px) and (max-width: 659px) {
+  .mediator-profile {
+    padding: 0 2.5rem; } }
+.mediator-profile > div {
   position: relative;
   margin-bottom: 3rem; }
-  .profile-pic img {
-    margin-left: 0;
-    max-width: 100%;
-    height: auto; }
-
-.name-card {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.mediator-profile .profile-pic {
+  height: auto;
+  margin: 0; }
+.mediator-profile .name-card {
   padding: 1rem 2rem;
   box-sizing: border-box;
   background-color: #70bf44;
   color: #ffffff; }
-  .name-card h3, .name-card p {
+  .mediator-profile .name-card h3, .mediator-profile .name-card p {
     margin: 0; }
-
 .mediator-profile .button {
   float: right; }
   .no-js .mediator-profile .button {
     display: none; }
+.mediator-profile .full-profile img {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  max-width: 225px; }
+  a .mediator-profile .full-profile img {
+    transition: all ease-in-out .3s; }
+  a:hover .mediator-profile .full-profile img {
+    opacity: .75; }
 
 .full-profile {
   display: block; }
   .full-profile.hidden {
     display: none; }
-  .full-profile img {
-    display: inline-block;
-    margin-left: 2rem; }
-    a .full-profile img {
-      transition: all ease-in-out .3s; }
-    a:hover .full-profile img {
-      opacity: .75; }
-
-#content .container .full-profile img {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 0 0 2rem; }
 
 .serviceswrapper {
   display: block;

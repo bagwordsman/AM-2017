@@ -1,48 +1,45 @@
-// Mediator Profiles - made with shortcodes
+// Mediator Profiles
+// - made with shortcodes, pulls info from user profiles
 
-// mediator image
-.profile-pic {
-  position : relative;
-  margin-bottom : 3rem;
-  img {
-    margin-left : 0;
-    max-width : 100%;
-    height : auto;
+
+// profile pic, name card, content, button
+.mediator-profile {
+  @media (min-width: 450px) and (max-width: 659px) {
+    padding : 0 2.5rem;
   }
-}
-
-// mediator bio
-.name-card {
-  position : absolute;
-  left : 0;
-  right : 0;
-  bottom : 0;
-  padding : 1rem 2rem;
-  box-sizing : border-box;
-  background-color : $able-green;
-  color : $white;
-  h3, p {
+  // profile pic and name card
+  > div {
+    position : relative;
+    margin-bottom : 3rem;
+  }
+  // profile pic
+  .profile-pic {
+    height : auto;
     margin : 0;
   }
-}
-
-// read full profile - button
-.mediator-profile .button {
-  float : right;
-  .no-js & {
-    display : none;
+  // name card
+  .name-card {
+    padding : 1rem 2rem;
+    box-sizing : border-box;
+    background-color : $able-green;
+    color : $white;
+    h3, p {
+      margin : 0;
+    }
   }
-}
-
-// read full profile - section */
-.full-profile {
-  display : block;
-  &.hidden {
-    display : none;
+  // button
+  .button {
+    float : right;
+    .no-js & {
+      display : none;
+    }
   }
-  img {
+  // read full profile - hidden section
+  .full-profile img {
     display : inline-block;
-    margin-left : 2rem;
+    vertical-align : middle;
+    margin : 0;
+    max-width : 225px;
     a & {
       transition : all ease-in-out .3s;
     }
@@ -50,18 +47,15 @@
       opacity : .75;
     }
   }
-  // a:hover img {
-  //   opacity : .75;
-  // }
-}
 
-// reset here
-#content .container .full-profile img {
-  display : inline-block;
-  vertical-align : middle;
-  margin : 0 0 0 2rem;
 }
 
 
 
-
+// read full profile - hidden section
+.full-profile {
+  display : block;
+  &.hidden {
+    display : none;
+  }
+}

@@ -1,0 +1,162 @@
+// Forms
+// NOTE: switching back to WordPress Contact Form 7, ninja forms just won't work any more
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px; // The 6px vertically centers text on FF, ignored by Webkit
+  background-color: $white;
+  color: $able-grey;
+  border: 2px solid $able-grey;
+  border-radius: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  // Removes awkward default styles on some inputs for iOS
+  &:not(select) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+         appearance: none;
+  }
+  // focus
+  &:focus {
+    border: 2px solid $able-green;
+    color: $able-green;
+    box-shadow:none;
+    outline: 0;
+  }
+}
+
+
+
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: $bold;
+}
+fieldset {
+  padding: 0;
+  border-width: 0;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  display : inline;
+}
+label > .label-body {
+  display : inline-block;
+  margin-left : .5rem;
+  font-weight : $normal;
+}
+  
+ 
+  
+// - - - - - -
+// Searchform
+#searchform {
+  position : relative;
+  display : inline-block;
+  margin : 0;
+  > div {
+    position : absolute;
+    top : 0;
+    bottom : 0;
+    right : 0;
+    height : 38px;
+  }
+  // text input
+  input[type="text"] {
+    position : relative;
+    margin : 0;
+    padding-right : 42px;
+  }
+  // button
+  input[type="submit"] {
+    position : absolute;
+    top : 0;
+    right : 0;
+    width : 38px;
+    height : 38px;
+    content : "";
+    color : transparent;
+    padding : 8px;
+    border : 0 !important;
+    border-bottom : 4px solid $orange !important;
+  }
+  // button icon
+  .fa {
+    position : absolute;
+    top : 8px;
+    right : 10px;
+    z-index : 2;
+    pointer-events : none;
+    font-size : 21px;
+    color : $white;
+  }
+}
+  
+ 
+  
+// - - - - - -
+// Ninja forms
+.nf-form-cont{
+  padding : 3.5rem 3.5rem 7rem;
+  box-sizing : border-box;
+  border : 2px solid $able-grey;
+  .wrapper-grey & {
+    background-color : $able-midgrey;
+  }
+}
+
+
+// required fields
+.nf-form-fields-required {
+  position : absolute;
+  bottom : 3.5rem;
+}
+.required {
+  color : $red_dark;
+}
+// error
+.nf-form-cont .nf-error .ninja-forms-field {
+  border:2px solid $red_dark;
+  color: $red_dark;
+}
+
+
+
+@media (min-width: 980px) {
+  // error
+  .nf-error-wrap.nf-error {
+    padding-bottom : 1.6rem;
+  }
+  .nf-after-field .nf-error-msg {
+    position : absolute;
+    right : 0;
+    margin-right : 0;
+  }
+  .nf-error-msg.nf-error-field-errors {
+    position : absolute;
+    right : 3.5rem;
+    bottom : 7rem;
+  }
+  // submit - align to the right
+  .container--center .submit-wrap {
+    text-align : right;
+  }
+}
+
+
+
+

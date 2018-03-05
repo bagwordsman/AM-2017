@@ -39,6 +39,9 @@
 .nav {
 	position : relative;
 	background-color : $able-lightgrey;
+	@media (min-width: 800px) {
+		height : 38px;
+	}
 	// height : 38px;
 	// overflow : hidden;
 }
@@ -293,6 +296,7 @@
 			}
 			// child menu
 			ul {
+				font-size: 90%;
 				display : none;
 				position : absolute;
 				top : 33px;

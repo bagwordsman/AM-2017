@@ -223,15 +223,15 @@ function user_meta_shortcode_handler($atts, $content=null) {
 
 		return '
 		<div class="mediator-profile">
-				<div class="profile-pic">
-						<img src="'. $image .'" alt="'. $name .'" width="'. $imageWidth .'" height="'. $imageHeight .'"/>
-						<div class="name-card">
-								<h3>'. $name .'</h3>
-								<p>'. $title .'</p>
-						</div>
-				</div>' .
-				( (count($read_more) === 1) ? ( $read_more[0] ) : '') .
-				( (count($read_more) === 2) ? ( $read_more[0] . '<a class="button" href="#">Read Full Profile</a>' .
-				'<div class="full-profile">' . $read_more[1] .'</div>') : '') .
+			<div>
+				<img class="profile-pic" src="'. $image .'" alt="'. $name .'" width="'. $imageWidth .'" height="'. $imageHeight .'"/>
+				<div class="name-card">
+						<h3>'. $name .'</h3>
+						<p>'. $title .'</p>
+				</div>
+			</div>' .
+			( (count($read_more) === 1) ? ( $read_more[0] ) : '') .
+			( (count($read_more) === 2) ? ( $read_more[0] . '<a class="button" href="#">Read Full Profile</a>' .
+			'<div class="full-profile">' . $read_more[1] .'</div>') : '') .
 		'</div>';
 }

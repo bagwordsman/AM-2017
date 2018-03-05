@@ -55,7 +55,9 @@ function accordion_shortcode_handler($atts, $content=null) {
 		<script>
 		jQuery(document).ready(function( $ ) {
 			$( function() {
-				$( ".accordion:nth-child(1n)" ).accordion();
+				$( ".accordion:nth-child(1n)" ).accordion({
+					heightStyle: "content"
+				});
 			} );
 		});
 		</script>
