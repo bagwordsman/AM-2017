@@ -129,7 +129,7 @@
           &:before {
             margin-right : 10px;
             font-family : 'FontAwesome';
-            content : "\f095";
+            content : $fa_phone;
           }
         }
       }
@@ -153,5 +153,4 @@
 // - see content-containers.scss for content specific styles
 #content {
   border-top : 148px solid $able-lightgrey; // offsets fixed header AND stops header from appearing white when scrolling up quickly
-
 }

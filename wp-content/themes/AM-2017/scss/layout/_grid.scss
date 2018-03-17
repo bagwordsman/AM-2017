@@ -1,5 +1,4 @@
-/* Grid
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+// Grid
 .container {
   position: relative;
   width: 100%;
@@ -14,14 +13,14 @@
   float: left;
   box-sizing: border-box; }
 
-/* For devices larger than 550px */
+// For devices larger than 550px
 @media (min-width: 550px) {
   .container {
     width: 95%;
     padding: 0; }
 }
 
-/* For devices larger than 660px */
+// For devices larger than 660px
 @media (min-width: 660px) {
   .container {
     width: 90%; }

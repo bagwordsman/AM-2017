@@ -1,8 +1,18 @@
 // Blog Page Widgets
 
 
+@mixin widget_h4 {
+  h4 {
+    display : inline-block;
+    font-size : 2.7rem;
+    letter-spacing : 0.04rem;
+    margin-bottom : 2rem;
+    @content;
+  }
+}
 
-// - - - -
+
+// ________________________________________________
 // widget area and theme
 #blog-widgets {
   position : relative;
@@ -14,6 +24,12 @@
     z-index : 4;
   }
 }
+
+
+
+
+
+// ________________________
 // overlay
 .widget-overlay {
   position : absolute;
@@ -22,6 +38,7 @@
   left : 0;
   right : 0;
   z-index : 2;
+  // make colour variables consistent first
   &.default {
     background-color : $white;
   }
@@ -47,7 +64,7 @@
 
 
 
-// - - - -
+// ________________________
 // widget padding and alignment - are these used elsewhere?
 .container {
   &.center {
@@ -64,7 +81,7 @@
 
 
 
-// - - - -
+// ________________________
 // right aligned h3 title
 .blog-widgets--title {
   display : inline-block;
@@ -77,21 +94,20 @@
 
 
 
-// - - - -
-// widget titles
-.widget h4 {
-  display : inline-block;
-}
 
 
 
-// - - - -
+
+
+
+
+
+
+// ________________________________________________
 // categories
 .widget_categories {
-  h4 {
-    font-size : 2.7rem;
-    letter-spacing : 0.04rem;
-    margin-bottom : 2rem;
+
+  @include widget_h4 {
     padding : 0 1rem;
     box-sizing : border-box;
     background-color : $able-green;
@@ -99,6 +115,7 @@
     border : 1px solid $black;
     text-shadow : $text-outline;
   }
+
   // li
   .cat-item {
     list-style : none;
@@ -114,7 +131,7 @@
       position : relative;
       &:after {
         font-family : 'FontAwesome';
-        content : "\f054";
+        content : $fa_right;
         position : absolute;
         right : 1.5rem;
         transition : all ease-in-out .3s;
@@ -132,14 +149,10 @@
 
 
 
-// - - - -
+// ________________________________________________
 // latest posts
 .widget_recent_entries {
-  h4 {
-    font-size : 2.7rem;
-    letter-spacing : 0.04rem;
-    margin-bottom : 2rem;
-  }
+  @include widget_h4;
   li {
     margin-bottom : 1.5rem;
   }
@@ -151,6 +164,10 @@
     box-sizing : border-box;
     line-height : 1;
   }
+
+
+
+
   // light theme
   .light & {
     h4, li, a {
@@ -184,46 +201,65 @@
     }
   }
 
+
+
+
+
+
+
 }
 
 
 
-// - - - -
+// ________________________________________________
 // tags
-.widget_tag_cloud h4 {
-  border-color : $white;
-  border-radius : 3.6rem;
-  padding-left : 4.8rem;
-  position : relative;
-  &:before {
-    content : '\2022';
-    position : absolute;
-    left : 0.5rem;
-    top : -4rem;
-    font-size : 6rem;
+.widget_tag_cloud {
+  // title
+  @include widget_h4 {
+    position : relative;
+    padding : 0 1.8rem 0 4.8rem;
+    border-radius : 3.6rem;
+    border-color : $white;
+    background-color : $blue_dark;
+    &:before {
+      content : $fa_bullet;
+      position : absolute;
+      left : 1.2rem;
+      top : -3.2rem;
+      font-size : 6rem;
+    }
   }
+
+  // tags
 }
+
+
+
 .tagcloud a {
   position : relative;
-  padding : .25rem .75rem .25rem 1.5rem;
-  border : .2em solid transparent;
+  padding : .75rem 1.25rem .75rem 2rem;
   border-radius : 5rem;
   background-color : $white;
+  
   color : $blue_dark;
+  margin-bottom : 1rem;
+  white-space : nowrap;
+  display : inline-block;
+  line-height : 1;
   &:before {
-    content : '\2022';
+    content : $fa_bullet;
     position : absolute;
     left : 0.5rem;
-    top : -.75rem;
-    font-size : 2rem;
+    top : 0;
+    font-size : 2.5rem;
+    line-height : 1;
     color : $blue_dark;
   }
   &:hover {
-    border : .2em solid $white;
     background-color : $blue_dark;
     color : $white;
-  }
-  &:hover:before {
-    color : $white;
+    &:before {
+      color : $white;
+    }
   }
 }

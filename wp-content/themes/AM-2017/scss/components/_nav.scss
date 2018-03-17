@@ -3,25 +3,27 @@
 
 
 
-// Assistive text - for screen readers (skip to content link)
+// Assistive text - for screen readers
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
-.assistive-text,
-.site .screen-reader-text {
-	position : absolute !important;
-	clip : rect(1px, 1px, 1px, 1px);
-}
-.assistive-text:focus{
-	background : $white;
-	border: 2px solid #ddd;
-	clip : auto !important;
-	color : $able-grey;
-	display : block;
-	font-size : 2rem;
-	padding : 1rem;
-	position : absolute;
-	top : 1rem;
-	left : 1rem;
-	z-index : 100000; /* Above WP toolbar */
+.assistive-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px);
+    position: absolute !important;
+    white-space: nowrap;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    &:focus {
+        background : $able-green;
+		border : none;
+		color : $white;
+		clip: auto !important;
+        display: block;
+		top : 1rem;
+		left : 1rem;
+        width: auto;
+        z-index: 100000; // position above WP toolbar
+    }
 }
 
 
@@ -175,7 +177,7 @@
 		&.menu-item-has-children > a:after {
 			padding-left : 1.25rem;
 			font-family: 'FontAwesome';
-			content : "\f054";
+			content : $fa_right;
 		}
 
 		
@@ -274,7 +276,7 @@
 					top : 0;
 					right : 0;
 					font-family: 'FontAwesome';
-					content : "\f078";
+					content : $fa_down;
 				}
 				&:after {
 					padding-left : 0;

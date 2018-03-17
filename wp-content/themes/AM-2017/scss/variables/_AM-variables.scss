@@ -1,6 +1,25 @@
 // Able Mediation - scss theme variables
 
 
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// font awesome icons
+$fa_bullet : '\2022';
+$fa_phone : '\f095';
+
+$fa_left : '\f053';
+$fa_right : '\f054';
+$fa_down : '\f078';
+
+// use like an object - see blog.scss
+$fa-icon: (
+  "left": '\f053',
+  "right": '\f054',
+  "down": '\f078'
+);
+
+
+
+
 
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 // able colours

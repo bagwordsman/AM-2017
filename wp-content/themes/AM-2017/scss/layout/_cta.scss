@@ -1,5 +1,39 @@
-// #secondary - linked page / call to action container
+// cta (call to action)
+// - #secondary - linked page / call to action container
 // - note: this is an anchor link, not a div
+
+
+@mixin text-style {
+  position : absolute;
+  top : 0;
+  bottom : 0;
+  left : 0;
+  right : 0;
+  margin : 0;
+  padding : 2rem 3.5rem;
+  box-sizing : border-box;
+  color : $white;
+  text-align : center;
+  transition : all ease-in-out .3s;
+  @content;
+}
+
+
+// colour options
+@mixin colour($colour_class, $colour_var) {
+  &.#{$colour_class} {
+    .thumbnail,
+    .text,
+    .secondary--divider:before,
+    .secondary--divider:after {
+      background-color : $colour_var;
+    }
+  }
+}
+
+
+
+// ______________________________________
 #secondary {
   display : block;
   border-top : 5px solid $able-grey;
@@ -16,22 +50,13 @@
     max-height : 30rem;
     // heading
     h3 {
-      z-index : 1;
-      position : absolute;
-      top : 0;
-      bottom : 0;
-      left : 0;
-      right : 0;
-      margin : 0;
-      padding : 2rem 3.5rem;
-      box-sizing : border-box;
-      font-size : 4rem;
-      line-height : 26rem;
-      font-weight : $bold;
-      text-align : center;
-      color : $white;
-      text-shadow : $shadow-down-right_thin;
-      transition : all ease-in-out .3s;
+      @include text-style {
+        z-index : 1;
+        font-size : 4rem;
+        line-height : 26rem;
+        font-weight : $bold;
+        text-shadow : $shadow-down-right_thin;
+      }
     }
     // image
     img {
@@ -49,21 +74,12 @@
     min-height : 12.5rem;
     // paragraph
     p {
-      z-index : 2;
-      margin : 0;
-      padding : 2rem 3.5rem;
-      box-sizing : border-box;
-      position : absolute;
-      top : 0;
-      bottom : 0;
-      left : 0;
-      right : 0;
-      font-size : 3rem;
-      line-height : 8.5rem;
-      text-align : center;
-      letter-spacing : 0.03rem;
-      color : $white;
-      transition : all ease-in-out .3s;
+      @include text-style {
+        z-index : 2;
+        font-size : 3rem;
+        line-height : 8.5rem;
+        letter-spacing : 0.03rem;
+      }
     }
   }
 
@@ -75,35 +91,14 @@
   &:hover .text p {text-shadow : $shadow-down-right_thin}
 
 
-
   // colour options
-  &.green .thumbnail,
-  &.green .text,
-  &.green .secondary--divider:before,
-  &.green .secondary--divider:after {
-    background-color : $able-green;
-  }
-  
-  &.orange .thumbnail,
-  &.orange .text,
-  &.orange .secondary--divider:before,
-  &.orange .secondary--divider:after {
-    background-color : $orange;
-  }
-  
-  &.blue .text,
-  &.blue .thumbnail,
-  &.blue .secondary--divider:before,
-  &.blue .secondary--divider:after {
-    background-color : $blue;
-  }
-  
-  &.red .text,
-  &.red .thumbnail,
-  &.red .secondary--divider:before,
-  &.red .secondary--divider:after {
-    background-color : $red_dark;
-  }
+  @include colour('green', $able-green);
+  @include colour('orange', $orange);
+  @include colour('blue', $blue);
+  @include colour('blue', $red_dark);
+
+
+
 
 
   // media queries
@@ -137,7 +132,7 @@
   } // end media queries
 
 
-}
+} // end #secondary
 
 
 

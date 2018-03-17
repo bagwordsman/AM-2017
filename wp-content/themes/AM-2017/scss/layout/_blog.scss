@@ -1,10 +1,7 @@
 // Blog
 
 
-
-// - - - -
-// a) blogroll / blog index page
-.blog #content {
+@mixin blog_container {
   > .container {
     padding : 5rem 0;
     box-sizing : border-box;
@@ -20,12 +17,19 @@
     font-size : 3.6rem;
     text-decoration : none;
   }
-
 }
 
 
 
-// blog pages navigation
+
+
+// ________________________________________________
+// a) blogroll / blog index page
+.blog #content {
+  @include blog_container;
+}
+
+// blog page navigation - bottom of blog index page
 .nav-links {
   .prev {
     margin-right : 1.5rem;
@@ -45,23 +49,11 @@
 
 
 
-// - - - -
+// ________________________________________________
 // b) archives (tags and categories)
 // index / blogroll
 .archive #content {
-  > .container {
-    padding : 5rem 0;
-    box-sizing : border-box;
-    border-top : 5px solid $able-grey;
-    &.no-top {
-      padding-top : 0;
-      border-top : none;
-    }
-  }
-  h2 a {
-    font-size : 3.6rem;
-    text-decoration : none;
-  }
+  @include blog_container;
 }
 // ii) hero heading
 .archive h1 span {
@@ -75,7 +67,7 @@
 
 
 
-// - - - -
+// ________________________________________________
 // c) single posts
 
 // headings - reset multi importer changes - still required?
@@ -116,12 +108,35 @@
 }
 
 
-// previous and next
+
+// thumbnail column widths
+.blog .four.columns,
+.category .four.columns,
+.archive .four.columns {
+  @media (min-width: 860px) {
+    width : 22%;
+  }
+  @media (min-width: 1160px) {
+    width : 13.3333333333%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+// ________________________________________________
+// single posts: previous and next post nav
 %nav {
   display : block;
   padding : 3rem 0;
   box-sizing : border-box;
-  vertical-align : middle;
   #content & {
     text-decoration : none;
   }
@@ -131,65 +146,102 @@
   }
 }
 
-// prev
-.nav-previous {
-  @extend %nav;
-  border-top : 5px solid $able-grey;
-  h3 {
-    padding-left : 3.5rem;
-    &:before {
-      font-family : 'FontAwesome';
-      content : "\f053";
-      position : absolute;
-      top : 0;
-      left : 0;
+%nav-icon {
+  font-family : 'FontAwesome';
+  position : absolute;
+  top : 0;
+}
+
+
+
+// conversion variables
+$nav-border: (
+  "left" : 'border-top',
+  "right" : 'border-bottom'
+);
+$prev-next: (
+  "left" : 'previous',
+  "right" : 'next'
+);
+$before-after: (
+  "left" : 'before',
+  "right" : 'after'
+);
+
+// conversion functions
+@function icon($key) {
+  @return map-get($fa-icon, $key);
+}
+@function border($key) {
+  @return map-get($nav-border, $key);
+}
+@function prev-next($key) {
+  @return map-get($prev-next, $key);
+}
+@function before-after($key) {
+  @return map-get($before-after, $key);
+}
+
+
+@mixin post_nav($left_or_right, $colour_default, $colour_light, $colour_med, $colour_dark) {
+  .nav-#{prev-next(#{$left_or_right})} {
+    @extend %nav;
+    #{border(#{$left_or_right})} : 5px solid $able-grey;
+
+    // post title
+    h3 {
+      position : relative;
+      margin-bottom : 0;
+      padding-#{$left_or_right} : 3.5rem;
+      text-align : #{$left_or_right};
+      // arrow icon
+      &:#{before-after(#{$left_or_right})} {
+        @extend %nav-icon;
+        content : icon(#{$left_or_right});
+        #{$left_or_right} : 0;
+      }
+
     }
-  }
-}
 
-// next
-.nav-next {
-  @extend %nav;
-  border-bottom : 5px solid $able-grey;
-  h3 {
-    padding-right : 3.5rem;
-    text-align : right;
-    &:after {
-      font-family : 'FontAwesome';
-      content : "\f054";
-      position : absolute;
-      top : 0;
-      right : 0;
+    // no thumbnail
+    &.no_thumb {
+      color : $colour_default;
+      background-color : $colour_light;
+      &:hover,
+      &:focus {
+        color : $colour_dark;
+        background-color : $colour_med;
+        padding-#{$left_or_right} : 6rem;
+      }
     }
-  }
+ 
+    // has thumbnail
+    &.has_thumb {
+      h3 {
+        background-color : $colour_default;
+        padding : 0 1rem;
+        padding-#{$left_or_right} : 4.5rem;
+        &:#{before-after(#{$left_or_right})} {
+          #{$left_or_right} : 1rem;
+        }
+      }
+      a {
+        background-color : $colour_default;
+      }
+    }
+
+  } // end .nav-
 }
 
 
-// no thumb prev
-#content a.nav-previous.no_thumb {
-  color : $able-green;
-  background-color : $able-green_lighter;
-  &:hover,
-  &:focus {
-    padding-left : 6rem;
-    color : $able-green_dark;
-    background-color : $able-green_light;
-  }
-}
+@include post_nav('left', $able-green, $able-green_lighter, $able-green_light, $able-green_dark);
+@include post_nav('right', $able-grey, $able-lightgrey, $able-middarkgrey, $able-darkergrey);
 
-// no thumb next
-#content a.nav-next.no_thumb {
-  color : $able-grey;
-  background-color : $able-lightgrey;
-  &:hover,
-  &:focus {
-    padding-left : 6rem;
-    color : $able-darkergrey;
-    background-color : $able-middarkgrey
-  }
-}
 
-// has thumb
+
+
+
+// has thumbnail
 .has_thumb {
   position : relative;
   min-height : 18.86rem;
@@ -223,44 +275,20 @@
     pointer-events : none;
     
   }
-  // prev
-  &.nav-previous h3 {
-    padding-left : 4.5rem;
-    padding-right : 1rem;
-    background-color : $able-green;
-    &:before {
-      left : 1rem;
-    }
-  }
-  // next
-  &.nav-next h3 {
-    padding-left : 1rem;
-    padding-right : 4.5rem;
-    background-color : $able-grey;
-    &:after {
-      right : 1rem;
-    }
-  }
-  // prev
-  &.nav-previous a {
-    background-color : $able-green;
-  }
-  // next
-  &.nav-next a {
-    background-color : $able-grey;
-  }
+
+
+  
 }
 
 
 
 
 
-// index page / blogroll - thumbnail widths
-.blog #content .four.columns {
-  @media (min-width: 860px) {
-    width : 22%;
-  }
-  @media (min-width: 1160px) {
-    width : 13.3333333333%;
-  }
-}
+
+// ________________________________________________
+// d) blog widgets
+
+
+
+
+

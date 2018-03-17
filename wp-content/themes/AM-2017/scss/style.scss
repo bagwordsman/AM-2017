@@ -1,15 +1,11 @@
 /*
 Basic Stylesheet
- - includes everything for any page of the Able Mediation Website
- - put together for a reference point
- - duplicate this, and omit what isn't required when building different pages
+ - all css for any page of the Able Mediation Website
+ - could load page specific css by cutting out what isn't required
 
  NOTES:
- - reset currently in style.css (top level of the theme)
- - variables must be imported first
- - try to import frame (layout) first, followed by components
- - try to import stuff at the top of the screen first
- - import home page and landing page stuff first
+ - reset currently in style.css (required by WordPress, in root of theme)
+ - import priorities: 1 - variables, 2 - home page and top of pages, 3 - components
 
  TESTING:
  - by changing output css in AM-css-js.php
@@ -18,55 +14,45 @@ Basic Stylesheet
 */
 @import "variables/AM-variables", // have to import variables first: used in all partials - also import mixins first
         
-        // - - -
-        // basic structure - top of page
-        "components/base",
+        // layout
         "layout/grid",
         "layout/header",
         "layout/hero",
-        "layout/content-containers",
-        "layout/content-dividers",
-        // bottom of the page
-        "layout/secondary-container",
-        "layout/affiliated-container",
+        "layout/containers",
+        "layout/cta",
         "layout/footer",
         // blog - lower priority
         "layout/blog",
         "layout/blog-widgets",
+
+        // libraries
+        "libraries/font-awesome.min", // note: thee should be stripped down - just use what i need
+        "libraries/jquery-ui.min",
         
-        // - - -
-        // high priority components - top of pages
-        "components/cookie-bar",
+        // components
+        "components/base",
         "components/nav",
         "components/buttons",
-        "components/typography",
-        "components/lists",
         "components/images",
 
-        // - - -
-        // libraries
-        "libraries/font-awesome.min", // note: this could be stripped down - just for accordions
-        "libraries/jquery-ui.min",
-
-        // - - -
-        // medium priority components - middle of pages
-        "components/twitterfeed",
-        // "components/forms",
+        // custom components
         "components/forms-wpcf7",
         // "components/forms-ninjaforms",
-        "components/blockquotes",
+        "components/cookie-bar",
         "components/accordion",
         "components/google-map",
-        // low priority components
-        "components/assistive-text",
+        "components/twitterfeed",
 
         
-
         // individual pages
         "page-specific/mediator-profiles",
         "page-specific/services-parent";
 
 
+
+
+
+        
 
 /*
 order in original css:

@@ -1,40 +1,221 @@
-// Base Styles
+// Able Mediation - base css (typography and misc components)
+// - Typography
+// - Lists
+// - Blockquotes
+// - Spacing
+// - Alignment Utilities
+// - Tables
+// - Line
+// - Code
 
-// need to define what this file is really about - an extend of the reset.scss?
 
-// NOTE
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Typography
 // html is set to 62.5% so that all the REM measurements throughout Skeleton
 // are based on 10px sizing. So basically 1.8rem = 18px :)
 html {
   font-size: 62.5%;
 }
 body {
-  font-size: 1.6em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  font-size: 1.6em; // currently ems cause chrome bug misinterpreting rems on body element
   line-height: 1.6;
   font-weight: 400;
   font-family: $font-main;
   color: $able-grey;
 }
 
-
-// referral form padding class
-.padded {padding-top:203px;}
-
-/*
-.no-js #self-referral-form {
-  padding-top:203px;
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: $bold;
+  line-height: 1.8;
 }
-.no-js #solicitor-referral-form {
-  padding-top:203px;
+h1 {
+  font-size: 3.0rem;
+  letter-spacing: 0.02rem;
 }
-padding-top:203px;/* 141 + 62 (fixed header + h2-inc. bottom margin)
-*/
+h2 {
+  font-size: 2.6rem;
+  letter-spacing: 0.03rem;
+}
+h3 {
+  font-size: 2.4rem;
+  letter-spacing: 0.04rem;
+}
+h4 {
+  font-size: 2.1rem;
+  letter-spacing: 0.05rem;
+}
+h5 {
+  font-size: 1.8rem;
+  letter-spacing: 0.06rem;
+}
+h6 {
+  font-size: 1.5rem;
+  letter-spacing: 0.07rem;
+}
+
+
+
+// make text larger for larger screens
+@media (min-width: 660px) {
+
+  body {
+    font-size: 1.8rem;
+    line-height: 1.6;
+  }
+  h1 { font-size: 3.6rem; }
+  h2 { font-size: 3.0rem; }
+  h3 { font-size: 2.7rem; }
+  h4 { font-size: 2.4rem; }
+
+}
+
+p { margin-top: 0; }
+em { font-style:italic; }
+
+
+// Links
+a {
+  color : $able-green;
+  outline : 0 none;
+  text-decoration : none;
+  transition : all 0.3s ease-in-out 0s;
+  &:hover {
+    color : $able-green_dark;
+  }
+  #content & {
+    text-decoration : underline;
+  }
+}
+
+
+// text highlighting
+.red-text{
+  color : $red;
+}
+a.red-text {
+  color : $white;
+  background-color : $red;
+  padding : 2px;
+  box-sizing : border-box;
+  text-decoration : none !important;
+  &:hover {
+    background-color : lighten( $red, 10% );
+  }
+}
 
 
 
 
 
-// - - - - - -
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// Lists
+ul {
+  list-style : disc inside;
+  #content .container & {
+    list-style-position : outside;
+    margin-left : 1.8rem;
+  }
+}
+
+ol {
+  list-style: decimal inside;
+}
+ol, ul {
+  padding-left : 0;
+  margin-top : 0;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin : 1.5rem 0 1.5rem 3rem;
+}
+
+// li
+li {
+  margin-bottom: 1rem;
+  // page content
+  #content .container & {
+    margin-bottom : .5rem;
+  }
+  // checklist - stars - where is this used?
+  // .sub-columns & {
+  //   position : relative;
+  //   padding-left : 3rem;
+  //   list-style : none;
+  //   &:before {
+  //     position : absolute;
+  //     top : 0;
+  //     left : 0;
+  //     font-family : 'FontAwesome';
+  //     content : "\f00c";
+  //     color : $orange;
+  //   }
+  // }
+}
+
+
+// sitemap list
+#sitemap-list li > ul {
+  padding-left : 4rem;
+  margin-bottom : 0;
+}
+
+
+
+
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// Blockquotes
+blockquote {
+  margin-top : 3rem;
+  padding : 3rem 0;
+  font-family : 'Lato', sans-serif;
+  p {
+    margin-bottom : 0;
+    text-align : right;
+    font-weight : $normal;
+    &:first-child {
+      margin-bottom : 1rem;
+      padding-left : 2rem;
+      border-left : 1rem solid $able-green;
+      text-align : left;
+      font-size : 1.8rem;
+      font-weight : $light;
+      font-style : italic;
+    }
+  }
+  // media queries
+  @media (min-width: 660px) {
+    padding : 0;
+    p:first-child {
+      font-size : 2.1rem;
+    }
+  } // end media queries
+}
+
+
+
+
+
+
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
 // Spacing
 button,
 .button {
@@ -59,8 +240,11 @@ form {
 
 
 
-// - - - - - -
-// alignment classes
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// Alignment Utilities
 @media (min-width: 660px) {
 
   .alignleft,
@@ -86,26 +270,11 @@ form {
 
 
 
-// - - - - - -
-// Utilities - not used
-.u-full-width {
-  width: 100%;
-  box-sizing: border-box; }
-.u-max-full-width {
-  max-width: 100%;
-  box-sizing: border-box; }
-.u-pull-right {
-  float: right; }
-.u-pull-left {
-  float: left;
-}
 
 
 
-
-
-// - - - - - -
-// Tables - could be worthy of their own partial
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// Tables - may be used in the future
 th,
 td {
   padding : 12px 15px;
@@ -124,7 +293,7 @@ td {
 
 
 
-// - - - - - -
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
 // Line
 hr {
   margin-top: 3rem;
@@ -138,29 +307,15 @@ hr {
 
 
 
-// - - - - - -
-// Tooltip - phased out
-.ui-tooltip {
-  position : absolute;
-  max-width : 30rem;
-  background-color : $able-darkergrey;
-  color : $able-midgrey;
-  padding : .5em;
-  font-size : 1.4rem;
-  line-height : 1;
-  &-negative {
-    background-color : $able-midgrey;
-    color : $able-darkergrey;
-  }
-}
 
 
 
 
 
 
-// - - - - - -
-// Code
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// Code - not used
 code {
   padding: .2rem .5rem;
   margin: 0 .2rem;

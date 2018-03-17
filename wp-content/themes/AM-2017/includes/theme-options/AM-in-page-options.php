@@ -420,7 +420,7 @@ function sandbox_theme_intialize_blog_options() {
 	add_settings_field(
     	'blog_widget_title',
     	'<h4>Blog Widget Area</h4>
-			<i class="fa fa-header" aria-hidden="true"></i>Title',
+		<i class="fa fa-header" aria-hidden="true"></i>Title',
     	'sandbox_blog_widget_title_callback',
     	'sandbox_theme_blog_options',
     	'blog_settings_section'
@@ -611,7 +611,7 @@ function sandbox_blog_widget_bg_image_callback() {
 		echo
 		'<div class="bg-img_group blog_widget_bg_image">
 			<div class="widget-bg-preview">
-					<img class="adminlogo widget-image-preview" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/widgets-bg_default.jpg"/>
+				<img class="adminlogo widget-image-preview" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/widgets-bg_default.jpg"/>
 			</div>
 			<input type="button" class="button button-primary" value="Upload Blog Widgets Background Image" id="upload_blog_widget_bg_image"/>
 			<label for="blog_widget_bg_image">Background Image Location - can also enter with URL. Image should be at least 1800px wide.</label>
@@ -662,7 +662,7 @@ function blog_widget_area() {
 		<div id="blog-widgets" role="complementary"'. ( $widget_image ? ( ' style="background-image:url('. $widget_image ) .')"' : '') . ( $widget_theme ? ( ' class="'. $widget_theme ) .'"' : '') .'>'.
 			( $widget_title ? ( '<div class="container'. ( $widget_align != 'left' ? ( ' '. $widget_align )  : '') .'"><h3 class="blog-widgets--title">'. $widget_title .'</h3></div>' )  : '') .'
 			<div class="container widgets">
-					'; dynamic_sidebar( 'blogpages' ); echo'
+				'; dynamic_sidebar( 'blogpages' ); echo'
 			</div>
 			'. ( $widget_colour ? ( '<div class="widget-overlay '. $widget_colour ) .'" '. ( $widget_image_opacity != 100 ? ( ' style="opacity:.'. $widget_image_opacity ) .';"' : '') .'></div>' : '') .'
 		</div>
