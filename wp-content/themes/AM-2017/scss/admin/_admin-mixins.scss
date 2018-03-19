@@ -1,0 +1,215 @@
+// admin mixins
+// - acf scss has lots of repeated styles; suitable for mixins
+
+@mixin box {
+    &.no_box {
+        margin-top : 5rem;
+        margin-bottom : 5rem;
+        padding : 1rem 2rem 1.5rem;
+        @content;
+    }
+}
+
+
+@mixin content-white {
+    // content
+    .label {
+        color : $white;
+        text-shadow : none;
+    }
+    // headings
+    .label label {
+        color : $white;
+        text-shadow : $shadow-down-right_thin;
+    }
+    @content;
+}
+
+
+@mixin label($colour, $bg){
+    padding : .25rem .75rem;
+    box-sizing : border-box;
+    font-weight : $normal;
+    background-color : $bg;
+    color : $colour;
+}
+
+// theme options and mediator profiles
+@mixin shortcode {
+    .shortcode-info {
+        color : $grey;
+        span {
+        @include label($white, $red);
+        }
+    }
+}
+
+
+
+@mixin wysiwyg-content-split($content, $bg, $hover){
+    .label:after,
+    .profile-info .form-table th:first-child:after// Users > Your Profile only
+        {
+        content : $content;
+        display : inline-block;
+        margin-left : .75rem;
+        padding : .25rem .75rem;
+        color : $white;
+        background-color : $bg;
+        font-size : 1.2rem;
+        font-weight : $normal;
+        line-height : 1.6rem;
+        text-shadow : none;
+    }
+    div[aria-label="Horizontal line"] button,
+    #mceu_11 button // Users > Your Profile only
+        {
+        padding : 0;
+            .mce-ico {
+            color : $white;
+            background-color : $bg;
+            &:hover {
+                background-color : $hover;
+            }
+        }
+    }
+    @content;
+}
+
+
+@mixin sidebar {
+    margin-right : 10rem;
+    margin-top : 2.5rem;
+    padding-top : 1.5rem;
+    // output different top borders
+    @for $i from 1 through length($colour_options) {
+        &.#{nth($colour_options, $i)} {
+        border-top : 10px solid nth($colour_codes, $i);
+        }
+        .label.#{nth($colour_options, $i)} label {
+        color : nth($colour_codes, $i);
+        text-shadow : none;
+        }
+    }
+}
+
+
+@mixin faux-btn($color) {
+    box-shadow : none;
+    -webkit-box-shadow : none;
+    text-shadow : none;
+    display : inline-block;
+    height : 48px;
+    padding: 0 10px;
+    margin-right : 2.5rem;
+    color : $color;
+    text-align : center;
+    font-size : 21px;
+    font-weight : 700;
+    line-height : 42px;
+    letter-spacing : .1rem;
+    text-decoration : none;
+    white-space : nowrap;
+    background-color : transparent;
+    border : 3px solid $color;
+    border-radius : 4px;
+    box-sizing : border-box;
+    @content;
+}
+
+
+@mixin form-fields {
+    input[type="text"],
+    select,
+    textarea {
+        font-size : 1.2rem;
+        font-weight : $normal;
+        height : 38px;
+        line-height : 38px;
+        box-shadow : none;
+        color : $grey;
+        border : 2px solid $grey;
+        &:focus {
+            box-shadow : none;
+            border : 2px solid $orange;
+        }
+        @content;
+    }
+}
+
+
+@mixin radio-colour($names, $codes) {
+    @for $i from 1 through length($names) {
+        input[value="#{nth($names, $i)}"]:checked {
+            // radio
+            &:before {
+                background-color : nth($codes, $i); 
+            }
+            // label
+            + label {
+                background-color : nth($codes, $i);
+                color : $white;
+                padding : 2px 5px;
+            }
+        }
+    }
+}
+
+
+@mixin cta-colour($class, $bg, $inputs, $focus, $hover) {
+    &.#{$class},
+    &.#{$class} > .handlediv {
+        background-color : $bg;
+    }
+    &.#{$class}.closed > .handlediv {
+        background-color : $inputs;
+    }
+    &.#{$class} {
+        @include form-fields {
+            border : 2px solid $inputs;
+            &:focus {
+                border : 2px solid $focus;
+            }
+        }
+        #acf-linked_page_content p.label:after {
+            background-color : $focus;
+        }
+        #acf-linked_page_content div[aria-label="Horizontal line"] button {
+            padding : 0;
+            .mce-ico {
+                background-color : $focus;
+                &:hover {
+                    background-color : $hover;
+                }
+            }
+        }
+    }
+}
+
+
+// admin page mixins
+@mixin section-header {
+    position : relative;
+    padding-left : 20px;
+    padding-right : 20px;
+    padding-bottom : 140px;
+    > h1 {
+        position : relative;
+        text-align : center;
+        color : $white !important;
+        text-shadow : $text-outline, $shadow-down-right_lg;
+    }
+    @content;
+}
+
+@mixin divider ($before_after, $plus_minus) {
+    &:#{$before_after} {
+        content : "";
+        position : absolute;
+        top : -20px;
+        left : -20px;
+        right : 20px;
+        height : 220px;
+        transform: skew(0deg, #{$plus_minus}8deg);
+    }
+}

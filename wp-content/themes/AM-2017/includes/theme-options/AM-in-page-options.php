@@ -194,7 +194,7 @@ function sandbox_theme_sanitize_map_options( $input ) {
 function sandbox_map_options_callback() {
 	echo '<p>Add your Google Maps API Key, then define general settings for the map, before adding your office locations.</p>
 		<p>Copy and paste the following shortcode to add your Google Map into pages:</p>
-		<p><strong>[google-map]</strong></p>';
+		<p class="shortcode-info"><span>[google-map]</span></p>';
 } // end sandbox_map_options_callback
 
 //
@@ -241,11 +241,11 @@ function sandbox_gmap_height_callback() {
     // Render the output
     echo '
 		<div id="gmap_slider">
-				<div class="v-slider"></div>
-				<div class="slider-info">
-						<label for="map-height">Height (px):</label>
-						<input class="slider-value" type="text" id="gmap_height" readonly name="sandbox_theme_map_options[gmap_height]" value="' . $options['gmap_height'] . '">
-				</div>
+			<div class="v-slider"></div>
+			<div class="slider-info">
+					<label for="map-height">Height (px):</label>
+					<input class="slider-value" type="text" id="gmap_height" readonly name="sandbox_theme_map_options[gmap_height]" value="' . $options['gmap_height'] . '">
+			</div>
 		</div>';
 } // end sandbox_gmap_height_callback
 
@@ -552,7 +552,7 @@ function sandbox_blog_widget_bg_colour_callback() {
     echo '
 		<ul id="blog_widget_bg_colour">
 			<li>
-				<input type="radio" id="blog_widget_bg_colour_default" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="default" '. ( $options['blog_widget_bg_colour'] == 'default' ? ('checked="checked" class="green--background"')  : '') .' />
+				<input type="radio" id="blog_widget_bg_colour_default" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="white" '. ( $options['blog_widget_bg_colour'] == 'white' ? ('checked="checked" class="green--background"')  : '') .' />
 				<label for="blog_widget_bg_colour_default">Default (no colour / white)</label>
 			</li>
 			<li>
@@ -568,15 +568,15 @@ function sandbox_blog_widget_bg_colour_callback() {
 				<label for="blog_widget_bg_colour_blue">Blue</label>
 			</li>
 			<li>
-				<input type="radio" id="blog_widget_bg_colour_red" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="red" '. ( $options['blog_widget_bg_colour'] == 'red' ? ('checked="checked" class="green--background"')  : '') .' />
+				<input type="radio" id="blog_widget_bg_colour_red" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="red_dark" '. ( $options['blog_widget_bg_colour'] == 'red_dark' ? ('checked="checked" class="green--background"')  : '') .' />
 				<label for="blog_widget_bg_colour_red">Red</label>
 			</li>
 			<li>
-				<input type="radio" id="blog_widget_bg_colour_light-grey" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="light-grey" '. ( $options['blog_widget_bg_colour'] == 'light-grey' ? ('checked="checked" class="green--background"')  : '') .' />
+				<input type="radio" id="blog_widget_bg_colour_light-grey" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="grey_lighter" '. ( $options['blog_widget_bg_colour'] == 'grey_lighter' ? ('checked="checked" class="green--background"')  : '') .' />
 				<label for="blog_widget_bg_colour_light-grey">Light Grey</label>
 			</li>
 			<li>
-				<input type="radio" id="blog_widget_bg_colour_dark-grey" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="dark-grey" '. ( $options['blog_widget_bg_colour'] == 'dark-grey' ? ('checked="checked" class="green--background"')  : '') .' />
+				<input type="radio" id="blog_widget_bg_colour_dark-grey" name="sandbox_theme_blog_options[blog_widget_bg_colour]" value="grey" '. ( $options['blog_widget_bg_colour'] == 'grey' ? ('checked="checked" class="green--background"')  : '') .' />
 				<label for="blog_widget_bg_colour_dark-grey">Dark Grey</label>
 			</li>
 		</ul>

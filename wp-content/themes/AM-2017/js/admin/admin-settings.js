@@ -473,12 +473,12 @@
 		$('input[name="sandbox_theme_blog_options[blog_widget_bg_colour]"]:checked').each(blogWidgetsColour); // onload
 
 		function blogWidgetsColour() {
-		    $('#bg-colour-brush').removeClass('none green orange blue red light-grey dark-grey').addClass(this.value);
-				$('#blog_widget_bg_colour label').removeClass('none green orange blue red light-grey dark-grey').addClass(this.value);
-				// opacity icon - greater context
-				$('#bg-opacity_icon').removeClass('none green orange blue red light-grey dark-grey').addClass(this.value);
-				// background colour
-				$('.widget-bg-preview').removeClass('none green orange blue red light-grey dark-grey').addClass(this.value);
+		    $('#bg-colour-brush').removeClass('none green orange blue red_dark grey_lighter grey').addClass(this.value);
+			$('#blog_widget_bg_colour label').removeClass('none green orange blue red_dark grey_lighter grey').addClass(this.value);
+			// opacity icon - greater context
+			$('#bg-opacity_icon').removeClass('none green orange blue red_dark grey_lighter grey').addClass(this.value);
+			// background colour
+			$('.widget-bg-preview').removeClass('none green orange blue red_dark grey_lighter grey').addClass(this.value);
 
 		}
 

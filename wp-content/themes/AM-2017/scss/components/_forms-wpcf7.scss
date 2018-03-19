@@ -12,8 +12,8 @@ select {
   height: 38px;
   padding: 6px 10px; // The 6px vertically centers text on FF, ignored by Webkit
   background-color: $white;
-  color: $able-grey;
-  border: 2px solid $able-grey;
+  color: $grey;
+  border: 2px solid $grey;
   border-radius: 0;
   box-shadow: none;
   box-sizing: border-box;
@@ -25,8 +25,8 @@ select {
   }
   // focus
   &:focus {
-    border: 2px solid $able-green;
-    color: $able-green;
+    border: 2px solid $green;
+    color: $green;
     box-shadow:none;
     outline: 0;
   }
@@ -89,14 +89,14 @@ label > .label-body {
     right : 0;
     width : 38px;
     height : 38px;
-    background-color : $able-green;
+    background-color : $green;
     font-size : 0; // stop 'search' being shown on hover
     padding : 8px;
     border : 0;
     border-radius : 0;
     &:hover,
     &:focus {
-      background-color : $able-green_light;
+      background-color : $green_light;
     }
   }
   // button icon
@@ -121,10 +121,10 @@ label > .label-body {
   position : relative;
   padding : 3.5rem 3.5rem 7rem;
   box-sizing : border-box;
-  border : 2px solid $able-grey;
+  border : 2px solid $grey;
   text-align : left;
   .wrapper-grey & {
-    background-color : $able-midgrey;
+    background-color : $grey_pale;
   }
 }
 

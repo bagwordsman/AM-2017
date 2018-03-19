@@ -19,7 +19,7 @@
   left : 0;
   right : 0;
   z-index : 5;
-  background-color : $able-lightgrey;
+  background-color : $grey_lighter;
   box-sizing : border-box;
   box-shadow : $shadow-down-right;
   transition: top 0.2s ease-in-out;
@@ -92,7 +92,7 @@
       flex-direction : column;
       align-items : center;
       text-decoration : none;
-      color : $able-grey;
+      color : $grey;
       font-weight : $bold;
       line-height : 1;
       .site-title {
@@ -100,7 +100,7 @@
         line-height : 1;
         font-weight : $bold;
         span {
-          color : $able-green;
+          color : $green;
         }
       } 
     } // end .logo a    
@@ -128,8 +128,8 @@
           }
           &:before {
             margin-right : 10px;
-            font-family : 'FontAwesome';
-            content : $fa_phone;
+            font-family : $font-icon;
+            content : icon('phone');;
           }
         }
       }
@@ -152,5 +152,5 @@
 // content padding
 // - see content-containers.scss for content specific styles
 #content {
-  border-top : 148px solid $able-lightgrey; // offsets fixed header AND stops header from appearing white when scrolling up quickly
+  border-top : 148px solid $grey_lighter; // offsets fixed header AND stops header from appearing white when scrolling up quickly
 }

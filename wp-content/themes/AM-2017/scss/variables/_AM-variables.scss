@@ -1,77 +1,74 @@
 // Able Mediation - scss theme variables
 
 
-//––––––––––––––––––––––––––––––––––––––––––––––––––
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
 // font awesome icons
-$fa_bullet : '\2022';
-$fa_phone : '\f095';
-
-$fa_left : '\f053';
-$fa_right : '\f054';
-$fa_down : '\f078';
 
 // use like an object - see blog.scss
 $fa-icon: (
   "left": '\f053',
   "right": '\f054',
-  "down": '\f078'
+  "down": '\f078',
+  "down-thin": '\f107',
+  "bullet": '\2022', // note - this is not font awesome
+  "phone": '\f095',
+  "home": '\f015',
+  "envelope": '\f0e0',
+  "facebook": '\f230',
+  "gplus": '\f2b3',
+  "twitter": '\f081',
+  "linkedin": '\f08c',
 );
+@function icon($key) {
+  @return map-get($fa-icon, $key);
+}
+// use like this: icon('bullet');
 
 
 
 
 
-//––––––––––––––––––––––––––––––––––––––––––––––––––
-// able colours
-$able-green : #70bf44;
-$able-grey : #6a6a6a;
-
-// greys
-$able-darkergrey : #545454; // from single posts nav
-$able-darkgrey : #b3b3b3; // from footer
-$able-middarkgrey : #c0c0c0; // from single posts nav
-$able-midgrey : #dbdbdb; // from nav
-$able-lightgrey : #f0f0f0;
-
-// black and white
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// colours
 $white : #ffffff;
 $black : #000000;
 
-
-// able green variations
-$able-green_darker : darken( $able-green, 20% ); // not used
-$able-green_dark : darken( $able-green, 10% ); // was #599836.
-$able-green_light : lighten( $able-green, 10% ); // was #a9d88e Also #8ccb69 on categories widget
-$able-green_lighter : lighten( $able-green, 20% ); // was #c5e5b4
-// another green - from .nav. used $able-green_light instead
+$green : #70bf44;
+$grey : #6a6a6a;
 
 
-// able grey variations
+// green
+$green_lighter : lighten( $green, 20% ); // was #c5e5b4
+$green_light : lighten( $green, 10% ); // was #a9d88e Also #8ccb69 on categories widget
+// - regular green fits here
+$green_dark : darken( $green, 10% ); // was #599836.
+
+
+// grey
+$grey_lighter : #f0f0f0;
+$grey_pale : #dbdbdb; // used lots of places - 8 partials
+$grey_light : #b3b3b3; // single posts nav and social icons in footer
+// - regular grey fits here
+$grey_dark : #545454; // single posts nav, blog widgets, images
 
 
 
 
-// - - - - - -
 // extra colours
 $orange : #f07f37;
-$blue : #7fc1ff;
-$red : #e74e42;
-// another red - from #secondary: #da291c. used $red_dark instead
-
-// extra colour variations
 $orange_dark : darken( $orange, 10% );
-$blue_dark : darken( $blue, 10% );
-$red_dark : darken( $red, 10% );
-
-// extra colour variations - for buttons
 $orange_light : lighten( $orange, 10% ); // was #f3965b
+
+$blue : #7fc1ff;
+$blue_dark : darken( $blue, 10% );
 $blue_light : lighten( $blue, 10% );
+
+$red : #e74e42;
+$red_dark : darken( $red, 10% );
 $red_light : lighten( $red, 10% );
 
 
 
-
-// - - - - - -
 // social icon colours
 $facebook : #3c5b9a;
 $twitter : #28aae1;
@@ -87,73 +84,13 @@ $linkedin : #0077b5;
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 // font families
 $font-main : 'Asap', Helvetica, Arial, sans-serif;
-$font-blockquote : 'Lato', sans-serif;
-$font-icons : 'FontAwesome';
-
-// font sizes
-
+$font-quote : 'Lato', sans-serif;
+$font-icon : 'FontAwesome';
 
 // font weights
-$light : 300;
+$light : 300; // used once in base.scss - blockquote p
 $normal : 400;
 $bold : 700;
-
-
-
-// line heights
-$font-main-size-xxs : 1.6em;
-$font-main-size : 1.8em;
-$font-main-line-height: 1.6;
-
-
-
-
-
-
-
-
-
-//––––––––––––––––––––––––––––––––––––––––––––––––––
-// measurements - in rem
-$space-s1 : 1rem;
-$space-s2 : 1.5rem;
-$space-s3 : 2rem;
-$space-s4 : 2.5rem;
-$space-s5 : 3rem;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//––––––––––––––––––––––––––––––––––––––––––––––––––
-// make sure variable names correspond to different breakpoints - i.e. 90% was the width at 660px
-// grid and dimensions
-$container-width_xxs : 95%;
-$container-width_xs : 90%;
-$container-width_xl : 1160px;
-
-
-// breakpoints
-$break-xxs : 550px;
-$break-xs : 660px;
-$break-s : 768px;
-$break-m : 860px;
-$break-l : 980px;
-$break-xl : 1160px;
-$break-xxl : 1200px;
-$break-xxxl : 1800px;
-
 
 
 
@@ -163,32 +100,15 @@ $break-xxxl : 1800px;
 
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 // outlines
-$text-outline : -1px -1px 0 $black, 1px -1px 0 $black, -1px 1px 0 $black, 1px 1px 0 $black;
+$text-outline : -1px -1px 0 $black, 1px -1px 0 $black, -1px 1px 0 $black, 1px 1px 0 $black; // used 3 times
 
 // shadows
-$shadow-down-right : 0.25rem 0.25rem .5rem rgba(0, 0, 0, 0.25);
-// box-shadow : 2px 2px 8px rgba(0, 0, 0, 0.25); - from header
-
-$shadow-down-right_thin : 1px 1px 2px rgba(0, 0, 0, 0.5);
-$shadow-down-right_thick : 2px 2px 3px rgba(0, 0, 0, 0.5);
-
-
+$shadow-down-right : 0.25rem 0.25rem .5rem rgba(0, 0, 0, 0.25); // used 6 times
+$shadow-down-right_thin : 1px 1px 2px rgba(0, 0, 0, 0.5); // used 3 times
+$shadow-down-right_thick : 2px 2px 3px rgba(0, 0, 0, 0.5); // used once
+$shadow-down-right_lg : 3px 4px 10px rgba(0, 0 ,0, 0.25); // for admin
 
 // gradients
-$vertical-green : linear-gradient(180deg, $white 0%, $able-green 100%) repeat scroll 0 0;
-$fade-in-out-center_horizontal : linear-gradient(to right, $able-lightgrey, $able-grey 35%, $able-grey 65%, $able-lightgrey 100%) 1 1 1 1;
-$fade-in-out-center_vertical : linear-gradient(to top, $able-lightgrey, $able-grey 35%, $able-grey 65%, $able-lightgrey 100%) 1 1 1 1;
-
-
-
-
-
-
-
-
-//––––––––––––––––––––––––––––––––––––––––––––––––––
-// SPECIFIC ELEMENTS
-
-// tooltip
-// $tooltip-bg : #4d4d4d;
-// $tooltip-fg : #dddddd;
+$vertical-green : linear-gradient(180deg, $white 0%, $green 100%) repeat scroll 0 0;
+$fade-in-out-center_horizontal : linear-gradient(to right, $grey_lighter, $grey 35%, $grey 65%, $grey_lighter 100%) 1 1 1 1;
+$fade-in-out-center_vertical : linear-gradient(to top, $grey_lighter, $grey 35%, $grey 65%, $grey_lighter 100%) 1 1 1 1;

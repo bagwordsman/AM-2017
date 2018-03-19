@@ -24,7 +24,7 @@ body {
   line-height: 1.6;
   font-weight: 400;
   font-family: $font-main;
-  color: $able-grey;
+  color: $grey;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -80,12 +80,12 @@ em { font-style:italic; }
 
 // Links
 a {
-  color : $able-green;
+  color : $green;
   outline : 0 none;
   text-decoration : none;
   transition : all 0.3s ease-in-out 0s;
   &:hover {
-    color : $able-green_dark;
+    color : $green_dark;
   }
   #content & {
     text-decoration : underline;
@@ -182,7 +182,7 @@ li {
 blockquote {
   margin-top : 3rem;
   padding : 3rem 0;
-  font-family : 'Lato', sans-serif;
+  font-family : $font-quote;
   p {
     margin-bottom : 0;
     text-align : right;
@@ -190,7 +190,7 @@ blockquote {
     &:first-child {
       margin-bottom : 1rem;
       padding-left : 2rem;
-      border-left : 1rem solid $able-green;
+      border-left : 1rem solid $green;
       text-align : left;
       font-size : 1.8rem;
       font-weight : $light;
@@ -279,7 +279,7 @@ th,
 td {
   padding : 12px 15px;
   text-align : left;
-  border-bottom : 1px solid $able-midgrey;
+  border-bottom : 1px solid $grey_pale;
   &:first-child {
     padding-left : 0;
   }
@@ -299,7 +299,7 @@ hr {
   margin-top: 3rem;
   margin-bottom: 3.5rem;
   border-width: 0;
-  border-top: 1px solid $able-midgrey;
+  border-top: 1px solid $grey_pale;
 }
 
 
@@ -321,8 +321,8 @@ code {
   margin: 0 .2rem;
   font-size: 90%;
   white-space: nowrap;
-  background : $able-lightgrey;
-  border : 1px solid $able-midgrey;
+  background : $grey_lighter;
+  border : 1px solid $grey_pale;
   border-radius: 4px;
   pre > & {
     display : block;

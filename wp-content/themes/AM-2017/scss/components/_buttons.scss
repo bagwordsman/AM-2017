@@ -44,9 +44,9 @@ input[type="button"] {
   text-decoration : none;
   white-space : nowrap;
 
-  color : $able-green;
+  color : $green;
   background-color : transparent;
-  border : 3px solid $able-green;
+  border : 3px solid $green;
   border-radius : 4px;
   cursor : pointer;
   box-sizing : border-box;
@@ -71,7 +71,7 @@ input[type="button"] {
     cursor : pointer;
     color : $white;
     outline : 0;
-    background-color : $able-green;
+    background-color : $green;
     text-shadow : $shadow-down-right_thin;
   }
 
@@ -79,12 +79,12 @@ input[type="button"] {
   &.solid,
   &.solid:visited {
   color : $white;
-  background-color : $able-green;
+  background-color : $green;
   border : 0;
   line-height : 48px;
     &:hover {
         color : $white;
-        background-color : $able-green_light;
+        background-color : $green_light;
     }
   }
 

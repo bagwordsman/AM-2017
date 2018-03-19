@@ -6,8 +6,8 @@
   height : 58px;
   z-index : 999;
   
-  background-color : $able-midgrey;
-  color : $able-grey;
+  background-color : $grey_pale;
+  color : $grey;
   
   font-size : 1.6rem;
   line-height : 58px;
@@ -41,7 +41,7 @@
       position : relative;
     }
 
-    background-color : $able-green;
+    background-color : $green;
     color : $white;
     cursor : pointer;
     display : inline;
@@ -51,7 +51,7 @@
     font-size : 2.4rem;
     line-height : 1.8;
     &:hover {
-      background-color : $able-grey;
+      background-color : $grey;
       color : $white;
     }
   }

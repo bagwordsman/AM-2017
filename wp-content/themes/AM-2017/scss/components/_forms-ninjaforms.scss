@@ -12,8 +12,8 @@ select {
   height: 38px;
   padding: 6px 10px; // The 6px vertically centers text on FF, ignored by Webkit
   background-color: $white;
-  color: $able-grey;
-  border: 2px solid $able-grey;
+  color: $grey;
+  border: 2px solid $grey;
   border-radius: 0;
   box-shadow: none;
   box-sizing: border-box;
@@ -25,8 +25,8 @@ select {
   }
   // focus
   &:focus {
-    border: 2px solid $able-green;
-    color: $able-green;
+    border: 2px solid $green;
+    color: $green;
     box-shadow:none;
     outline: 0;
   }
@@ -113,9 +113,9 @@ label > .label-body {
 .nf-form-cont{
   padding : 3.5rem 3.5rem 7rem;
   box-sizing : border-box;
-  border : 2px solid $able-grey;
+  border : 2px solid $grey;
   .wrapper-grey & {
-    background-color : $able-midgrey;
+    background-color : $grey_pale;
   }
 }
 

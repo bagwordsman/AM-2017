@@ -1,0 +1,88 @@
+// mediator profiles
+// - added to Users > Your Profile
+#mediator-profile {
+    background-color : $green_light;
+    margin-bottom: 2.5rem;
+    margin-top: 5rem;
+    padding: 1rem 2rem 1.5rem;
+    h3, label, p, ~ p.submit input[type="submit"], & {
+        font-family : $font-main;
+        color : $grey;
+        line-height : 1.6;
+    }
+    h3 {
+        font-size : 2.1rem;
+        font-weight : $bold;
+        letter-spacing : 0.03rem;
+        color : $white;
+    }
+    label, p {
+        font-size : 1.2rem;
+        color : $white;
+    }
+    label {
+        @include label($white, $green);
+    }
+    @include shortcode;
+    .adminimage img {
+        max-width : 300px;
+    }
+    // instruction text
+    .description {
+        font-family : $font-quote;
+        font-size : 1.2rem;
+        color : $grey;
+    }
+    @include form-fields;
+    // upload image section
+    input#uploadimage {
+        @include faux-btn($orange) {
+            margin-top : .75rem;
+            margin-bottom : .75rem;
+            &:hover {
+                color : $white;
+                background-color : $orange;
+            }
+        }
+    }
+    .invisible {// hide width and height fields
+        visibility : hidden;
+        input[type="text"], td {
+        height : 0;
+        padding : 0;
+        }
+    }
+    // wysiwyg
+    .form-table th {
+        width : 300px;
+    }
+    // update profile button
+    ~ p.submit input[type="submit"] {
+        @include faux-btn($green) {
+            float : right;
+            &:hover {
+                color : $white;
+                background-color : $green;
+            }
+        }
+    }
+    // read more (excerpt separation)
+    @include wysiwyg-content-split("Separate the excerpt from the full text by inserting a 'read more' tag", $orange, $orange_light) {
+        // reset position
+        .profile-info .form-table th:first-child:after {
+            margin-left : 0;
+            margin-top : .75rem;
+        }
+        // reset separator
+        div[aria-label="Horizontal line"] button {
+            padding : 2px 3px;
+            .mce-ico {
+                color : #555d66;
+                background-color : transparent;
+                &:hover {
+                    background-color : transparent;
+                }
+            }
+        }
+    }
+} // end mediator profile

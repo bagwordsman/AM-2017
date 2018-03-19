@@ -1,9 +1,101 @@
 // accordion
 // - suitable for pages with large content sections that can be hidden and revealed
-// - sample jquery ui, and add to this file
+// - sampled jquery ui, to load less css
+
+// reset
+.ui-helper-reset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  line-height: 1.3;
+  text-decoration: none;
+  font-size: 100%;
+  list-style: none;
+}
+
+
+// headers
+.ui-accordion .ui-accordion-header {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  margin: 2px 0 0 0;
+  padding: .5em .5em .5em .7em;
+  font-size: 100%;
+}
+.ui-corner-top {
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.ui-corner-bottom {
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+// header states
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+  border: 1px solid #c5c5c5;
+  background: #f6f6f6;
+  font-weight: normal;
+  color: #454545;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active, .ui-button:active,
+.ui-button.ui-state-active:hover {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: normal;
+  color: #fff;
+}
+
+
+// header spans - pointer arrow
+.ui-icon {
+  width: 16px;
+  height: 16px;
+}
+.ui-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -.25em;
+  position: relative;
+  text-indent: -99999px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+.ui-icon-triangle-1-s {
+  background-position: -65px -16px;
+}
+.ui-icon-triangle-1-e {
+  background-position: -32px -16px;
+}
+
+
+// content
+.ui-widget-content {
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #333;
+}
 
 
 
+
+
+
+
+
+// ___________________
+// pointer arrow images
 @mixin btnType($state, $colour) {
   .ui-state-#{$state} .ui-icon,
   .ui-state-#{$state}.ui-state-hover .ui-icon {
@@ -12,12 +104,13 @@
   }
 }
 
+// button icons
+@include btnType('default', '');
+@include btnType('active', '_white');
 
 
-// ___________________
-// reset jQuery ui css
 
-// - fonts
+// fonts
 .ui-widget {
   font-family : $font-main;
   font-size: 1.6rem;
@@ -27,44 +120,27 @@
   }
 }
 
-// - button icons
-@include btnType('default', '');
-@include btnType('active', '_white');
 
 
-// - content
+
+// content
 .ui-accordion .ui-accordion-content {
   padding : 2.5rem 4rem 1rem;
   line-height: 1.6;
+  border-top: 0;
+  overflow: auto;
 }
 
 
-
-
-
-
-
-
-
-
+// align text
 .accordion {
   text-align : left;
   
   // active item
   .ui-state-active {
-    background-color : $able-green;
-    border : 1px solid $able-green_dark;
+    background-color : $green;
+    border : 1px solid $green_dark;
   }
-  
-  // default item
-  // .ui-state-default {
-  //   background-color : $able-green_light;
-  //   border : 1px solid $able-green;
-  //   // default hovered
-  //   &.ui-state-hover {
-      
-  //   }
-  // }
 
 }
   

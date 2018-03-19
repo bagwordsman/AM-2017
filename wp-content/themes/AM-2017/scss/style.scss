@@ -25,9 +25,9 @@ Basic Stylesheet
         "layout/blog",
         "layout/blog-widgets",
 
-        // libraries
-        "libraries/font-awesome.min", // note: thee should be stripped down - just use what i need
-        "libraries/jquery-ui.min",
+        // libraries - NOTE: using a selection of each to reduce amount of css loaded
+        "libraries/font-awesome-selection",
+        // "libraries/jquery-ui.min", - required styles added in _accordion.scss
         
         // components
         "components/base",
@@ -42,7 +42,6 @@ Basic Stylesheet
         "components/accordion",
         "components/google-map",
         "components/twitterfeed",
-
         
         // individual pages
         "page-specific/mediator-profiles",

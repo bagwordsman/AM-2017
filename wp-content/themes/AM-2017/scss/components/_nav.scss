@@ -2,9 +2,8 @@
 
 
 
-
-// Assistive text - for screen readers
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
+// Assistive text - for screen readers
 .assistive-text {
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px);
@@ -14,7 +13,7 @@
     width: 1px;
     overflow: hidden;
     &:focus {
-        background : $able-green;
+        background : $green;
 		border : none;
 		color : $white;
 		clip: auto !important;
@@ -40,31 +39,19 @@
 // nav container
 .nav {
 	position : relative;
-	background-color : $able-lightgrey;
+	background-color : $grey_lighter;
 	@media (min-width: 800px) {
 		height : 38px;
 	}
-	// height : 38px;
-	// overflow : hidden;
 }
 
-
-
-// no bullets
+// reset list style
 .main-menu li {
 	list-style : none;
 	a {
 		text-decoration : none;
 	}
 }
-
-// micro clearfix - is this needed?
-// .rsnav-clearfix:before,
-// .rsnav-clearfix:after { display: table; content: ""; }
-// .rsnav-clearfix:after { clear: both; }
-
-
-
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -83,7 +70,7 @@
 	}
 	+ .main-toggle:after{
 		content : 'Close Menu';
-		background-color : $able-green_light;
+		background-color : $green_light;
 	}
 }
 
@@ -113,19 +100,19 @@
 		line-height : 2.4;
 		font-weight : $bold;
 		color : $white;
-		background-color :$able-green;
+		background-color : $green;
 		transition : all 0.3s ease-in-out;
 	}
 	// hover colour
 	&:hover:after {
-		background-color : $able-green_light;
+		background-color : $green_light;
 	}
 }
 
 
 
-// - - - - - - - - - -
-// small
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// small menu
 .main-menu {
 	position: static;
 	right : 0;
@@ -134,7 +121,7 @@
 	opacity : 0;
 	// margin : 0 auto 2rem;
 	margin : 0 auto;
-	border-top : 2px solid $able-grey;
+	border-top : 2px solid $grey;
 	li {
 		margin : 0;
 		a {
@@ -146,8 +133,8 @@
 			box-sizing:border-box;
 			font-weight : $bold;
 			line-height : 38px;
-			color : $able-grey;
-			border-top : 2px solid $able-grey;
+			color : $grey;
+			border-top : 2px solid $grey;
 			transition: all 0.3s ease-in-out;
 		}
 
@@ -161,23 +148,23 @@
 		// hover behaviour - 1st tier
 		a:hover,
 		a:focus {
-			color : $able-green;
-			background-color : $able-midgrey;
+			color : $green;
+			background-color : $grey_pale;
 		}
 		// - - - - - - - -
 		// current page marker
 		&.current_page_item > a,
 		&.current_page_ancestor > a {
 			color : $white;
-			background-color : $able-green;
+			background-color : $green;
 		}
 
 		// - - - - - - - -
 		// first tier with children
 		&.menu-item-has-children > a:after {
 			padding-left : 1.25rem;
-			font-family: 'FontAwesome';
-			content : $fa_right;
+			font-family: $font-icon;
+			content : icon('right');;
 		}
 
 		
@@ -197,20 +184,20 @@
 				&:hover,
 				&:focus,
 				&.current_page_item a {
-					background-color : $able-green;
-					color : $able-grey;
+					background-color : $green;
+					color : $grey;
 				}
 			}
 			// third tier
 			li li a {
 				background-color : transparent;
-				color : $able-grey;
+				color : $grey;
 			}
 			li li a:hover,
 			li li a:focus,
 			li li.current_page_item a {
-				background-color : $able-green;
-				color : $able-grey;
+				background-color : $green;
+				color : $grey;
 			}
 		}
 	}
@@ -222,8 +209,8 @@
 
 
 
-// - - - - - - - - - -
-// large
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// large menu
 @media (min-width: 800px) { // was 768px
 
 	// hide toggle
@@ -255,7 +242,7 @@
 				position : relative;
 				padding : 0;
 				border-top : 0;
-				color : $able-grey;
+				color : $grey;
 				background-color : transparent;
 			}
 
@@ -264,8 +251,8 @@
 			a:focus,
 			&.current_page_item > a,
 			&.current_page_ancestor > a {
-				background-color : $able-lightgrey;
-				color : $able-green;
+				background-color : $grey_lighter;
+				color : $green;
 				padding : 0;
 			}
 			// first tier with children
@@ -275,8 +262,8 @@
 					position : absolute;
 					top : 0;
 					right : 0;
-					font-family: 'FontAwesome';
-					content : $fa_down;
+					font-family : $font-icon;
+					content : icon('down');
 				}
 				&:after {
 					padding-left : 0;
@@ -315,23 +302,23 @@
 					// current page
 					&.current_page_item > a,
 					&.current_page_ancestor > a {
-						background-color : $able-green_light;
+						background-color : $green_light;
 						color : $white;
 						&:hover {
-							background-color : $able-green;
+							background-color : $green;
 						}
 					}
 					
 					a {
 						padding : 0;
-						background-color : $able-grey;
+						background-color : $grey;
 						color : $white;
-						border-top : 2px solid $able-lightgrey;
+						border-top : 2px solid $grey_lighter;
 						&:hover
 						&:focus {
 							padding : 0;
-							background-color : $able-green;
-							border-top : 2px solid $able-green;
+							background-color : $green;
+							border-top : 2px solid $green;
 						}
 					}
 

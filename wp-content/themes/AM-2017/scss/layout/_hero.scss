@@ -5,7 +5,7 @@
   position : relative;
   max-height : 40rem;
   margin-bottom : 5rem;
-  background-color : $able-green;
+  background-color : $green;
   // layout
   img {
     width : auto;
@@ -38,7 +38,7 @@
     color : $white;
   }
   > div a:hover {
-    background-color : $able-green;
+    background-color : $green;
   }
   // h1 - all pages
   h1 {
@@ -123,7 +123,7 @@
     box-shadow : $shadow-down-right;
     // colour tints
     &.green {
-      background-color : rgba( $able-green, .75 )
+      background-color : rgba( $green, .75 )
     }
     &.orange {
       background-color : rgba( $orange, .75 )
@@ -133,7 +133,7 @@
     }
     // link hover - needs to be within .hero
     a:hover {
-      background-color : $able-grey;
+      background-color : $grey;
     }
     // list reset
     ul {

@@ -62,7 +62,7 @@ function hasScrolled() {
 
 
 
-// - - - - - - - - - - - 
+// ___________________
 // menu - text wrap
 
 
@@ -179,42 +179,6 @@ function menuMedium(resize) {
 
 // run on load
 menuMedium();
-
-
-
-
-
-// original title - gets overwritten on every resize
-// - better to try outputting as data-attr in html
-// - done with php in AM-menus.php
-// "use strict";
-
-// // save the original text of each parent menu item
-// //  - this can only be done if origText is a const, otherwise the value gets overwritten on each function call
-// const origText = $('.main-menu > li > a').each(function() {
-//     const orig = $(this).text();
-//     const text = { k : orig };
-// });
-// // console.log($(origText[3]).text());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

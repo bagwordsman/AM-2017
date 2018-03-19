@@ -1,0 +1,296 @@
+// in page styling
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Non ACF
+
+
+// –––––––––––––––––––––––––
+// hero image
+#poststuff #postimagediv {
+  h2 {
+    background-color : $green;
+    color : $white;
+    font-size : 16px;
+    line-height : 1.6em;
+  }
+  .inside:before {
+    content : 'Upload a Hero Image. This should be at least 1800px wide - for wide screens.';
+    display : inline-block;
+    color : $black;
+    font-size : 16px;
+    line-height : 1.6em;
+  }
+}
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Advanced Custom Fields
+$sections: (
+  // all templates
+  "last" : '#acf_471324.acf_postbox',
+  "cta" : '#acf_471302.acf_postbox',
+  "first-sidebar" : '#acf-first_section_sidebar',
+  "second-sidebar" : '#acf-second_section_sidebar',
+  // home
+  "hero" : '#acf_471344.acf_postbox',
+  "home-second" : '#acf_471346.acf_postbox',
+  "home-third" : '#acf_470781.acf_postbox',
+  // default
+  "default-second" : '#acf_471520.acf_postbox'
+);
+@function sections($key) {
+  @return map-get($sections, $key);
+}
+
+$colour_options : 'green', 'orange', 'blue', 'red';    
+$colour_codes : $green, $orange, $blue, $red;
+
+
+
+
+// radio and checkbox form elements
+// - parent element is a label, can't manipulate this with css
+ul.acf-checkbox-list li input[type="checkbox"],
+ul.acf-radio-list li input[type="radio"] {
+  box-shadow : none;
+  border : 2px solid $grey;
+  color : $grey;
+  width : 24px !important;
+  height : 24px;
+  &:checked:before {
+    font-size : 26px;
+    width : 12px;
+    height : 12px;
+    color : $green;
+  }
+}
+// radio buttons - output different colours
+@include radio-colour($colour_options, $colour_codes);
+
+
+
+
+
+
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// acf - all templates
+
+
+// resets
+.js .postbox .handlediv:focus .toggle-indicator:before {
+  box-shadow : none;
+}
+
+
+
+// –––––––––––––––––––––––––
+// section ID text / anchor link (applies to mulitple sections)
+.acf_postbox p.label.section-id {
+  color : $purple;
+  span {font-weight : $bold;}
+}
+
+
+
+
+// –––––––––––––––––––––––––
+// last section
+#{sections('last')} {
+  // main container
+  @include box {
+    background-color : $white;
+  }
+  // form fields
+  @include form-fields;
+}
+
+
+
+
+// –––––––––––––––––––––––––
+// cta (linked page)
+#{sections('cta')} {
+  border : none;
+  box-shadow : none;
+
+  // colour variations
+  @include cta-colour('green', $green_light, $green, $orange, $green_light);
+  @include cta-colour('orange', $orange_light, $orange, $blue_dark, $red);
+  @include cta-colour('blue', $blue_light, $blue, $orange, $orange_dark);
+  @include cta-colour('red', $red_light, $red, $blue_dark, $green);
+
+  // inner sections
+  > .inside > .field {
+    padding-left : 2rem;
+    padding-right : 2rem;
+    border-top : 2px solid $white;
+  }
+  @include content-white;
+  // box heading
+  #poststuff & h2 {
+    padding : 1rem 2rem;
+    color : $white;
+    text-shadow : $shadow-down-right_thin;
+  }
+  // arrow toggle
+  .handlediv {
+    width : 3.6rem;
+    height : 4.55rem;
+    .toggle-indicator {
+      color : $white;
+      &:before {
+        font-size : 3rem;
+        margin-right : 2rem;
+      }
+    }
+  }
+  // form fields
+  @include form-fields;
+  // image and text separator
+  #acf-linked_page_content {
+    @include wysiwyg-content-split('Use the horizontal line tool (-) to split the image from the description.', $orange, $orange_light);
+  }
+}
+
+
+
+
+// –––––––––––––––––––––––––
+// sidebars
+#{sections('first-sidebar')},
+#{sections('first-sidebar')}_colour,
+#{sections('second-sidebar')},
+#{sections('second-sidebar')}_colour {
+  @include sidebar;
+}
+
+
+
+
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// acf - home page
+
+
+
+// –––––––––––––––––––––––––
+// hero
+#{sections('hero')} {
+  // main container
+  @include box {
+    &.green {background: $green_light;}
+    &.orange {background: $orange_light;}
+    &.blue {background: $blue_light;}
+    &.transparent {background: $grey_light;}
+  }
+  @include content-white;
+}
+
+
+
+
+// –––––––––––––––––––––––––
+// home second section
+#{sections('home-second')} {
+  // main container
+  @include box {
+    background-color : $white;
+  }
+  // form fields
+  @include form-fields;
+}
+
+
+
+
+
+// –––––––––––––––––––––––––
+// home third section
+$home-columns : '1', '2', '3';
+@for $i from 1 through length($home-columns) {
+  #acf-column_#{nth($home-columns, $i)} {
+    position : relative;
+    margin-top : 5rem;
+    padding-top : 5rem;
+    &:before {
+      font-family : $font-icon;
+      font-size : 5rem;
+      content : icon('down-thin');
+      color : $grey;
+      position : absolute;
+      top : 0;
+      left : 50%;
+    }
+  }
+}
+#{sections('home-third')} {
+  // form fields
+  @include form-fields;
+  // blue button (label)
+  @for $i from 1 through length($home-columns) {
+    .label label[for="acf-field-column_#{nth($home-columns, $i)}_button_text"] {
+      @include faux-btn($blue);
+    }
+  }
+  // purple button (label)
+  @for $i from 1 through length($home-columns) {
+    .label label[for="acf-field-column_#{nth($home-columns, $i)}_button_link"] {
+      @include faux-btn($purple);
+    }
+  }
+  // cta (green, purple, multi-coloured)
+  #acf-end_of_content_cta_text{
+    margin-top : 5rem;
+  }
+  .label label[for="acf-field-end_of_content_cta_text"] {
+    @include faux-btn($green);
+  }
+  .label label[for="acf-field-end_of_content_cta_link"] {
+    @include faux-btn($purple);
+  }
+  .label label[for="acf-field-end_of_content_cta_colour"] {
+    @include faux-btn($grey) {
+      color : $grey;
+      border-top-color : $green;
+      border-right-color :$orange;
+      border-bottom-color :$blue;
+      border-left-color : $red;
+    }
+  }
+}
+
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// acf - default pages
+
+
+// –––––––––––––––––––––––––
+// default second section
+#{sections('default-second')} {
+  // main container
+  @include box {
+    padding-left : 0;
+    padding-right : 0;
+  }
+  // form fields
+  @include form-fields;
+
+  #acf-second_section_columns {
+    @include wysiwyg-content-split('Use the horizontal line tool (-) to separate out columns.', $green, $green_light);
+  }
+
+}
+

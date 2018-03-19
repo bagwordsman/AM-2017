@@ -1,8 +1,5 @@
 // twitter feed - displays latest tweet on all pages
-// NOTE: styling this like default / previous tweet, some colours not theme colours
-
-// background : url('../img/spinner.gif');
-
+// NOTE: styling does not fit completely with the able mediation theme, should make it look like twitter
 
 #loading-container {
     padding : 16px 0px 16px 0px;
@@ -15,15 +12,13 @@
     width : 100%;
     overflow : auto; // required to contain tweets
     margin : auto;
-    // padding : 20px 20px 11.6px 20px;
-    // box-sizing : border-box;
     border-radius : 5px;
-    border : 1px solid $able-midgrey;
+    border : 1px solid $grey_pale;
     font-size : 16px;
     line-height : 1.4;
     font-family : Arial, sans-serif;
     background-color : $white;
-    color : $able-grey;
+    color : $grey;
 }
 
 
@@ -59,7 +54,7 @@
         color : #697882;
     }
     &:hover p {
-        color : $able-green_light;
+        color : $green_light;
     }
 }
  
@@ -76,7 +71,7 @@
     float : left;
     padding : 20px;
     box-sizing : border-box;
-    border-top : 1px solid $able-midgrey;
+    border-top : 1px solid $grey_pale;
     position : relative;
     &.hovered {
         background-color : #f5f8fa;
@@ -92,8 +87,6 @@
     background-image : url('../img/tweet-actions.png');
     background-repeat : no-repeat;
     background-position : -25px -16px;
-    // margin-top : 3px;
-    // float : left;
     position : absolute;
     top : 20px;
     left : 72px;
@@ -132,7 +125,7 @@
         a {
             color : $black !important;
             &:hover {
-                color : $able-green_light !important;
+                color : $green_light !important;
             }
         }
     }
@@ -141,16 +134,16 @@
         margin : 0px;
         line-height : 1.4;
         a {
-            color : $able-green !important;
+            color : $green !important;
         }
     }
     // time
     .tweet-time {
         margin-top : 3px;
         a {
-            color : $able-green !important;
+            color : $green !important;
             &:hover {
-                color : $able-green_light !important;
+                color : $green_light !important;
             }
         }
     }
@@ -162,38 +155,40 @@
 
 // feed actions - reply, retweet, like
 .twitter-actions {
-    width:75px;
-    float:right;
-    margin-right:5px;
-    margin-top:3px;
+    width : 75px;
+    float : right;
+    margin-right : 5px;
+    margin-top : 3px;
     display : block;
 }
+
 .intent {
-    width:25px;
-    height:16px;
-    float:left;
+    width : 25px;
+    height : 16px;
+    float : left;
+    a {
+        width : 25px;
+        height : 16px;
+        display : block;
+        background-image : url('../img/tweet-actions.png');
+        float : left;
+        &:hover {
+            background-position:-25px 0px;
+        } 
+    }
 }
-.intent a {
-    width:25px;
-    height:16px;
-    display:block;
-    background-image:url('../img/tweet-actions.png');
-    float:left;
-}
-.intent a:hover{
-    background-position:-25px 0px;
-} 
+
  
-#intent-retweet a{
-    background-position:0px -17px;
+#intent-retweet a {
+    background-position : 0px -17px;
+    &:hover {
+        background-position : -25px -17px;
+    }
 }
-#intent-retweet a:hover{
-    background-position:-25px -17px;
+
+#intent-fave a {
+    background-position : 0px -36px;
+    &:hover {
+        background-position : -25px -36px;
+    } 
 }
-#intent-fave a{
-    background-position:0px -36px;
-}
-#intent-fave a:hover{
-    background-position:-25px -36px;
-} 
- 

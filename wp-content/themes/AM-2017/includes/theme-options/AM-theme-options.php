@@ -41,49 +41,49 @@ function sandbox_menu_page_display() {
 			<h1>Header and Footer Options</h1>
 			
 			<!-- 1 - company details -->
-			<form method="post" action="options.php" class="first wide">
+			<form method="post" action="options.php" class="first wide" id="details">
 				<?php settings_fields( 'sandbox_theme_company_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_company_options' ); ?>
 				<?php submit_button('Save Changes to Company Details'); ?>
 			</form>
 
 			<!-- 2 - company logos -->
-			<form method="post" action="options.php">
+			<form method="post" action="options.php" id="logos">
 				<?php settings_fields( 'sandbox_theme_logo_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_logo_options' ); ?>
 				<?php submit_button('Save Changes to Your Company Logos'); ?>
 			</form>
 
 			<!-- 3 - header call to action -->
-			<form method="post" action="options.php">
+			<form method="post" action="options.php" id="cta">
 				<?php settings_fields( 'sandbox_theme_cta_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_cta_options' ); ?>
 				<?php submit_button('Save Header Call to Action'); ?>
 			</form>
 
 			<!-- 4 - social network links -->
-			<form method="post" action="options.php">
+			<form method="post" action="options.php" id="social">
 				<?php settings_fields( 'sandbox_theme_social_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_social_options' ); ?>
 				<?php submit_button('Save Changes to Social Options'); ?>
 			</form>
 
 			<!-- 5 - tweet -->
-			<form method="post" action="options.php" class="wide tweet">
+			<form method="post" action="options.php" class="wide tweet" id="tweet">
 				<?php settings_fields( 'sandbox_theme_tweet_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_tweet_options' ); ?>
 				<?php submit_button('Display Tweet(s)'); ?>
 			</form>
 
 			<!-- 6 - affiliated organisations logos -->
-			<form method="post" action="options.php">
+			<form method="post" action="options.php" id="affiliates">
 				<?php settings_fields( 'sandbox_theme_affiliates_options' ); ?>
 					<?php do_settings_sections( 'sandbox_theme_affiliates_options' ); ?>
 				<?php submit_button('Save Changes to Affiliated Organisations Logos'); ?>
 			</form>
 
 			<!-- 7 - styling options -->
-			<form method="post" action="options.php" class="wide">
+			<form method="post" action="options.php" class="wide" id="styling">
 				<?php settings_fields( 'sandbox_theme_styling_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_styling_options' ); ?>
 				<?php submit_button('Save Changes to Your Styling Options'); ?>
@@ -94,13 +94,13 @@ function sandbox_menu_page_display() {
 		<div class="in-page">
 			<h1>In Page Options</h1>
 			<!-- 1 - google map of location -->
-			<form method="post" action="options.php" class="first wide">
+			<form method="post" action="options.php" class="first wide" id="gmap">
 				<?php settings_fields( 'sandbox_theme_map_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_map_options' ); ?>
 				<?php submit_button('Save Changes to Your Google Map'); ?>
 			</form>
 			<!-- 2 - blog styling -->
-			<form method="post" action="options.php" class="wide">
+			<form method="post" action="options.php" class="wide" id="blog">
 				<?php settings_fields( 'sandbox_theme_blog_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_blog_options' ); ?>
 				<?php submit_button('Save Changes to Blog Styling'); ?>
@@ -111,13 +111,13 @@ function sandbox_menu_page_display() {
 		<div class="functionality">
 			<h1>Functionality Options</h1>
 			<!-- 1 - Google Analytics -->
-			<form method="post" action="options.php" class="first wide google_analytics">
+			<form method="post" action="options.php" class="first wide google_analytics" id="analytics">
 				<?php settings_fields( 'sandbox_theme_google_analytics_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_google_analytics_options' ); ?>
 				<?php submit_button('Apply Google Analytics'); ?>
 			</form>
 			<!-- 2 - lazyloading of images -->
-			<form method="post" action="options.php" class="wide lazyloading">
+			<form method="post" action="options.php" class="wide lazyloading" id="lazyload">
 				<?php settings_fields( 'sandbox_theme_lazyloading_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_lazyloading_options' ); ?>
 				<?php submit_button('Enable Lazyloading'); ?>
@@ -735,7 +735,7 @@ function sandbox_theme_intialize_tweet_options() {
 	);
 	add_settings_field(
     	'tweet_heading',
-    	'<i class="fa fa-header black--text" aria-hidden="true"></i>Heading to introduce Twitter Feed',
+    	'<i class="fa fa-header black--text" aria-hidden="true"></i>Twitter Feed Heading',
     	'sandbox_tweet_heading_callback',
     	'sandbox_theme_tweet_options',
     	'tweet_settings_section'

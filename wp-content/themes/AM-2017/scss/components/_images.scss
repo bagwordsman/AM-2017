@@ -24,7 +24,7 @@ div[class*="wrapper-"] img {
   min-height : 144px;
   padding : 1rem;
   box-sizing : border-box;
-  background-color : $able-lightgrey;
+  background-color : $grey_lighter;
   background-image : url('../img/loading-icon.gif'); // define this in variables
   background-repeat : no-repeat;
   background-position : center center;
@@ -34,7 +34,7 @@ div[class*="wrapper-"] img {
 // captions
 .wp-caption-text {
   font-style : italic;
-  color : $able-darkergrey;
+  color : $grey_dark;
   padding-left : 1em;
   padding-right : 1em;
 }

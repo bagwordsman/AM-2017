@@ -36,7 +36,7 @@
 // ______________________________________
 #secondary {
   display : block;
-  border-top : 5px solid $able-grey;
+  border-top : 5px solid $grey;
   // thumbnail and text
   > div {
     overflow : hidden;
@@ -92,10 +92,10 @@
 
 
   // colour options
-  @include colour('green', $able-green);
+  @include colour('green', $green);
   @include colour('orange', $orange);
   @include colour('blue', $blue);
-  @include colour('blue', $red_dark);
+  @include colour('red', $red_dark);
 
 
 

@@ -5,13 +5,13 @@
 #footer .company-info {
   padding-top : 2rem;
   padding-bottom : 2rem;
-  background-color : $able-lightgrey;
-  color : $able-grey;
+  background-color : $grey_lighter;
+  color : $grey;
   // anchor link reset
   a {
-    color : $able-grey;
+    color : $grey;
     &:hover {
-      color : $able-green;
+      color : $green;
     }
   }
   // small screen columns reset
@@ -28,7 +28,7 @@
       margin : 0 2rem 2rem 0;
       list-style : none;
       &.current-menu-item a {
-        color : $able-green;
+        color : $green;
         text-decoration : underline;
       }
     }
@@ -38,7 +38,7 @@
   .six.columns {
     margin-top : 2rem;
     padding-top : 2rem;
-    border-top : 5px solid $able-grey;
+    border-top : 5px solid $grey;
   }
 
   // media queries
@@ -58,7 +58,7 @@
       margin-top : 0;
       padding-top : 0;
       border-top : 0;
-      border-left : 5px solid $able-grey;
+      border-left : 5px solid $grey;
     }
     .footer-menu li {
       display : block;
@@ -80,11 +80,11 @@
 #footer .site-credits {
   padding-top : 2rem;
   padding-bottom : 2rem;
-  background-color : $able-grey;
-  color : $able-lightgrey;
+  background-color : $grey;
+  color : $grey_lighter;
   // anchor link reset
   a {
-    color : $able-lightgrey;
+    color : $grey_lighter;
     &:hover {
       color : $white;
     }
@@ -154,7 +154,7 @@
     a .fa {
       vertical-align : middle;
       font-size : 3.6rem;
-      color : $able-darkgrey;
+      color : $grey_light;
       transition : color ease-in-out 0.25s;
     }
     // brand colours hover

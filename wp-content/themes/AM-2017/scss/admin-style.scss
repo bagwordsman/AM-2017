@@ -1,0 +1,13 @@
+// admin scss - extend the default wordpress admin theme
+@import "variables/AM-variables", // have to import variables first
+
+        // libraries
+        "libraries/font-awesome.min",
+        "libraries/jquery-ui.min",
+
+        // admin specific
+        "admin/admin-base",
+        "admin/admin-mixins",
+        "admin/theme-options",
+        "admin/mediator-profiles",
+        "admin/in-page"

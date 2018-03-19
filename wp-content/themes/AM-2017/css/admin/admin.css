@@ -409,7 +409,7 @@ input[readonly].slider-value {background-color:#fff;}
 .v-slider .ui-state-active {
   outline:none;
   background:#70bf44;
-  border:1px solid color:#599836 !important;/* dark green */
+  border:1px solid #599836 !important;/* dark green */
 }
 
 
@@ -421,8 +421,10 @@ input[readonly].slider-value {background-color:#fff;}
 .widget-bg-preview.orange {background-color:#f07f37;}
 .widget-bg-preview.blue {background-color:#339cff;}
 .widget-bg-preview.red {background-color:#da291c;}
-.widget-bg-preview.light-grey {background-color:#f0f0f0;}
-.widget-bg-preview.dark-grey {background-color:#6a6a6a;}
+.widget-bg-preview.grey_lighter {background-color:#f0f0f0;}
+.widget-bg-preview.grey {background-color:#6a6a6a;}
+
+
 
 /* bg opacity */
 #bg-colour-brush.green,
