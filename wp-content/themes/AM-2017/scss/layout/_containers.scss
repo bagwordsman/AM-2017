@@ -12,7 +12,7 @@
   &>div:not(.hero) {
     .five.columns {
       padding-top : 2.5rem;
-      border-top : 10px solid;
+      border-top : 10px solid transparent;
       
       $colours : 'green', 'orange', 'blue', 'red';   
       $colour_codes : $green, $orange, $blue, $red;

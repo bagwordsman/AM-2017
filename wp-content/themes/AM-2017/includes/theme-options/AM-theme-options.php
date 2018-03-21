@@ -352,19 +352,23 @@ function sandbox_logo_options_callback() {
     echo '<p>Upload or add your logos with their URL location here</p>';
 } // end sandbox_general_options_callback
 
+
+
+
+// main logo
 function sandbox_mainlogo_callback() {
     $options = get_option( 'sandbox_theme_logo_options' );
     $url = '';
     if( isset( $options['mainlogo'] ) ) {
         $url = $options['mainlogo'];
     } // end if mainlogo is set
-		echo
-		'<div class="logogroup mainlogo">
-			<img class="adminlogo mainlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/able-logo.png"/>
-			<input type="button" class="button button-primary" value="Upload Main Company Logo" id="uploadmainlogo"/>
-			<label for="mainlogo">Logo Location - can also enter with URL</label>
-			<input type="text" id="mainlogo" name="sandbox_theme_logo_options[mainlogo]" value="' . $options['mainlogo'] . '" />
-		</div>';
+	echo
+	'<div class="logogroup mainlogo">
+		<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/able-logo.png"/>
+		<input type="button" class="button button-primary" value="Upload Main Company Logo" id="uploadmainlogo"/>
+		<label for="mainlogo">Logo Location - can also enter with URL</label>
+		<input type="text" id="mainlogo" name="sandbox_theme_logo_options[mainlogo]" value="' . $options['mainlogo'] . '" />
+	</div>';
 } // end sandbox_mainlogo_callback
 
 // pass width and height to be used on front end
@@ -376,7 +380,7 @@ function sandbox_MLwidth_callback() {
         $url = $options['MLwidth'];
     } // end if MLwidth is set
 		echo
-		'<div class="logogroup MLwidth invisible">
+		'<div class="logogroup mainlogo invisible">
 			<input type="text" id="MLwidth" name="sandbox_theme_logo_options[MLwidth]" value="' . $options['MLwidth'] . '" />
 		</div>';
 } // end sandbox_MLwidth_callback
@@ -389,10 +393,18 @@ function sandbox_MLheight_callback() {
         $url = $options['MLheight'];
     } // end if MLheight is set
 		echo
-		'<div class="logogroup MLheight invisible">
+		'<div class="logogroup mainlogo invisible">
 			<input type="text" id="MLheight" name="sandbox_theme_logo_options[MLheight]" value="' . $options['MLheight'] . '" />
 		</div>';
 } // end sandbox_MLheight_callback
+
+
+
+
+
+
+
+
 
 
 function sandbox_appletouch_callback() {
@@ -980,11 +992,16 @@ function sandbox_theme_intialize_affiliates_options() {
 	    'affiliates_settings_section'
 	);
 
+	
+	
+	
+	
+	
 	// logo 5
 	add_settings_field(
-	    'affiliatelogo5',
+	    'affiliate-logo_5',
 	    'Affiliate Logo 5',
-	    'sandbox_affiliatelogo5_callback',
+	    'sandbox_affiliate_logo_5_callback',
 	    'sandbox_theme_affiliates_options',
 	    'affiliates_settings_section'
 	);
@@ -1012,9 +1029,9 @@ function sandbox_theme_intialize_affiliates_options() {
 
 	// logo 6
 	add_settings_field(
-	    'affiliatelogo6',
+	    'affiliate-logo_6',
 	    'Affiliate Logo 6',
-	    'sandbox_affiliatelogo6_callback',
+	    'sandbox_affiliate_logo_6_callback',
 	    'sandbox_theme_affiliates_options',
 	    'affiliates_settings_section'
 	);
@@ -1110,8 +1127,8 @@ function sandbox_affiliatelogo1_callback() {
         $url = $options['affiliatelogo1'];
     } // end if affiliatelogo1 is set
 		echo
-		'<div class="logogroup affiliatelogo1">
-			<img class="adminlogo affiliatelogo1" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
+		'<div class="logogroup affiliate-logo_1">
+			<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
 			<input type="button" class="button button-primary" value="Upload Affiliate Logo 1" id="uploadaffiliatelogo1"/>
 			<label for="affiliatelogo1">Logo Location - can also enter with URL</label>
 			<input type="text" id="affiliatelogo1" name="sandbox_theme_affiliates_options[affiliatelogo1]" value="' . $options['affiliatelogo1'] . '" />
@@ -1127,7 +1144,7 @@ function sandbox_AL1alttext_callback() {
         $url = $options['AL1alttext'];
     } // end if AL1alttext is set
 		echo
-		'<div class="logogroup AL1alttext">
+		'<div class="logogroup affiliate-logo_1">
 			<label for="AL1alttext">Alternative Text - describe the image for best practice</label>
 			<input type="text" id="AL1alttext" name="sandbox_theme_affiliates_options[AL1alttext]" value="' . $options['AL1alttext'] . '" />
 		</div>';
@@ -1143,7 +1160,7 @@ function sandbox_AL1width_callback() {
         $url = $options['AL1width'];
     } // end if AL1width is set
 		echo
-		'<div class="logogroup AL1width invisible">
+		'<div class="logogroup affiliate-logo_1 invisible">
 			<input type="text" id="AL1width" name="sandbox_theme_affiliates_options[AL1width]" value="' . $options['AL1width'] . '" />
 		</div>';
 } // end sandbox_AL1width_callback
@@ -1156,10 +1173,12 @@ function sandbox_AL1height_callback() {
         $url = $options['AL1height'];
     } // end if AL1height is set
 		echo
-		'<div class="logogroup AL1height invisible">
+		'<div class="logogroup affiliate-logo_1 invisible">
 			<input type="text" id="AL1height" name="sandbox_theme_affiliates_options[AL1height]" value="' . $options['AL1height'] . '" />
 		</div>';
 } // end sandbox_AL1height_callback
+
+
 
 
 // Affiliate Logo 2
@@ -1170,8 +1189,8 @@ function sandbox_affiliatelogo2_callback() {
         $url = $options['affiliatelogo2'];
     } // end if affiliatelogo2 is set
 		echo
-		'<div class="logogroup affiliatelogo2">
-			<img class="adminlogo affiliatelogo2" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
+		'<div class="logogroup affiliate-logo_2">
+			<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
 			<input type="button" class="button button-primary" value="Upload Affiliate Logo 2" id="uploadaffiliatelogo2"/>
 			<label for="affiliatelogo2">Logo Location - can also enter with URL</label>
 			<input type="text" id="affiliatelogo2" name="sandbox_theme_affiliates_options[affiliatelogo2]" value="' . $options['affiliatelogo2'] . '" />
@@ -1187,7 +1206,7 @@ function sandbox_AL2alttext_callback() {
         $url = $options['AL2alttext'];
     } // end if AL2alttext is set
 		echo
-		'<div class="logogroup AL2alttext">
+		'<div class="logogroup affiliate-logo_2">
 			<label for="AL2alttext">Alternative Text - describe the image for best practice</label>
 			<input type="text" id="AL2alttext" name="sandbox_theme_affiliates_options[AL2alttext]" value="' . $options['AL2alttext'] . '" />
 		</div>';
@@ -1202,7 +1221,7 @@ function sandbox_AL2width_callback() {
         $url = $options['AL2width'];
     } // end if AL2width is set
 		echo
-		'<div class="logogroup AL2width invisible">
+		'<div class="logogroup affiliate-logo_2 invisible">
 			<input type="text" id="AL2width" name="sandbox_theme_affiliates_options[AL2width]" value="' . $options['AL2width'] . '" />
 		</div>';
 } // end sandbox_AL2width_callback
@@ -1215,7 +1234,7 @@ function sandbox_AL2height_callback() {
         $url = $options['AL2height'];
     } // end if AL2height is set
 		echo
-		'<div class="logogroup AL2height invisible">
+		'<div class="logogroup affiliate-logo_2 invisible">
 			<input type="text" id="AL2height" name="sandbox_theme_affiliates_options[AL2height]" value="' . $options['AL2height'] . '" />
 		</div>';
 } // end sandbox_AL2height_callback
@@ -1229,8 +1248,8 @@ function sandbox_affiliatelogo3_callback() {
         $url = $options['affiliatelogo3'];
     } // end if affiliatelogo3 is set
 		echo
-		'<div class="logogroup affiliatelogo3">
-			<img class="adminlogo affiliatelogo3" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
+		'<div class="logogroup affiliate-logo_3">
+			<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
 			<input type="button" class="button button-primary" value="Upload Affiliate Logo 3" id="uploadaffiliatelogo3"/>
 			<label for="affiliatelogo3">Logo Location - can also enter with URL</label>
 			<input type="text" id="affiliatelogo3" name="sandbox_theme_affiliates_options[affiliatelogo3]" value="' . $options['affiliatelogo3'] . '" />
@@ -1246,7 +1265,7 @@ function sandbox_AL3alttext_callback() {
         $url = $options['AL3alttext'];
     } // end if AL3alttext is set
 		echo
-		'<div class="logogroup AL3alttext">
+		'<div class="logogroup affiliate-logo_3">
 			<label for="AL3alttext">Alternative Text - describe the image for best practice</label>
 			<input type="text" id="AL3alttext" name="sandbox_theme_affiliates_options[AL3alttext]" value="' . $options['AL3alttext'] . '" />
 		</div>';
@@ -1261,7 +1280,7 @@ function sandbox_AL3width_callback() {
         $url = $options['AL3width'];
     } // end if AL3width is set
 		echo
-		'<div class="logogroup AL3width invisible">
+		'<div class="logogroup affiliate-logo_3 invisible">
 			<input type="text" id="AL3width" name="sandbox_theme_affiliates_options[AL3width]" value="' . $options['AL3width'] . '" />
 		</div>';
 } // end sandbox_AL3width_callback
@@ -1274,7 +1293,7 @@ function sandbox_AL3height_callback() {
         $url = $options['AL3height'];
     } // end if AL3height is set
 		echo
-		'<div class="logogroup AL3height invisible">
+		'<div class="logogroup affiliate-logo_3 invisible">
 			<input type="text" id="AL3height" name="sandbox_theme_affiliates_options[AL3height]" value="' . $options['AL3height'] . '" />
 		</div>';
 } // end sandbox_AL3height_callback
@@ -1288,8 +1307,8 @@ function sandbox_affiliatelogo4_callback() {
         $url = $options['affiliatelogo4'];
     } // end if affiliatelogo4 is set
 		echo
-		'<div class="logogroup affiliatelogo4">
-			<img class="adminlogo affiliatelogo4" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
+		'<div class="logogroup affiliate-logo_4">
+			<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
 			<input type="button" class="button button-primary" value="Upload Affiliate Logo 4" id="uploadaffiliatelogo4"/>
 			<label for="affiliatelogo4">Logo Location - can also enter with URL</label>
 			<input type="text" id="affiliatelogo4" name="sandbox_theme_affiliates_options[affiliatelogo4]" value="' . $options['affiliatelogo4'] . '" />
@@ -1305,7 +1324,7 @@ function sandbox_AL4alttext_callback() {
         $url = $options['AL4alttext'];
     } // end if AL4alttext is set
 		echo
-		'<div class="logogroup AL4alttext">
+		'<div class="logogroup affiliate-logo_4">
 			<label for="AL4alttext">Alternative Text - describe the image for best practice</label>
 			<input type="text" id="AL4alttext" name="sandbox_theme_affiliates_options[AL4alttext]" value="' . $options['AL4alttext'] . '" />
 		</div>';
@@ -1320,7 +1339,7 @@ function sandbox_AL4width_callback() {
         $url = $options['AL4width'];
     } // end if AL4width is set
 		echo
-		'<div class="logogroup AL4width invisible">
+		'<div class="logogroup affiliate-logo_4 invisible">
 			<input type="text" id="AL4width" name="sandbox_theme_affiliates_options[AL4width]" value="' . $options['AL4width'] . '" />
 		</div>';
 } // end sandbox_AL4width_callback
@@ -1333,7 +1352,7 @@ function sandbox_AL4height_callback() {
         $url = $options['AL4height'];
     } // end if AL4height is set
 		echo
-		'<div class="logogroup AL4height invisible">
+		'<div class="logogroup affiliate-logo_4 invisible">
 			<input type="text" id="AL4height" name="sandbox_theme_affiliates_options[AL4height]" value="' . $options['AL4height'] . '" />
 		</div>';
 } // end sandbox_AL4height_callback
@@ -1341,20 +1360,20 @@ function sandbox_AL4height_callback() {
 
 
 // Affiliate Logo 5
-function sandbox_affiliatelogo5_callback() {
+function sandbox_affiliate_logo_5_callback() {
     $options = get_option( 'sandbox_theme_affiliates_options' );
     $url = '';
-    if( isset( $options['affiliatelogo5'] ) ) {
-        $url = $options['affiliatelogo5'];
-    } // end if affiliatelogo5 is set
+    if( isset( $options['affiliate-logo_5'] ) ) {
+        $url = $options['affiliate-logo_5'];
+    } // end if affiliate-logo_5 is set
 		echo
-		'<div class="logogroup affiliatelogo5">
-			<img class="adminlogo affiliatelogo5" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
-			<input type="button" class="button button-primary" value="Upload Affiliate Logo 5" id="uploadaffiliatelogo5"/>
-			<label for="affiliatelogo5">Logo Location - can also enter with URL</label>
-			<input type="text" id="affiliatelogo5" name="sandbox_theme_affiliates_options[affiliatelogo5]" value="' . $options['affiliatelogo5'] . '" />
+		'<div class="logogroup affiliate-logo_5">
+			<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
+			<input type="button" class="button button-primary" value="Upload Affiliate Logo 5" id="uploadaffiliate-logo_5"/>
+			<label for="affiliate-logo_5">Logo Location - can also enter with URL</label>
+			<input type="text" id="affiliate-logo_5" name="sandbox_theme_affiliates_options[affiliate-logo_5]" value="' . $options['affiliate-logo_5'] . '" />
 		</div>';
-} // end sandbox_affiliatelogo5_callback
+} // end sandbox_affiliate_logo_5_callback
 
 // add alternative text for best practice
 // AL5alttext
@@ -1365,7 +1384,7 @@ function sandbox_AL5alttext_callback() {
         $url = $options['AL5alttext'];
     } // end if AL5alttext is set
 		echo
-		'<div class="logogroup AL5alttext">
+		'<div class="logogroup affiliate-logo_5">
 			<label for="AL5alttext">Alternative Text - describe the image for best practice</label>
 			<input type="text" id="AL5alttext" name="sandbox_theme_affiliates_options[AL5alttext]" value="' . $options['AL5alttext'] . '" />
 		</div>';
@@ -1380,7 +1399,7 @@ function sandbox_AL5width_callback() {
         $url = $options['AL5width'];
     } // end if AL5width is set
 		echo
-		'<div class="logogroup AL5width invisible">
+		'<div class="logogroup affiliate-logo_5 invisible">
 			<input type="text" id="AL5width" name="sandbox_theme_affiliates_options[AL5width]" value="' . $options['AL5width'] . '" />
 		</div>';
 } // end sandbox_AL5width_callback
@@ -1393,7 +1412,7 @@ function sandbox_AL5height_callback() {
         $url = $options['AL5height'];
     } // end if AL5height is set
 		echo
-		'<div class="logogroup AL5height invisible">
+		'<div class="logogroup affiliate-logo_5 invisible">
 			<input type="text" id="AL5height" name="sandbox_theme_affiliates_options[AL5height]" value="' . $options['AL5height'] . '" />
 		</div>';
 } // end sandbox_AL5height_callback
@@ -1401,20 +1420,20 @@ function sandbox_AL5height_callback() {
 
 
 // Affiliate Logo 6
-function sandbox_affiliatelogo6_callback() {
+function sandbox_affiliate_logo_6_callback() {
     $options = get_option( 'sandbox_theme_affiliates_options' );
     $url = '';
-    if( isset( $options['affiliatelogo6'] ) ) {
-        $url = $options['affiliatelogo6'];
-    } // end if affiliatelogo6 is set
+    if( isset( $options['affiliate-logo_6'] ) ) {
+        $url = $options['affiliate-logo_6'];
+    } // end if affiliate-logo_6 is set
 		echo
-		'<div class="logogroup affiliatelogo6">
-			<img class="adminlogo affiliatelogo6" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
-			<input type="button" class="button button-primary" value="Upload Affiliate Logo 6" id="uploadaffiliatelogo6"/>
-			<label for="affiliatelogo6">Logo Location - can also enter with URL</label>
-			<input type="text" id="affiliatelogo6" name="sandbox_theme_affiliates_options[affiliatelogo6]" value="' . $options['affiliatelogo6'] . '" />
+		'<div class="logogroup affiliate-logo_6">
+			<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
+			<input type="button" class="button button-primary" value="Upload Affiliate Logo 6" id="upload-affiliate-logo_6"/>
+			<label for="affiliate-logo_6">Logo Location - can also enter with URL</label>
+			<input type="text" id="affiliate-logo_6" name="sandbox_theme_affiliates_options[affiliate-logo_6]" value="' . $options['affiliate-logo_6'] . '" />
 		</div>';
-} // end sandbox_affiliatelogo6_callback
+} // end sandbox_affiliate_logo_6_callback
 
 // add alternative text for best practice
 // AL6alttext
@@ -1425,7 +1444,7 @@ function sandbox_AL6alttext_callback() {
         $url = $options['AL6alttext'];
     } // end if AL6alttext is set
 		echo
-		'<div class="logogroup AL6alttext">
+		'<div class="logogroup affiliate-logo_6">
 			<label for="AL6alttext">Alternative Text - describe the image for best practice</label>
 			<input type="text" id="AL6alttext" name="sandbox_theme_affiliates_options[AL6alttext]" value="' . $options['AL6alttext'] . '" />
 		</div>';
@@ -1440,7 +1459,7 @@ function sandbox_AL6width_callback() {
         $url = $options['AL6width'];
     } // end if AL6width is set
 		echo
-		'<div class="logogroup AL6width invisible">
+		'<div class="logogroup affiliate-logo_6 invisible">
 			<input type="text" id="AL6width" name="sandbox_theme_affiliates_options[AL6width]" value="' . $options['AL6width'] . '" />
 		</div>';
 } // end sandbox_AL6width_callback
@@ -1453,7 +1472,7 @@ function sandbox_AL6height_callback() {
         $url = $options['AL6height'];
     } // end if AL6height is set
 		echo
-		'<div class="logogroup AL6height invisible">
+		'<div class="logogroup affiliate-logo_6 invisible">
 			<input type="text" id="AL6height" name="sandbox_theme_affiliates_options[AL6height]" value="' . $options['AL6height'] . '" />
 		</div>';
 } // end sandbox_AL6height_callback

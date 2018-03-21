@@ -1,614 +1,273 @@
 (function($){
 
+	// JS for Able Mediation Theme Settings:
+	//	- these settings are defined in includes/theme-options
 
-		// JS for Able Mediation Theme Settings:
-		//	- these settings are defined in functions.php
-		//	- this js relies upon css in admin.css file
-		//	- some js (for logos) was previously in a function called themelogo_js()
+	// File Contents:
+	// 1 - Company Logos
+	// 2 - Affiliated Organisations Logos
+	// 3 - Blog Styling Options
+	// 4 - Google Map
+	// 5 - Google Analytics
+	// 6 - Lazyloading
+	// + logo upload constructor
 
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
 
-
-		// File Contents:
-		// 1 - Company Logos
-		// 2 - Embed a Tweet
-		// 3 - Affiliated Organisations Logos
-		// 4 - Display a Google Map of Your Location
-		// 5 - Styling Options for the Blog
-		// 6 - Google Analytics Tracking ID - helper
-
-
+	"use strict";
 
 
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// 1 - Company Logos
+	// a) main logo
+	const mainID = '.mainlogo';
+	const mainLogo = new logoUpload(mainID);
+	mainLogo.code();
+	// b) apple touch
+	const appleID = '.appletouch';
+	const appleLogo = new logoUpload(appleID);
+	appleLogo.code();
+	// c) favicon
+	const favID = '.favicon';
+	const favLogo = new logoUpload(favID);
+	favLogo.code();
 
 
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// 1 - Company Logos
 
-		// a) Main Logo
-		// display media upload editor
-		jQuery(document).find("input[id^='uploadmainlogo']").live('click', function(){
-		//var num = this.id.split('-')[1];
-		formfield = jQuery('#mainlogo').attr('name');
-		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
 
-		// 'insert into post' button is clicked here:
-		window.send_to_editor = function(html) {
-		// the below outputs the window object:
-		// console.log(this);
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// 2 - Affiliated Organisations Logos
+	// a) resolution logo
+	const resolutionID = '.affiliate-logo_1';
+	const resolutionLogo = new logoUpload(resolutionID);
+	resolutionLogo.code();
+	// b) fma logo
+	const fmaID = '.affiliate-logo_2';
+	const fmaLogo = new logoUpload(fmaID);
+	fmaLogo.code();
+	// c) college of mediators logo
+	const comID = '.affiliate-logo_3';
+	const comLogo = new logoUpload(comID);
+	comLogo.code();
+	// d) fmc logo
+	const fmcID = '.affiliate-logo_4';
+	const fmcLogo = new logoUpload(fmcID);
+	fmcLogo.code();
+	// e) 5th logo
+	const fiveID = '.affiliate-logo_5';
+	const fiveLogo = new logoUpload(fiveID);
+	fiveLogo.code();
+	// f) 6th logo
+	const sixID = '.affiliate-logo_6';
+	const sixLogo = new logoUpload(sixID);
+	sixLogo.code();
 
-		// try adding ['prevObject'] before attr if the below does not work
-		mynewimgurl = jQuery('img',html).attr('src');
 
-		// console.log(mynewimgurl);
 
-		// need to find dimensions - save these in a hidden field and output on client side
-		mynewimgWidth = jQuery('img',html).width();
-		mynewimgHeight = jQuery('img',html).height();
 
-		jQuery('#mainlogo').val(mynewimgurl);
-		jQuery('#MLwidth').val(mynewimgWidth);
-		jQuery('#MLheight').val(mynewimgHeight);
-		tb_remove();
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// 3 - Blog Styling Options
+	// a) widget background image
+	const widgetID = '.widget_bg';
+	const widgetImg = new logoUpload(widgetID);
+	widgetImg.code();
+
+
+	// –––––––––––––––––––––––––
+	// b) image overlay + opacity
+	const colourChoices = $('input[name="sandbox_theme_blog_options[blog_widget_bg_colour]"]');
+	const colourChecked = $('input[name="sandbox_theme_blog_options[blog_widget_bg_colour]"]:checked');
+	//
+	const overlay = $(document).find(`${widgetID} .colour-overlay`);
+	$(colourChoices).change(colourOverlay); // on user action
+	$(colourChecked).each(colourOverlay); // onload
+
+	function colourOverlay() {
+		$(overlay).removeClass('none green orange blue red_dark grey_lighter grey').addClass(this.value);
+	}
+	// OVERLAY: trying to manipulate radio options for colour - use one var to get checked / selected:
+	// console.log($(colourChoice.checked));
+	// $('input[name="sandbox_theme_blog_options[blog_widget_bg_colour]"]:checked').each(colourOverlay);
+	// const str = JSON.stringify(colourChoice);
+	// $(`${colourChoice}:checked`).find(":checked").each(colourOverlay);
+	
+	const alphaContainer = $('#bg_image_slider')[0];
+	const alphaSlider = $(alphaContainer).find('.v-slider')[0];
+	const alphaReading = $(alphaContainer).find('input[type="text"]');
+	const opacity = alphaReading.val()/100;
+	const alphaImg = $('.widget_bg img')[0];
+	const alphaIcon = $('#bg-opacity_icon')[0];
+
+	$(alphaSlider).slider({
+		orientation: "vertical",
+		range: "min",
+		min: 0,
+		max: 100,
+		value: 75,
+		slide: function( event, ui ) {
+			const alphaNew = ui.value;
+			const opacityNew = alphaNew / 100;
+			// update opacity value
+			$(alphaReading).val(alphaNew);
+			// apply to img
+			$(alphaImg).css( 'opacity' , + opacityNew );
+			$(alphaIcon).css( 'opacity' , + opacityNew );
 		}
-		return false;
-		});
+	});
+	// on load:
+	// - set slider at correct position
+	$(alphaSlider).find('.ui-slider-handle').css('bottom' , alphaReading.val() + '%');
+	$(alphaSlider).find('.ui-slider-range').css('height' , alphaReading.val() + '%');
+	// - apply to img + icon
+	$(alphaImg).css( 'opacity' , + opacity );
+	$(alphaIcon).css( 'opacity' , + opacity );
 
-		// mainlogo - if logo has been uploaded..
-		mainlogo = jQuery("input[id^='mainlogo']").val()
-		if (jQuery("input[id^='mainlogo']").val()) {
-			// Show the uploaded image
-			jQuery('.mainlogo').attr('src', mainlogo);
-			// If logo has been uploaded, change the button text to 'Replace'
-			jQuery('#uploadmainlogo').val('Replace Main Company Logo');
+	// img width - is this needed?
+	// const alphaImgWidth = $(alphaImg).width();
+	// $(alphaImg).css('width', alphaImgWidth);
+
+
+
+
+	// –––––––––––––––––––––––––
+	// c) light or dark theme
+	const themeChoices = $('select[name="sandbox_theme_blog_options[blog_widget_theme]"]');
+	$(themeChoices).change(lightDark); // on user action
+	$(themeChoices).find(":selected").text(lightDark); // onload
+
+	function lightDark() {
+		$('#widget-theme').removeClass('light dark').addClass(this.value);
+	}
+
+
+
+
+
+
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// 4 - Google Map
+	// - set height
+	const mapContainer = $('#gmap_slider')[0];
+	const mapSlider = $(mapContainer).find('.v-slider')[0];
+	const mapReading = $(mapContainer).find('input[type="text"]');
+
+	$(mapSlider).slider({
+		orientation: "vertical",
+		range: "min",
+		min: 250,
+		max: 500,
+		value: 400,
+		slide: function(event, ui) {
+			$(mapReading).val(ui.value);
 		}
+	});
+	// on load:
+	// - set slider at correct position
+	const sliderPos = (mapReading.val() - 250)/250*100;
+	$(mapSlider).find('.ui-slider-handle').css('bottom' , sliderPos + '%');
+	$(mapSlider).find('.ui-slider-range').css('height' , sliderPos + '%');
 
 
-		// b) Apple Touch Icon
-		// display media upload editor
-		jQuery(document).find("input[id^='uploadappletouch']").live('click', function(){
-			//var num = this.id.split('-')[1];
-			formfield = jQuery('#appletouch').attr('name');
-			tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
 
-			// 'insert into post' button is clicked here:
-			window.send_to_editor = function(html) {
-				mynewimgurl = jQuery('img',html).attr('src');
-				jQuery('#appletouch').val(mynewimgurl);
-				tb_remove();
-			}
-			return false;
-		});
 
-		// appletouch - if icon has been uploaded..
-		appletouch = jQuery("input[id^='appletouch']").val()
-		if (jQuery("input[id^='appletouch']").val()) {
-			// Show the uploaded image
-			jQuery('.appletouch').attr('src', appletouch);
-			// If logo has been uploaded, change the button text to 'Replace'
-			jQuery('#uploadappletouch').val('Replace Apple Touch Icon');
-		}
 
 
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// 5 - Google Analytics
+	const gaIcon = $('#analytics .fa-question')[0];
+	const gaCode = $('#analytics input[type="text"]').val();
+	const gaBtn = $('#analytics input[type="submit"]');
+	$(gaIcon).hover(function(e){
+		$(e.target).next().removeClass('hidden');
+	});
+	// - update button text
+	if (gaCode) {
+		$(gaBtn).val('Update Tracking ID');
+	}
 
-		// c) Favicon
-		// display media upload editor
-		jQuery(document).find("input[id^='uploadfavicon']").live('click', function(){
-			//var num = this.id.split('-')[1];
-			formfield = jQuery('#favicon').attr('name');
-			tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
 
-			// 'insert into post' button is clicked here:
-			window.send_to_editor = function(html) {
-				mynewimgurl = jQuery('img',html).attr('src');
-				jQuery('#favicon').val(mynewimgurl);
-				tb_remove();
-			}
-			return false;
-		});
 
-		// favicon - if favicon has been uploaded..
-		favicon = jQuery("input[id^='favicon']").val()
-		if (jQuery("input[id^='favicon']").val()) {
-			// Show the uploaded image
-			jQuery('.favicon').attr('src', favicon);
-			// If logo has been uploaded, change the button text to 'Replace'
-			jQuery('#uploadfavicon').val('Replace Favicon');
-		}
 
 
 
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// 6 - Lazyloading
+	const checked = 'Enable Lazyloading';
+	const unchecked = 'Disable Lazyloading';
 
+	if ( $("input[id^='lazyloading']").is(":checked") ) {
+		// console.log('lazyloading checked');
+		$('.lazyloading #submit').val(checked);
+	} else {
+		// console.log('lazyloading unchecked');
+		$('.lazyloading #submit').val(unchecked);
+	}
 
-
-
-
-
-
-
-
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// 2 - Embed a Tweet / Twitter
-		// a) copy twitter link info
-		$('.AM2017--options form.tweet .fa').hover(function(event){
-		  event.preventDefault();
-		  $('.embeddedtweet--info').removeClass('hidden');
-		});
-
-
-		// b) tweet colour scheme
-		$('input[name="sandbox_theme_tweet_options[tweetcolour]"]').change(tweetColour); // when user selects
-		$('input[name="sandbox_theme_tweet_options[tweetcolour]"]:checked').each(tweetColour); // onload
-
-		function tweetColour() {
-		    // replace hex values with colour classes
-				// hex values (defined in functions.php) make the code on the client side shorter
-				var hex = this.value;
-				var colour = hex.replace('70bf44', 'green').replace('f07f37', 'orange').replace('339cff', 'blue').replace('da291c', 'red').replace('6a6a6a', 'dark-grey');
-				console.log(colour);
-
-				$('#tweetcolour_scheme').removeClass('green orange blue red dark-grey').addClass(colour);
-		}
-
-
-		// c) update button text if a tweet is present
-		embeddedtweet = jQuery("input[id^='embeddedtweet']").val()
-		if (jQuery("input[id^='embeddedtweet']").val()) {
-			// If a tweet has been added alread, change the button text to 'Update'
-			jQuery('.tweet #submit').val('Update Tweet');
-		}
-
-
-
-
-
-
-
-
-
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// 3 - Affiliated Organisations Logos
-
-
-		// affiliatelogo1
-		jQuery(document).find("input[id^='uploadaffiliatelogo1']").live('click', function(){
-		//var num = this.id.split('-')[1];
-		formfield = jQuery('#affiliatelogo1').attr('name');
-		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-
-		// 'insert into post' button is clicked here:
-		window.send_to_editor = function(html) {
-		// the below outputs the window object:
-		// console.log(this);
-
-		// image I want is in prevObject:
-		mynewimgurl = jQuery('img',html).attr('src');
-
-		// need to find dimensions - save these in a hidden field and output on client side
-		mynewimgWidth = jQuery('img',html).width();
-		mynewimgHeight = jQuery('img',html).height();
-		console.log(mynewimgWidth);
-		console.log(mynewimgHeight);
-		console.log(mynewimgurl);
-
-		jQuery('#affiliatelogo1').val(mynewimgurl);
-		jQuery('#AL1width').val(mynewimgWidth);
-		jQuery('#AL1height').val(mynewimgHeight);
-		tb_remove();
-		}
-		return false;
-		});
-		// affiliatelogo1 - if logo has been uploaded..
-		affiliatelogo1 = jQuery("input[id^='affiliatelogo1']").val()
-		if (jQuery("input[id^='affiliatelogo1']").val()) {
-		  // Show the uploaded image
-			jQuery('.affiliatelogo1').attr('src', affiliatelogo1);
-			// If logo has been uploaded, change the button text to 'Replace'
-			jQuery('#uploadaffiliatelogo1').val('Replace Affiliate Logo 1');
-		}
-
-
-
-		// affiliatelogo2
-		jQuery(document).find("input[id^='uploadaffiliatelogo2']").live('click', function(){
-		//var num = this.id.split('-')[2];
-		formfield = jQuery('#affiliatelogo2').attr('name');
-		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-
-		// 'insert into post' button is clicked here:
-		window.send_to_editor = function(html) {
-		// the below outputs the window object:
-		// console.log(this);
-
-		// image I want is in prevObject:
-		mynewimgurl = jQuery('img',html).attr('src');
-
-		// need to find dimensions - save these in a hidden field and output on client side
-		mynewimgWidth = jQuery('img',html).width();
-		mynewimgHeight = jQuery('img',html).height();
-		//console.log(mynewimgWidth);
-		//console.log(mynewimgHeight);
-		//console.log(mynewimgurl);
-
-		jQuery('#affiliatelogo2').val(mynewimgurl);
-		jQuery('#AL2width').val(mynewimgWidth);
-		jQuery('#AL2height').val(mynewimgHeight);
-		tb_remove();
-		}
-		return false;
-		});
-		// affiliatelogo2 - if logo has been uploaded..
-		affiliatelogo2 = jQuery("input[id^='affiliatelogo2']").val()
-		if (jQuery("input[id^='affiliatelogo2']").val()) {
-		  // Show the uploaded image
-		  jQuery('.affiliatelogo2').attr('src', affiliatelogo2);
-		  // If logo has been uploaded, change the button text to 'Replace'
-		  jQuery('#uploadaffiliatelogo2').val('Replace Affiliate Logo 2');
-		}
-
-		// affiliatelogo3
-		jQuery(document).find("input[id^='uploadaffiliatelogo3']").live('click', function(){
-		//var num = this.id.split('-')[3];
-		formfield = jQuery('#affiliatelogo3').attr('name');
-		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-
-		// 'insert into post' button is clicked here:
-		window.send_to_editor = function(html) {
-		// the below outputs the window object:
-		// console.log(this);
-
-		// image I want is in prevObject:
-		mynewimgurl = jQuery('img',html).attr('src');
-
-		// need to find dimensions - save these in a hidden field and output on client side
-		mynewimgWidth = jQuery('img',html).width();
-		mynewimgHeight = jQuery('img',html).height();
-		//console.log(mynewimgWidth);
-		//console.log(mynewimgHeight);
-		//console.log(mynewimgurl);
-
-		jQuery('#affiliatelogo3').val(mynewimgurl);
-		jQuery('#AL3width').val(mynewimgWidth);
-		jQuery('#AL3height').val(mynewimgHeight);
-		tb_remove();
-		}
-		return false;
-		});
-		// affiliatelogo3 - if logo has been uploaded..
-		affiliatelogo3 = jQuery("input[id^='affiliatelogo3']").val()
-		if (jQuery("input[id^='affiliatelogo3']").val()) {
-		  // Show the uploaded image
-		  jQuery('.affiliatelogo3').attr('src', affiliatelogo3);
-		  // If logo has been uploaded, change the button text to 'Replace'
-		  jQuery('#uploadaffiliatelogo3').val('Replace Affiliate Logo 3');
-		}
-
-		// affiliatelogo4
-		jQuery(document).find("input[id^='uploadaffiliatelogo4']").live('click', function(){
-		//var num = this.id.split('-')[4];
-		formfield = jQuery('#affiliatelogo4').attr('name');
-		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-
-		// 'insert into post' button is clicked here:
-		window.send_to_editor = function(html) {
-		// the below outputs the window object:
-		// console.log(this);
-
-		// image I want is in prevObject:
-		mynewimgurl = jQuery('img',html).attr('src');
-
-		// need to find dimensions - save these in a hidden field and output on client side
-		mynewimgWidth = jQuery('img',html).width();
-		mynewimgHeight = jQuery('img',html).height();
-		//console.log(mynewimgWidth);
-		//console.log(mynewimgHeight);
-		//console.log(mynewimgurl);
-
-		jQuery('#affiliatelogo4').val(mynewimgurl);
-		jQuery('#AL4width').val(mynewimgWidth);
-		jQuery('#AL4height').val(mynewimgHeight);
-		tb_remove();
-		}
-		return false;
-		});
-		// affiliatelogo4 - if logo has been uploaded..
-		affiliatelogo4 = jQuery("input[id^='affiliatelogo4']").val()
-		if (jQuery("input[id^='affiliatelogo4']").val()) {
-		  // Show the uploaded image
-		  jQuery('.affiliatelogo4').attr('src', affiliatelogo4);
-		  // If logo has been uploaded, change the button text to 'Replace'
-		  jQuery('#uploadaffiliatelogo4').val('Replace Affiliate Logo 4');
-		}
-
-		// affiliatelogo5
-		jQuery(document).find("input[id^='uploadaffiliatelogo5']").live('click', function(){
-		//var num = this.id.split('-')[5];
-		formfield = jQuery('#affiliatelogo5').attr('name');
-		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-
-		// 'insert into post' button is clicked here:
-		window.send_to_editor = function(html) {
-		// the below outputs the window object:
-		// console.log(this);
-
-		// image I want is in prevObject:
-		mynewimgurl = jQuery('img',html).attr('src');
-
-		// need to find dimensions - save these in a hidden field and output on client side
-		mynewimgWidth = jQuery('img',html).width();
-		mynewimgHeight = jQuery('img',html).height();
-		//console.log(mynewimgWidth);
-		//console.log(mynewimgHeight);
-		//console.log(mynewimgurl);
-
-		jQuery('#affiliatelogo5').val(mynewimgurl);
-		jQuery('#AL5width').val(mynewimgWidth);
-		jQuery('#AL5height').val(mynewimgHeight);
-		tb_remove();
-		}
-		return false;
-		});
-		// affiliatelogo5 - if logo has been uploaded..
-		affiliatelogo5 = jQuery("input[id^='affiliatelogo5']").val()
-		if (jQuery("input[id^='affiliatelogo5']").val()) {
-		  // Show the uploaded image
-		  jQuery('.affiliatelogo5').attr('src', affiliatelogo5);
-		  // If logo has been uploaded, change the button text to 'Replace'
-		  jQuery('#uploadaffiliatelogo5').val('Replace Affiliate Logo 5');
-		}
-
-		// affiliatelogo6
-		jQuery(document).find("input[id^='uploadaffiliatelogo6']").live('click', function(){
-		//var num = this.id.split('-')[6];
-		formfield = jQuery('#affiliatelogo6').attr('name');
-		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-
-		// 'insert into post' button is clicked here:
-		window.send_to_editor = function(html) {
-		// the below outputs the window object:
-		// console.log(this);
-
-		// image I want is in prevObject:
-		mynewimgurl = jQuery('img',html).attr('src');
-
-		// need to find dimensions - save these in a hidden field and output on client side
-		mynewimgWidth = jQuery('img',html).width();
-		mynewimgHeight = jQuery('img',html).height();
-		//console.log(mynewimgWidth);
-		//console.log(mynewimgHeight);
-		//console.log(mynewimgurl);
-
-		jQuery('#affiliatelogo6').val(mynewimgurl);
-		jQuery('#AL6width').val(mynewimgWidth);
-		jQuery('#AL6height').val(mynewimgHeight);
-		tb_remove();
-		}
-		return false;
-		});
-		// affiliatelogo6 - if logo has been uploaded..
-		affiliatelogo6 = jQuery("input[id^='affiliatelogo6']").val()
-		if (jQuery("input[id^='affiliatelogo6']").val()) {
-		  // Show the uploaded image
-		  jQuery('.affiliatelogo6').attr('src', affiliatelogo6);
-		  // If logo has been uploaded, change the button text to 'Replace'
-		  jQuery('#uploadaffiliatelogo6').val('Replace Affiliate Logo 6');
-		}
-
-
-
-
-		// background image for widgets area
-		// blog_widget_bg_image
-		jQuery(document).find("input[id^='upload_blog_widget_bg_image']").live('click', function(){
-		//var num = this.id.split('-')[1];
-		formfield = jQuery('#blog_widget_bg_image').attr('name');
-		tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-
-		// 'insert into post' button is clicked here:
-		window.send_to_editor = function(html) {
-		// the below outputs the window object:
-		// console.log(this);
-
-		// image I want is in prevObject:
-		mynewimgurl = jQuery('img',html).attr('src');
-		//console.log(mynewimgurl);
-
-		jQuery('#blog_widget_bg_image').val(mynewimgurl);
-		tb_remove();
-		}
-		return false;
-		});
-
-		// blog_widget_bg_image - if logo has been uploaded..
-		blog_widget_bg_image = jQuery("input[id^='blog_widget_bg_image']").val()
-		if (jQuery("input[id^='blog_widget_bg_image']").val()) {
-		  // Show the uploaded image
-		  jQuery('.blog_widget_bg_image').attr('src', blog_widget_bg_image);
-		  // If background image has been uploaded, change the button text to 'Replace'
-		  jQuery('#upload_blog_widget_bg_image').val('Replace Blog Widgets Background Image');
-		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// 4 - Display a Google Map of Your Location / Google Map
-		// a) Google Map Height
-		$( function() {
-			$( "#gmap_slider .v-slider" ).slider({
-				orientation: "vertical",
-				range: "min",
-				min: 250,
-				max: 500,
-				value: 400,
-				slide: function( event, ui ) {
-					$( "#gmap_height" ).val( ui.value );
-				}
-			});
-			//$( "#gmap_height" ).val( $( "#gmap_slider .v-slider" ).slider( "value" ) );
-			$( "#gmap_height" ).val( $( "#gmap_height" ).val() );
-		} );
-
-
-
-
-
-
-
-
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// 5 - Styling Options for the Blog / Blog Styling
-		// a) colour of widgets
-		$('input[name="sandbox_theme_blog_options[blog_widget_bg_colour]"]').change(blogWidgetsColour); // when user selects
-		$('input[name="sandbox_theme_blog_options[blog_widget_bg_colour]"]:checked').each(blogWidgetsColour); // onload
-
-		function blogWidgetsColour() {
-		    $('#bg-colour-brush').removeClass('none green orange blue red_dark grey_lighter grey').addClass(this.value);
-			$('#blog_widget_bg_colour label').removeClass('none green orange blue red_dark grey_lighter grey').addClass(this.value);
-			// opacity icon - greater context
-			$('#bg-opacity_icon').removeClass('none green orange blue red_dark grey_lighter grey').addClass(this.value);
-			// background colour
-			$('.widget-bg-preview').removeClass('none green orange blue red_dark grey_lighter grey').addClass(this.value);
-
-		}
-
-
-		// b) widgets theme / colour scheme
-		$('select[name="sandbox_theme_blog_options[blog_widget_theme]"]').change(blogWidgetsTheme); // when user selects
-		$('select[name="sandbox_theme_blog_options[blog_widget_theme]"]').find(":selected").text(blogWidgetsTheme); // onload
-
-		function blogWidgetsTheme() {
-		    $('#widget-theme').removeClass('light dark').addClass(this.value);
-		}
-
-
-
-		// c) widgets background image - opacity
-		$( function() {
-
-			var bottom = $( "#blog_widget_bg_image_opacity" ).val();
-			var opacity = bottom / 100;
-			//console.log(opacity);
-
-			$( "#bg_image_slider .v-slider" ).slider({
-		    orientation: "vertical",
-		    range: "min",
-		    min: 0,
-		    max: 100,
-		    value: 75,
-		    slide: function( event, ui ) {
-		      var opacity_updated = ui.value;
-					var opacity_fraction = opacity_updated / 100;
-
-					// show value
-					$( "#blog_widget_bg_image_opacity" ).val( opacity_updated );
-					// apply to elements to preview
-					$( ".widget-image-preview" ).css( 'opacity' , + opacity_fraction );
-					$( "#bg-opacity_icon" ).css( 'opacity' , + opacity_fraction );
-		    }
-		  });
-		  // set value of input field
-		  $( "#blog_widget_bg_image_opacity" ).val( $( "#blog_widget_bg_image_opacity" ).val() );
-
-			// set slider to the correct position
-			$( '#bg_image_slider .v-slider .ui-slider-handle' ).css('bottom' , bottom + '%');
-			$( '#bg_image_slider .v-slider .ui-slider-range' ).css('height' , bottom + '%');
-
-			// apply to elements to preview - image and icon
-			$( ".widget-image-preview" ).css( 'opacity' , + opacity );
-			$( "#bg-opacity_icon" ).css( 'opacity' , + opacity );
-
-		} );
-
-
-
-		// d) set width of image background
-		var width = $('.widget-image-preview').width();
-		$('.widget-bg-preview').css('width', width);
-
-
-
-
-
-
-
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// 6 - Google Analytics Tracking ID - helper
-		// a) copy twitter link info
-		$('.AM2017--options form.google_analytics .fa').hover(function(event){
-		  event.preventDefault();
-		  $('.google_analytics--info').removeClass('hidden');
-		});
-
-
-		// analytics_id - if an ID has been added...
-		analytics_id = jQuery("input[id^='google_analytics']").val()
-		if (jQuery("input[id^='google_analytics']").val()) {
-		  // If background image has been uploaded, change the button text to 'Replace'
-		  jQuery('.google_analytics #submit').val('Update Google Analytics Tracking ID');
-		}
-
-
-
-
-
-
-
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// 7 - Lazyloading
-
-		var checked = 'Enable Lazyloading';
-		var unchecked = 'Disable Lazyloading';
-
-
-		if ( $("input[id^='lazyloading']").is(":checked") ) {
-			console.log('checked');
+	$("input[id^='lazyloading']").change(function() {
+		if ( $(this).is(":checked") ) {
 			$('.lazyloading #submit').val(checked);
 		} else {
-			console.log('unchecked');
 			$('.lazyloading #submit').val(unchecked);
 		}
+	});
 
 
-		$("input[id^='lazyloading']").change(function() {
-				if ( $(this).is(":checked") ) {
-						$('.lazyloading #submit').val(checked);
-				} else {
-						$('.lazyloading #submit').val(unchecked);
+
+	
+
+
+
+	
+	
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// Logo Upload constructor
+	// - each logo has a unique class name, applied to parent of text fields
+	function logoUpload(classID) {
+        this.code = function () {
+			// references to elements, and logo type
+			const btn = $(document).find(`${classID} input[type='button']`);
+			const txtFields = $(document).find(`${classID} input[type='text']`);
+			const img = $(document).find(`${classID} img`);
+			let logoType = $(document).find(`${classID}`).parent().prev();
+			logoType = $(logoType).clone().children().remove().end().text(); // gets top level text only
+
+			// upload button click
+			$(btn).live('click', function(){
+				// show thickbox / media upload
+				tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+		
+				// modal
+				window.send_to_editor = function(html) {
+					
+					// take the img src, and add to the first text input field
+					let url = $('img', html).attr('src');
+					$(txtFields[0]).val(url);
+
+					// include img size
+					// - match to classID
+					// - exclude appletouch and favicon
+					if (!$.inArray(classID, ['.appletouch', '.favicon', '.widget_bg']) >= 0) {
+						let width = $('img', html).width();
+						let height = $('img', html).height();
+						$(txtFields[1]).val(width);
+						$(txtFields[2]).val(height);
+					}
+					// remove thickbox / media upload
+					tb_remove();
 				}
-		})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+				return false;
+			});
+		
+		
+			const uploaded = $(txtFields[0]).val();
+			if (uploaded) {
+				// show uploaded image
+				$(img).attr('src', uploaded);
+				// If logo has been uploaded, change the button text to 'Replace'
+				$(btn).val(`Replace ${logoType}`);
+			}
+        }
+	}
 
 
 })(jQuery);

@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------
-// In Page Options
+// In Page Options (within theme settings page)
 // 1) Google Map of Location
 // 2) Blog Styling
 
@@ -443,7 +443,7 @@ function sandbox_theme_intialize_blog_options() {
 	);
 	add_settings_field(
 	    'blog_widget_theme',
-	    '<i class="fa fa-adjust" id="widget-theme" aria-hidden="true"></i>Theme / Colour Scheme',
+	    '<i class="fa fa-adjust colour-overlay" id="widget-theme" aria-hidden="true"></i>Theme / Colour Scheme',
 	    'sandbox_blog_widget_theme_callback',
 	    'sandbox_theme_blog_options',
 	    'blog_settings_section'
@@ -601,6 +601,9 @@ function sandbox_blog_widget_theme_callback() {
 } // end sandbox_blog_widget_theme_callback
 
 
+
+
+
 // 5 - Background Image
 function sandbox_blog_widget_bg_image_callback() {
     $options = get_option( 'sandbox_theme_blog_options' );
@@ -609,15 +612,18 @@ function sandbox_blog_widget_bg_image_callback() {
         $url = $options['blog_widget_bg_image'];
     } // end if blog_widget_bg_image is set
 		echo
-		'<div class="bg-img_group blog_widget_bg_image">
-			<div class="widget-bg-preview">
-				<img class="adminlogo widget-image-preview" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/widgets-bg_default.jpg"/>
+		'<div class="logogroup widget_bg">
+			<div class="colour-overlay">
+				<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/widgets-bg_default.jpg"/>
 			</div>
 			<input type="button" class="button button-primary" value="Upload Blog Widgets Background Image" id="upload_blog_widget_bg_image"/>
 			<label for="blog_widget_bg_image">Background Image Location - can also enter with URL. Image should be at least 1800px wide.</label>
 			<input type="text" id="blog_widget_bg_image" name="sandbox_theme_blog_options[blog_widget_bg_image]" value="' . $options['blog_widget_bg_image'] . '" />
 		</div>';
 } // end sandbox_blog_widget_bg_image_callback
+
+
+
 
 
 // 6 - Background Image Opacity

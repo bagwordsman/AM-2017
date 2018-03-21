@@ -94,7 +94,9 @@ ul.acf-radio-list li input[type="radio"] {
 // section ID text / anchor link (applies to mulitple sections)
 .acf_postbox p.label.section-id {
   color : $purple;
-  span {font-weight : $bold;}
+  .anchor-id {
+    font-weight : $bold;
+  }
 }
 
 

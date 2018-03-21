@@ -332,7 +332,7 @@ Basic Stylesheet
   min-height: 300px; }
   #content > div:not(.hero) .five.columns {
     padding-top: 2.5rem;
-    border-top: 10px solid; }
+    border-top: 10px solid transparent; }
     #content > div:not(.hero) .five.columns.green {
       border-top-color: #70bf44; }
       #content > div:not(.hero) .five.columns.green a {

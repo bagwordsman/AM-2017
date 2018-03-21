@@ -43,6 +43,9 @@
                 color : $white;
                 background-color : $orange;
             }
+            @media (min-width : 1316px) {
+                margin-left : 2.5rem;
+            }
         }
     }
     .invisible {// hide width and height fields
@@ -60,6 +63,7 @@
     ~ p.submit input[type="submit"] {
         @include faux-btn($green) {
             float : right;
+            margin-right : 0;
             &:hover {
                 color : $white;
                 background-color : $green;

@@ -4055,17 +4055,19 @@ find the tints to use by going to http://www.colorhexa.com:
 
 .AM2017--options form#blog input[type="button"] {
   margin: 10px 0; }
-.AM2017--options form#blog label {
-  margin: 10px 0; }
+.AM2017--options form#blog label[for="blog_widget_bg_image"] {
+  margin: 10px 0;
+  display: block; }
 .AM2017--options form#blog input[type="radio"]:checked:before {
   width: 12px;
   height: 12px; }
-.AM2017--options form#blog input[type="text"] {
-  max-width: 600px; }
+.AM2017--options form#blog input[type="text"]#blog_widget_bg_image {
+  width: 100%; }
 .AM2017--options form#blog img {
   display: block;
   max-width: 100%;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 10px; }
 .AM2017--options form#blog input[value="green"]:checked:before {
   background-color: #70bf44; }
 .AM2017--options form#blog input[value="green"]:checked + label {
@@ -4102,17 +4104,17 @@ find the tints to use by going to http://www.colorhexa.com:
   background-color: #6a6a6a;
   color: #ffffff;
   padding: 2px 5px; }
-.AM2017--options form#blog .widget-bg-preview.green {
+.AM2017--options form#blog .colour-overlay.green {
   background-color: #70bf44; }
-.AM2017--options form#blog .widget-bg-preview.orange {
+.AM2017--options form#blog .colour-overlay.orange {
   background-color: #f07f37; }
-.AM2017--options form#blog .widget-bg-preview.blue {
+.AM2017--options form#blog .colour-overlay.blue {
   background-color: #7fc1ff; }
-.AM2017--options form#blog .widget-bg-preview.red_dark {
+.AM2017--options form#blog .colour-overlay.red_dark {
   background-color: #da2a1c; }
-.AM2017--options form#blog .widget-bg-preview.grey_lighter {
+.AM2017--options form#blog .colour-overlay.grey_lighter {
   background-color: #dbdbdb; }
-.AM2017--options form#blog .widget-bg-preview.grey {
+.AM2017--options form#blog .colour-overlay.grey {
   background-color: #6a6a6a; }
 
 .AM2017--options form#analytics input[type="text"] {
@@ -4216,6 +4218,9 @@ find the tints to use by going to http://www.colorhexa.com:
     #mediator-profile input#uploadimage:hover {
       color: #ffffff;
       background-color: #f07f37; }
+    @media (min-width: 1316px) {
+      #mediator-profile input#uploadimage {
+        margin-left: 2.5rem; } }
   #mediator-profile .invisible {
     visibility: hidden; }
     #mediator-profile .invisible input[type="text"], #mediator-profile .invisible td {
@@ -4243,7 +4248,8 @@ find the tints to use by going to http://www.colorhexa.com:
     border: 3px solid #70bf44;
     border-radius: 4px;
     box-sizing: border-box;
-    float: right; }
+    float: right;
+    margin-right: 0; }
     #mediator-profile ~ p.submit input[type="submit"]:hover {
       color: #ffffff;
       background-color: #70bf44; }
@@ -4339,7 +4345,7 @@ input[value="red"]:checked + label {
 
 .acf_postbox p.label.section-id {
   color: #551a8b; }
-  .acf_postbox p.label.section-id span {
+  .acf_postbox p.label.section-id .anchor-id {
     font-weight: 700; }
 
 #acf_471324.acf_postbox.no_box {
