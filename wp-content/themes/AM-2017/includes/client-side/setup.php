@@ -1,12 +1,19 @@
 <?php
+// setup
 
-// ------------------------------------------------------------------------
-// Menus, Post Formats, Post Thumnails, Page Markers, Blog
+// File Contents:
+
+// 1 - register post formats, menus, post thumbnails, set thumbnail size
+// 2 - menus - modify html
+// a) primary menu
+// b) footer services menu
+// c) footer quick links menu
+// 3 - current class on wp_list_pages()
 
 
 
-
-// 1) register menus, post formats, and post thumbnails, add post excerpt
+// _______________________________________________________
+// 1) register post formats, menus, post thumbnails, set thumbnail size
 function AM2017_setup() {
 
 	// support a variety of post formats.
@@ -17,7 +24,7 @@ function AM2017_setup() {
 	register_nav_menu('quicklinks-menu',__( 'Footer Quick Links Menu', 'AM2017' ));
 	// custom image size for featured images, displayed on "standard" posts
 	add_theme_support( 'post-thumbnails' );
-    set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+    set_post_thumbnail_size( 624, 9999 ); // unlimited height, soft crop
     add_post_type_support( 'page', 'excerpt' );
 }
 add_action( 'after_setup_theme', 'AM2017_setup' );
@@ -25,10 +32,10 @@ add_action( 'after_setup_theme', 'AM2017_setup' );
 
 
 
+// _______________________________________________________
+// 2 - menus - modify html - remove the default <div> and <ul>
 
-
-// 2) remove the default <div> and <ul> which wrap menus by default
-// Primary Menu / primary
+// a) primary menu
 function wp_nav_menu_unwrap() {
     $options = array(
         'echo' => false,
@@ -47,11 +54,7 @@ function fall_back_menu(){
     return;
 }
 
-
-
-
-
-// Footer Services Menu / services-menu
+// b) footer services menu
 function wp_services_menu_unwrap() {
     $options = array(
         'echo' => false,
@@ -59,7 +62,6 @@ function wp_services_menu_unwrap() {
         'theme_location' => 'services-menu',
         'fallback_cb'=> 'fall_back_menu'
     );
-
     $menu = wp_nav_menu($options);
     echo preg_replace(array(
         '#^<ul[^>]*>#',
@@ -67,7 +69,7 @@ function wp_services_menu_unwrap() {
     ), '', $menu);
 }
 
-// Footer Quick Links Menu / quicklinks-menu
+// c) footer quick links menu
 function wp_quicklinks_menu_unwrap() {
     $options = array(
         'echo' => false,
@@ -75,7 +77,6 @@ function wp_quicklinks_menu_unwrap() {
         'theme_location' => 'quicklinks-menu',
         'fallback_cb'=> 'fall_back_menu'
     );
-
     $menu = wp_nav_menu($options);
     echo preg_replace(array(
         '#^<ul[^>]*>#',
@@ -86,10 +87,9 @@ function wp_quicklinks_menu_unwrap() {
 
 
 
-
-
-// 3) add current class to wp_list_pages()
-// not used in menus, but this could be useful on the sitemap page
+// _______________________________________________________
+// 3 - current class on wp_list_pages()
+// - not used in menus, but this could be useful on the sitemap page
 function my_page_css_class( $css_class, $page ) {
     global $post;
     if ( $post->ID == $page->ID ) {
@@ -102,16 +102,14 @@ add_filter( 'page_css_class', 'my_page_css_class', 10, 2 );
 
 
 
-
-// 4) blog - set post excerpt length and add 'read more'
+// _______________________________________________________
+// 4 - blog - set post excerpt length and add 'read more'
 function custom_excerpt_length( $length ) {
 	return 40;}
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
       function new_excerpt_more( $more ) {
 	return ' <a class="read-more" href="'. get_permalink( get_the_ID() ) . '"> ...View Full Blog Post Here > </a>';}
 add_filter( 'excerpt_more', 'new_excerpt_more' );
-
-
 
 
 ?>

@@ -1,61 +1,61 @@
 <?php
 $themename = 'AM2017';
 
+// php includes
+//	- split up functionality, keep self sane
+
+// File Contents:
+
+// 1 - Client Side
+// a) css and js
+// b) fonts
+// c) theme setup
+// d) menus
+// e) mediator profiles
+// f) google map shortcode
+// g) accordion shortcode
+// h) disclaimer shortcode
+
+// 2 - Admin Side
+// a) css and js
+// b) widgets
+// c) admin setup
+// d) classes
+// e) theme settings page
+
+
 
 
 // _______________________________________________________
-// PHP Includes - split up functionality, keep self sane
+// 1 - Client Side
 
+// a) css and js
+require_once( __DIR__ . '/includes/client-side/css-js.php');
 
+// b) fonts
+require_once( __DIR__ . '/includes/client-side/fonts.php');
 
+// c) theme setup
+// i) register menus, post formats, and post thumbnails
+// ii) remove the default <div> and <ul> which wrap menus by default
+// iii) add current class to wp_list_pages()
+// iv) blog - set post excerpt length and add 'read more'
+require_once( __DIR__ . '/includes/client-side/setup.php');
 
-// _______________________________________________________
-// 1 - Front End
+// d) menus
+require_once( __DIR__ . '/includes/client-side/menus.php');
 
-// -------- Css and Js --------
-// 1) add global stylesheets
-// 2) add global scripts
-require_once( __DIR__ . '/includes/theme-setup/AM-css-js.php');
+// e) mediator profiles
+require_once( __DIR__ . '/includes/client-side/mediator-profiles.php');
 
+// f) google map shortcode
+require_once( __DIR__ . '/includes/client-side/google-map.php');
 
-// -------- Fonts --------
-// 1) add google fonts
-// 2) add IE google fonts for ie8 and below
-require_once( __DIR__ . '/includes/theme-setup/AM-fonts.php');
+// g) accordion shortcode
+require_once( __DIR__ . '/includes/client-side/accordion.php');
 
-
-// -------- Menus, Post Formats, Post Thumnails, Page Markers, Blog --------
-// 1) register menus, post formats, and post thumbnails
-// 2) remove the default <div> and <ul> which wrap menus by default
-// 3) add current class to wp_list_pages()
-// 4) blog - set post excerpt length and add 'read more'
-require_once( __DIR__ . '/includes/theme-setup/AM-setup.php');
-
-require_once( __DIR__ . '/includes/theme-setup/AM-menus.php');
-
-
-// -------- Mediation Presentation --------
-// require_once( __DIR__ . '/includes/theme-setup/AM-mediation-presentation.php');
-
-
-// -------- Mediator Profiles --------
-require_once( __DIR__ . '/includes/theme-setup/AM-mediator-profiles.php');
-
-
-// -------- Google Map Shortcode --------
-require_once( __DIR__ . '/includes/theme-setup/AM-google-map.php');
-
-
-// -------- Accordion Shortcode --------
-require_once( __DIR__ . '/includes/theme-setup/AM-accordion.php');
-
-// -------- Disclaimer Shortcode --------
-require_once( __DIR__ . '/includes/theme-setup/AM-disclaimer.php');
-
-
-
-
-
+// h) disclaimer shortcode
+require_once( __DIR__ . '/includes/client-side/disclaimer.php');
 
 
 
@@ -64,55 +64,41 @@ require_once( __DIR__ . '/includes/theme-setup/AM-disclaimer.php');
 // _______________________________________________________
 // 2 - Admin Side
 
+// a) css and js
+require_once( __DIR__ . '/includes/admin-side/admin-css-js.php');
 
-// -------- Admin Css and Js --------
-// 1) add admin stylesheets
-// 2) add admin scripts
-require_once( __DIR__ . '/includes/admin-includes/AM-admin-css-js.php');
+// b) widgets
+// i) register widget areas - blog, cookies
+// ii) cookies widget
+require_once( __DIR__ . '/includes/admin-side/widgets.php');
 
+// c) admin setup
+// - 2nd theme admin, webmaster credits, anything site-wide
+require_once( __DIR__ . '/includes/admin-side/admin-setup.php');
 
-// -------- Widgets --------
-// 1) register widgets - Blog Page Widgets, Cookies Notice, Header Opening Times,
-// 2) cookies widget
-require_once( __DIR__ . '/includes/admin-includes/AM-widgets.php');
-
-
-// -------- Admin Setup --------
-// 1) add 2nd theme administrator
-// 2) redirect login for subscribers to /sample-page
-// 3) add meta fields to media uploader for attachment pages
-// 4) webmaster credits at bottom of admin panel
-require_once( __DIR__ . '/includes/admin-includes/AM-admin-setup.php');
+// d) classes
+// - allows theme settings includes to be more readable
+require_once( __DIR__ . '/includes/admin-side/classes.php');
 
 
+// e) theme settings page
+require_once( __DIR__ . '/includes/admin-side/settings/form-setup.php');
+// i) header and footer
+require_once( __DIR__ . '/includes/admin-side/settings/header-and-footer.php');
+// ii) in page
+require_once( __DIR__ . '/includes/admin-side/settings/in-page.php');
+// iii) functionality
+require_once( __DIR__ . '/includes/admin-side/settings/functionality.php');
 
 
+// f) callback functions
+require_once( __DIR__ . '/includes/admin-side/settings/callbacks.php');
 
-
-
-
-// _______________________________________________________
-// 3 - Create Theme Options Page
-
-
-// -------- Theme Options Page --------
-// 1) Company Options
-// 2) logo Options
-// 3) Social Options
-// 4) Tweet
-// 5) Styling Options
-// 5) affiliates Options
-require_once( __DIR__ . '/includes/theme-options/AM-theme-options.php');
-
-// -------- In Page Options --------
-// 1) Google Map of Location
-// 2) Blog Styling
-require_once( __DIR__ . '/includes/theme-options/AM-in-page-options.php');
-
-// -------- Functionality Options --------
-// 1/ Google Analytics Options
-// 2/ Lazyloading Options
-require_once( __DIR__ . '/includes/theme-options/AM-functionality-options.php');
+// header and footer, in page, functionality
+// - best separated into components within an 'admin settings' folder
+// - look at what parts of the admin each include focuses on
+// - make a classes include
+// - make a callbacks include
 
 
 ?>

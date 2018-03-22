@@ -56,19 +56,14 @@ if ($keywords == true) {
 ?>
 <meta content="<?php bloginfo( 'name' ); ?>" property="site title"/>
 
-
-<!-- logos and favicons -->
 <?php
-// get site title for logo img alt text
+// site title
 $site_title = get_bloginfo('name');
-// get logo
+// logo
 $logo_options = get_option ( 'sandbox_theme_logo_options' );
-// Main logo - width and height
 $mainlogo = $logo_options['mainlogo'];
-// $mainlogo_Width = $logo_options['MLwidth'];
-// $mainlogo_Width = preg_replace("/[^0-9,.]/", "", $mainlogo_Width);
-// $mainlogo_Height = $logo_options['MLheight'];
-// $mainlogo_Height = preg_replace("/[^0-9,.]/", "", $mainlogo_Height);
+$mainlogo_alt = $logo_options['MLalt'];
+
 // Icons
 $appletouch = $logo_options['appletouch'];
 $favicon = $logo_options['favicon'];
@@ -94,14 +89,12 @@ if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.
 	$able = $parts[0];
 	$mediation = $parts[1];
 
-
 	// header CTA
 	$header_cta = get_option ( 'sandbox_theme_cta_options' );
 	$cta_type = $header_cta['cta_type'];
 	$cta_link = $header_cta['cta_link'];
 	$cta_text = $header_cta['cta_text'];
 	$cta_colour = $header_cta['cta_colour'];
-
 	
 	// phone CTA
 	$company_options = get_option ( 'sandbox_theme_company_options' );
@@ -138,7 +131,7 @@ if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.
 			<div class="container">
 				<div class="three columns logo">
 					<a class="logo" href="' . esc_url( home_url( '/' ) ) . '">' .
-						( $mainlogo ? ('<img src="' . $mainlogo .'" alt="'. $site_title .'" width="'. $mainlogo_Width .'" height="' . $mainlogo_Height .'" />')  : '<img src="'. get_bloginfo('stylesheet_directory'). '/img/AM-logo.png" alt="'. $site_title .'" width="200" height="113" />' ) . '
+						( $mainlogo ? ('<img src="' . $mainlogo .'" alt="'. $mainlogo_alt .'" width="'. $mainlogo_Width .'" height="' . $mainlogo_Height .'" />')  : '<img src="'. get_bloginfo('stylesheet_directory'). '/img/AM-logo.png" alt="'. $site_title .'" width="200" height="113" />' ) . '
 						<div class="site-title"><span>' . $able .' </span>' . $mediation . '</div>
 					</a>
 				</div><!-- three columns -->' . $cta . '

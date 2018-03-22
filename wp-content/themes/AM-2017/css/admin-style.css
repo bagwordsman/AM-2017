@@ -3737,6 +3737,21 @@ body .ui-tooltip {
 .hidden {
   display: none; }
 
+.top-margin--3-6 {
+  margin-top: 3.6rem; }
+
+.top-margin--4-2 {
+  margin-top: 4.2rem; }
+
+.top-margin--5-6 {
+  margin-top: 5.6rem; }
+
+.top-margin--7-6 {
+  margin-top: 7.6rem; }
+
+.top-margin--7-8 {
+  margin-top: 7.8rem; }
+
 /*
 –––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /* 2 - Colour classes - could be used somewhere - e.g. by jquery for linked page boxes
@@ -3811,7 +3826,7 @@ find the tints to use by going to http://www.colorhexa.com:
     margin-top: 0;
     padding-top: 0; }
   .AM2017--options form.wide th {
-    min-width: 340px; }
+    min-width: 400px; }
   .AM2017--options form .invisible {
     visibility: hidden; }
     .AM2017--options form .invisible input[type="text"] {
@@ -4038,12 +4053,6 @@ find the tints to use by going to http://www.colorhexa.com:
   display: block;
   min-width: 80%; }
 
-.AM2017--options form#gmap .top-margin--4-2 {
-  margin-top: 4.2rem; }
-.AM2017--options form#gmap .top-margin--5-8 {
-  margin-top: 5.8rem; }
-.AM2017--options form#gmap .top-margin--10 {
-  margin-top: 10rem; }
 .AM2017--options form#gmap .shortcode-info {
   color: #6a6a6a; }
   .AM2017--options form#gmap .shortcode-info span {

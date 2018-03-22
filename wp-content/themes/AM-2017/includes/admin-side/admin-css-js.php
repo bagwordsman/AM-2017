@@ -19,25 +19,20 @@ add_action( 'admin_enqueue_scripts', 'load_admin_css' );
 // b) add admin scripts
 function load_admin_js($hook) {
 
-	// load jquery ui - required for sliders etc.
+	// jquery ui - for sliders on settings page
 	wp_enqueue_script('jquery-ui-js', get_stylesheet_directory_uri(). '/js/lib/jquery-ui.min.js', false, false, true );
 
-	//
 	// remove default non WSIWYG editor for user profile
 	if ( $hook == 'profile.php' || $hook == 'user-edit.php' ) {
 		wp_enqueue_script('admin-profile-js', get_stylesheet_directory_uri(). '/js/admin/admin-profile.js', false, false, true );
 	}
-
-	// load js for page templates (pages created with ACF PLugin)
+	
+	// page template JS
 	wp_enqueue_script('admin-pages-js', get_stylesheet_directory_uri(). '/js/admin/admin-pages.js', false, false, true );
-
-	// load js for Able Mediation Theme Settings
+	// settings page JS
 	wp_enqueue_script('admin-settings-js', get_stylesheet_directory_uri(). '/js/admin/admin-settings.js', false, false, true );
-
-	// thickbox is also added after admin settings section. Search for 'thickbox' - perhaps is can be added here
 
 }
 add_action( 'admin_enqueue_scripts', 'load_admin_js' );
-
 
 ?>

@@ -1,8 +1,5 @@
 <?php
-/**
- * The template for displaying the footer.
- *
- */
+// The template for displaying the footer.
 
  $styling_options = get_option ( 'sandbox_theme_styling_options' );
  $footerhero = $styling_options['footerhero'];
@@ -26,13 +23,15 @@ $replace = array('<strong>Able Mediation</strong>');
 $ouraffiliatestitle = str_replace($search, $replace, $ouraffiliatestitle);
 
 // Logos for companies affiliated with
-$affiliatelogo1 = $affiliate_logo_options['affiliatelogo1'];
-$affiliatelogo2 = $affiliate_logo_options['affiliatelogo2'];
-$affiliatelogo3 = $affiliate_logo_options['affiliatelogo3'];
-$affiliatelogo4 = $affiliate_logo_options['affiliatelogo4'];
+$logo_1 = $affiliate_logo_options['aff_logo_1'];
+$logo_2 = $affiliate_logo_options['aff_logo_2'];
+$logo_3 = $affiliate_logo_options['aff_logo_3'];
+$logo_4 = $affiliate_logo_options['aff_logo_4'];
+$logo_5 = $affiliate_logo_options['aff_logo_5'];
+$logo_6 = $affiliate_logo_options['aff_logo_6'];
 
 // if any logo is present, echo the affiliates-band
-if ($affiliatelogo1 != '' || $affiliatelogo2 != '' || $affiliatelogo3 != '' || $affiliatelogo4 != '')
+if ($logo_1 != '' || $logo_2 != '' || $logo_3 != '' || $logo_4 != '')
 echo '
 <div id="affiliates-band" role="complementary">'
 	. ( $ouraffiliatestitle ? ('<div class="container"><h4>'. $ouraffiliatestitle .'</h4></div>')  : '') .'
@@ -43,26 +42,16 @@ echo '
 		// create a multidimensional array - split into 3 part chunks
 		$logogroup = array_chunk($affiliate_logo_options, 4);
 
-		// separate out each logo
+		// loop through logos
 		foreach( $logogroup as $logo => $items ) {
-			//var_dump($items);
-
-            // only output logo if a url for it exists
-            if ($items[0] != '') {
-
-				// preg_replace width and height - couldn't sanitise non-numeric data in functions.php
-				$width = preg_replace("/[^0-9,.]/", "", $items[2]);
-				$height = preg_replace("/[^0-9,.]/", "", $items[3]);
-
-				// output the image
-				echo '<img src="' . $items[0] .'" alt="' . $items[1] .'" width="' . $width .'" height="' . $height .'" />';
-
+			// output logos
+			if ($items[0] != '') {
+				echo '<img src="' . $items[0] .'" alt="' . $items[1] .'" width="' . $items[2] .'" height="' . $items[3] .'" />';
             }
-
 		} // end foreach logo
 
 	// if any logo is present, close the affiliates-band
-	if ($affiliatelogo1 != '' || $affiliatelogo2 != '' || $affiliatelogo3 != '' || $affiliatelogo4 != '')
+	if ($logo_1 != '' || $logo_2 != '' || $logo_3 != '' || $logo_4 != '' || $logo_5 != '' || $logo_6 != '')
 	echo
 	'</div>
 </div><!-- #affiliates-band -->';

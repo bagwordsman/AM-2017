@@ -10,15 +10,16 @@ class XTeam_Nav_Menu_Item_Custom_Fields {
 				<label for="edit-menu-item-{name}-{id}">
 					{label}<br>
 					<input
-						type="{input_type}"
-						id="edit-menu-item-{name}-{id}"
-						class="widefat code edit-menu-item-{name}"
-						name="menu-item-{name}[{id}]"
-						value="{value}">
+					type="{input_type}"
+					id="edit-menu-item-{name}-{id}"
+					class="widefat code edit-menu-item-{name}"
+					name="menu-item-{name}[{id}]"
+					value="{value}">
 				</label>
 			</p>
 		',
 	);
+	// setup function
 	static function setup() {
 		if ( !is_admin() )
 			return;
@@ -29,7 +30,6 @@ class XTeam_Nav_Menu_Item_Custom_Fields {
 		add_filter( 'wp_edit_nav_menu_walker', function () {
 			return 'XTeam_Walker_Nav_Menu_Edit';
 		});
-		//add_filter( 'xteam_nav_menu_item_additional_fields', array( __CLASS__, '_add_fields' ), 10, 5 );
 		add_action( 'save_post', array( __CLASS__, '_save_post' ), 10, 2 );
 	}
 	static function get_fields_schema( $new_fields ) {
@@ -45,10 +45,7 @@ class XTeam_Nav_Menu_Item_Custom_Fields {
 	static function get_menu_item_postmeta_key($name) {
 		return '_menu_item_' . $name;
 	}
-	/**
-	 * Inject the 
-	 * @hook {action} save_post
-	 */
+	// Inject the @hook {action} save_post
 	static function get_field( $item, $depth, $args ) {
 		$new_fields = '';
 		foreach( self::$options['fields'] as $field ) {
@@ -62,10 +59,7 @@ class XTeam_Nav_Menu_Item_Custom_Fields {
 		}
 		return $new_fields;
 	}
-	/**
-	 * Save the newly submitted fields
-	 * @hook {action} save_post
-	 */
+	// Save the newly submitted fields @hook {action} save_post
 	static function _save_post($post_id, $post) {
 		if ( $post->post_type !== 'nav_menu_item' ) {
 			return $post_id; // prevent weird things from happening
@@ -86,17 +80,14 @@ class XTeam_Nav_Menu_Item_Custom_Fields {
 require_once ABSPATH . 'wp-admin/includes/nav-menu.php';
 class XTeam_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 	function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
-	// function start_el(&$output, $item, $depth, $args) {
 		$item_output = '';
 		parent::start_el($item_output, $item, $depth, $args);
-		// Inject $new_fields before: <div class="menu-item-actions description-wide submitbox">
 		if ( $new_fields = XTeam_Nav_Menu_Item_Custom_Fields::get_field( $item, $depth, $args ) ) {
 			$item_output = preg_replace('/(?=<div[^>]+class="[^"]*submitbox)/', $new_fields, $item_output);
 		}
 		$output .= $item_output;
 	}
 }
-
 
 // Add extra fields here, specifying the 
 add_filter( 'xteam_nav_menu_item_additional_fields', 'mytheme_menu_item_additional_fields' );
@@ -112,11 +103,10 @@ function mytheme_menu_item_additional_fields( $fields ) {
 }
 
 
-// use on the front end -> outputs in the anchor tag
+// data-attributes - used for abbreviated menu items
+// - use on the front end -> outputs in the anchor tag
 add_filter( 'nav_menu_link_attributes', 'my_nav_menu_attribs', 10, 3 );
-
-function my_nav_menu_attribs( $atts, $item, $args ) {
-    
+function my_nav_menu_attribs( $atts, $item, $args ) {  
     $atts['data-abbrev'] = get_post_meta($item->ID, '_menu_item_abbrev', true); // abbreviated title
     $atts['data-orig'] = $item->post_title; // original title
 

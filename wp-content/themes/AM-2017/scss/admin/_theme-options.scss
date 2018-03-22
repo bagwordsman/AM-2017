@@ -116,7 +116,7 @@ $sections: (
   }
   // wide left column
   &.wide th {
-    min-width : 340px;
+    min-width : 400px; // was 340
   }
   // resets
   .invisible {
@@ -345,9 +345,6 @@ $cta_codes : $green, $orange, $blue, $red_dark;
 // –––––––––––––––––––––––––
 // map
 #{sections('map')} {
-  .top-margin--4-2 {margin-top:4.2rem;}
-  .top-margin--5-8 {margin-top:5.8rem;}
-  .top-margin--10 {margin-top:10rem;}
   @include shortcode;
 }
 

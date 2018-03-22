@@ -82,7 +82,12 @@ $cf_colours : $pale_red, $pale_orange, $pale_green;
 .hidden { display : none; }
 
 
-
+// spacing - for input fields after titles
+.top-margin--3-6 {margin-top:3.6rem;}
+.top-margin--4-2 {margin-top:4.2rem;}
+.top-margin--5-6 {margin-top:5.6rem;} // location fields
+.top-margin--7-6 {margin-top:7.6rem;} // api key field
+.top-margin--7-8 {margin-top:7.8rem;} // blog widget area title
 
 
 

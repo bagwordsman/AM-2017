@@ -1,14 +1,11 @@
 <?php
+// admin setup
+// - general settings across the whole theme added here
 
-// ------------------------------------------------------------------------
-// General Admin Setup Functions
 
-
-// 1) add 2nd theme administrator
-// allows the client (with administrator role) - always 2nd created user - to update theme options (i.e. company details)
-// stops 'Cheatin' uh? from displaying
+// allow user (with administrator role) to update theme options (i.e. company details)
+// - stops 'Cheatin' uh? from displaying when logging into the dashboard as admin
 function add_theme_caps() {
-    // gets the administrator role
     $user = new WP_User( 2 );
 	$user->add_cap( 'manage_options' );
 }
@@ -16,26 +13,22 @@ add_action( 'admin_init', 'add_theme_caps');
 
 
 
-
-
 // 2) redirect login for subscribers to /sample-page
-function redirect_subscriber_login() {
-    global $current_user;
-    get_currentuserinfo();
-    // If login user role is Subscriber
-    if ($current_user->user_level == 0){
-        wp_redirect( home_url('/sample-page') ); exit;
-    }
-}
-add_action('admin_init', 'redirect_subscriber_login');
-
-
-
+// function redirect_subscriber_login() {
+//     global $current_user;
+//     get_currentuserinfo();
+//     // If login user role is Subscriber
+//     if ($current_user->user_level == 0){
+//         wp_redirect( home_url('/sample-page') ); exit;
+//     }
+// }
+// add_action('admin_init', 'redirect_subscriber_login');
 
 
 
 
 // 3) add meta fields to media uploader for attachment pages
+// - useful for image heavy websites, e.g. image attachment pages
 function image_attachment_metadata( $form_fields, $post ) {
 	$form_fields['meta-title'] = array(
 		'label' => 'Meta Title',
@@ -71,11 +64,6 @@ function image_attachment_field_credit_save( $post, $attachment ) {
 }
 
 add_filter( 'attachment_fields_to_save', 'image_attachment_field_credit_save', 10, 2 );
-
-
-
-
-
 
 
 

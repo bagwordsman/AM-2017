@@ -222,35 +222,38 @@
 	// ––––––––––––––––––––––––––––––––––––––––––––––––––
 	// Logo Upload constructor
 	// - each logo has a unique class name, applied to parent of text fields
+	// - each logo requires an alt text field at pos [1] in array
 	function logoUpload(classID) {
         this.code = function () {
 			// references to elements, and logo type
-			const btn = $(document).find(`${classID} input[type='button']`);
-			const txtFields = $(document).find(`${classID} input[type='text']`);
-			const img = $(document).find(`${classID} img`);
+			const btn = $(classID).find("input[type='button']");
+			const txtFields = $(classID).find("input[type='text']");
+			const img = $(classID).find("img"); // const img = $(document).find(`${classID} img`);
 			let logoType = $(document).find(`${classID}`).parent().prev();
 			logoType = $(logoType).clone().children().remove().end().text(); // gets top level text only
-
+			
 			// upload button click
 			$(btn).live('click', function(){
 				// show thickbox / media upload
 				tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
 		
-				// modal
+				// when 'insert into post' is clicked:
 				window.send_to_editor = function(html) {
 					
-					// take the img src, and add to the first text input field
-					let url = $('img', html).attr('src');
+					// take src from img that has just been uploaded
+					// - img is wrapped in an <a> tag
+					const url = $('img', html).attr('src');
 					$(txtFields[0]).val(url);
+					$(img).attr('src',url);
 
 					// include img size
-					// - match to classID
-					// - exclude appletouch and favicon
+					// - exclude appletouch, favicon, and widget img
 					if (!$.inArray(classID, ['.appletouch', '.favicon', '.widget_bg']) >= 0) {
-						let width = $('img', html).width();
-						let height = $('img', html).height();
-						$(txtFields[1]).val(width);
-						$(txtFields[2]).val(height);
+						// .width() and .height() target wrapping <a> tag, therefore don't work
+						const width = $('img', html).attr('width');
+						const height = $('img', html).attr('height');
+						$(txtFields[2]).val(width);
+						$(txtFields[3]).val(height);
 					}
 					// remove thickbox / media upload
 					tb_remove();
@@ -258,13 +261,21 @@
 				return false;
 			});
 		
-		
+			// if url field not empty, img is uploaded
 			const uploaded = $(txtFields[0]).val();
 			if (uploaded) {
 				// show uploaded image
 				$(img).attr('src', uploaded);
-				// If logo has been uploaded, change the button text to 'Replace'
+				// change the button text to 'Replace'
 				$(btn).val(`Replace ${logoType}`);
+				// update width, height, and alt text
+				// - exclude appletouch, favicon, and widget img
+				if (!$.inArray(classID, ['.appletouch', '.favicon', '.widget_bg']) >= 0) {
+					const loadWidth = $(img).width();
+					const loadHeight = $(img).height();
+					$(txtFields[2]).val(loadWidth);
+					$(txtFields[3]).val(loadHeight);
+				}
 			}
         }
 	}
