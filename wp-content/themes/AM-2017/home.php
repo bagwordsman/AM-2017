@@ -12,29 +12,29 @@ get_header(); ?>
 <div id="content" role="main">
 
 
-			<div class="hero">
-						<?php
-						$styling_options = get_option ( 'sandbox_theme_styling_options' );
-						$heromesh = $styling_options['heromesh'];
-						// hero image - post thumbnail (if set)
-						if (has_post_thumbnail()) {
-								the_post_thumbnail('full');
-						// output default img from theme (if not set)
-						} else {
-								echo '<img src="'. get_bloginfo('stylesheet_directory'). '/img/default-hero/able-default-hero.jpg" alt="'.get_bloginfo('name').'"/>';
-						}
-						?>
-						<div <?php if ($heromesh) echo 'class="mesh"'; ?>>
-								<div class="container">
-										<?php
-										$blogtitle = get_the_title( get_option('page_for_posts', true) );
-										$blogcontent = get_the_content( get_option('page_for_posts', true) );
-										echo '<h1>' . $blogtitle . '</h1>';
-										?>
-								</div>
-						</div>
-						<span class="divider white"></span>
-			</div><!-- hero -->
+	<div class="hero">
+		<?php
+		$styling_options = get_option ( 'sandbox_theme_styling_options' );
+		$heromesh = $styling_options['heromesh'];
+		// hero image - post thumbnail (if set)
+		if (has_post_thumbnail()) {
+				the_post_thumbnail('full');
+		// output default img from theme (if not set)
+		} else {
+				echo '<img src="'. get_bloginfo('stylesheet_directory'). '/img/default-hero/able-default-hero.jpg" alt="'.get_bloginfo('name').'"/>';
+		}
+		?>
+		<div <?php if ($heromesh) echo 'class="mesh"'; ?>>
+			<div class="container">
+				<?php
+				$blogtitle = get_the_title( get_option('page_for_posts', true) );
+				$blogcontent = get_the_content( get_option('page_for_posts', true) );
+				echo '<h1>' . $blogtitle . '</h1>';
+				?>
+			</div>
+		</div>
+		<span class="divider white"></span>
+	</div><!-- hero -->
 
 
 
@@ -54,9 +54,9 @@ get_header(); ?>
 
 
               <div class="eight columns">
-                	<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
-									<!-- rel="bookmark" alt='<?php the_title() ?>' title='<?php the_title() ?>' -->
-            		<?php the_excerpt(); ?>
+				<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+					<!-- rel="bookmark" alt='<?php the_title() ?>' title='<?php the_title() ?>' -->
+				<?php the_excerpt(); ?>
               </div><!-- eight columns -->
 
 

@@ -10,24 +10,24 @@ get_header(); ?>
     <?php while ( have_posts() ) : the_post(); ?>
 
       <div class="hero">
-						<?php
-						$styling_options = get_option ( 'sandbox_theme_styling_options' );
-						$heromesh = $styling_options['heromesh'];
-						// hero image - post thumbnail (if set)
-						if (has_post_thumbnail()) {
-								the_post_thumbnail('full');
-						// output default img from theme (if not set)
-						} else {
-								echo '<img src="'. get_bloginfo('stylesheet_directory'). '/img/default-hero/able-default-hero.jpg" alt="'.get_bloginfo('name').'"/>';
-						}
-						?>
-						<div <?php if ($heromesh) echo 'class="mesh"'; ?>>
-								<div class="container">
-										<h1><?php the_title(); ?></h1>
-								</div>
-						</div>
-						<span class="divider white"></span>
-			</div><!-- hero -->
+            <?php
+            $styling_options = get_option ( 'sandbox_theme_styling_options' );
+            $heromesh = $styling_options['heromesh'];
+            // hero image - post thumbnail (if set)
+            if (has_post_thumbnail()) {
+                the_post_thumbnail('full');
+            // output default img from theme (if not set)
+            } else {
+                echo '<img src="'. get_bloginfo('stylesheet_directory'). '/img/default-hero/able-default-hero.jpg" alt="'.get_bloginfo('name').'"/>';
+            }
+            ?>
+            <div <?php if ($heromesh) echo 'class="mesh"'; ?>>
+                <div class="container">
+                    <h1><?php the_title(); ?></h1>
+                </div>
+            </div>
+            <span class="divider white"></span>
+        </div><!-- hero -->
 
 
     <div class="container">

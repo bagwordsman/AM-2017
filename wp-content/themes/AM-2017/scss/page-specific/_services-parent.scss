@@ -22,7 +22,7 @@
 
     // downward pointer - a reset to stop overlay of colour when hovered
     .divider {
-      z-index : 10;
+      z-index : 4;
       bottom : 0px;
     }
 }
@@ -76,7 +76,7 @@
       opacity : .25;
       // does this actually let the info section still be clickable???
       + .info {
-        z-index : 4;
+        z-index : 3;
       }
     }
   }

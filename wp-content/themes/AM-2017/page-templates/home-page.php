@@ -10,81 +10,80 @@ get_header();
 
 <div id="content" role="main">
 
+	<div class="hero">
+		<?php
+		$styling_options = get_option ( 'sandbox_theme_styling_options' );
+		$heromesh = $styling_options['heromesh'];
+		// hero image - post thumbnail (if set)
+		if (has_post_thumbnail()) {
+				the_post_thumbnail('full');
+		// output default img from theme (if not set)
+		} else {
+			echo '<img src="'. get_bloginfo('stylesheet_directory'). '/img/default-hero/able-home-hero.jpg" alt="'.get_bloginfo('name').'"/>';
+		}
+		?>
+		<div <?php if ($heromesh) echo 'class="mesh"'; ?>>
+		<div class="container">
+			<div class="seven columns" role="main">
 
-			<div class="hero">
-						<?php
-						$styling_options = get_option ( 'sandbox_theme_styling_options' );
-						$heromesh = $styling_options['heromesh'];
-						// hero image - post thumbnail (if set)
-						if (has_post_thumbnail()) {
-								the_post_thumbnail('full');
-						// output default img from theme (if not set)
-						} else {
-								echo '<img src="'. get_bloginfo('stylesheet_directory'). '/img/default-hero/able-home-hero.jpg" alt="'.get_bloginfo('name').'"/>';
-						}
-						?>
-						<div <?php if ($heromesh) echo 'class="mesh"'; ?>>
-								<div class="container">
-										<div class="seven columns" role="main">
+				<?php
+				// main content / wordpress loop
+				while ( have_posts() ) : the_post(); ?>
+				<h1> <?php the_title(); ?></h1>
+				<?php the_content(); ?>
+				<?php
+				endwhile; ?>
 
-											<?php
-											// main content / wordpress loop
-											while ( have_posts() ) : the_post(); ?>
-											<h1> <?php the_title(); ?></h1>
-											<?php the_content(); ?>
-											<?php
-											endwhile; ?>
+			</div>
+			<div class="five columns" role="complementary">
+				<?php
+				// hero right column
 
-										</div>
-										<div class="five columns" role="complementary">
-												<?php
-												// hero right column
+				// could add an option for a quote here
+				$right_column = get_field('hero_right_hand_content');
+				$right_column_background = get_field('hero_right_hand_background_colour');
 
-												// could add an option for a quote here
-												$right_column = get_field('hero_right_hand_content');
-												$right_column_background = get_field('hero_right_hand_background_colour');
-
-												// output right column
-												if ($right_column) {
-														// add a colour if 'transparent' is not selected
-														if ($right_column_background !== 'transparent') {
-																echo '<div class="hero--overlay' . ' ' . $right_column_background . '">' . $right_column . '</div>';
-														}
-														else if ($right_column_background === 'transparent') {
-																echo '<div class="hero--overlay">' . $right_column . '</div>';
-														}
-												}
-												?>
-										</div>
-								</div>
-						</div>
-						<span class="divider white"></span>
-			</div><!-- hero -->
+				// output right column
+				if ($right_column) {
+					// add a colour if 'transparent' is not selected
+					if ($right_column_background !== 'transparent') {
+						echo '<div class="overlay' . ' ' . $right_column_background . '">' . $right_column . '</div>';
+					}
+					else if ($right_column_background === 'transparent') {
+						echo '<div class="overlay">' . $right_column . '</div>';
+					}
+				}
+				?>
+			</div>
+		</div>
+	</div>
+	<span class="divider white"></span>
+	</div><!-- hero -->
 
 
 
 	<!-- second section -->
 	<div class="wrapper-white">
-			<div class="container container--right">
-			<?php
-			$header_2 = get_field('second_section_header');
-			$content_2 = get_field('second_section_content');
-			$sidebar_2 = get_field('second_section_sidebar');
-			$sidebar_2_colour = get_field('second_section_sidebar_colour');
-			if ($header_2) {
-					echo '
-					<div class="seven columns">
-							<h2>'. $header_2 .'</h2> ' . $content_2 . '
-					</div>';
-			}
-			if ($sidebar_2) {
-					echo '
-					<div class="five columns'. ( $sidebar_2_colour ? ( ' '. $sidebar_2_colour .'"' )  : '"') .'>
-							'. $sidebar_2 .'
-					</div>';
-			}
-			?>			
-			</div><!-- container -->
+		<div class="container container--right">
+		<?php
+		$header_2 = get_field('second_section_header');
+		$content_2 = get_field('second_section_content');
+		$sidebar_2 = get_field('second_section_sidebar');
+		$sidebar_2_colour = get_field('second_section_sidebar_colour');
+		if ($header_2) {
+			echo '
+			<div class="seven columns">
+				<h2>'. $header_2 .'</h2> ' . $content_2 . '
+			</div>';
+		}
+		if ($sidebar_2) {
+			echo '
+			<div class="five columns'. ( $sidebar_2_colour ? ( ' '. $sidebar_2_colour .'"' )  : '"') .'>
+				'. $sidebar_2 .'
+			</div>';
+		}
+		?>			
+		</div><!-- container -->
 	<span class="divider grey"></span>
 	</div><!-- wrapper-white -->
 

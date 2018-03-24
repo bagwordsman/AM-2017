@@ -58,14 +58,17 @@ $grey_dark : #545454; // single posts nav, blog widgets, images
 $orange : #f07f37;
 $orange_dark : darken( $orange, 10% );
 $orange_light : lighten( $orange, 10% ); // was #f3965b
+$orange_lighter : lighten( $orange, 20% );
 
 $blue : #7fc1ff;
 $blue_dark : darken( $blue, 10% );
 $blue_light : lighten( $blue, 10% );
+$blue_lighter : lighten( $blue, 20% );
 
 $red : #e74e42;
 $red_dark : darken( $red, 10% );
 $red_light : lighten( $red, 10% );
+$red_lighter : lighten( $red, 10% );
 
 
 
@@ -112,3 +115,13 @@ $shadow-down-right_lg : 3px 4px 10px rgba(0, 0 ,0, 0.25); // for admin
 $vertical-green : linear-gradient(180deg, $white 0%, $green 100%) repeat scroll 0 0;
 $fade-in-out-center_horizontal : linear-gradient(to right, $grey_lighter, $grey 35%, $grey 65%, $grey_lighter 100%) 1 1 1 1;
 $fade-in-out-center_vertical : linear-gradient(to top, $grey_lighter, $grey 35%, $grey 65%, $grey_lighter 100%) 1 1 1 1;
+
+
+
+
+
+
+
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// images
+$mesh : url("../img/mesh.png");

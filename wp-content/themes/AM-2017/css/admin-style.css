@@ -3696,18 +3696,21 @@ body .ui-tooltip {
   font-family: "Asap", Helvetica, Arial, sans-serif;
   color: #6a6a6a; }
 
+body {
+  font-family: "Asap", Helvetica, Arial, sans-serif; }
+
 .acf_postbox p.label {
-  font-size: 1.2rem; }
+  font-size: 1.2em; }
 
 .acf_postbox p.label label,
 #poststuff #acf_471302 h2 {
-  font-size: 1.6rem;
+  font-size: 1.6em;
   font-weight: 700; }
 
 #titlediv #title {
-  font-size: 2.4rem;
+  font-size: 2.4em;
   font-weight: 700;
-  letter-spacing: 0.04rem; }
+  letter-spacing: 0.04em; }
 
 #the-list input[value="Title Tag"] {
   background-color: #f6859e;
@@ -3752,22 +3755,6 @@ body .ui-tooltip {
 .top-margin--7-8 {
   margin-top: 7.8rem; }
 
-/*
-–––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/* 2 - Colour classes - could be used somewhere - e.g. by jquery for linked page boxes
-
-find the tints to use by going to http://www.colorhexa.com:
-  - take the darkest colour, then subtract 2 to get mid and lightest
-
-*/
-/* green */
-/* orange */
-/* blue */
-/* red */
-/* purple */
-/* black */
-/* yellow */
-/* grey */
 #adminmenu #toplevel_page_sandbox a,
 #adminmenu #toplevel_page_sandbox a .dashicons-admin-tools:before {
   color: #70bf44; }

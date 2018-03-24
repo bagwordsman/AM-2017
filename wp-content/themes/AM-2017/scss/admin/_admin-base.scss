@@ -12,14 +12,6 @@ $yellow : #edd44b;
 
 
 
-
-
-
-
-
-
-
-
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // Typography
 #titlediv #title,
@@ -28,27 +20,30 @@ $yellow : #edd44b;
 #poststuff #acf_471302 h2 {
   font-size: 1.6em; // currently ems cause chrome bug misinterpreting rems on body element
   line-height: 1.6;
-  font-weight: 400;
+  font-weight: $normal;
   font-family: $font-main;
   color: $grey;
+}
+body {
+  font-family: $font-main;
 }
 
 
 // small
 .acf_postbox p.label {
-  font-size : 1.2rem;
+  font-size : 1.2em;
 }
 // medium
 .acf_postbox p.label label,
 #poststuff #acf_471302 h2 {
-  font-size : 1.6rem;
-  font-weight : 700;
+  font-size : 1.6em;
+  font-weight : $bold;
 }
 // large
 #titlediv #title {
-  font-size : 2.4rem;
-  font-weight : 700;
-  letter-spacing : 0.04rem;
+  font-size : 2.4em;
+  font-weight : $bold;
+  letter-spacing : 0.04em;
 }
 
 
@@ -88,68 +83,3 @@ $cf_colours : $pale_red, $pale_orange, $pale_green;
 .top-margin--5-6 {margin-top:5.6rem;} // location fields
 .top-margin--7-6 {margin-top:7.6rem;} // api key field
 .top-margin--7-8 {margin-top:7.8rem;} // blog widget area title
-
-
-
-
-
-
-
-/*
-–––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/* 2 - Colour classes - could be used somewhere - e.g. by jquery for linked page boxes
-
-find the tints to use by going to http://www.colorhexa.com:
-  - take the darkest colour, then subtract 2 to get mid and lightest
-
-*/
-
-/* green */
-// .green--text {color:#70bf44;}
-// .green--text.light {color:#8ccb69;}
-// .green--text.lighter {color:#a9d88e;}
-// .green--text.lightest {color:#c5e5b4;}
-// .green--background {background-color:#a9d88e;}
-// .green--dark {color:#599836;}
-
-/* orange */
-// .orange--text {color:#f07f37;}
-// .orange--text.light {color:#f3965b;}
-// .orange--text.lighter {color:#f5ae80;}
-// .orange--background {background-color:#f5ae80;}
-// .orange--dark {background-color:#cb580f;}
-
-/* blue */
-// .blue--text {color:#339cff;}
-// .blue--text.light {color:#4ca8ff;}
-// .blue--text.lighter {color:#7fc1ff;}
-// .blue--background {background-color:#7fc1ff;}
-// .blue--dark {color:#659acc;}
-
-/* red */
-// .red--text {color:#da291c;}
-// .red--text.light {color:#e75348;}
-// .red--text.lighter {color:#ec746b;}
-// .red--background {background-color:#ec746b;}
-// .red--dark {color:#961c13;}
-
-/* purple */
-// .purple--text {color:#551a8b;}
-
-/* black */
-// .black--text {color:#000;}
-
-/* yellow */
-// .yellow--text {color:#edd44b;}
-
-/* grey */
-// .grey--text {color:#6a6a6a;}
-// .grey--text.lighter {color:#c0c0c0;}
-// .grey--text.lightest {color:#f0f0f0;}
-// .grey--dark {color:#545454;}
-
-
-
-
-
-

@@ -32,8 +32,8 @@
   // top container = 110px
   // button = 57px
   // large menu = 38px
-  // small admin bar = 48px
-  // large admin bar = 32px
+  // admin bar (small) = 48px
+  // admin bar (large) = 32px
   
   // logged out
   &.up {
@@ -144,13 +144,16 @@
 
   
  
-  
-
-  
 
 // ___________________
 // content padding
-// - see content-containers.scss for content specific styles
+// - offset the content to accommodate fixed header
+// - stops header from appearing white when scrolling up quickly
+// - works with .up class
 #content {
-  border-top : 148px solid $grey_lighter; // offsets fixed header AND stops header from appearing white when scrolling up quickly
+  // logged out
+  border-top : calc(110px + 57px) solid $grey_lighter;
+  @media (min-width: 800px) {
+    border-top : calc(110px + 38px) solid $grey_lighter;
+  }
 }

@@ -95,12 +95,15 @@ input[type="button"] {
   #content & {
     text-decoration : none;
   }
-
-  // - home : underneath staged columns
-  .home .wrapper-grey > .container & {
-    margin-top : 4rem;
-    margin-bottom : 0;
+  // home page refer
+  .home & {
+    &[href*="refer"] {
+      margin-top : 4rem;
+      margin-bottom : 0;
+    }
   }
+
+
 
   // ________________
   // media queries

@@ -105,6 +105,8 @@ get_header(); ?>
 
 	<?php
 	// SECTION 2
+
+	// ___________________________________________
 	// grey coloured content area - second section
 	$id_2 = get_field('second_section_id');
 	$header_2 = get_field('second_section_header');
@@ -113,44 +115,6 @@ get_header(); ?>
 	// sidebar
 	$sidebar_2 = get_field('second_section_sidebar');
 	$sidebar_2_colour = get_field('second_section_sidebar_colour');
-
-	
-
-
-	// ____________________________________
-	// content area
-	if ($header_2 || $content_2) {
-	echo '<div class="wrapper-grey"'.( $id_2 ? (' id="'.$id_2.'" ')  : '').'>';
-	}
-
-	
-	// has sidebar
-	if ($sidebar_2) {
-		echo '
-		<div class="container">
-			<div class="five columns'. ( $sidebar_2_colour ? ( ' '. $sidebar_2_colour .'"' )  : '"') .'>
-				'. $sidebar_2 .'
-			</div>
-			<div class="seven columns">
-				<h2>'. $header_2 .'</h2> ' . $content_2 . '
-			</div>
-		</div>';
-	}
-
-	// no sidebar
-	else {
-		$narrow = $content_2_format[0];
-		$center = $content_2_format[1];
-		echo '
-		<div class="container'.( $narrow ? (' container-narrow')  : '').( $center ? (' container--center')  : '').'">
-			<h2>'. $header_2 .'</h2>'. $content_2 . '
-		</div>';
-
-	}
-
-
-
-	// ________________________________________________
 	// columns - can't be narrow
 	$columns_2 = get_field('second_section_columns');
 	$columns_staged = get_field('second_section_staged_columns');
@@ -167,6 +131,43 @@ get_header(); ?>
 		'6' => 'two '
 	);
 	$columns_class = strtr($columns_count, $columns_class);
+
+	
+
+
+	// ____________________________________
+	// content area
+	// - start grey wrapped
+	if ($header_2 || $content_2 || $columns_2) {
+	echo '<div class="wrapper-grey"'.( $id_2 ? (' id="'.$id_2.'" ')  : '').'>';
+	}
+
+	
+	// _______________
+	// has sidebar
+	if ($sidebar_2) {
+		echo '
+		<div class="container">
+			<div class="five columns'. ( $sidebar_2_colour ? ( ' '. $sidebar_2_colour .'"' )  : '"') .'>
+				'. $sidebar_2 .'
+			</div>
+			<div class="seven columns">
+				<h2>'. $header_2 .'</h2> ' . $content_2 . '
+			</div>
+		</div>';
+	}
+	// no sidebar
+	else {
+		$narrow = $content_2_format[0];
+		$center = $content_2_format[1];
+		echo '
+		<div class="container'.( $narrow ? (' container-narrow')  : '').( $center ? (' container--center')  : '').'">
+			<h2>'. $header_2 .'</h2>'. $content_2 . '
+		</div>';
+
+	}
+
+
 
 	// ____________
 	// if staged columns > add arrows
@@ -188,42 +189,30 @@ get_header(); ?>
 
 	echo '</div>';
 
-	if ($header_2 || $content_2) {
+	// end grey wrapper
+	if ($header_2 || $content_2 || $columns_2) {
 	echo '<span class="divider white"></span></div>';
 	}
 
 
 
 
-
-	// for columns, I want to compose one row at a time, using the <hr/> dividers
-	// can add up to 6 rows, but splitting content into columns
-	// 	- can designate parts of the text to be hidden with the editor
-	//	- need to split image and content
-
-	// note: this needs to handle 3 step process on family mediation page, and the profiles
-
-
-	// second content area - if it exists, run the following code
+	// ___________________
+	// second content area
+	// - can split image and content in WYSIWYG with <hr>
 	$second_content_area = get_field('second_content_area');
 	if ($second_content_area) {
 
 		// split second content area up
 		$columns = explode('<hr />', $second_content_area);
 
-		// var_dump($columns[0]);
-
 		// count the columns
-		// var_dump(count($columns));
 		$even_odd = count($columns);
 
-		// - - - - - -
 		// even columns
 		if ($even_odd % 2 == 0) {
-
-			// wrap with container
 			echo '<div class="container">';
-
+			// output columns
 			$i = 0;
 			foreach($columns as $column) {
 				echo '<div class="six columns">'.$column.'</div>';
@@ -232,12 +221,9 @@ get_header(); ?>
 				if ($i % 2 == 0 && $i != count($columns)) {
 						echo '</div><div class="container">';
 				}
-			} // end foreach
-
+			}
 			echo '</div>';
 
-
-		// - - - - - -
 		// odd columns
 		} else {
 
@@ -278,6 +264,7 @@ get_header(); ?>
 
 	
 	
+	// ____________________________________
 	// SECTION 3
 	// 3rd section - last content
 	$id_3 = get_field('last_section_id');
