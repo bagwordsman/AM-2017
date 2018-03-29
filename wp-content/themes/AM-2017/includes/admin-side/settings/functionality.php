@@ -5,6 +5,7 @@
 
 // 1 - google analytics
 // 2 - lazyloading
+// 3 - fixed header
 
 
 // _______________________________________________________
@@ -174,7 +175,7 @@ if ($lazyload_on != '') {
 	function preg_lazyload($img_match) {
 		// $img_replace = $img_match[1] . 'src="' . get_stylesheet_directory_uri() . '/img/loading-icon.gif" class="loading-icon" data-original' . substr($img_match[2], 3) . $img_match[3];
 		$img_replace = $img_match[1] . ' class="loading-icon" data-original' . substr($img_match[2], 3) . $img_match[3];
-		$img_replace = preg_replace('/class\s*=\s*"/i', 'class="lazy ', $img_replace);
+		$img_replace = preg_replace('/class\s*=\s*"/i', 'class="lazy loading-icon ', $img_replace);
 		$img_replace .= '<noscript>' . $img_match[0] . '</noscript>';
 		return $img_replace;
 	}
@@ -182,4 +183,87 @@ if ($lazyload_on != '') {
 // end lazyload on
 }
 
+
+
+
+
+
+
+// _______________________________________________________
+// 3 - header - fixed header and set scroll up offset
+function sandbox_theme_intialize_header_options() {
+    // if header options don't exist, create them.
+    if ( false == get_option( 'sandbox_theme_header_options' ) ) {
+        add_option( 'sandbox_theme_header_options' );
+    }
+	add_settings_section(
+    	'header_settings_section', // section ID
+    	'Fixed Header', // section title
+    	'sandbox_header_options_callback', // callback
+    	'sandbox_theme_header_options' // add to settings page
+	);
+	add_settings_field(
+    	'fixed_header',
+    	'<i class="fa fa-window-maximize" aria-hidden="true"></i>Toggle Fixed Header',
+    	'checkbox_callback',
+    	'sandbox_theme_header_options',
+		'header_settings_section',
+		array( // the $args array - tailor the callback function
+			'fixed_header', 
+			'sandbox_theme_header_options' // section ID
+		)
+	);
+	add_settings_field(
+    	'fixed_header_offset',
+		'<i class="fa fa-arrows-v" id="bg-opacity_icon" aria-hidden="true"></i>Fixed Header Offset',
+    	'sandbox_fixed_header_offset_callback',
+    	'sandbox_theme_header_options',
+    	'header_settings_section'
+	);
+	register_setting(
+    	'sandbox_theme_header_options',
+    	'sandbox_theme_header_options',
+    	'sandbox_theme_sanitize_header_options'
+	);
+}
+add_action( 'admin_init', 'sandbox_theme_intialize_header_options' );
+
+// sanitise options: checkbox 'fixed_header'
+function sandbox_theme_sanitize_header_options( $input ) {
+    $output = array();
+    foreach( $input as $key => $val ) {
+        if ( isset ( $input[$key] ) ) {
+            if ( $key == 'fixed_header' ) {
+                $output[$key] = filter_var( $input[$key], FILTER_SANITIZE_NUMBER_INT );
+			// sanitise as text field
+			} else {
+				$output[$key] = sanitize_text_field( $input[$key] );
+			}
+        }
+    }
+    return apply_filters( 'sandbox_theme_sanitize_header_options', $output, $input );
+}
+
+// callback: message
+function sandbox_header_options_callback() {
+    echo '
+	<p>Check the box to turn on the fixed header.</p>
+    <p>Set the height the user has to scroll up (in pixels) to make the header reappear.</p>';
+}
+
+// callback: fixed header offset
+function sandbox_fixed_header_offset_callback() {
+    $options = get_option( 'sandbox_theme_header_options' );
+    if ( isset( $options['fixed_header_offset'] ) ) {
+        $options['fixed_header_offset'];
+    }
+    echo '
+	<div id="fixed_header_slider">
+		<div class="v-slider"></div>
+		<div class="slider-info">
+			<label for="header-offset">Offset (px):</label>
+			<input class="slider-value" type="text" id="fixed_header_offset" readonly name="sandbox_theme_header_options[fixed_header_offset]" value="' . $options['fixed_header_offset'] . '">
+		</div>
+	</div>';
+}
 ?>

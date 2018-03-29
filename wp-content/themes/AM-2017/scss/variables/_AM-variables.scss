@@ -14,10 +14,14 @@ $fa-icon: (
   "phone": '\f095',
   "home": '\f015',
   "envelope": '\f0e0',
+  // social
   "facebook": '\f230',
   "gplus": '\f2b3',
   "twitter": '\f081',
   "linkedin": '\f08c',
+  // links etc
+  "header": '\f1dc',
+  "link": '\f0c1',
 );
 @function icon($key) {
   @return map-get($fa-icon, $key);

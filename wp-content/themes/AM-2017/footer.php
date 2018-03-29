@@ -127,12 +127,12 @@ echo '
         
 				// twitter
 				$tweet_options = get_option ( 'sandbox_theme_tweet_options' );
-				$tweetheading = $tweet_options['tweet_heading'];
+				$tweetheading = $tweet_options['twitter_heading'];
 				echo ( $tweetheading ? ('<h4>'. $tweetheading .'</h4>')  : '');
 
 				$tweetprofile = $tweet_options['twitter_profile'];
 				$tweetuser = $tweet_options['twitter_user'];
-				$tweetamount = $tweet_options['no_tweets'];
+				$tweetamount = $tweet_options['twitter_tweet_count'];
 				$uri = get_stylesheet_directory_uri();
 				// lib/twitterfeed.js targets this div:
 				echo '<div id="twitter-feed" data-profile="'.$tweetprofile.'" data-user="'.$tweetuser.'" data-tweets="'.$tweetamount.'" data-path="'.$uri.'"></div>';

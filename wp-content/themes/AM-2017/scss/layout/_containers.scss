@@ -37,6 +37,11 @@
           margin-left : 0;
         }
       }
+
+      // enforce bold italic
+      h4 {
+        font-style : italic;
+      }
       
 
 
@@ -115,11 +120,24 @@
 // ________________
 // disclaimer div
 .disclaimer {
-  border : 5px solid $green;
-  border-radius : 2.5rem;
-  margin-bottom : 5rem;
-  padding : 2.5rem;
-  box-sizing : border-box;
+  h3, h4 {
+    display : inline-block;
+    margin : 0;
+    margin-left : calc(2.5rem + 5px);
+    padding : 0 2rem;
+    height : 48px;
+    line-height : calc(48px + 5px);
+    border-radius : 2.5rem 2.5rem 0 0;
+    background-color : $green;
+    color : $white;
+  }
+  > div {
+    border : 5px solid $green;
+    border-radius : 2.5rem;
+    margin-bottom : 5rem;
+    padding : 2.5rem;
+    box-sizing : border-box;
+  }
   p {
     margin-bottom : 0;
   }
@@ -143,27 +161,44 @@
   margin-top : 2.5rem;
   padding-top : 5rem;
   box-sizing : border-box;
-  border-top : 5px solid transparent;
-  border-image: $fade-in-out-center_horizontal;
+  border-top-width : 5px;
+  border-top-style : solid;
+  border-image : $fade-in-out-center_horizontal;
   @media (min-width: 980px) {
     width : 30.6666666667%;
     margin-left : 4%;
     padding-left : 4rem;
     border-top : 0;
-    border-left : 5px solid transparent;
+    border-left-width : 5px;
+    border-left-style : solid;
     border-image : $fade-in-out-center_vertical;
+  }  
+
+  // button container - first child overrides
+  @media (min-width: 980px) {
+    .button--container {
+      position : absolute;
+      left : 4rem;
+      right : 0;
+      bottom : 0; 
+    }      
   }
 
   // first column
   &:first-child {
-    margin-top : 0;
     padding-top : 0;
+    border-top : none;
     border-image : none;
     @media (min-width: 980px) {
-      margin-top : 2.5rem;
+      // margin-top : 2.5rem;
       padding-top : 5rem;
       margin-left : -2.5rem;
       padding-left : 0;
+      border-left : none;
+      border-image : none;
+      .button--container {
+        left : 0;
+      }
     }
   }
 
@@ -180,20 +215,13 @@
   // home page: set height to align buttons at bottom
   .home & {
     .button {
-      margin-bottom : 4rem;
+      margin : 0;
     }
     @media (min-width: 980px) {
       min-height : 44rem;
-      .button {
-        margin-top : 4rem;
+      p {
         margin-bottom : 0;
-      }
-      .button--container {
-        position : absolute;
-        left : 4rem;
-        right : 0;
-        bottom : 0;
-      }
+      }     
     }
     @media (min-width: 1080px) {
       min-height : 40rem;
@@ -285,15 +313,15 @@
 // ______________________________________
 // b) content dividers
 .divider {
-  bottom: 80px;
-  position: absolute;
-  width: 100%;
+  bottom : 80px;
+  position : absolute;
+  width : 100%;
   // point downwards
   &:before, &:after {
-      content: "";
-      left: 0;
-      position: absolute;
-      right: 0;
+      content : "";
+      left : 0;
+      position : absolute;
+      right : 0;
       height: 220px;
       top: -20px;
   }

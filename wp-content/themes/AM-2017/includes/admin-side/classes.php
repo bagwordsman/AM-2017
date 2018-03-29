@@ -72,15 +72,15 @@ class mapLocations {
     function add_location() {
         add_settings_field(
             'gmap_location_'.$this->number.'_name', // option ID
-            '<br>Office Location '.$this->number.'<br>
-            <br><i class="fa fa-home black--text" aria-hidden="true"></i>Name', // label
+            '<h4>Office Location '.$this->number.'</h4><br>'.
+            '<i class="fa fa-home black--text" aria-hidden="true"></i>Name', // label
             'text_callback', // callback - requires $args. Callbacks for input type
             'sandbox_theme_map_options', // page it will be displayed on
             'map_settings_section', // name of section
             array( // $args array - tailor the callback function
                 'gmap_location_'.$this->number.'_name', // Should match Option ID
                 'sandbox_theme_map_options', // section ID
-                'top-margin--5-6'
+                'top-margin--7-6'
             )
         );
         add_settings_field(
@@ -96,6 +96,13 @@ class mapLocations {
         );
     }
 }
+
+
+
+// sanitize.php: string contains function
+// - need to feed an array of strings into this function
+// class strContains {
+// }
 
 
 

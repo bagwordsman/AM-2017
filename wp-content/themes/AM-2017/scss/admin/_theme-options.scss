@@ -121,7 +121,9 @@ $sections: (
   // resets
   .invisible {
     visibility : hidden;
-    input[type="text"]{
+    margin : 0;
+    height : 0 !important;
+    input[type="text"] {
       height : 0;
     }
   }
@@ -238,12 +240,7 @@ $colour_codes : $white, $grey_lighter, $grey_pale, $grey;
   }
   // font awesome icons
   .fa {
-    font-size : 32px;
-    width : 40px;
-    margin-right : 16px;
-    margin-top : -4px;
-    vertical-align : middle;
-    text-align : center;
+    @include fa-icon;
     &.fa-facebook { color : $facebook; }
     &.fa-twitter { color : $twitter; }
     &.fa-google-plus { color : $google; }
@@ -266,7 +263,7 @@ $colour_codes : $white, $grey_lighter, $grey_pale, $grey;
     }
   }
   input[readonly].slider-value {
-    background-color : $white;
+    background-color : transparent;
   }
   // slider
   .v-slider {

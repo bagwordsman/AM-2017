@@ -28,7 +28,8 @@
 	const $box2 = 'input[name="fields[field_595c0af112ddc]"]'; // 1st section sidebar
 	const $box3 = 'input[name="fields[field_5a96f5e2ec133]"]'; // 2nd section sidebar (default only)
 	const $box4 = 'input[name="fields[field_595c0e7230aff]"]'; // 2nd section sidebar (home only)
-	const $box5 = 'input[name="fields[field_59465b96adac7]"]'; // cta / linked page
+	const $box5 = 'input[name="fields[field_5943b161451da]"]'; // end of content cta (home only)
+	const $box6 = 'input[name="fields[field_59465b96adac7]"]'; // cta / linked page
 	// elements
 	const $elem1_a = '#acf_471344'; // home page hero
 	const $elem1_b = '';
@@ -38,13 +39,15 @@
 	const $elem3_b = '#acf-second_section_sidebar_colour .label';
 	const $elem4_a = '#acf-second_section_sidebar'; // 2nd section sidebar (home only)
 	const $elem4_b = '#acf-second_section_sidebar_colour .label';
-	const $elem5_a = '#acf_471302'; // cta / linked page
-	const $elem5_b = '';
+	const $elem5_a = '.label label[for="acf-field-end_of_content_cta_colour"]'; // end of content cta (home only)
+	const $elem5_b = ''; // #acf-end_of_content_cta_colour 
+	const $elem6_a = '#acf_471302'; // cta / linked page
+	const $elem6_b = '';
 
 	const items = (function() {
 		const settings = {
-			checkboxes : [ $box1, $box2, $box3, $box4, $box5 ],
-			elements : [ [$elem1_a, $elem1_b], [$elem2_a, $elem2_b], [$elem3_a, $elem3_b], [$elem4_a, $elem4_b], [$elem5_a, $elem5_b]]
+			checkboxes : [ $box1, $box2, $box3, $box4, $box5, $box6 ],
+			elements : [ [$elem1_a, $elem1_b], [$elem2_a, $elem2_b], [$elem3_a, $elem3_b], [$elem4_a, $elem4_b], [$elem5_a, $elem5_b], [$elem6_a, $elem6_b]]
 		};
 		return settings;
 	}());

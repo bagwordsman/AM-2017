@@ -104,11 +104,17 @@ function sandbox_menu_page_display() {
 				<?php do_settings_sections( 'sandbox_theme_google_analytics_options' ); ?>
 				<?php submit_button('Apply Google Analytics'); ?>
 			</form>
-			<!-- 2 - lazyloading of images -->
+			<!-- 2 - lazyloading -->
 			<form method="post" action="options.php" class="wide lazyloading" id="lazyload">
 				<?php settings_fields( 'sandbox_theme_lazyloading_options' ); ?>
 				<?php do_settings_sections( 'sandbox_theme_lazyloading_options' ); ?>
 				<?php submit_button('Enable Lazyloading'); ?>
+			</form>
+			<!-- 3 - fixed header -->
+			<form method="post" action="options.php" class="wide header" id="header">
+				<?php settings_fields( 'sandbox_theme_header_options' ); ?>
+				<?php do_settings_sections( 'sandbox_theme_header_options' ); ?>
+				<?php submit_button('Save Header Options'); ?>
 			</form>
 		</div><!-- .functionality -->
 

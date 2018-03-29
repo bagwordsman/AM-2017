@@ -97,25 +97,10 @@ function sandbox_theme_intialize_map_options() {
 	register_setting(
     	'sandbox_theme_map_options',
     	'sandbox_theme_map_options',
-    	'sandbox_theme_sanitize_map_options'
+    	'in_page_sanitize'
 	);
 } // end sandbox_theme_intialize_map_options
 add_action( 'admin_init', 'sandbox_theme_intialize_map_options' );
-
-// sanitise map options
-function sandbox_theme_sanitize_map_options( $input ) {
-    $output = array();
-    foreach( $input as $key => $val ) {
-        if ( isset ( $input[$key] ) ) {
-            if ( $key == 'gmap_contact_page' ) {
-                $output[$key] = filter_var( $input[$key], FILTER_SANITIZE_NUMBER_INT );
-            } else {
-                $output[$key] = sanitize_text_field( $input[$key] );
-            }
-        }
-    }
-    return apply_filters( 'sandbox_theme_sanitize_map_options', $output, $input );
-}
 
 // callback: message
 function sandbox_map_options_callback() {
@@ -172,10 +157,6 @@ function sandbox_gmap_infowindow_callback() {
     </select>
     ';
 }
-
-
-
-
 
 
 
@@ -252,25 +233,10 @@ function sandbox_theme_intialize_blog_options() {
 	register_setting(
     	'sandbox_theme_blog_options',
     	'sandbox_theme_blog_options',
-    	'sandbox_theme_sanitize_blog_options'
+    	'in_page_sanitize'
 	);
 }
 add_action( 'admin_init', 'sandbox_theme_intialize_blog_options' );
-
-// sanitise blog options
-function sandbox_theme_sanitize_blog_options( $input ) {
-    $output = array();
-    foreach( $input as $key => $val ) {
-        // background image > sanitise as url
-        if ( $key == 'blog_widget_bg_image' ) {
-            $output['blog_widget_bg_image'] = esc_url_raw( strip_tags( stripslashes( $input['blog_widget_bg_image'] ) ) );
-        // sanitise as text field
-        } else {
-            $output[$key] = sanitize_text_field( $input[$key] );
-        }
-    }
-    return apply_filters( 'sandbox_theme_sanitize_blog_options', $output, $input );
-}
 
 // callback: message
 function sandbox_blog_options_callback() {
@@ -372,8 +338,7 @@ function sandbox_blog_widget_bg_image_callback() {
 				<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/widgets-bg_default.jpg"/>
 			</div>
 			<input type="button" class="button button-primary" value="Upload Blog Widgets Background Image" id="upload_blog_widget_bg_image"/>
-			<label for="blog_widget_bg_image">Background Image Location - can also enter with URL. Image should be at least 1800px wide.</label>
-			<input type="text" id="blog_widget_bg_image" name="sandbox_theme_blog_options[blog_widget_bg_image]" value="' . $options['blog_widget_bg_image'] . '" />
+			<input class="invisible" type="text" id="blog_widget_bg_image" name="sandbox_theme_blog_options[blog_widget_bg_image]" value="' . $options['blog_widget_bg_image'] . '" />
 		</div>';
 }
 
@@ -396,4 +361,54 @@ function sandbox_blog_widget_bg_image_opacity_callback() {
 
 
 
+// ________________________________________
+// sanitise function
+// - radio buttons sansitised as text fields
+// - select / dropdowns sanitised as text fields
+function in_page_sanitize( $input ) {
+    $output = array();
+    foreach( $input as $key => $val ) {
+        if ( isset ( $input[$key] ) ) {
+            $text_fields_full = array('gmap_api_key', 'gmap_height', 'gmap_infowindow', 'blog_widget_title', 'blog_widget_title_align', 'blog_widget_bg_colour', 'blog_widget_theme', 'blog_widget_bg_image_opacity');
+            $url_fields_full = array( 'blog_widget_bg_image' );
+			$checkboxes = array('gmap_scroll', 'gmap_infowindow_address', 'gmap_infowindow_link');
+			
+			// text fields
+			if (in_array($key, $text_fields_full)) {
+                $output[$key] = sanitize_text_field( $input[$key] );
+			}
+			if (strpos($key, 'gmap_location') !== false)  {
+                $output[$key] = sanitize_text_field( $input[$key] );
+            }
+
+			// urls
+			if (in_array($key, $url_fields_full)) {
+                $output[$key] = esc_url_raw( strip_tags( stripslashes( $input[$key] ) ) );
+			}			
+			
+			// checkboxes
+			if (in_array($key, $checkboxes))  {
+				$output[$key] = filter_var( $input[$key], FILTER_SANITIZE_NUMBER_INT );
+			}
+        }
+    }
+    return apply_filters( 'in_page_sanitize', $output, $input );
+}
+
+// note: may be better to use the following in the case of this file:
+
+// sanitise blog options
+// function sandbox_theme_sanitize_blog_options( $input ) {
+//     $output = array();
+//     foreach( $input as $key => $val ) {
+//         // background image > sanitise as url
+//         if ( $key == 'blog_widget_bg_image' ) {
+//             $output['blog_widget_bg_image'] = esc_url_raw( strip_tags( stripslashes( $input['blog_widget_bg_image'] ) ) );
+//         // sanitise as text field
+//         } else {
+//             $output[$key] = sanitize_text_field( $input[$key] );
+//         }
+//     }
+//     return apply_filters( 'sandbox_theme_sanitize_blog_options', $output, $input );
+// }</file:>
 ?>

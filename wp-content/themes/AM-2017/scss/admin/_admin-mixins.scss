@@ -118,6 +118,29 @@
 }
 
 
+// icons, text, and links
+@mixin fa-icon {
+    font-size : 32px;
+    width : 40px;
+    margin-right : 16px;
+    margin-top : -4px;
+    vertical-align : middle;
+    text-align : center;
+    @content;
+}
+@mixin text-icon {
+    @include fa-icon;
+    font-family : $font-icon;
+    content : icon('header');
+}
+@mixin link-icon {
+    @include fa-icon;
+    font-family : $font-icon;
+    content : icon('link');
+    color : $purple; 
+}
+
+
 @mixin form-fields {
     input[type="text"],
     select,

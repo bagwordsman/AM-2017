@@ -12,7 +12,11 @@ function disclaimer_shortcode_handler($atts, $content=null) {
 	remove_filter( 'acf_the_content', 'wpautop' );
 	add_filter( 'acf_the_content', 'wpautop' , 99);
 
-	return '<div class="disclaimer">' .$content. '</div>';
+	// split at h4
+	$arr = explode("</h4>", $content, 2);
+	$result = $arr[0] . '</h4><div>' . $arr[1] . '</div>';
+
+	return '<div class="disclaimer">' .$result. '</div>';
 
 } // end shortcode handler
 

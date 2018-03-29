@@ -63,10 +63,15 @@ $site_title = get_bloginfo('name');
 $logo_options = get_option ( 'sandbox_theme_logo_options' );
 $mainlogo = $logo_options['mainlogo'];
 $mainlogo_alt = $logo_options['MLalt'];
-
-// Icons
+$mainlogo_width = $logo_options['MLwidth'];
+$mainlogo_height = $logo_options['MLheight'];
+// icons
 $appletouch = $logo_options['appletouch'];
 $favicon = $logo_options['favicon'];
+// fixed header
+$fixed = get_option ( 'sandbox_theme_header_options' );
+$isFixed = $fixed['fixed_header'];
+$fixedOffset = $fixed['fixed_header_offset'];
 // render the logos in metadata
 if ($mainlogo != '') echo '<meta content="'.$mainlogo.'" property="logo">';
 if ($appletouch != '') echo '<link rel="apple-touch-icon" sizes="" href="'.$appletouch.'">';
@@ -77,11 +82,11 @@ if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.
 <![endif]-->
 <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class();?>>
 
 <?php echo '
 
-<div class="page'. ( is_active_sidebar( 'cookies' ) ? (' has-cookie-bar') : '') .'">
+<div class="page'. ( is_active_sidebar( 'cookies' ) ? (' has-cookie-bar') : '') . ( $isFixed ? (' fixed-header') : '') . '"' . ( $isFixed ? (' data-offset="' . $fixedOffset . '"') : '') . '>
 	<div class="page-wrap">';
 
 	// site title
@@ -105,8 +110,6 @@ if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.
 	$dial = str_replace($search, $replace, $phone);
 
 
-	
-	
 	// determine the type of Call to Action
 	if ($cta_type !== 'none') {
 		$cta = '<div class="nine columns contact">';
@@ -120,8 +123,6 @@ if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.
 		}
 		$cta = $cta . '</div><!-- nine columns -->';
 	}
-	
-	
 
 
 	// may need to look at logo size for new header - could use an svg, or bg image
@@ -131,7 +132,7 @@ if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.
 			<div class="container">
 				<div class="three columns logo">
 					<a class="logo" href="' . esc_url( home_url( '/' ) ) . '">' .
-						( $mainlogo ? ('<img src="' . $mainlogo .'" alt="'. $mainlogo_alt .'" width="'. $mainlogo_Width .'" height="' . $mainlogo_Height .'" />')  : '<img src="'. get_bloginfo('stylesheet_directory'). '/img/AM-logo.png" alt="'. $site_title .'" width="200" height="113" />' ) . '
+						( $mainlogo ? ('<img src="' . $mainlogo .'" alt="'. $mainlogo_alt .'" width="'. $mainlogo_width .'" height="' . $mainlogo_height .'" />')  : '<img src="'. get_bloginfo('stylesheet_directory'). '/img/AM-logo.png" alt="'. $site_title .'" width="200" height="113" />' ) . '
 						<div class="site-title"><span>' . $able .' </span>' . $mediation . '</div>
 					</a>
 				</div><!-- three columns -->' . $cta . '

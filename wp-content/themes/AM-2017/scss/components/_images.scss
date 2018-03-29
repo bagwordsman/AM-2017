@@ -7,8 +7,6 @@ div[class*="wrapper-"] img {
 }
 
 .container p > img {
-  // display : block;
-  // max-width : 100%;
   height : auto;
   margin : 1.5rem auto 3rem;
 }
@@ -16,7 +14,7 @@ div[class*="wrapper-"] img {
 
 // lazyloaded images - in content, ACF, and (hopefully) galleries
 .no-js #content .container img.lazy {
-  display:none;
+  display : none;
 }
 #content .container img.loading-icon {
   max-width : auto;

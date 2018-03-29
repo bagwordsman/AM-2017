@@ -238,35 +238,44 @@ $home-columns : '1', '2', '3';
 #{sections('home-third')} {
   // form fields
   @include form-fields;
-  // blue button (label)
+  // text
   @for $i from 1 through length($home-columns) {
-    .label label[for="acf-field-column_#{nth($home-columns, $i)}_button_text"] {
-      @include faux-btn($blue);
+    .label label[for="acf-field-column_#{nth($home-columns, $i)}_button_text"]:before {
+      @include text-icon;
     }
   }
-  // purple button (label)
+  // links
   @for $i from 1 through length($home-columns) {
-    .label label[for="acf-field-column_#{nth($home-columns, $i)}_button_link"] {
-      @include faux-btn($purple);
+    .label label[for="acf-field-column_#{nth($home-columns, $i)}_button_link"]:before {
+      @include link-icon;
     }
   }
-  // cta (green, purple, multi-coloured)
+
+
+  // end of content cta
   #acf-end_of_content_cta_text{
     margin-top : 5rem;
   }
-  .label label[for="acf-field-end_of_content_cta_text"] {
-    @include faux-btn($green);
+  // text
+  .label label[for="acf-field-end_of_content_cta_text"]:before {
+    @include text-icon; 
   }
-  .label label[for="acf-field-end_of_content_cta_link"] {
-    @include faux-btn($purple);
+  // links
+  .label label[for="acf-field-end_of_content_cta_link"]:before {
+    @include link-icon;
   }
+  // solid button - include class options
   .label label[for="acf-field-end_of_content_cta_colour"] {
-    @include faux-btn($grey) {
-      color : $grey;
-      border-top-color : $green;
-      border-right-color :$orange;
-      border-bottom-color :$blue;
-      border-left-color : $red;
+    @include faux-btn($white) {
+      border-color : $green;
+      background-color : $green;
+      // apply selected colour
+      @for $i from 1 through length($colour_options) {
+        &.#{nth($colour_options, $i)} {
+          border-color : #{nth($colour_codes, $i)};
+          background-color : #{nth($colour_codes, $i)};
+        }
+      }
     }
   }
 }

@@ -10,6 +10,7 @@
 // 5 - tweet
 // 6 - affiliated organisations logos
 // 7 - styling options
+// + sanitise everything
 // + generic callback functions saved in separate include
 
 
@@ -84,22 +85,11 @@ function sandbox_theme_intialize_company_options() {
 	register_setting(
     	'sandbox_theme_company_options',
     	'sandbox_theme_company_options',
-    	'sandbox_theme_sanitize_company_options'
+    	'header_footer_sanitize'
 	);
 }
 add_action( 'admin_init', 'sandbox_theme_intialize_company_options' );
 
-
-// sanitise company options
-function sandbox_theme_sanitize_company_options( $input ) {
-    $output = array();
-    foreach( $input as $key => $val ) {
-        if ( isset ( $input[$key] ) ) {
-            $output[$key] = sanitize_text_field( $input[$key] );
-        }
-    }
-    return apply_filters( 'sandbox_theme_sanitize_company_options', $output, $input );
-}
 
 // callback: message
 function sandbox_company_options_callback() {
@@ -171,14 +161,16 @@ function sandbox_theme_intialize_logo_options() {
 	);
 	add_settings_field(
     	'appletouch',
-    	'Apple Touch Icon<br><span class="extra-label">Square png:<br>180px, 110px, or 57px</span>',
+		'Apple Touch Icon
+		<div class="extra-label" style="margin-top:10px;">Square .png. 180px, 110px, or 57px</div>',
     	'sandbox_appletouch_callback',
     	'sandbox_theme_logo_options',
     	'logo_settings_section'
 	);
 	add_settings_field(
     	'favicon',
-    	'Favicon<br><span class="extra-label">Square png or ico:<br>32px, or 16px</span>',
+		'Favicon
+		<span class="extra-label" style="margin-top:10px;">Square .png or .ico. 32px, or 16px</div>',
     	'sandbox_favicon_callback',
     	'sandbox_theme_logo_options',
     	'logo_settings_section'
@@ -186,33 +178,10 @@ function sandbox_theme_intialize_logo_options() {
 	register_setting(
     	'sandbox_theme_logo_options',
     	'sandbox_theme_logo_options',
-    	'sandbox_theme_sanitize_logo_options'
+    	'header_footer_sanitize'
 	);
 } // end sandbox_theme_intialize_logo_options
 add_action( 'admin_init', 'sandbox_theme_intialize_logo_options' );
-
-
-// sanitise logo options
-function sandbox_theme_sanitize_logo_options( $input ) {
-    $output = array();
-    foreach( $input as $key => $val ) {
-        if ( isset ( $input[$key] ) ) {
-			// alternative text: sanitise as text field
-			if ( $key == 'MLalt' ) {
-				$output['MLalt'] = sanitize_text_field( $input['MLalt'] );
-			// width
-			} elseif (strpos($key, 'MLwidth') !== false)  {
-				$output[$key] = sanitize_text_field( $input[$key] );
-			// height
-			} elseif (strpos($key, 'MLheight') !== false)  {
-				$output[$key] = sanitize_text_field( $input[$key] );
-			} else {
-				$output[$key] = esc_url_raw( strip_tags( stripslashes( $input[$key] ) ) );
-			}
-		}
-    }
-    return apply_filters( 'sandbox_theme_sanitize_logo_options', $output, $input );
-}
 
 
 // callback: message
@@ -232,8 +201,7 @@ function sandbox_mainlogo_callback() {
 	'<div class="logogroup mainlogo">
 		<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/AM-logo.png"/>
 		<input type="button" class="button button-primary" value="Upload Main Company Logo" id="uploadmainlogo"/>
-		<label for="mainlogo">Logo Location - can also enter with URL</label>
-		<input type="text" id="mainlogo" name="sandbox_theme_logo_options[mainlogo]" value="' . $options['mainlogo'] . '" />
+		<input class="invisible" type="text" id="mainlogo" name="sandbox_theme_logo_options[mainlogo]" value="' . $options['mainlogo'] . '" />
 	</div>';
 }
 
@@ -249,8 +217,7 @@ function sandbox_appletouch_callback() {
 	'<div class="logogroup appletouch">
 		<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/able-apple-touch-icon.jpg"/>
 		<input type="button" class="button button-primary" value="Upload Apple Touch Icon" id="uploadappletouch"/>
-		<label for="appletouch">Apple Touch Icon Location - can also enter with URL</label>
-		<input type="text" id="appletouch" name="sandbox_theme_logo_options[appletouch]" value="' . $options['appletouch'] . '" />
+		<input class="invisible" type="text" id="appletouch" name="sandbox_theme_logo_options[appletouch]" value="' . $options['appletouch'] . '" />
 	</div>';
 }
 
@@ -266,8 +233,7 @@ function sandbox_favicon_callback() {
 	'<div class="logogroup favicon">
 		<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/able-favicon.jpg"/>
 		<input type="button" class="button button-primary" value="Upload Favicon" id="uploadfavicon"/>
-		<label for="favicon">Favicon Location - can also enter with URL</label>
-		<input type="text" id="favicon" name="sandbox_theme_logo_options[favicon]" value="' . $options['favicon'] . '" />
+		<input class="invisible" type="text" id="favicon" name="sandbox_theme_logo_options[favicon]" value="' . $options['favicon'] . '" />
 	</div>';
 }
 
@@ -298,7 +264,7 @@ function sandbox_theme_intialize_cta_options() {
 	);
 	add_settings_field(
     	'cta_link',
-    	'<i class="fa fa-link purple--text" aria-hidden="true"></i>Link:<br>enter a url',
+    	'<i class="fa fa-link purple--text" aria-hidden="true"></i>Link:<br> enter a url',
     	'text_callback',
     	'sandbox_theme_cta_options',
 		'cta_settings_section',
@@ -309,7 +275,7 @@ function sandbox_theme_intialize_cta_options() {
 	);
 	add_settings_field(
     	'cta_text',
-    	'<i class="fa fa-header" aria-hidden="true"></i>Text:<br>enter button text',
+    	'<i class="fa fa-header" aria-hidden="true"></i>Text:<br> enter button text',
     	'text_callback',
     	'sandbox_theme_cta_options',
 		'cta_settings_section',
@@ -328,29 +294,10 @@ function sandbox_theme_intialize_cta_options() {
 	register_setting(
     	'sandbox_theme_cta_options',
     	'sandbox_theme_cta_options',
-    	'sandbox_theme_sanitize_cta_options'
+    	'header_footer_sanitize'
 	);
 } // end sandbox_theme_intialize_social_options
 add_action( 'admin_init', 'sandbox_theme_intialize_cta_options' );
-
-
-// sanitise header cta - text, url(link), radio buttons
-function sandbox_theme_sanitize_cta_options( $input ) {
-    $output = array();
-	foreach( $input as $key => $val ) {
-		if ( isset ( $input[$key] ) ) {
-			// sanitise link as a url
-			if ( $key == 'cta_link' ) {
-				$output['cta_link'] = esc_url_raw( strip_tags( stripslashes( $input['cta_link'] ) ) );
-			}
-			// sanitise as text field
-			else {
-				$output[$key] = sanitize_text_field( $input[$key] );	
-			}
-		}
-	}
-    return apply_filters( 'sandbox_theme_sanitize_cta_options', $output, $input );
-}
 
 
 // callback: header cta instruction text
@@ -417,10 +364,6 @@ function sandbox_cta_colour_callback() {
 
 
 
-
-
-
-
 // _______________________________________________________
 // 4 - social network links
 function sandbox_theme_intialize_social_options() {
@@ -481,22 +424,11 @@ function sandbox_theme_intialize_social_options() {
 	register_setting(
     	'sandbox_theme_social_options',
     	'sandbox_theme_social_options',
-    	'sandbox_theme_sanitize_social_options'
+    	'header_footer_sanitize'
 	);
 } // end sandbox_theme_intialize_social_options
 add_action( 'admin_init', 'sandbox_theme_intialize_social_options' );
 
-
-// sanitise urls
-function sandbox_theme_sanitize_social_options( $input ) {
-    $output = array();
-    foreach( $input as $key => $val ) {
-        if ( isset ( $input[$key] ) ) {
-            $output[$key] = esc_url_raw( strip_tags( stripslashes( $input[$key] ) ) );
-        }
-    }
-    return apply_filters( 'sandbox_theme_sanitize_social_options', $output, $input );
-}
 
 // callback: social networks message
 function sandbox_social_options_callback() {
@@ -525,13 +457,13 @@ function sandbox_theme_intialize_tweet_options() {
     	'sandbox_theme_tweet_options' // add to settings page
 	);
 	add_settings_field(
-    	'tweet_heading',
+    	'twitter_heading',
     	'<i class="fa fa-header black--text" aria-hidden="true"></i>Twitter Feed Heading',
     	'text_callback',
     	'sandbox_theme_tweet_options',
 		'tweet_settings_section',
 		array( // $args array - tailor text_callback
-			'tweet_heading',
+			'twitter_heading',
 			'sandbox_theme_tweet_options'
 		)
 	);
@@ -558,16 +490,16 @@ function sandbox_theme_intialize_tweet_options() {
 		)
 	);
 	add_settings_field(
-    	'no_tweets',
-    	'<i class="fa fa-twitter" aria-hidden="true"></i>Number of Tweets to Display',
-    	'sandbox_no_tweets_callback',
+    	'twitter_tweet_count',
+    	'<i class="fa fa-twitter orig" aria-hidden="true"></i>Number of Tweets to Display',
+    	'sandbox_twitter_tweet_count_callback',
     	'sandbox_theme_tweet_options',
     	'tweet_settings_section'
 	);
 	register_setting(
     	'sandbox_theme_tweet_options',
     	'sandbox_theme_tweet_options',
-    	'sandbox_theme_sanitize_tweet_options'
+    	'header_footer_sanitize'
 	);
 } // end sandbox_theme_intialize_tweet_options
 add_action( 'admin_init', 'sandbox_theme_intialize_tweet_options' );
@@ -579,25 +511,19 @@ function sandbox_tweet_options_callback() {
 }
 
 // callback: number of tweets
-function sandbox_no_tweets_callback() {
+function sandbox_twitter_tweet_count_callback() {
     $options = get_option( 'sandbox_theme_tweet_options' );
-    if ( isset( $options['no_tweets'] ) ) {
-        $options['no_tweets'];
+    if ( isset( $options['twitter_tweet_count'] ) ) {
+        $options['twitter_tweet_count'];
     }
     echo '
-    <select id="no_tweets" name="sandbox_theme_tweet_options[no_tweets]" ' . selected( isset( $options['no_tweets'] ) ? $options['no_tweets'] : false ) . '>
-        <option value="one" '. ( $options['no_tweets'] == one ? ('selected="selected" class="green--background"')  : '') .' >one</option>
-		<option value="two" '. ( $options['no_tweets'] == two ? ('selected="selected" class="green--background"')  : '') .' >two</option>
-		<option value="three" '. ( $options['no_tweets'] == three ? ('selected="selected" class="green--background"')  : '') .' >three</option>
+    <select id="twitter_tweet_count" name="sandbox_theme_tweet_options[twitter_tweet_count]" ' . selected( isset( $options['twitter_tweet_count'] ) ? $options['twitter_tweet_count'] : false ) . '>
+        <option value="one" '. ( $options['twitter_tweet_count'] == one ? ('selected="selected" class="green--background"')  : '') .' >one</option>
+		<option value="two" '. ( $options['twitter_tweet_count'] == two ? ('selected="selected" class="green--background"')  : '') .' >two</option>
+		<option value="three" '. ( $options['twitter_tweet_count'] == three ? ('selected="selected" class="green--background"')  : '') .' >three</option>
     </select>
     ';
 }
-
-
-
-
-
-
 
 
 
@@ -653,53 +579,11 @@ function sandbox_theme_intialize_affiliates_options() {
 	register_setting(
     	'sandbox_theme_affiliates_options',
     	'sandbox_theme_affiliates_options',
-    	'sandbox_theme_sanitize_affiliates_options'
+    	'header_footer_sanitize'
 	);
 	
 } // end sandbox_theme_intialize_affiliates_options
 add_action( 'admin_init', 'sandbox_theme_intialize_affiliates_options' );
-
-
-
-
-// sanitise affiliate options
-function sandbox_theme_sanitize_affiliates_options( $input ) {
-    $output = array();
-
-	// loop over affiliate logos
-	foreach( $input as $key => $val ) {
-
-		// the key must be set, in order to get sanitised and output
-		if ( isset ( $input[$key] ) ) {
-
-			// main title: sanitise as text field
-			if ( $key == 'ouraffiliatestitle' ) {
-				$output['ouraffiliatestitle'] = sanitize_text_field( $input['ouraffiliatestitle'] );
-			
-			// alternative text: sanitise as text field
-			} elseif (strpos($key, 'aff_alt') !== false)  {
-				$output[$key] = sanitize_text_field( $input[$key] );
-			// width
-			} elseif (strpos($key, 'aff_width') !== false)  {
-				$output[$key] = sanitize_text_field( $input[$key] );
-			// height
-			} elseif (strpos($key, 'aff_height') !== false)  {
-				$output[$key] = sanitize_text_field( $input[$key] );
-			} // original
-			elseif (strpos($key, 'alttext') !== false)  { 
-				$output[$key] = sanitize_text_field( $input[$key] );
-			}
-			
-			// url
-			else {
-				// if the key is a path to a logo, sanitise it as a url
-				$output[$key] = esc_url_raw( strip_tags( stripslashes( $input[$key] ) ) );
-			}
-
-		}
-	}
-    return apply_filters( 'sandbox_theme_sanitize_affiliates_options', $output, $input );
-}
 
 
 // callback: section description
@@ -717,8 +601,8 @@ function img_callback($args) {
 	'<div class="logogroup affiliate-logo_'.$args[1].'">
 		<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
 		<input type="button" class="button button-primary" value="Upload Affiliate Logo '.$args[1].'" id="upload_'.$args[0].'"/>
-		<label for="'.$args[0].'">Image Location - can also enter with URL</label>
-		<input type="text" id="'.$args[0].'" name="sandbox_theme_affiliates_options['.$args[0].']" value="'.$value.'" />
+		<!--<label for="'.$args[0].'">Image Location</label>-->
+		<input class="invisible" type="text" id="'.$args[0].'" name="sandbox_theme_affiliates_options['.$args[0].']" value="'.$value.'" />
 	</div>';
 }
 
@@ -770,25 +654,77 @@ function sandbox_theme_intialize_styling_options() {
 	register_setting(
     	'sandbox_theme_styling_options',
     	'sandbox_theme_styling_options',
-    	'sandbox_theme_sanitize_styling_options'
+    	'header_footer_sanitize'
 	);
 }
 add_action( 'admin_init', 'sandbox_theme_intialize_styling_options' );
-
-// sanitise checkboes
-function sandbox_theme_sanitize_styling_options( $input ) {
-    $output = array();
-    foreach( $input as $key => $val ) {
-		if ( $key == 'heromesh' or $key == 'footerhero' ) {
-			$output[$key] = filter_var( $input[$key], FILTER_SANITIZE_NUMBER_INT );
-		}
-    }
-    return apply_filters( 'sandbox_theme_sanitize_styling_options', $output, $input );
-}
 
 // callback: styling options message
 function sandbox_styling_options_callback() {
     echo '<p>Choose Styling Options for the Hero and Footer</p>';
 }
+
+
+
+
+
+
+
+
+// ________________________________________
+// sanitise function
+// - radio buttons sansitised as text fields
+// - select / dropdowns sanitised as text fields
+function header_footer_sanitize( $input ) {
+    $output = array();
+    foreach( $input as $key => $val ) {
+        if ( isset ( $input[$key] ) ) {
+            $text_fields_full = array('cta_text', 'cta_type', 'cta_colour', 'ouraffiliatestitle');
+            $url_fields_full = array('mainlogo', 'appletouch', 'favicon', 'cta_link', 'facebook', 'twitter', 'googleplus', 'linkedin' );
+			$checkboxes = array('heromesh', 'footerhero');
+			
+			// text fields
+			if (in_array($key, $text_fields_full)) {
+                $output[$key] = sanitize_text_field( $input[$key] );
+			}
+			if (strpos($key, 'company_') !== false)  {
+                $output[$key] = sanitize_text_field( $input[$key] );
+            }
+            if (strpos($key, 'ML') !== false)  {
+                $output[$key] = sanitize_text_field( $input[$key] );
+            }
+            if (strpos($key, 'twitter_') !== false)  {
+                $output[$key] = sanitize_text_field( $input[$key] );
+            }
+            if (strpos($key, 'aff_alt') !== false)  {
+                $output[$key] = sanitize_text_field( $input[$key] );
+            }
+            if (strpos($key, 'aff_width') !== false)  {
+                $output[$key] = sanitize_text_field( $input[$key] );
+            }
+            if (strpos($key, 'aff_height') !== false)  {
+                $output[$key] = sanitize_text_field( $input[$key] );
+            }
+			
+			
+			// urls
+			if (in_array($key, $url_fields_full)) {
+                $output[$key] = esc_url_raw( strip_tags( stripslashes( $input[$key] ) ) );
+			}
+			if (strpos($key, 'aff_logo') !== false)  {
+				$output[$key] = esc_url_raw( strip_tags( stripslashes( $input[$key] ) ) );
+			}
+			
+			
+			// checkboxes
+			if (in_array($key, $checkboxes))  {
+				$output[$key] = filter_var( $input[$key], FILTER_SANITIZE_NUMBER_INT );
+			}
+        }
+    }
+    return apply_filters( 'header_footer_sanitize', $output, $input );
+}
+
+
 
 ?>

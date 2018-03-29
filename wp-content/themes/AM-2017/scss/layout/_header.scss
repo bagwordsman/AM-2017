@@ -14,7 +14,6 @@
 // main header container
 .header {
   width : 100%;
-  position : fixed;
   top : 0;
   left : 0;
   right : 0;
@@ -27,7 +26,10 @@
   
   
   // ___________________
-  // scrolled offset
+  // fixed header (and offset)
+  .fixed-header & {
+    position : fixed;
+  }
 
   // top container = 110px
   // button = 57px
@@ -84,17 +86,22 @@
     // padding-top : 5rem;
     width : 22%;
     // logo and text container
-    // - probably want to do this without flexbox styles (or use a fallback)
+    // - omitted flexbox (3 rules applied on a)
+    // - rules after commented + img convert flexbox styles
     &.logo a {
       width : 122px;
-      text-decoration : none;
-      display : flex;
-      flex-direction : column;
-      align-items : center;
       text-decoration : none;
       color : $grey;
       font-weight : $bold;
       line-height : 1;
+      // display : flex;
+      // flex-direction : column;
+      // align-items : center;
+      display : block;
+      img {
+        display : block;
+        margin : 0 auto;
+      }
       .site-title {
         font-size : 1.8rem;
         line-height : 1;
@@ -150,7 +157,7 @@
 // - offset the content to accommodate fixed header
 // - stops header from appearing white when scrolling up quickly
 // - works with .up class
-#content {
+.fixed-header #content {
   // logged out
   border-top : calc(110px + 57px) solid $grey_lighter;
   @media (min-width: 800px) {

@@ -81,16 +81,13 @@
 
 // retweet
 .retweet-indicator {
-    height : 20px;
+    margin-left : 52px; 
+    margin-bottom : 14px;
+    padding-left : 26px;// room for icon
     font-size : 14px;
-
     background-image : url('../img/tweet-actions.png');
     background-repeat : no-repeat;
-    background-position : -25px -16px;
-    position : absolute;
-    top : 20px;
-    left : 72px;
-    padding-left : 25px; // room for icon
+    background-position : -25px -16px;  
 }
 
 
@@ -116,7 +113,7 @@
     float : left;
     font-size : 14px;
     padding-left : 52px;
-    padding-top : 25px;
+    // padding-top : 25px;
     box-sizing : border-box;
     // profile link
     .tweetprofilelink {

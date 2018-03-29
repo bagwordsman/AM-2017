@@ -5,11 +5,12 @@
 
 	// File Contents:
 	// 1 - Company Logos
-	// 2 - Affiliated Organisations Logos
-	// 3 - Blog Styling Options
-	// 4 - Google Map
-	// 5 - Google Analytics
-	// 6 - Lazyloading
+	// 2 - Tweets
+	// 3 - Affiliated Organisations Logos
+	// 4 - Blog Styling Options
+	// 5 - Google Map
+	// 6 - Google Analytics
+	// 7 - Lazyloading
 	// + logo upload constructor
 
 	// ––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -36,7 +37,32 @@
 
 
 	// ––––––––––––––––––––––––––––––––––––––––––––––––––
-	// 2 - Affiliated Organisations Logos
+	// 2 - Tweets
+	const opsTweets = $('#twitter_tweet_count');
+	const birdie = $('.fa-twitter.orig')[0];
+	const birdIcon = '<i class="fa fa-twitter" aria-hidden="true"></i>';
+	const birds = {
+		'one' : '',
+		'two' : birdIcon,
+		'three' : birdIcon + birdIcon + '<br>'
+	}
+
+	// on user action + onload
+	$(opsTweets).change(addBirds).each(addBirds);
+	
+	function addBirds() {
+		// remove previous birds
+		$('#tweet .fa-twitter:not(.orig), br').remove();
+		// add required amount
+		const birdies = this.value;
+		$(birdie).after(birds[birdies]);
+	}
+	
+	
+	
+	
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// 3 - Affiliated Organisations Logos
 	// a) resolution logo
 	const resolutionID = '.affiliate-logo_1';
 	const resolutionLogo = new logoUpload(resolutionID);
@@ -66,7 +92,7 @@
 
 
 	// ––––––––––––––––––––––––––––––––––––––––––––––––––
-	// 3 - Blog Styling Options
+	// 4 - Blog Styling Options
 	// a) widget background image
 	const widgetID = '.widget_bg';
 	const widgetImg = new logoUpload(widgetID);
@@ -145,35 +171,20 @@
 
 
 	// ––––––––––––––––––––––––––––––––––––––––––––––––––
-	// 4 - Google Map
+	// 5 - Google Map
 	// - set height
 	const mapContainer = $('#gmap_slider')[0];
 	const mapSlider = $(mapContainer).find('.v-slider')[0];
 	const mapReading = $(mapContainer).find('input[type="text"]');
 
-	$(mapSlider).slider({
-		orientation: "vertical",
-		range: "min",
-		min: 250,
-		max: 500,
-		value: 400,
-		slide: function(event, ui) {
-			$(mapReading).val(ui.value);
-		}
-	});
-	// on load:
-	// - set slider at correct position
-	const sliderPos = (mapReading.val() - 250)/250*100;
-	$(mapSlider).find('.ui-slider-handle').css('bottom' , sliderPos + '%');
-	$(mapSlider).find('.ui-slider-range').css('height' , sliderPos + '%');
-
-
+	const mapHeight = new simpleSlider(mapSlider, mapReading, 250, 500, 400);
+	mapHeight.code();
 
 
 
 
 	// ––––––––––––––––––––––––––––––––––––––––––––––––––
-	// 5 - Google Analytics
+	// 6 - Google Analytics
 	const gaIcon = $('#analytics .fa-question')[0];
 	const gaCode = $('#analytics input[type="text"]').val();
 	const gaBtn = $('#analytics input[type="submit"]');
@@ -191,7 +202,7 @@
 
 
 	// ––––––––––––––––––––––––––––––––––––––––––––––––––
-	// 6 - Lazyloading
+	// 7 - Lazyloading
 	const checked = 'Enable Lazyloading';
 	const unchecked = 'Disable Lazyloading';
 
@@ -210,6 +221,19 @@
 			$('.lazyloading #submit').val(unchecked);
 		}
 	});
+
+
+
+
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// 7 - Fixed Header
+	// - set offset
+	const headerContainer = $('#fixed_header_slider')[0];
+	const headerSlider = $(headerContainer).find('.v-slider')[0];
+	const headerReading = $(headerContainer).find('input[type="text"]');
+
+	const headerOffset = new simpleSlider(headerSlider, headerReading, 0, 500, 250);
+	headerOffset.code();
 
 
 
@@ -279,6 +303,36 @@
 			}
         }
 	}
+
+
+
+
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// Simple Slider constructor
+	// - needs to be able to handle a min value of 0
+	function simpleSlider(slider, reading, min, max, Default ) {
+        this.code = function () {
+			$(slider).slider({
+				orientation: "vertical",
+				range: "min",
+				min: min,
+				max: max,
+				value: Default,
+				slide: function(event, ui) {
+					$(reading).val(ui.value);
+				}
+			});
+			// on load:
+			// - set slider at correct position
+			const sliderPos = (reading.val() - min)/(max - min)*100;
+
+			$(slider).find('.ui-slider-handle').css('bottom' , sliderPos + '%');
+			$(slider).find('.ui-slider-range').css('height' , sliderPos + '%');
+		}
+	}
+	// const mapSlider = new simpleSlider(slider, reading, 250, 500, 400);
+	// mapSlider.code();
+
 
 
 })(jQuery);

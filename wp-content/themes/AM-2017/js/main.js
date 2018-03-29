@@ -9,7 +9,8 @@
     // 3 - menu: abbreviated text for mid sized screens
     // 4 - cookie bar notice
     // 5 - mediator profile reveal
-    // 6 - services parent page
+        // TO BE CHANGED:  // 6 - services parent page
+    // 7 - staged column height matching
 
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -19,113 +20,119 @@
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
     // 2 - header: hide if scrolled
-    var didScroll;
-    var lastScrollTop = 0;
-    var delta = 2; // threshold setting - distance user has to scroll up to reveal header (px)
-    var navbarHeight = $('.header').outerHeight();
+    if ( $('.page').hasClass('fixed-header') ) {
 
-    // activate function when user scrolls
-    $(window).scroll(function(event){
-        didScroll = true;
-    });
-    setInterval(function() {
-        if (didScroll) {
-            hasScrolled();
-            didScroll = false;
-        }
-    }, 250);
-
-    // scroll function
-    function hasScrolled() {
-        var st = $(this).scrollTop();
-
-        // scroll more than delta value
-        if (Math.abs(lastScrollTop - st) <= delta)
-            return;
+        var didScroll;
+        var lastScrollTop = 0;
+        var delta = $('div.page').attr('data-offset'); // threshold setting - distance user has to scroll up to reveal header (px)
+        var navbarHeight = $('.header').outerHeight();
+        // console.log(delta);
         
-        // if scrolled down past the navbar, add class .nav-up.
-        // - don't see what is "behind" the navbar.
-        if (st > lastScrollTop && st > navbarHeight){
-            // scroll down - add .up class
-            $('.header').removeClass('down').addClass('up');
-        } else {
-            // scroll up - add .down class
-            if (st + $(window).height() < $(document).height()) {
-                $('.header').removeClass('up').addClass('down');
+        // activate function when user scrolls
+        $(window).scroll(function(event){
+            didScroll = true;
+        });
+        setInterval(function() {
+            if (didScroll) {
+                hasScrolled();
+                didScroll = false;
             }
-        }
-        lastScrollTop = st;
-    }
+        }, 250);
 
+        // scroll function
+        function hasScrolled() {
+            var st = $(this).scrollTop();
 
-    
-    
-    // ––––––––––––––––––––––––––––––––––––––––––––––––––
-    // 3 - menu: abbreviated text for mid sized screens
-    // - note: css sets large menu at 800px
-    $( window ).resize(function() {
-        var resize = true; // let menuMedium know that it has been called after document resize
-        menuMedium(resize);
-    });
-
-
-
-    function menuMedium(resize) {
-
-        // if menu text overflows
-        if ($('.main-menu')[0].scrollWidth >  $('.main-menu').innerWidth()) {            
-            // large menu (medium) - swap in alternative shorter text
-            if ($('body').innerWidth() >= 800) {
-                $('.main-menu li a').each(function() {
-                    var abbrevTitle = $(this).attr('data-abbrev');
-                    // only swap text if alternative text has been entered
-                    if (abbrevTitle!==undefined) {
-                        $(this).text(abbrevTitle);                    
-                    }
-                });
+            // scroll more than delta value
+            if (Math.abs(lastScrollTop - st) <= delta)
+                return;
+            
+            // if scrolled down past the navbar, add class .nav-up.
+            // - don't see what is "behind" the navbar.
+            if (st > lastScrollTop && st > navbarHeight){
+                // scroll down - add .up class
+                $('.header').removeClass('down').addClass('up');
+            } else {
+                // scroll up - add .down class
+                if (st + $(window).height() < $(document).height()) {
+                    $('.header').removeClass('up').addClass('down');
+                }
             }
+            lastScrollTop = st;
         }
+
 
         
-        // if menu text does not overflow
-        else {
-            // small menu - restore original text
-            if ($('body').innerWidth() <= 799) {
-                if (resize == true) {
-                    // console.log('resized small menu -> restore original text');
-                    $('.main-menu > li > a').each(function(k, i) {
+        
+        // ––––––––––––––––––––––––––––––––––––––––––––––––––
+        // 3 - menu: abbreviated text for mid sized screens
+        // - note: css sets large menu at 800px
+        $( window ).resize(function() {
+            var resize = true; // let menuMedium know that it has been called after document resize
+            menuMedium(resize);
+            // run column resize
+            stageColumn(resize);
+        });
+
+
+
+        function menuMedium(resize) {
+
+            // if menu text overflows
+            if ($('.main-menu')[0].scrollWidth >  $('.main-menu').innerWidth()) {            
+                // large menu (medium) - swap in alternative shorter text
+                if ($('body').innerWidth() >= 800) {
+                    $('.main-menu li a').each(function() {
                         var abbrevTitle = $(this).attr('data-abbrev');
-                        var origTitle = $(this).attr('data-orig');
-                        // only swap original text back in if it differs from the alternative text
-                        if ( $(this).text() !== origTitle ) {
-                            $(this).text(origTitle);
-                            // console.log('replace');
+                        // only swap text if alternative text has been entered
+                        if (abbrevTitle!==undefined) {
+                            $(this).text(abbrevTitle);                    
                         }
                     });
                 }
-            } // end small menu
+            }
 
-            // large menu
+            
+            // if menu text does not overflow
             else {
-                if (resize == true) {
-                    // console.log('resized large menu -> if it is wide enough, swap in original text');
-                    // - test if the screen is wide enough
-                    if ($('body').innerWidth() >= 1120) {
+                // small menu - restore original text
+                if ($('body').innerWidth() <= 799) {
+                    if (resize == true) {
+                        // console.log('resized small menu -> restore original text');
                         $('.main-menu > li > a').each(function(k, i) {
                             var abbrevTitle = $(this).attr('data-abbrev');
                             var origTitle = $(this).attr('data-orig');
                             // only swap original text back in if it differs from the alternative text
                             if ( $(this).text() !== origTitle ) {
                                 $(this).text(origTitle);
+                                // console.log('replace');
                             }
                         });
                     }
-                }
-            } // end large menu  
+                } // end small menu
+
+                // large menu
+                else {
+                    if (resize == true) {
+                        // console.log('resized large menu -> if it is wide enough, swap in original text');
+                        // - test if the screen is wide enough
+                        if ($('body').innerWidth() >= 1120) {
+                            $('.main-menu > li > a').each(function(k, i) {
+                                var abbrevTitle = $(this).attr('data-abbrev');
+                                var origTitle = $(this).attr('data-orig');
+                                // only swap original text back in if it differs from the alternative text
+                                if ( $(this).text() !== origTitle ) {
+                                    $(this).text(origTitle);
+                                }
+                            });
+                        }
+                    }
+                } // end large menu  
+            }
         }
+        // run on load
+        menuMedium();
     }
-    // run on load
-    menuMedium();
 
 
 
@@ -203,6 +210,36 @@
         // }
 
     });
+
+
+
+
+    // ––––––––––––––––––––––––––––––––––––––––––––––––––
+    // 7 - staged column height matching
+    // - works fine so long as it isnt used on the home page - WHY???
+    function stageColumn(resize) {           
+        
+        // get height of each column
+        // $('.columns.stage').each(function() {
+        //     console.log( $(this).height() );
+        // });
+        
+        // set height of staged columns
+        if ($('body:not(.home)').innerWidth() >= 980) {
+            var maxHeight = Math.max.apply(Math, $('.columns.stage').map(function(i,elem){ 
+                // return Number($(elem).height());
+                return $(elem).height();
+            }));
+            // console.log(maxHeight + ': max height');
+            $('.columns.stage').height(maxHeight);
+            // - does not work properly on home page???
+            // $('.home .columns.stage').height(maxHeight + 75);
+        } else {
+            $('.columns.stage').css('height', 'auto');
+        }
+    }
+    // run on load
+    stageColumn();
 
 
 
