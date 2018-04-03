@@ -1,102 +1,213 @@
 <?php
+// tag pages template
+// - almost identical to category.php
+// - keeps the mid page advert that displays every other page
+
 get_header(); ?>
 
 <div id="content" role="main">
 
-
-		<?php if ( have_posts() ) : ?>
-
-		<div class="hero">
-					<?php
-					$styling_options = get_option ( 'sandbox_theme_styling_options' );
-					$heromesh = $styling_options['heromesh'];
-					// hero image - post thumbnail (if set)
-					if (has_post_thumbnail()) {
-							the_post_thumbnail('full');
-					// output default img from theme (if not set)
-					} else {
-							echo '<img src="'. get_bloginfo('stylesheet_directory'). '/img/default-hero/able-default-hero.jpg" alt="'.get_bloginfo('name').'"/>';
-					}
-					?>
-					<div <?php if ($heromesh) echo 'class="mesh"'; ?>>
-							<div class="container">
-									<h1><?php printf( __( 'Posts Tagged: %s', 'AM2017' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
-							</div>
-					</div>
-					<span class="divider white"></span>
-		</div><!-- hero -->
+	<?php
+	
+	// _______________________________________________________
+	// check to see that there are posts
+	if ( have_posts() ) :
 
 
-		<?php $desc = tag_description();
-		if ($desc) {
+	// ___________________________
+	// page variables
+
+	// page count = $paged;
+	$even_pages = $paged % 2 == 0; // first page is even, ($even_pages || $paged > 0)
+	$odd_pages = $paged % 2 == 1;
+
+	// keep track of the post count
+	$index = 0;
+
+	// use index to get colour - use in while loop
+	$colours = array(' green', ' orange', ' blue', ' red');
+	$seq = $index - 1;
+
+	// sidebar - classes.php
+	$blog_sidebar = new blogSidebar('blog_sidebar');
+
+	// advert adds .wrapper-white and wrapper-grey containers + advert
+	// - look for $ad_enabled
+	$ad_enabled = get_option ( 'sandbox_theme_blog_options' )['blog_ad_check'];
+	
+	// ________________
+	// tag details
+	$tag_title = single_tag_title( '', false );
+	$tag_desc = tag_description();
+	// make a top sticky post out of category info
+	$tag_info = '
+	<div class="post info">
+		<h1>Tag: ' . $tag_title . '</h1>
+	</div>';
+
+	// post count
+	// - posts per page - defined in settings > reading
+	$posts_per_page = get_option( 'posts_per_page' );
+	$posts_per_page = (int)$posts_per_page;
+	// - posts with the current tag
+	$posts_tagged = $wp_query->found_posts;
+	$posts_tagged = (int)$posts_tagged;
+
+
+
+
+
+	// ___________________________
+	// wrapping
+	
+	// even pages don't ever show an advert
+	if (($even_pages) && ($paged > 0)) {
+		echo '
+		<div class="container pad-top">
+			<div class="seven columns">' . $tag_info;
+	}
+
+	// odd pages:
+	// - with advert: add wrapper-white
+	// - no advert: add pad-top
+	if (($odd_pages) || ($paged == 0)) {
+		echo 
+		($ad_enabled ? '<div class="wrapper-white">' : '') . '
+			<div class="container'. ( $ad_enabled ? '' : ' pad-top') .'">
+				<div class="seven columns">' . $tag_info;
+	}
+
+
+
+	
+	// ___________________________
+	// start the posts loop:
+	while ( have_posts() ) : the_post();
+	
+	
+	// ___________________________
+	// post variables
+	// a) top border colour
+	$seq ++;
+	if ($seq % 4 == 0) {
+		$seq = 0;	
+	}
+	$borderTop = $colours[$seq];
+	// b) thumbmails - index posts
+	if (has_post_thumbnail()) {
+		// $thumbClass = ' thumb';
+		$thumbImg = '<div class="thumb">'.get_the_post_thumbnail().'<span class="divider white"></span></div>';
+	}
+	else {
+		$thumbImg = '';
+
+	}
+	// c) linked headings
+	$postHeading = '<a href="'.get_the_permalink().'">'.get_the_title().'</a>';
+
+
+	
+	// ___________________________
+	// wrapping: after 4th post
+	if ($index == 4) {
+
+		// odd pages - with advert:
+		// 	 - close: .seven.columns, .container .wrapper-white
+		//   - add: sidebar, advert, next container
+		if ( (($odd_pages) || ($paged == 0)) && $ad_enabled ) {
 			echo '
-			<div class="container archive category no-top">
-					'. $desc .'
-			</div><!-- container -->
-			';
+					</div>
+					<div class="five columns">';
+						$blog_sidebar->add_sidebar();
+						echo '
+					</div>
+				</div>
+				<span class="divider grey"></span>
+			</div>';
+			echo blog_advert(). '
+			<div class="container">
+				<div class="seven columns">';
 		}
+	}
 
 
-			// display the posts
-			$marker = 1;
-			while ( have_posts() ) : the_post(); ?>
+	// ___________________________
+	// regular list of posts
+	echo '
+	<div class="post index'.$borderTop.'">
+		'.$thumbImg.'
+		<h3>'.$postHeading.'</h3>
+		<p>'.excerpt(36).'</p>
+	</div>';
 
-            <div class="container postid-<?php the_ID() ?><?php if ($marker == 1 && $desc == '') {echo ' no-top';$marker = 0;}?>">
+	
+	// increment loop by 1 (move to next post)
+	$index++;
+	endwhile;
+	
+	
+	
+	// _________________________________________________________________________________
+	// wrapping: after page posts ended
 
-            	<?php if (has_post_thumbnail()) : ?>
-            	<div class="four columns">
-                	<?php the_post_thumbnail('thumbnail'); ?>
-              </div><!-- four columns -->
+	// odd pages: 3, 5, 7, etc.
+	// - add sidebar if: 1st page, ad disabled, 5 posts or less 
+	if (($odd_pages) || ($paged == 0)) {
+		echo '
+			</div>
+			<div class="five columns">
+				';
+				if (!$ad_enabled || $posts_tagged < 6) {
+					$blog_sidebar->add_sidebar();
+				}
+				echo '
+			</div>
+		</div>';
+	}
+
+	// even pages:
+	// - add sidebar
+	if (($even_pages) && ($paged > 0)) {
+		echo '
+			</div>
+			<div class="five columns">
+				';
+				$blog_sidebar->add_sidebar();
+				echo '
+			</div>
+		</div>';
+	}
 
 
-              <div class="eight columns">
-                	<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
-									<!-- rel="bookmark" alt='<?php the_title() ?>' title='<?php the_title() ?>' -->
-            		<?php the_excerpt(); ?>
-              </div><!-- eight columns -->
 
 
-              <?php else: ?>
-                	<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
-            	<?php the_excerpt(); ?>
 
 
-							<?php endif; ?>
 
-            </div><!-- container -->
-			<?php endwhile;
 
-			// number of posts per page - defined in settings > general
-			$posts_per_page = get_option( 'posts_per_page' );
-			$posts_per_page = (int)$posts_per_page;
 
-			// number of posts with the current tag
-			$posts_tagged = $wp_query->found_posts;
-			$posts_tagged = (int)$posts_tagged;
 
-			if ($posts_tagged > $posts_per_page == 'true') {
+if ($posts_tagged > $posts_per_page == 'true') {
 
-					echo '<div class="container">';
-					// Previous/next page navigation.
-					// doesn't work
-					the_posts_pagination( array(
-						'prev_text'          => __( 'Previous page', 'AM2017' ),
-						'next_text'          => __( 'Next page', 'AM2017' ),
-						'screen_reader_text' => __( 'Blog Post Navigation' ),
-						'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'AM2017' ) . ' </span>',
-					) );
+	// ___________________________
+	// posts page navigation
+	echo '<div class="container">';
+	the_posts_pagination( array(
+		'prev_text'          => __( 'Previous page', 'AM2017' ),
+		'next_text'          => __( 'Next page', 'AM2017' ),
+		'screen_reader_text' => __( 'Blog Post Navigation' ),
+		'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'AM2017' ) . ' </span>',
+	) );
+	echo '</div><!-- container -->';
 
-					echo '</div><!-- container -->';
-
-			}
-			endif;
-			?>
+}
+endif;
+?>
 
 </div><!-- #content -->
 
 <?php
 // widgets just above the footer area
 echo blog_widget_area();
-?>
 
-<?php get_footer(); ?>
+get_footer(); ?>

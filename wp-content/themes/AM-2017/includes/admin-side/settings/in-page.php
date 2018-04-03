@@ -105,7 +105,7 @@ add_action( 'admin_init', 'sandbox_theme_intialize_map_options' );
 // callback: message
 function sandbox_map_options_callback() {
 	echo '
-	<p>Add your Google Maps API Key, then define general settings for the map, before adding your office locations.</p>
+	<p>'. back_btn() .'Add your Google Maps API Key, then define general settings for the map, before adding your office locations.</p>
 	<p>Copy and paste the following shortcode to add your Google Map into pages:</p>
 	<p class="shortcode-info"><span>[google-map]</span></p>';
 }
@@ -176,17 +176,156 @@ function sandbox_theme_intialize_blog_options() {
     }
 	add_settings_section(
     	'blog_settings_section', // section ID
-    	'Styling Options for the Blog', // section title
+    	'Blog Settings', // section title
     	'sandbox_blog_options_callback', // callback
     	'sandbox_theme_blog_options' // add to settings page
 	);
 
-	// Widgets Title
+
+
+
+
+
+	// Blog - In Page Advert
+	// - title and content
+	add_settings_field(
+    	'blog_ad_text_title',
+		'<h4>In Page Advert</h4>
+		<i class="fa fa-header" aria-hidden="true"></i>Title',
+    	'text_callback',
+    	'sandbox_theme_blog_options',
+		'blog_settings_section',
+		array( // $args array - tailor the callback function
+			'blog_ad_text_title', // option ID
+			'sandbox_theme_blog_options', // section ID
+			'top-margin--7-8' // top offset
+		)
+	);
+	add_settings_field(
+    	'blog_ad_content',
+		'<i class="fa fa-align-left black--text" aria-hidden="true"></i>Content',
+    	'textarea_callback',
+    	'sandbox_theme_blog_options',
+		'blog_settings_section',
+		array( // $args array - tailor the callback function
+			'blog_ad_content', // option ID
+			'sandbox_theme_blog_options' // section ID
+		)
+	);
+	// - image
+	add_settings_field(
+    	'blog_ad_img',
+    	'<i class="fa fa-picture-o" aria-hidden="true"></i>Image',
+    	'sandbox_blog_ad_img_callback',
+    	'sandbox_theme_blog_options',
+    	'blog_settings_section'
+	);
+	add_settings_field(
+		'blog_img_alt',
+		'',
+		'alt_text_callback',
+		'sandbox_theme_blog_options',
+    	'blog_settings_section',
+		array( // $args array - tailor the callback function
+			'blog_img_alt',
+			'sandbox_theme_blog_options',
+			'blog_ad_img' // match img id
+		)
+	);
+	add_settings_field(
+    	'blog_img_width',
+    	'',
+    	'img_width_height_callback',
+    	'sandbox_theme_blog_options',
+		'blog_settings_section',
+		array( // $args array - tailor the callback function
+			'blog_img_width',
+			'sandbox_theme_blog_options',
+			'blog_ad_img' // match img id
+		)
+	);
+	add_settings_field(
+    	'blog_img_height',
+    	'',
+    	'img_width_height_callback',
+    	'sandbox_theme_blog_options',
+		'blog_settings_section',
+		array( // $args array - tailor the callback function
+			'blog_img_height',
+			'sandbox_theme_blog_options',
+			'blog_ad_img' // match img id
+		)
+	);
+	// - buttons
+	$btn_one = new blogBtn(1);
+	$btn_one->add_btn();
+
+	$btn_two = new blogBtn(2);
+	$btn_two->add_btn();
+	// - checkbox
+	add_settings_field(
+	    'blog_ad_check',
+	    '<i class="fa fa-check green--text" aria-hidden="true"></i>Display Advert',
+	    'checkbox_callback',
+	    'sandbox_theme_blog_options',
+		'blog_settings_section',
+		array(
+			'blog_ad_check', // option ID
+			'sandbox_theme_blog_options' // section ID
+		)
+	);
+
+
+
+	// Single Posts Nav
+	// - nav toggle
+	add_settings_field(
+	    'single_nav_check',
+		'<h4>Single Posts</h4>
+		<i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-right" aria-hidden="true"></i>Display Nav',
+	    'checkbox_callback',
+	    'sandbox_theme_blog_options',
+		'blog_settings_section',
+		array(
+			'single_nav_check', // option ID
+			'sandbox_theme_blog_options', // section ID
+			'top-margin--7-8' // top offset
+		)
+	);
+	// - author & date toggle
+	add_settings_field(
+	    'single_meta_check',
+		'<i class="fa fa-calendar" aria-hidden="true"></i>Display Author & Date',
+	    'checkbox_callback',
+	    'sandbox_theme_blog_options',
+		'blog_settings_section',
+		array(
+			'single_meta_check', // option ID
+			'sandbox_theme_blog_options' // section ID
+		)
+	);
+	// - tags under post toggle
+	add_settings_field(
+	    'single_tag_check',
+		'<i class="fa fa-tag" aria-hidden="true"></i>Display Post Tags under post',
+	    'checkbox_callback',
+	    'sandbox_theme_blog_options',
+		'blog_settings_section',
+		array(
+			'single_tag_check', // option ID
+			'sandbox_theme_blog_options' // section ID
+		)
+	);
+
+
+
+
+	// Footer Widget Area
 	add_settings_field(
     	'blog_widget_title',
-    	'<h4>Blog Widget Area</h4>
+		'<h4>Footer Widget Area</h4>
 		<i class="fa fa-header" aria-hidden="true"></i>Title',
-    	'text_callback', // 'sandbox_blog_widget_title_callback'
+    	'text_callback',
     	'sandbox_theme_blog_options',
 		'blog_settings_section',
 		array( // $args array - tailor the callback function
@@ -197,7 +336,7 @@ function sandbox_theme_intialize_blog_options() {
 	);
 	add_settings_field(
 	    'blog_widget_title_align',
-	    '<i class="fa fa-align-left black--text" aria-hidden="true"></i>Title Alignment',
+		'<i class="fa fa-align-left black--text" aria-hidden="true"></i>Title Alignment',
 	    'sandbox_blog_widget_title_align_callback',
 	    'sandbox_theme_blog_options',
 	    'blog_settings_section'
@@ -211,7 +350,7 @@ function sandbox_theme_intialize_blog_options() {
 	);
 	add_settings_field(
 	    'blog_widget_theme',
-	    '<i class="fa fa-adjust colour-overlay" id="widget-theme" aria-hidden="true"></i>Theme / Colour Scheme',
+	    '<i class="fa fa-adjust colour-overlay" id="widget-theme" aria-hidden="true"></i>Widget Text Colour',
 	    'sandbox_blog_widget_theme_callback',
 	    'sandbox_theme_blog_options',
 	    'blog_settings_section'
@@ -238,13 +377,45 @@ function sandbox_theme_intialize_blog_options() {
 }
 add_action( 'admin_init', 'sandbox_theme_intialize_blog_options' );
 
+
 // callback: message
 function sandbox_blog_options_callback() {
     echo '
-	<p>Define Styling Options for the Blog Pages here.</p>
-	<p>Decide whether to include blog widgets or not in <a href="widgets.php">Appearance > Widgets</a>.</p>';
+	<p>'. back_btn() .'This section includes:</p>
+	<ul class="admin-list">
+		<li><strong>In Page Advert:</strong> in between posts on main blog page, category page, and tag page</li>
+		<li><strong>Single Post:</strong> toggle nav and meta (author & date under the title)</li>
+		<li><strong>Footer Widget Area:</strong> select title, colours and background image</li>
+	</ul>
+	<p>Select blog widgets (e.g. Categories, Tags, Recent Posts etc.) in <a href="widgets.php">Appearance > Widgets</a>.</p>';
 }
 
+
+
+
+
+// _________________________________________
+// Advert
+// callback: advert image
+function sandbox_blog_ad_img_callback() {
+    $options = get_option( 'sandbox_theme_blog_options' );
+    $url = '';
+    if ( isset( $options['blog_ad_img'] ) ) {
+        $url = $options['blog_ad_img'];
+    }
+	echo
+	'<div class="logogroup blog_ad_img">
+		<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/AM-advert.png"/>
+		<input type="button" class="button button-primary" value="Upload Advert Image" id="upload_blog_ad_img"/>
+		<input class="invisible" type="text" id="blog_ad_img" name="sandbox_theme_blog_options[blog_ad_img]" value="' . $options['blog_ad_img'] . '" />
+	</div>';
+}
+
+
+
+
+// _________________________________________
+// Footer Widget Area
 // callback: title alignment - radio buttons
 function sandbox_blog_widget_title_align_callback() {
     $options = get_option( 'sandbox_theme_blog_options' );
@@ -369,9 +540,10 @@ function in_page_sanitize( $input ) {
     $output = array();
     foreach( $input as $key => $val ) {
         if ( isset ( $input[$key] ) ) {
-            $text_fields_full = array('gmap_api_key', 'gmap_height', 'gmap_infowindow', 'blog_widget_title', 'blog_widget_title_align', 'blog_widget_bg_colour', 'blog_widget_theme', 'blog_widget_bg_image_opacity');
-            $url_fields_full = array( 'blog_widget_bg_image' );
-			$checkboxes = array('gmap_scroll', 'gmap_infowindow_address', 'gmap_infowindow_link');
+			$text_fields_full = array('gmap_api_key', 'gmap_height', 'gmap_infowindow', 'blog_widget_title', 'blog_widget_title_align', 'blog_widget_bg_colour', 'blog_widget_theme', 'blog_widget_bg_image_opacity');
+			$textarea_full = array('blog_ad_content');
+            $url_fields_full = array( 'blog_widget_bg_image', 'blog_ad_img' );
+			$checkboxes = array('gmap_scroll', 'gmap_infowindow_address', 'gmap_infowindow_link', 'blog_ad_check', 'single_nav_check', 'single_meta_check', 'single_tag_check');
 			
 			// text fields
 			if (in_array($key, $text_fields_full)) {
@@ -379,12 +551,30 @@ function in_page_sanitize( $input ) {
 			}
 			if (strpos($key, 'gmap_location') !== false)  {
                 $output[$key] = sanitize_text_field( $input[$key] );
-            }
+			}
+			if (strpos($key, 'blog_ad_text') !== false)  {
+                $output[$key] = sanitize_text_field( $input[$key] );
+			}
+			if (strpos($key, 'blog_img_') !== false)  {
+                $output[$key] = sanitize_text_field( $input[$key] );
+			}
+			if (strpos($key, 'blog_btn_') !== false)  {
+                $output[$key] = sanitize_text_field( $input[$key] );
+			}
+			
+			// textarea
+			// if ( $key == 'blog_ad_content' ) {
+			if (in_array($key, $textarea_full)) {
+				$output[$key] = sanitize_textarea_field( $input[$key] );
+			}
 
 			// urls
 			if (in_array($key, $url_fields_full)) {
                 $output[$key] = esc_url_raw( strip_tags( stripslashes( $input[$key] ) ) );
-			}			
+			}
+			if (strpos($key, 'blog_button_') !== false)  {
+                $output[$key] = esc_url_raw( strip_tags( stripslashes( $input[$key] ) ) );
+			}	
 			
 			// checkboxes
 			if (in_array($key, $checkboxes))  {

@@ -13,6 +13,7 @@ Basic Stylesheet
 
 */
 @import "variables/AM-variables", // have to import variables first: used in all partials - also import mixins first
+        "variables/AM-mixins",
         
         // layout
         "layout/grid",
@@ -22,7 +23,8 @@ Basic Stylesheet
         "layout/cta",
         "layout/footer",
         // blog - lower priority
-        "layout/blog",
+        "layout/blog-pages",
+        // "layout/blog-single-nav", - nav simplified, extra scss no longer required
         "layout/blog-widgets",
 
         // libraries - NOTE: using a selection of each to reduce amount of css loaded

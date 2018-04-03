@@ -1,0 +1,256 @@
+// mixins
+
+// disclaimer
+// - used on the blog also - latest post
+// - adapt for services page parent
+// - if images + descriptions for categories can work, could be used for a sticky post at the top of these
+@mixin disclaimer {
+    h3, h4 {
+        display : inline-block;
+        font-style : italic;
+        margin : 0;
+        margin-left : calc(2.5rem + 5px);
+        padding : 0 2rem;
+        height : 48px;
+        line-height : calc(48px + 5px);
+        border-radius : 2.5rem 2.5rem 0 0;
+        background-color : $green;
+        color : $white;
+    }
+    > div {
+        position : relative; // required for post
+        border : 5px solid $green;
+        border-radius : 2.5rem;
+        margin-bottom : 5rem;
+        padding : 2.5rem;
+        box-sizing : border-box;
+    }
+    p {
+        margin-bottom : 0;
+    }
+    @content;
+}
+
+
+
+// featured post widget, service parent page
+// .card
+@mixin card {
+    position : relative; // required for post
+    border : 5px solid $green;
+    border-radius : 2.5rem;
+    margin-bottom : 5rem;
+    padding : 2.5rem;
+    box-sizing : border-box;
+    background-color : $white;
+    // h4 {}
+    p {
+        margin-bottom : 0;
+        color : $grey_light;
+    }
+    .author {
+        @include labelLink;
+        background-color : $grey;
+        margin : 0 .5rem;
+    }
+    h4 {
+        padding-top : 2.5rem;
+        transition : all ease-in-out .3s;
+    }
+    img {
+        transition : all ease-in-out .5s;
+    }
+    a {
+        z-index : 1;
+        position : absolute;
+        top : 0;
+        bottom : 0;
+        left : 0;
+        right : 0;
+        &:hover + .thumb img {
+            transform : scale(1.125);
+        }
+    }
+
+
+    // colour schemes
+    $colours : 'green', 'orange', 'blue', 'red';    
+    $colour_codes : $green, $orange, $blue, $red;
+    @for $i from 1 through length($colours) {
+        &.#{nth($colours, $i)} {
+            border-color: nth($colour_codes, $i);
+            .author {
+                background-color: nth($colour_codes, $i);
+            }
+            .read-more,
+            a:hover ~ h4 {
+                color: nth($colour_codes, $i);
+            }
+        }
+    }
+
+
+
+    // this could be made into a mixin - shared with .latest - pass in height
+    padding-top : 170px;
+    overflow : hidden;
+    .thumb {
+        background-color : $grey_pale;
+        color : $grey;
+        text-align : center;
+        //
+        position : absolute;
+        top : 0;
+        left : 0;
+        right : 0;
+        height : 180px;
+        overflow : hidden;
+        // > div {
+        //   padding : 7.5rem 0;
+        // }
+        img {
+          margin : 0;
+          height : auto;
+          max-width : none;
+          min-height : 180px;
+        }
+    }
+
+    @content;
+}
+
+
+
+
+
+
+
+
+// ________________________________________________
+// labels
+// - blog pages h2 + category and tag h1
+// large
+@mixin labelHeading {
+    display : inline-block;
+    font-style : italic;
+    margin : 0;
+    padding : 0 2rem;
+    box-sizing : border-box;
+    background-color : $green;
+    color : $white;
+    @content;
+}
+
+@mixin headingIcon($left_right, $icon) {
+    position : relative;
+    padding-#{$left_right} : 5rem;
+    &:before {
+        font-family : $font-icon;
+        position : absolute;
+        top : 0;
+        content : icon($icon);
+        @if $left_right == 'left' {
+            left : 1rem;
+        }
+        @if $left_right == 'right' {
+            right : 1rem;
+        }
+    }
+    @content;
+}
+
+// small
+// - categories widget
+@mixin labelLink {
+    display : inline-block;
+    font-style : normal;
+    position : relative;
+    padding : .4rem 1.2rem;
+    box-sizing : border-box;
+    background-color : $green;
+    color : $white;
+    @content;
+}
+@mixin linkChevron($colour, $bg, $bg_hover) {
+    position : relative;
+    padding-right : 3.5rem;
+    color : $colour;
+    background-color : $bg;
+    &:after {
+        font-family : $font-icon;
+        position : absolute;
+        right : 1rem;
+        top : .4rem;
+        transition : all ease-in-out .3s;
+        content : icon('right');
+    }
+    &:hover {
+        color : $colour;
+        background-color : $bg_hover;
+        &:after {
+            right : .5rem;
+        }
+      }
+    @content;
+}
+
+
+// post nav
+@mixin navChevron($left_right, $before_after) {
+    position : relative;
+    @if $left_right == 'left' {
+        padding-left : 3.5rem;
+    }
+    @if $left_right == 'right' {
+        padding-right : 3.5rem;
+    }
+    &:#{$before_after} {
+        font-family : $font-icon;
+        position : absolute;
+        #{$left_right} : 1rem;
+        top : 0;
+        transition : all ease-in-out .3s;
+        content : icon('#{$left_right}');
+    }
+    @content;
+}
+
+
+
+
+
+
+// ________________________________________________
+// top border colours - sidebars and blog posts
+@mixin topBorderPara {
+    padding-top : 2.5rem;
+    border-top : 10px solid transparent;
+    // enforce bold italic
+    h3,
+    h4 {
+        font-style : italic;
+        color : $grey;
+        line-height : 1.4;
+        a {
+            text-decoration : none;
+        }
+    }
+    
+    // output different border colours
+    $colours : 'green', 'orange', 'blue', 'red';   
+    $colour_codes : $green, $orange, $blue, $red;
+    $dark-colour_codes : $green_dark, $orange_dark, $blue_dark, $red_dark;
+    @for $i from 1 through length($colours) {
+        &.#{nth($colours, $i)} {
+            border-top-color : nth($colour_codes, $i);
+            a {
+            color : nth($colour_codes, $i);
+                &:hover {
+                    color : nth($dark-colour_codes, $i);
+                }
+            }
+        }
+    }
+
+    @content;
+}

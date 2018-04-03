@@ -1,92 +1,18 @@
-// Blog
+// Blog Single Nav
 
 
-@mixin blog_container {
-  > .container {
-    padding : 5rem 0;
-    box-sizing : border-box;
-    border-top : 5px solid $grey;
-    // reset
-    &.no-top {
-      padding-top : 0;
-      border-top : none;
-    }
-  }
-  // post title
-  h2 a {
-    font-size : 3.6rem;
-    text-decoration : none;
-  }
-}
+// NO LONGER USED - post nav is now simplified - same as pages nav
+
+// - single.php
+// - this will mainly be on the post nav - change the partial name to reflect this
+// - blog index and single styles overlap too much to disentangle + more efficient to combine
 
 
 
 
 
-// ________________________________________________
-// a) blogroll / blog index page
-.blog #content {
-  @include blog_container;
-}
-
-// blog page navigation - bottom of blog index page
-.nav-links {
-  .prev {
-    margin-right : 1.5rem;
-  }
-  .next {
-    margin-left : 1.5rem;
-  }
-  .page-numbers.current {
-    background-color : $green;
-    color : $white;
-    margin-left : .75rem;
-    margin-right : .75rem;
-    padding : .35rem .7rem;
-    box-sizing : border-box;
-  }
-}
 
 
-
-// ________________________________________________
-// b) archives (tags and categories)
-// index / blogroll
-.archive #content {
-  @include blog_container;
-}
-// ii) hero heading
-.archive h1 span {
-  margin-left : 1.5rem;
-  padding : .35rem .7rem;
-  box-sizing : border-box;
-  background-color : $green;
-  color : $white;
-  border : 1px solid $black;
-}
-
-
-
-// ________________________________________________
-// c) single posts
-
-// headings - reset multi importer changes - still required?
-.single #content .hero > div a {text-decoration:none;}
-.single .hero > div a:hover {background-color:transparent;}
-// images - multi importer
-.ftpimagefix img {margin-right:3rem;}
-
-
-
-// - - - -
-// single post content reset
-.single #content {
-  padding-bottom : 0;
-  // remove border where single post nav is displaying
-  + #blog-widgets {
-    border-top : 0;
-  }
-}
 
 // single post nav
 .nav-single {
@@ -108,18 +34,6 @@
 }
 
 
-
-// thumbnail column widths
-.blog .four.columns,
-.category .four.columns,
-.archive .four.columns {
-  @media (min-width: 860px) {
-    width : 22%;
-  }
-  @media (min-width: 1160px) {
-    width : 13.3333333333%;
-  }
-}
 
 
 
@@ -276,16 +190,3 @@ $before-after: (
 
   
 }
-
-
-
-
-
-
-// ________________________________________________
-// d) blog widgets
-
-
-
-
-

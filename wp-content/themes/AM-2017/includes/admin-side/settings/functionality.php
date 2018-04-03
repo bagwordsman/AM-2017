@@ -50,7 +50,7 @@ function sandbox_theme_sanitize_google_analytics_options( $input ) {
 // callback: message
 function sandbox_google_analytics_options_callback() {
 	echo '
-	<p>Paste your Google Analytics Tracking ID into the text field to add Google Analytics tracking to your website.</p>
+	<p>'. back_btn() .'Paste your Google Analytics Tracking ID into the text field to add Google Analytics tracking to your website.</p>
 	<p>Leave this field empty to omit tracking.</p>';
 }
 
@@ -126,7 +126,7 @@ function sandbox_theme_sanitize_lazyloading_options( $input ) {
 // callback: message
 function sandbox_lazyloading_options_callback() {
     echo '
-	<p>Allow all in-page image assets to be lazy-loaded. This can help reduce the load time of image-heavy pages.</p>
+	<p>'. back_btn() .'Allow all in-page image assets to be lazy-loaded. This can help reduce the load time of image-heavy pages.</p>
     <p>Images will only be loaded when they come into view, when the user scrolls.</p>';
 }
 
@@ -247,7 +247,7 @@ function sandbox_theme_sanitize_header_options( $input ) {
 // callback: message
 function sandbox_header_options_callback() {
     echo '
-	<p>Check the box to turn on the fixed header.</p>
+	<p>'. back_btn() .'Check the box to turn on the fixed header.</p>
     <p>Set the height the user has to scroll up (in pixels) to make the header reappear.</p>';
 }
 

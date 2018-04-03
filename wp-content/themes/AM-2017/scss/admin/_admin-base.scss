@@ -14,6 +14,8 @@ $yellow : #edd44b;
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // Typography
+.quick-links p,
+.quick-links ul,
 #titlediv #title,
 .acf_postbox p.label,
 .acf_postbox p.label label,
@@ -46,6 +48,11 @@ body {
   letter-spacing : 0.04em;
 }
 
+// lists
+ul.admin-list {
+  list-style : disc inside;
+}
+
 
 
 
@@ -65,6 +72,7 @@ $cf_colours : $pale_red, $pale_orange, $pale_green;
 
 
 
+
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // Utility Classes
 .black--text,
@@ -72,6 +80,8 @@ $cf_colours : $pale_red, $pale_orange, $pale_green;
 .light {color : $yellow; }
 
 .red--text {color : $red; }
+.blue--text { color : $blue; }
+.green--text { color : $green; }
 .purple--text { color : $purple; }
 
 .hidden { display : none; }
@@ -82,4 +92,4 @@ $cf_colours : $pale_red, $pale_orange, $pale_green;
 .top-margin--4-2 {margin-top:4.2rem;}
 .top-margin--5-6 {margin-top:5.6rem;} // location fields
 .top-margin--7-6 {margin-top:7.6rem;} // api key field
-.top-margin--7-8 {margin-top:7.8rem;} // blog widget area title
+.top-margin--7-8 {margin-top:7.8rem !important;} // blog widget area title + blog nav checkbox(requires important)

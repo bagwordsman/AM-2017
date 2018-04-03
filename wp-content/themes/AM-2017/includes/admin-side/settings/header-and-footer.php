@@ -13,6 +13,11 @@
 // + sanitise everything
 // + generic callback functions saved in separate include
 
+// back button - remember: do not duplicate functions!
+function back_btn() {
+	echo '<div style="margin-bottom : 20px;"><a class="button small" href="#quick-links">Back to top<i class="fa fa-chevron-up" aria-hidden="true"></i></a></div>';
+}
+
 
 // _______________________________________________________
 // 1 - company details
@@ -186,7 +191,7 @@ add_action( 'admin_init', 'sandbox_theme_intialize_logo_options' );
 
 // callback: message
 function sandbox_logo_options_callback() {
-    echo '<p>Upload or add your logos with their URL location here</p>';
+    echo '<p>'. back_btn() .'Upload or add your logos with their URL location here</p>';
 }
 
 
@@ -302,7 +307,7 @@ add_action( 'admin_init', 'sandbox_theme_intialize_cta_options' );
 
 // callback: header cta instruction text
 function sandbox_cta_options_callback() {
-    echo '<p>Configure the Call to Action button in the header.</p>';
+    echo '<p>'. back_btn() .'Configure the Call to Action button in the header.</p>';
 }
 
 
@@ -432,7 +437,7 @@ add_action( 'admin_init', 'sandbox_theme_intialize_social_options' );
 
 // callback: social networks message
 function sandbox_social_options_callback() {
-    echo '<p>Provide the URLs to the social networks you\'d like to display.</p>';
+    echo '<p>'. back_btn() .'Provide the URLs to the social networks you\'d like to display.</p>';
 }
 
 
@@ -507,7 +512,7 @@ add_action( 'admin_init', 'sandbox_theme_intialize_tweet_options' );
 
 // callback: tweet message
 function sandbox_tweet_options_callback() {
-    echo '<p>Display your latest Tweets in the footer. Please note that more settings (which are currently hard-coded) are required to do this.</p>';
+    echo '<p>'. back_btn() .'Display your latest Tweets in the footer. Please note that more settings (which are currently hard-coded) are required to do this.</p>';
 }
 
 // callback: number of tweets
@@ -588,7 +593,7 @@ add_action( 'admin_init', 'sandbox_theme_intialize_affiliates_options' );
 
 // callback: section description
 function sandbox_affiliates_options_callback() {
-    echo '<p>Upload Logos of your Affiliated Organisations, or add their URL location here.<br>
+    echo '<p>'. back_btn() .'Upload Logos of your Affiliated Organisations, or add their URL location here.<br>
 	<span class="red--text">Best to keep logos small, for example around <strong>200px wide</strong>.</span></p>';
 }
 
@@ -617,7 +622,7 @@ function img_callback($args) {
 
 
 // _______________________________________________________
-// 7 - styling options
+// 7 - styling: header hero mesh and footer bg image
 function sandbox_theme_intialize_styling_options() {
     // create styling options section
     if ( false == get_option( 'sandbox_theme_styling_options' ) ) {
@@ -625,9 +630,13 @@ function sandbox_theme_intialize_styling_options() {
     }
 	add_settings_section(
     	'styling_settings_section', // section ID
-    	'Styling Options', // section title
+    	'Header and Footer Hero Styling', // section title
     	'sandbox_styling_options_callback', // callback
-    	'sandbox_theme_styling_options' // add to settings page
+		'sandbox_theme_styling_options', // add to settings page
+		array( // the $args array - tailor the callback function
+			'styling_settings_section', 
+			'sandbox_theme_styling_options' // section ID
+		)
 	);
 	add_settings_field(
     	'heromesh',
@@ -661,7 +670,7 @@ add_action( 'admin_init', 'sandbox_theme_intialize_styling_options' );
 
 // callback: styling options message
 function sandbox_styling_options_callback() {
-    echo '<p>Choose Styling Options for the Hero and Footer</p>';
+    echo '<p>'. back_btn() .'Choose Styling Options for the Hero and Footer</p>';
 }
 
 

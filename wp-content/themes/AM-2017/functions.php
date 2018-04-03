@@ -81,9 +81,6 @@ require_once( __DIR__ . '/includes/admin-side/admin-setup.php');
 require_once( __DIR__ . '/includes/admin-side/classes.php');
 
 
-// sanitise
-// require_once( __DIR__ . '/includes/admin-side/settings/sanitize.php');
-
 // e) theme settings page
 require_once( __DIR__ . '/includes/admin-side/settings/form-setup.php');
 // i) header and footer

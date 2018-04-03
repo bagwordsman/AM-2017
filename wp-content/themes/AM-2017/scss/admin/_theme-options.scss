@@ -102,6 +102,62 @@ $sections: (
 
 
 
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// quick links
+.quick-links {
+  @include disclaimer;
+  margin-top : 2.5rem;
+  p, ul {
+    font-size : 1.4em;
+    line-height : 1.4;
+  }
+  a {
+    text-decoration : none;
+    color : $green;
+    &:hover {
+      color : $green_dark;
+    }
+  }
+
+
+  // 4 sections (3 divs + p)
+  > div {
+    // may as well use flexbox, client uses modern browsers
+    padding : 1rem;
+    box-sizing : border-box;
+    background-color : $white;
+    @media (min-width: 980px) {
+      display : flex;
+    }
+
+    > p {
+      @media (min-width: 980px) {
+        align-self : center;
+      }
+    }
+    > div {
+      margin-top : 2.5rem;
+      @media (min-width: 980px) {
+        margin-top : 0;
+        width : 27%;
+        margin-left : 4%;
+      }
+      &.first {
+        margin-top : 0;
+        @media (min-width: 980px) {
+          margin-left : 0;
+          width : 40%;
+        }
+      }
+    }
+
+    //
+  }
+  
+
+}
+
 // –––––––––––––––––––––––––
 // form containers and resets
 #{sections('form')} {
@@ -201,6 +257,24 @@ $colour_codes : $white, $grey_lighter, $grey_pale, $grey;
         outline: 0;
         background-color : $green;
         text-shadow : $shadow-down-right_thin;
+      }
+      // back to top button
+      &.small {
+        background-color : $grey;
+        color : $white;
+        border : 0;
+        height : 36px;
+        font-size : 1.2rem;
+        font-weight : $normal;
+        line-height : 36px;
+        &:hover,
+        &:focus {
+          background-color : $grey_light;   
+        }
+        .fa {
+          font-size : 24px;
+          margin-right : 0;
+        }
       }
     }
   }
@@ -371,7 +445,7 @@ $wc_codes : $green, $orange, $blue, $red_dark, $grey_pale, $grey;
   img {
     display : block;
     max-width : 100%;
-    width : 100%;
+    max-height : 450px;
     margin-bottom : 10px;
   }
   // output different colours

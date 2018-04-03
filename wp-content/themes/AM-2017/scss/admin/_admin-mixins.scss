@@ -128,6 +128,7 @@
     text-align : center;
     @content;
 }
+// combine these 2 perhaps:
 @mixin text-icon {
     @include fa-icon;
     font-family : $font-icon;
@@ -157,6 +158,10 @@
             border : 2px solid $orange;
         }
         @content;
+    }
+    textarea {
+        height : auto;
+        line-height : 1.4;
     }
 }
 

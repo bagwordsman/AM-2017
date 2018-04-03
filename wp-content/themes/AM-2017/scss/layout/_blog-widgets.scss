@@ -1,43 +1,137 @@
-// Blog Page Widgets
+// blog widgets
+// - may be better to split into partials for widget areas and widgets
+// - some resets in blog-pages.scss
 
+// a) widgets
+// b) widget areas
 
-@mixin widget_h4 {
-  h4 {
-    display : inline-block;
-    font-size : 2.7rem;
-    letter-spacing : 0.04rem;
-    margin-bottom : 2rem;
-    @content;
-  }
-}
-
-// @mixin colour($colour_name, $colour_code) {
-//   &.#{$colour_name} {
-//     background-color : $colour_code;
-//   }
-// }
-// @include colour('white', $white);
 
 
 // ________________________________________________
-// widget area and theme
-#blog-widgets {
+// a) widgets
+
+// categories
+.widget_categories {
+  h4 {
+    @include headingIcon('left', 'cat');
+  }
+  li {
+    a {
+      @include labelLink;
+      @include linkChevron($white, $green, $green_light);
+    }
+  }
+}
+
+// tags
+.widget_tag_cloud {
+  h4 {
+    @include headingIcon('left', 'tag');
+  }
+  a {
+    @include labelLink;
+    @include linkChevron($grey, $grey_pale, $grey_light);
+    margin-bottom : .75rem;
+    margin-right : .5rem;
+  }
+}
+
+
+
+// latest posts
+// - .card class in _containers.scss
+.widget_recent_entries {
+  h4 {
+    @include headingIcon('left', 'clock');
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// ________________________________________________
+// b) widget areas
+
+
+
+
+// footer widget area
+#footer-widgets {
   position : relative;
   border-top : 5px solid $grey;
   background-size : cover;
   background-position : center 20%;
+  // widget resets
+  ul { list-style : none; }
+  .widget_recent_entries ul {
+    padding-left : 1rem;
+    a {
+      text-decoration : none;
+    }
+  }
+  // widget area title
+  .container:first-child h3 {
+    @include labelHeading;
+    background-color : $grey;
+  }
   // put contents above overlay
   > .container {
     z-index : 4;
+    // container configuration
+    &.center {
+      text-align : center;
+    }
+    &.right {
+      text-align : right;
+    }
+    &.widgets {
+      padding-top : 2.5rem;
+      padding-bottom : 5rem;
+    }
   }
+
+  // theme (light / dark): changes widget text colour
+  // - may need to be widget by widget
+  &.light .widget:not(.widget_featured_post) {
+    h4 {
+      color : $white;
+    }
+    &.widget_recent_entries a {
+      color : $white;
+      &:hover {
+        color : $grey_pale;
+      }
+    }
+  }
+
+  &.dark .widget {
+    h4 {
+      color : $grey;
+    }
+    &.widget_recent_entries a {
+      color : $grey;
+      &:hover {
+        color : $grey_dark;
+      }
+    }
+  }
+
 }
 
 
+
+
+
+// overlay
 $colours : 'white', 'green', 'orange', 'blue', 'red_dark', 'grey_lighter', 'grey';    
 $colour_codes : $white, $green, $orange, $blue, $red_dark, $grey_lighter, $grey;
 
-// ________________________
-// overlay
 .widget-overlay {
   position : absolute;
   top : 0;
@@ -49,210 +143,8 @@ $colour_codes : $white, $green, $orange, $blue, $red_dark, $grey_lighter, $grey;
   // output different overlays
   @for $i from 1 through length($colours) {
     &.#{nth($colours, $i)} {
-      background-color: nth($colour_codes, $i)
+      background-color: nth($colour_codes, $i);
     }
   }
 
-}
-
-
-
-// ________________________
-// widget padding and alignment - are these used elsewhere?
-.container {
-  &.center {
-    text-align : center;
-  }
-  &.right {
-    text-align : right;
-  }
-  &.widgets {
-    padding-top : 2rem;
-    padding-bottom : 2rem;
-  }
-}
-
-
-
-// ________________________
-// right aligned h3 title
-.blog-widgets--title {
-  display : inline-block;
-  margin : 0;
-  background-color : $grey;
-  color : $white;
-  padding : 0 1rem;
-  box-sizing : border-box;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// ________________________________________________
-// categories
-.widget_categories {
-
-  @include widget_h4 {
-    padding : 0 1rem;
-    box-sizing : border-box;
-    background-color : $green;
-    color : $white;
-    border : 1px solid $black;
-    text-shadow : $text-outline;
-  }
-
-  // li
-  .cat-item {
-    list-style : none;
-    margin-bottom : 0;
-    a {
-      display : inline-block;
-      vertical-align : middle;
-      margin-bottom : 2rem;
-      padding : .35rem 3.5rem .35rem 1rem;
-      box-sizing : border-box;
-      background-color : $green;
-      color : $white;
-      position : relative;
-      &:after {
-        font-family : $font-icon;
-        content : icon('right');
-        position : absolute;
-        right : 1.5rem;
-        transition : all ease-in-out .3s;
-      }
-      &:hover {
-        background-color : $green_light;
-        color : $white;
-      }
-      &:hover:after {
-        right : .75rem;
-      }
-    }
-  }
-}
-
-
-
-// ________________________________________________
-// latest posts
-.widget_recent_entries {
-  @include widget_h4;
-  li {
-    margin-bottom : 1.5rem;
-  }
-  // not currently used
-  .post-date {
-    display : inline-block;
-    margin-left : .75rem;
-    padding : 0.35rem 0.7rem;
-    box-sizing : border-box;
-    line-height : 1;
-  }
-
-
-
-
-  // light theme
-  .light & {
-    h4, li, a {
-      color : $white;
-    }
-    a {
-      text-decoration : underline;
-      &:hover {
-        color : $grey_pale;
-      }
-    }
-    .post-date {
-      background-color : $grey;
-      color : $white;
-    }
-  }
-  // dark theme
-  .dark & {
-    h4, li, a {
-      color : $grey;
-    }
-    a {
-      text-decoration : underline;
-      &:hover {
-        color : $grey_dark;
-      }
-    }
-    .post-date {
-      background-color : $grey_lighter;
-      color : $grey;
-    }
-  }
-
-
-
-
-
-
-
-}
-
-
-
-// ________________________________________________
-// tags
-.widget_tag_cloud {
-  // title
-  @include widget_h4 {
-    position : relative;
-    padding : 0 1.8rem 0 4.8rem;
-    border-radius : 3.6rem;
-    border-color : $white;
-    background-color : $blue_dark;
-    &:before {
-      content : icon('bullet'); // note - this is not font awesome
-      position : absolute;
-      left : 1.2rem;
-      top : -3.2rem;
-      font-size : 6rem;
-    }
-  }
-
-  // tags
-}
-
-
-
-.tagcloud a {
-  position : relative;
-  padding : .75rem 1.25rem .75rem 2rem;
-  border-radius : 5rem;
-  background-color : $white;
-  
-  color : $blue_dark;
-  margin-bottom : 1rem;
-  white-space : nowrap;
-  display : inline-block;
-  line-height : 1;
-  &:before {
-    content : icon('bullet');
-    position : absolute;
-    left : 0.5rem;
-    top : 0;
-    font-size : 2.5rem;
-    line-height : 1;
-    color : $blue_dark;
-  }
-  &:hover {
-    background-color : $blue_dark;
-    color : $white;
-    &:before {
-      color : $white;
-    }
-  }
 }

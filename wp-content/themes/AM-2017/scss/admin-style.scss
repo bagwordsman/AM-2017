@@ -1,5 +1,6 @@
 // admin scss - extend the default wordpress admin theme
 @import "variables/AM-variables", // have to import variables first
+        "variables/AM-mixins",
 
         // libraries
         "libraries/font-awesome.min",

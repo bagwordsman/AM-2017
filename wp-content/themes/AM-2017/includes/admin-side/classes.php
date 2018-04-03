@@ -1,6 +1,7 @@
 <?php
 // classes
 // - templates for repeated functionality
+// - covers client side php too
 
 
 // header and footer: affiliated organisation logos
@@ -99,11 +100,84 @@ class mapLocations {
 
 
 
+// in page: blog ad cta buttons
+class blogBtn {
+    var $number;
+    function __construct($new_number) {		
+        $this->number = $new_number;		
+    }
+    function add_btn() {
+        add_settings_field(
+            'blog_button_'.$this->number.'_link', // Option ID
+            '<h4>Button '.$this->number.'</h4>
+            <i class="fa fa-link purple--text" aria-hidden="true"></i>Link:<br> enter a url',
+            'text_callback',
+            'sandbox_theme_blog_options', // section ID
+            'blog_settings_section',
+            array( // $args array - tailor text_callback
+                'blog_button_'.$this->number.'_link', // Option ID
+                'sandbox_theme_blog_options', // section ID
+                'top-margin--7-6'
+            )
+        );
+        add_settings_field(
+            'blog_btn_'.$this->number.'_text',
+            '<i class="fa fa-header" aria-hidden="true"></i>Text:<br> enter button text',
+            'text_callback',
+            'sandbox_theme_blog_options',
+            'blog_settings_section',
+            array( // $args array - tailor text_callback
+                'blog_btn_'.$this->number.'_text',
+                'sandbox_theme_blog_options'
+            )
+        );
+        add_settings_field(
+            'blog_btn_'.$this->number.'_colour',
+            '<i class="fa fa-paint-brush" id="bg-colour-brush" aria-hidden="true"></i>Colour',
+            'colour_callback',
+            'sandbox_theme_blog_options',
+            'blog_settings_section',
+            array( // $args array - tailor text_callback
+                'blog_btn_'.$this->number.'_colour',
+                'sandbox_theme_blog_options'
+            )
+        );
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // sanitize.php: string contains function
 // - need to feed an array of strings into this function
+// - didnt quite work out, sanitise in each includes
 // class strContains {
 // }
 
+
+
+// blog sidebar widget
+// - add the id of the sidebar you want
+class blogSidebar {
+    var $text;
+    function __construct($new_text) {		
+        $this->text = $new_text;		
+    }
+    function add_sidebar() {
+        if ( is_active_sidebar( $this->text ) ) {
+            dynamic_sidebar( $this->text );
+        }
+    }
+}
 
 
 ?>

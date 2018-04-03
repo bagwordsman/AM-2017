@@ -86,8 +86,7 @@
   // divider and mesh overlay
   .divider {
     bottom : -10px;
-    z-index : 4;
-    display : block; // required for safari
+    z-index : 4; // is this required on every instance?
   }
   .mesh {
     padding : 0;

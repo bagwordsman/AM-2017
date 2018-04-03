@@ -87,7 +87,9 @@ a {
   &:hover {
     color : $green_dark;
   }
-  #content >:not(.hero) & {
+  // regular text links
+  // div:not(.post) &
+  #content > div:not(.hero) & {
     text-decoration : underline;
     &.button {
       text-decoration : none;
@@ -147,9 +149,12 @@ ol ul {
 li {
   margin-bottom: 1rem;
   // page content
-  #content .container & {
-    margin-bottom : .5rem;
-  }
+  
+  // #content .container div:not(.widget) & {
+  //   margin-bottom : .5rem;
+  // }
+
+
   // checklist - stars - where is this used?
   // .sub-columns & {
   //   position : relative;

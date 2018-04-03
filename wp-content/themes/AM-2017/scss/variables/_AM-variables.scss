@@ -19,9 +19,14 @@ $fa-icon: (
   "gplus": '\f2b3',
   "twitter": '\f081',
   "linkedin": '\f08c',
-  // links etc
+  // links - admin side
   "header": '\f1dc',
   "link": '\f0c1',
+  // categories and tags
+  "cat": '\f0e8',
+  "tag": '\f02b',
+  // recent
+  "clock": '\f017'
 );
 @function icon($key) {
   @return map-get($fa-icon, $key);

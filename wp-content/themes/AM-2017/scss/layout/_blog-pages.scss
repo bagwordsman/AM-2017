@@ -1,0 +1,293 @@
+// Blog Pages
+// - includes some resets for widgets
+
+// a) index / blogroll / categories / tags
+// - home.php
+// - category.php, tag.php
+// - pages nav
+
+// b) single posts
+// - single.php
+.blog #content,
+.archive #content,
+.single #content {
+  
+  // container resets - these will apply to arhcive pages too:
+  .container {
+    padding-bottom : 5rem;
+  }
+  .wrapper-white .container,
+  .container.pad-top {
+    padding-top : 5rem;
+  }
+  // link reset
+  > div:not(.hero) h1 a,
+  > div:not(.hero) h3 a,
+  > div:not(.hero) .tags a {
+    text-decoration : none;
+  }
+  // latest post
+  h1 a {
+    text-decoration : none;
+    font-style : italic;
+    color : $grey;
+    line-height : 1.4;
+    &:hover,
+    &:focus,
+    &:active {
+      color : $green;
+    }
+  }
+  // heading text
+  h2 {
+    @include labelHeading;
+    background-color : $grey;
+    // nav
+    &.screen-reader-text {
+      margin-bottom : 2.5rem;
+    }
+    // widget
+    + .widget {
+      margin-top : 2.5rem;
+    }
+  }
+  // widgets
+  .widget {
+    margin-bottom : 5rem;
+    a {
+      text-decoration : none;
+    }
+    ul {
+      margin : 0;
+      list-style : none;
+    } 
+  }
+
+
+}
+
+
+// text styles
+.single .thumb + h1 {
+  margin-bottom : 2.5rem;
+}
+
+
+// universal styles - text link
+// - put this in typography
+.read-more {
+  display : inline-block;
+  margin-top: 1rem;
+  &.faux {
+    text-decoration : underline;
+    color : $green;
+    margin-left : 1rem;
+  }
+}
+
+
+
+
+
+// ________________________
+// post types
+// - note: - advert, info, meta and tags are not post types
+// - these should be named differently to avoid confusion
+.post {
+  
+  
+  // a) latest
+  // - material design-ish
+  // - adapt for services page parent (will be needed here)
+  // - also similar to advert (below)
+  &.latest {
+    @include disclaimer;
+    // thumbnail
+    .thumb {
+      background-color : $grey_pale;
+      color : $grey;
+      text-align : center;
+      //
+      position : absolute;
+      top : 0;
+      left : 0;
+      right : 0;
+      height : 260px;
+      overflow : hidden;
+      // > div {
+      //   padding : 7.5rem 0;
+      // }
+      img {
+        margin : 0;
+        height : auto;
+        max-width : none;
+        min-height : 260px;
+      }
+    }
+    //
+    > div {
+      padding-top : 250px;
+      overflow : hidden;
+    }
+    h1 {
+      padding-top : 2.5rem;
+    }
+  }
+
+
+
+
+  
+  // b) recent + index - same style as .five.columns
+  &.recent,
+  &.index {
+    @include topBorderPara;
+    margin-top : 5rem;
+    border-top : 10px solid $green;
+    &:first-child {
+      margin-top : 0;
+    }
+  }
+
+  // c) advert
+  &.advert {
+      border : 5px solid $grey;
+      background-color : $white;
+      border-radius : 2.5rem;
+      margin-bottom : 5rem;
+      padding : 2.5rem;
+      box-sizing : border-box;
+      > div {
+        text-align : center;
+        @media (min-width: 660px) {
+          text-align : left;
+          position : relative;
+          display : inline-block;
+          vertical-align : middle;
+          width : 35%;
+          &:first-child {
+            width : 60%;
+          }
+        }
+      }
+      .button:first-child {
+        margin-right : 2.5rem;
+      }
+  }
+
+
+
+
+
+  // d) info - category and tag titles
+  // - category could be expanded for info to include description + img
+  // - similar to widget item styles
+  &.info h1 {
+    @include labelHeading;
+    font-style : normal;
+    @include headingIcon('right', 'right');
+    .tag & {
+      background-color : $grey_light;
+    }
+  }
+
+
+  // e) meta - author and date (single posts)
+  &.meta {
+    margin : 1rem 0 2.5rem;
+    padding-bottom : 1rem;
+    color : $grey_light;
+    border-bottom : 5px solid $grey_light;
+    > div {
+      display : inline-block;
+      &:first-child span { // author
+        @include labelLink;
+        background-color : $grey;
+        margin : 0 .5rem;
+      }
+    }
+  }
+
+  // f) tags
+  &.tags {
+    margin : 5rem 0 1rem;
+    padding-top : 1rem;
+    color : $grey_light;
+    border-top : 5px solid $grey_light;
+    > div {
+      margin-bottom : 1rem;
+    }
+    a.tag {
+      @include labelLink;
+      @include linkChevron($grey, $grey_pale, $grey_light);
+      margin-bottom : 1.25rem;
+      margin-right : 1rem;
+    }
+  }
+
+}
+
+
+// thumbnail
+//  - this is meant to just be for posts in the blog list + single.php
+// - affects 1st post + .card. Need to isolate.
+.thumb {
+  overflow : hidden;
+  position : relative;
+  margin-bottom : 2.5rem;
+  max-height : 300px;
+  img {
+    width : 100%;
+    height : auto;
+  }
+  .divider {
+    bottom : 0;
+  }
+  ~ p .read-more {
+    #content & {
+      margin-bottom : 2.5rem; // space out thumbnail posts a little more
+    }
+  }
+}
+
+
+
+
+
+// - pages and posts nav
+// - bottom of home.php, category.php, tag.php, and single.php
+.nav-links {
+  .prev {
+    margin-right : 1.5rem;
+    @include navChevron('left', 'before');
+  }
+  .next {
+    margin-left : 1.5rem;
+    @include navChevron('right', 'after');
+  }
+  .page-numbers.current {
+    @include labelLink;
+    margin-left : .75rem;
+    margin-right : .75rem;
+  }
+}
+
+
+
+
+// ________________________________________________
+// b) archives (tags and categories)
+
+// heading at top of category and tag pages:
+// .post .info h1 {}
+
+
+
+// ________________________________________________
+// c) single posts
+// ________________________
+// resets
+// images - multi importer
+.ftpimagefix img { 
+  margin-right : 2.5rem;
+}

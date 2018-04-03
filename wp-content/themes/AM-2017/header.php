@@ -30,9 +30,9 @@ if(is_home()) {
 else if(!is_404() && !is_home()) {
 	if ($metatitle == '') {
 		echo $title;
-		} else {
+	} else {
 		echo $metatitle;
-		}
+	}
 }
 else if(is_404()) {
   echo '404: Page Not found';

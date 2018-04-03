@@ -7,59 +7,34 @@
 // a) content containers
 #content {
   min-height : 300px;
+}
 
-  // container-narrower column with top border
-  &>div:not(.hero) {
-    .five.columns {
-      padding-top : 2.5rem;
-      border-top : 10px solid transparent;
-      
-      $colours : 'green', 'orange', 'blue', 'red';   
-      $colour_codes : $green, $orange, $blue, $red;
-      $dark-colour_codes : $green_dark, $orange_dark, $blue_dark, $red_dark;
-
-      // output different border colours
-      @for $i from 1 through length($colours) {
-        &.#{nth($colours, $i)} {
-          border-top-color : nth($colour_codes, $i);
-          a {
-            color : nth($colour_codes, $i);
-            &:hover {
-              color : nth($dark-colour_codes, $i);
-            }
-          }
-        }
-      }
-
-      // home page - align to left
-      @media (min-width: 980px) {
-        .home & {
-          margin-left : 0;
-        }
-      }
-
-      // enforce bold italic
-      h4 {
-        font-style : italic;
-      }
-      
-
-
-
-    } // end five columns
+// sidebars
+// - pages (not blog) - top border
+body.page-template #content > div:not(.hero) {
+  .five.columns {
+    @include topBorderPara;
   }
+}
+
+// - home page + single posts - align to left
+body.home,
+body.single-post {
+  #content > div:not(.hero){
+    @media (min-width: 980px) {
+      .seven.columns + .five.columns {
+        margin-left : 0;
+      }
+    }
+  }
+}
 
 
-} // end #content
 
 
 
 
-
-
-
-
-// - - - -
+// ______________________________________
 // wrapping containers
 %wrapper {
   overflow : hidden;
@@ -120,33 +95,18 @@
 // ________________
 // disclaimer div
 .disclaimer {
-  h3, h4 {
-    display : inline-block;
-    margin : 0;
-    margin-left : calc(2.5rem + 5px);
-    padding : 0 2rem;
-    height : 48px;
-    line-height : calc(48px + 5px);
-    border-radius : 2.5rem 2.5rem 0 0;
-    background-color : $green;
-    color : $white;
-  }
-  > div {
-    border : 5px solid $green;
-    border-radius : 2.5rem;
-    margin-bottom : 5rem;
-    padding : 2.5rem;
-    box-sizing : border-box;
-  }
-  p {
-    margin-bottom : 0;
-  }
+  @include disclaimer;
 }
 
 
 
 
-
+// ________________
+// card div
+// - featured post widget + services page parent
+.card {
+  @include card;
+}
 
 
 
@@ -316,6 +276,7 @@
   bottom : 80px;
   position : absolute;
   width : 100%;
+  display : block; // required for safari
   // point downwards
   &:before, &:after {
       content : "";

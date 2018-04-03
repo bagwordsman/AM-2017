@@ -24,7 +24,7 @@ function AM2017_setup() {
 	register_nav_menu('quicklinks-menu',__( 'Footer Quick Links Menu', 'AM2017' ));
 	// custom image size for featured images, displayed on "standard" posts
 	add_theme_support( 'post-thumbnails' );
-    set_post_thumbnail_size( 624, 9999 ); // unlimited height, soft crop
+    set_post_thumbnail_size( 660, 9999 ); // unlimited height, soft crop. was at 624
     add_post_type_support( 'page', 'excerpt' );
 }
 add_action( 'after_setup_theme', 'AM2017_setup' );
@@ -105,11 +105,24 @@ add_filter( 'page_css_class', 'my_page_css_class', 10, 2 );
 // _______________________________________________________
 // 4 - blog - set post excerpt length and add 'read more'
 function custom_excerpt_length( $length ) {
-	return 40;}
+    return 60;
+}
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
-      function new_excerpt_more( $more ) {
-	return ' <a class="read-more" href="'. get_permalink( get_the_ID() ) . '"> ...View Full Blog Post Here > </a>';}
+function new_excerpt_more( $more ) {
+    return '...<br/> <a class="read-more" href="'. get_permalink( get_the_ID() ) . '">Read More > </a>';
+}
 add_filter( 'excerpt_more', 'new_excerpt_more' );
 
+
+
+
+// _______________________________________________________
+// 5 - custom excerpt lengths
+function custom_read_more() {
+    return '...<br/> <a class="read-more" href="'. get_permalink( get_the_ID() ) . '">Read More > </a>';
+}
+function excerpt($limit) {
+    return wp_trim_words(get_the_excerpt(), $limit, custom_read_more());
+}
 
 ?>

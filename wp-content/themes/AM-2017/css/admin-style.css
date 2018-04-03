@@ -3686,6 +3686,8 @@ body .ui-tooltip {
   -webkit-box-shadow: 0 0 5px #666;
   box-shadow: 0 0 5px #666; }
 
+.quick-links p,
+.quick-links ul,
 #titlediv #title,
 .acf_postbox p.label,
 .acf_postbox p.label label,
@@ -3712,6 +3714,9 @@ body {
   font-weight: 700;
   letter-spacing: 0.04em; }
 
+ul.admin-list {
+  list-style: disc inside; }
+
 #the-list input[value="Title Tag"] {
   background-color: #f6859e;
   color: #000000; }
@@ -3734,6 +3739,12 @@ body {
 .red--text {
   color: #e74e42; }
 
+.blue--text {
+  color: #7fc1ff; }
+
+.green--text {
+  color: #70bf44; }
+
 .purple--text {
   color: #551a8b; }
 
@@ -3753,7 +3764,7 @@ body {
   margin-top: 7.6rem; }
 
 .top-margin--7-8 {
-  margin-top: 7.8rem; }
+  margin-top: 7.8rem !important; }
 
 #adminmenu #toplevel_page_sandbox a,
 #adminmenu #toplevel_page_sandbox a .dashicons-admin-tools:before {
@@ -3802,6 +3813,60 @@ body {
 .AM2017--options > div h4 {
   font-size: 1.8rem;
   letter-spacing: 0.06rem; }
+
+.quick-links {
+  margin-top: 2.5rem; }
+  .quick-links h3, .quick-links h4 {
+    display: inline-block;
+    font-style: italic;
+    margin: 0;
+    margin-left: calc(2.5rem + 5px);
+    padding: 0 2rem;
+    height: 48px;
+    line-height: calc(48px + 5px);
+    border-radius: 2.5rem 2.5rem 0 0;
+    background-color: #70bf44;
+    color: #ffffff; }
+  .quick-links > div {
+    position: relative;
+    border: 5px solid #70bf44;
+    border-radius: 2.5rem;
+    margin-bottom: 5rem;
+    padding: 2.5rem;
+    box-sizing: border-box; }
+  .quick-links p {
+    margin-bottom: 0; }
+  .quick-links p, .quick-links ul {
+    font-size: 1.4em;
+    line-height: 1.4; }
+  .quick-links a {
+    text-decoration: none;
+    color: #70bf44; }
+    .quick-links a:hover {
+      color: #599b35; }
+  .quick-links > div {
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: #ffffff; }
+    @media (min-width: 980px) {
+      .quick-links > div {
+        display: flex; } }
+    @media (min-width: 980px) {
+      .quick-links > div > p {
+        align-self: center; } }
+    .quick-links > div > div {
+      margin-top: 2.5rem; }
+      @media (min-width: 980px) {
+        .quick-links > div > div {
+          margin-top: 0;
+          width: 27%;
+          margin-left: 4%; } }
+      .quick-links > div > div.first {
+        margin-top: 0; }
+        @media (min-width: 980px) {
+          .quick-links > div > div.first {
+            margin-left: 0;
+            width: 40%; } }
 
 .AM2017--options form {
   position: relative;
@@ -3915,6 +3980,23 @@ body {
     outline: 0;
     background-color: #70bf44;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
+  .wp-core-ui .AM2017--options form .button.small,
+  .wp-core-ui .AM2017--options form .button-primary.small {
+    background-color: #6a6a6a;
+    color: #ffffff;
+    border: 0;
+    height: 36px;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 36px; }
+    .wp-core-ui .AM2017--options form .button.small:hover, .wp-core-ui .AM2017--options form .button.small:focus,
+    .wp-core-ui .AM2017--options form .button-primary.small:hover,
+    .wp-core-ui .AM2017--options form .button-primary.small:focus {
+      background-color: #b3b3b3; }
+    .wp-core-ui .AM2017--options form .button.small .fa,
+    .wp-core-ui .AM2017--options form .button-primary.small .fa {
+      font-size: 24px;
+      margin-right: 0; }
 .AM2017--options form input[type="text"],
 .AM2017--options form select,
 .AM2017--options form textarea {
@@ -3936,6 +4018,9 @@ body {
   .AM2017--options form textarea:focus {
     border: 2px solid #70bf44;
     color: #70bf44; }
+.AM2017--options form textarea {
+  height: auto;
+  line-height: 1.4; }
 .AM2017--options form input[type="text"] {
   display: block;
   min-width: 50%; }
@@ -4064,7 +4149,7 @@ body {
 .AM2017--options form#blog img {
   display: block;
   max-width: 100%;
-  width: 100%;
+  max-height: 450px;
   margin-bottom: 10px; }
 .AM2017--options form#blog input[value="green"]:checked:before {
   background-color: #70bf44; }
@@ -4191,6 +4276,9 @@ body {
     #mediator-profile textarea:focus {
       box-shadow: none;
       border: 2px solid #f07f37; }
+  #mediator-profile textarea {
+    height: auto;
+    line-height: 1.4; }
   #mediator-profile input#uploadimage {
     box-shadow: none;
     -webkit-box-shadow: none;
@@ -4366,6 +4454,9 @@ input[value="red"]:checked + label {
   #acf_471324.acf_postbox textarea:focus {
     box-shadow: none;
     border: 2px solid #f07f37; }
+#acf_471324.acf_postbox textarea {
+  height: auto;
+  line-height: 1.4; }
 
 #acf_471302.acf_postbox {
   border: none;
@@ -4394,6 +4485,9 @@ input[value="red"]:checked + label {
     #acf_471302.acf_postbox.green select:focus,
     #acf_471302.acf_postbox.green textarea:focus {
       border: 2px solid #f07f37; }
+  #acf_471302.acf_postbox.green textarea {
+    height: auto;
+    line-height: 1.4; }
   #acf_471302.acf_postbox.green #acf-linked_page_content p.label:after {
     background-color: #f07f37; }
   #acf_471302.acf_postbox.green #acf-linked_page_content div[aria-label="Horizontal line"] button {
@@ -4426,6 +4520,9 @@ input[value="red"]:checked + label {
     #acf_471302.acf_postbox.orange select:focus,
     #acf_471302.acf_postbox.orange textarea:focus {
       border: 2px solid #4ca8ff; }
+  #acf_471302.acf_postbox.orange textarea {
+    height: auto;
+    line-height: 1.4; }
   #acf_471302.acf_postbox.orange #acf-linked_page_content p.label:after {
     background-color: #4ca8ff; }
   #acf_471302.acf_postbox.orange #acf-linked_page_content div[aria-label="Horizontal line"] button {
@@ -4458,6 +4555,9 @@ input[value="red"]:checked + label {
     #acf_471302.acf_postbox.blue select:focus,
     #acf_471302.acf_postbox.blue textarea:focus {
       border: 2px solid #f07f37; }
+  #acf_471302.acf_postbox.blue textarea {
+    height: auto;
+    line-height: 1.4; }
   #acf_471302.acf_postbox.blue #acf-linked_page_content p.label:after {
     background-color: #f07f37; }
   #acf_471302.acf_postbox.blue #acf-linked_page_content div[aria-label="Horizontal line"] button {
@@ -4490,6 +4590,9 @@ input[value="red"]:checked + label {
     #acf_471302.acf_postbox.red select:focus,
     #acf_471302.acf_postbox.red textarea:focus {
       border: 2px solid #4ca8ff; }
+  #acf_471302.acf_postbox.red textarea {
+    height: auto;
+    line-height: 1.4; }
   #acf_471302.acf_postbox.red #acf-linked_page_content p.label:after {
     background-color: #4ca8ff; }
   #acf_471302.acf_postbox.red #acf-linked_page_content div[aria-label="Horizontal line"] button {
@@ -4535,6 +4638,9 @@ input[value="red"]:checked + label {
     #acf_471302.acf_postbox textarea:focus {
       box-shadow: none;
       border: 2px solid #f07f37; }
+  #acf_471302.acf_postbox textarea {
+    height: auto;
+    line-height: 1.4; }
   #acf_471302.acf_postbox #acf-linked_page_content .label:after,
   #acf_471302.acf_postbox #acf-linked_page_content .profile-info .form-table th:first-child:after {
     content: "Use the horizontal line tool (-) to split the image from the description.";
@@ -4649,6 +4755,9 @@ input[value="red"]:checked + label {
   #acf_471346.acf_postbox textarea:focus {
     box-shadow: none;
     border: 2px solid #f07f37; }
+#acf_471346.acf_postbox textarea {
+  height: auto;
+  line-height: 1.4; }
 
 #acf-column_1 {
   position: relative;
@@ -4704,6 +4813,9 @@ input[value="red"]:checked + label {
   #acf_470781.acf_postbox textarea:focus {
     box-shadow: none;
     border: 2px solid #f07f37; }
+#acf_470781.acf_postbox textarea {
+  height: auto;
+  line-height: 1.4; }
 #acf_470781.acf_postbox .label label[for="acf-field-column_1_button_text"]:before {
   font-size: 32px;
   width: 40px;
@@ -4838,6 +4950,9 @@ input[value="red"]:checked + label {
   #acf_471520.acf_postbox textarea:focus {
     box-shadow: none;
     border: 2px solid #f07f37; }
+#acf_471520.acf_postbox textarea {
+  height: auto;
+  line-height: 1.4; }
 #acf_471520.acf_postbox #acf-second_section_columns .label:after,
 #acf_471520.acf_postbox #acf-second_section_columns .profile-info .form-table th:first-child:after {
   content: "Use the horizontal line tool (-) to separate out columns.";

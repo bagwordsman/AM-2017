@@ -7,7 +7,7 @@
 	// 1 - Company Logos
 	// 2 - Tweets
 	// 3 - Affiliated Organisations Logos
-	// 4 - Blog Styling Options
+	// 4 - Blog Options
 	// 5 - Google Map
 	// 6 - Google Analytics
 	// 7 - Lazyloading
@@ -92,8 +92,12 @@
 
 
 	// ––––––––––––––––––––––––––––––––––––––––––––––––––
-	// 4 - Blog Styling Options
-	// a) widget background image
+	// 4 - Blog Options
+	// a) advert image
+	const advertID = '.blog_ad_img';
+	const advertLogo = new logoUpload(advertID);
+	advertLogo.code();
+	// b) widget background image
 	const widgetID = '.widget_bg';
 	const widgetImg = new logoUpload(widgetID);
 	widgetImg.code();
