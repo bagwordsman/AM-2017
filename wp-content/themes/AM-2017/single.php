@@ -13,7 +13,6 @@ get_header(); ?>
     while ( have_posts() ) : the_post();
 
 
-
     // ___________________________
     // post variables
     // the_post_thumbnail('full');
@@ -70,14 +69,14 @@ get_header(); ?>
                 '.$thumbImg.'
                 <h1>'.get_the_title().'</h1>' .
                 ($meta_enabled ? '
-                <div class="post meta">
+                <div class="single-meta">
                     <div class="author">By: <span>' . $author . '</span></div>
                     <div class="date">On: ' . $date . '</div>
                 </div>
                 ' : '')
-                . get_the_content() .
+                . echo_formatted_content() .
                 ( ($tag_enabled) && $post_tags ? '
-                <div class="post tags">
+                <div class="single-tags">
                     <div class="related">Related Topics:</div>
                     '.$tags.'
                 </div>

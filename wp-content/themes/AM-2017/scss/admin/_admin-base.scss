@@ -86,6 +86,17 @@ $cf_colours : $pale_red, $pale_orange, $pale_green;
 
 .hidden { display : none; }
 
+// red bg span - widget helper
+.red--bg {
+  background-color : $red;
+  color : $white;
+  padding : 3px 5px;
+}
+.green--bg {
+  background-color : $green;
+  color : $white;
+  padding : 3px 5px;
+}
 
 // spacing - for input fields after titles
 .top-margin--3-6 {margin-top:3.6rem;}

@@ -78,7 +78,7 @@ em { font-style:italic; }
 
 
 
-// Links
+// Links (and faux links)
 a {
   color : $green;
   outline : 0 none;
@@ -114,7 +114,17 @@ a.red-text {
 }
 
 
-
+// read more - used in .card and posts
+.read-more {
+  display : inline-block;
+  margin-top: 1rem;
+  transition : color ease-in-out .3s;
+  &.faux {
+    text-decoration : underline;
+    color : $green;
+    margin-left : 1rem;
+  }
+}
 
 
 

@@ -97,7 +97,8 @@ get_header(); ?>
 			$thumbImg = '';
 		}
 		// c) linked headings
-		$postHeading = '<a href="'.get_the_permalink().'">'.get_the_title().'</a>';
+		$postHeading = get_the_title();
+		$postLink = get_the_permalink();
 
 		
 
@@ -117,10 +118,13 @@ get_header(); ?>
 						<div class="seven columns">
 							<div class="post latest">
 								<h3>Latest Post</h3>
-								<div>
-									<div class="thumb">'. ( has_post_thumbnail() ? ( get_the_post_thumbnail() ) : '<div>add a thumbnail / featured image for this post</div>') .'</div>
-									<h1>'.$postHeading.'</h1>
-									<p>'.get_the_excerpt().'</p>
+								<div class="card green">
+									<a class="overlay" href="' . $postLink . '"><span class="hidden">' . $postHeading . '</span></a>
+									<div class="card-thumb">'. ( has_post_thumbnail() ? ( get_the_post_thumbnail() ) : '<div>add a thumbnail / featured image for this post</div>') .'</div>
+									<div class="card-content">
+										<h1>' . $postHeading . '</h1>
+										<p>'.get_the_excerpt().'</p>
+									</div>
 								</div>
 							</div>
 						</div>';
@@ -135,7 +139,7 @@ get_header(); ?>
 			if ($index > 0 && $index < 4) {
 				echo '
 				<div class="post recent'.$borderTop.'">
-					<h3>'.$postHeading.'</h3>
+					<h3><a href="' . $postLink . '">'.$postHeading.'</a></h3>
 					<p>'.excerpt(18).'</p>
 				</div>';
 			}
@@ -169,7 +173,7 @@ get_header(); ?>
 			echo '
 			<div class="post index'.$borderTop.'">
 				'.$thumbImg.'
-				<h3>'.$postHeading.'</h3>
+				<h3><a href="' . $postLink . '">'.$postHeading.'</a></h3>
 				<p>'.excerpt(36).'</p>
 			</div>';
 		}

@@ -1,132 +1,40 @@
 // mixins
 
-// disclaimer
-// - used on the blog also - latest post
-// - adapt for services page parent
-// - if images + descriptions for categories can work, could be used for a sticky post at the top of these
-@mixin disclaimer {
-    h3, h4 {
-        display : inline-block;
-        font-style : italic;
-        margin : 0;
-        margin-left : calc(2.5rem + 5px);
-        padding : 0 2rem;
-        height : 48px;
-        line-height : calc(48px + 5px);
-        border-radius : 2.5rem 2.5rem 0 0;
-        background-color : $green;
-        color : $white;
-    }
-    > div {
-        position : relative; // required for post
-        border : 5px solid $green;
-        border-radius : 2.5rem;
-        margin-bottom : 5rem;
-        padding : 2.5rem;
-        box-sizing : border-box;
-    }
-    p {
-        margin-bottom : 0;
-    }
-    @content;
-}
+// 1) components
+// - headings, labels, links, etc
+
+// 2) elements
+// - groups of components - e.g. for cards
 
 
-
-// featured post widget, service parent page
-// .card
-@mixin card {
-    position : relative; // required for post
-    border : 5px solid $green;
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// 1) components
+@mixin roundDiv($border, $bg) {
+    position : relative; // required for absolutely positioned child elements
+    border : 5px solid $border;
     border-radius : 2.5rem;
     margin-bottom : 5rem;
     padding : 2.5rem;
     box-sizing : border-box;
-    background-color : $white;
-    // h4 {}
-    p {
-        margin-bottom : 0;
-        color : $grey_light;
+    @if $bg != '' {
+        background-color : $bg;
     }
-    .author {
-        @include labelLink;
-        background-color : $grey;
-        margin : 0 .5rem;
-    }
-    h4 {
-        padding-top : 2.5rem;
-        transition : all ease-in-out .3s;
-    }
-    img {
-        transition : all ease-in-out .5s;
-    }
-    a {
-        z-index : 1;
-        position : absolute;
-        top : 0;
-        bottom : 0;
-        left : 0;
-        right : 0;
-        &:hover + .thumb img {
-            transform : scale(1.125);
-        }
-    }
-
-
-    // colour schemes
-    $colours : 'green', 'orange', 'blue', 'red';    
-    $colour_codes : $green, $orange, $blue, $red;
-    @for $i from 1 through length($colours) {
-        &.#{nth($colours, $i)} {
-            border-color: nth($colour_codes, $i);
-            .author {
-                background-color: nth($colour_codes, $i);
-            }
-            .read-more,
-            a:hover ~ h4 {
-                color: nth($colour_codes, $i);
-            }
-        }
-    }
-
-
-
-    // this could be made into a mixin - shared with .latest - pass in height
-    padding-top : 170px;
-    overflow : hidden;
-    .thumb {
-        background-color : $grey_pale;
-        color : $grey;
-        text-align : center;
-        //
-        position : absolute;
-        top : 0;
-        left : 0;
-        right : 0;
-        height : 180px;
-        overflow : hidden;
-        // > div {
-        //   padding : 7.5rem 0;
-        // }
-        img {
-          margin : 0;
-          height : auto;
-          max-width : none;
-          min-height : 180px;
-        }
-    }
-
-    @content;
+}
+// rounded heading
+@mixin contextHeading($colour, $bg) {
+    display : inline-block;
+    font-style : italic;
+    margin : 0;
+    margin-left : calc(2.5rem + 5px);
+    padding : 0 2rem;
+    height : 48px;
+    line-height : calc(48px + 5px);
+    border-radius : 2.5rem 2.5rem 0 0;
+    color : $colour;
+    background-color : $bg;
 }
 
-
-
-
-
-
-
-
-// ________________________________________________
+// –––––––––––––––––––––––––––
 // labels
 // - blog pages h2 + category and tag h1
 // large
@@ -218,17 +126,106 @@
 
 
 
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// 2) elements
+@mixin cardSmall($heightSm, $heightLg) {
+    height : $heightSm;
+    overflow : hidden;
+    @media (min-width: 800px) {
+        height : auto;
+        padding-top : $heightLg;
+    }
+
+    .card-thumb {
+        position : absolute;
+        top : 0;
+        left : 0;
+        right : 65%;
+        //
+        background-color : $grey_pale;
+        color : $grey;
+        text-align : center;
+        // 
+        height : calc(#{$heightSm} - 10px);
+        overflow : hidden;
+        @media (min-width: 800px) {
+            right : 0;
+            height : $heightLg;
+        }
+
+        img {
+            position : absolute;
+            left : -50%;
+            max-width : none;
+            height : calc(#{$heightSm} - 10px);
+            @media (min-width: 800px) {
+                position : relative;
+                left : 0;
+            }
+            
+        }
+    }
+
+    .card-content {
+        position : absolute;
+        top : 0;
+        left : 35%;
+        right : 0;
+        height : calc(#{$heightSm} - 10px);
+        overflow : hidden;
+        padding : 0 2.5rem;
+        @media (min-width: 800px) {
+            position : relative;
+            left : 0;
+            height : auto;
+            padding : 0;
+        }
+    }
+}
 
 
-// ________________________________________________
+//
+@mixin cardLarge($height) {
+    padding-top : $height;
+    overflow : hidden;
+    
+    // thumbnail
+    .card-thumb {
+        position : absolute;
+        top : 0;
+        left : 0;
+        right : 0;
+        height : $height;
+        overflow : hidden;
+        //
+        background-color : $grey_pale;
+        color : $grey;
+        text-align : center;
+        img {
+          margin : 0;
+          height : auto;
+          max-width : none;
+          min-height : $height;
+        }
+    }
+}
+
+
+
+// –––––––––––––––––––––––––––
 // top border colours - sidebars and blog posts
 @mixin topBorderPara {
     padding-top : 2.5rem;
     border-top : 10px solid transparent;
-    // enforce bold italic
+    // enforce bold italic on sidebars
+    .five.columns & {
+        h3,
+        h4 {
+            font-style : italic;
+        }
+    }
     h3,
     h4 {
-        font-style : italic;
         color : $grey;
         line-height : 1.4;
         a {

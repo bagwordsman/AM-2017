@@ -42,7 +42,7 @@ get_header(); ?>
 	$cat_desc = category_description();
 	// make a top sticky post out of category info
 	$cat_info = '
-	<div class="post info">
+	<div class="archive-info">
 		<h1>Category: ' . $cat_title . '</h1>
 	</div>';
 

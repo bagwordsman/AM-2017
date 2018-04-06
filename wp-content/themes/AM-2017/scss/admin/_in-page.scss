@@ -12,7 +12,7 @@
   h2 {
     background-color : $green;
     color : $white;
-    font-size : 16px;
+    font-size : 18px;
     line-height : 1.6em;
   }
   .inside:before {
@@ -23,6 +23,32 @@
     line-height : 1.6em;
   }
 }
+
+
+// –––––––––––––––––––––––––
+// slug
+#slugdiv {
+  h2 {
+    background-color : $green;
+    color : $white;
+    font-size : 18px;
+    line-height : 1.6em;
+  }
+  .inside {
+    @include form-fields;
+    input[type="text"] {
+      min-width : 250px;
+    }
+    &:after {
+      content : 'Copy and paste the slug into Featured Post Widget to show in the footer of the blog. Make sure you add a featured image here first.';
+      display : inline-block;
+      color : $black;
+      font-size : 16px;
+      line-height : 1.6em;
+    }
+  }
+}
+
 
 
 

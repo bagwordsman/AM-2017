@@ -1,10 +1,22 @@
 // containers
+// - page / section specific containers (e.g. blog .advert) in different partials
+
+
+// 1) sidebars
+// 2) wrapping containers (and dividers)
+// 3) text alignment
+// 4) floated + narrow
+// 5) site wide containers - used on multiple pages + posts etc.
+// - a) three stage columns (and pointers)
+// - b) affiliate logos
+// - c) disclaimer
+// - d) card (featured / latest / service card)
 
 
 
 
-// ______________________________________
-// a) content containers
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// 1) content containers
 #content {
   min-height : 300px;
 }
@@ -31,11 +43,8 @@ body.single-post {
 
 
 
-
-
-
-// ______________________________________
-// wrapping containers
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// 2) wrapping containers
 %wrapper {
   overflow : hidden;
   position : relative;
@@ -51,9 +60,48 @@ body.single-post {
 }
 
 
+// content dividers
+.divider {
+  bottom : 80px;
+  position : absolute;
+  width : 100%;
+  display : block; // required for safari
+  // point downwards
+  &:before, &:after {
+      content : "";
+      left : 0;
+      position : absolute;
+      right : 0;
+      height: 220px;
+      top: -20px;
+  }
+  // left side
+  &:before {
+      transform: skew(0deg, 8deg);
+  }
+  // right side
+  &:after {
+      transform: skew(0deg, -8deg);
+  }
+  // white
+  &.white, &.white:before, &.white:after {
+      background-color : $white;
+  }
+  // grey
+  &.grey, &.grey:before, &.grey:after {
+      background-color : $grey_lighter;
+  }
+  
+}
 
-// ________________
-// center container
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// 3) text alignment
+
+// center container - in content
 .container--center {
   text-align : center;
   ul {
@@ -62,18 +110,20 @@ body.single-post {
   }
 }
 
-
-
-// ________________
-// gradient backgrounds
-.gradient-white-green {
-  background : $vertical-green;
+// for widget title
+.text--center {
+  text-align : center;
+}
+.text--right {
+  text-align : right;
 }
 
 
 
-// ________________
-// media queries
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// 4) floated + narrow
 @media (min-width: 980px) {
   // right container - reverse the float
   .container--right .seven.columns {
@@ -92,28 +142,16 @@ body.single-post {
 
 
 
-// ________________
-// disclaimer div
-.disclaimer {
-  @include disclaimer;
-}
 
 
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// 5) site wide containers
 
 
-// ________________
-// card div
-// - featured post widget + services page parent
-.card {
-  @include card;
-}
+// a) three stage columns
 
-
-
-
-
-// ________________
-// three stage columns - with pointers
+// - with pointers
+// - home page, family mediation process page(s)
 .four.columns.stage {
   position : relative;
   width : 100%;
@@ -196,65 +234,63 @@ body.single-post {
 
 
 
-
-// ____________________
 // pointers
 .columns--divider {
-  position : absolute;
-  top : -5px;
-  left : calc(50% - 50px);
-  width : 100px;
-  height : 5px;
-  background-color : $grey_lighter;
-  // point downwards
-  &:before, &:after {
-    content : "";
     position : absolute;
-    top : 12px;
-    height : 100%;
-    border-bottom : 5px solid $grey;
-  }
-  // left side
-  &:before {
-    width : 51%;
-    left : 0;
-    transform : skew(0deg, 25deg);
-  }
-  // right side
-  &:after {
-    width : 50%;
-    right : 0;
-    transform : skew(0deg, -25deg);
-  }
+    top : -5px;
+    left : calc(50% - 50px);
+    width : 100px;
+    height : 5px;
+    background-color : $grey_lighter;
+    // point downwards
+    &:before, &:after {
+        content : "";
+        position : absolute;
+        top : 12px;
+        height : 100%;
+        border-bottom : 5px solid $grey;
+    }
+    // left side
+    &:before {
+        width : 51%;
+        left : 0;
+        transform : skew(0deg, 25deg);
+    }
+    // right side
+    &:after {
+        width : 50%;
+        right : 0;
+        transform : skew(0deg, -25deg);
+    }
 
 
 
   // media queries
   @media (min-width: 980px) {
-    top : calc(50% - 50px);
-    left : -5px;
-    width : 5px;
-    height : 100px;
-    // point rightwards
-    &:before, &:after {
-      left : 0;
-      width : 17px;
-      border-bottom : none;
-      border-right : 5px solid $grey;
-    }
-    // top side
-    &:before {
-      top : 0;
-      height : 50%;
-      transform : skew(25deg, 0deg);
-    }
-    // bottom side
-    &:after {
-      top : auto;
-      bottom : 0;
-      height : 51%;
-      transform : skew(-25deg, 0deg);
-    }
+      top : calc(50% - 50px);
+      left : -5px;
+      width : 5px;
+      height : 100px;
+      // point rightwards
+      &:before, &:after {
+          left : 0;
+          width : 17px;
+          border-bottom : none;
+          border-right : 5px solid $grey;
+      }
+      // top side
+      &:before {
+          top : 0;
+          height : 50%;
+          transform : skew(25deg, 0deg);
+      }
+      // bottom side
+      &:after {
+          top : auto;
+          bottom : 0;
+          height : 51%;
+          transform : skew(-25deg, 0deg);
+      }
   }
 
 
@@ -271,73 +307,142 @@ body.single-post {
 
 
 // ______________________________________
-// b) content dividers
-.divider {
-  bottom : 80px;
-  position : absolute;
-  width : 100%;
-  display : block; // required for safari
-  // point downwards
-  &:before, &:after {
-      content : "";
-      left : 0;
-      position : absolute;
-      right : 0;
-      height: 220px;
-      top: -20px;
-  }
-  // left side
-  &:before {
-      transform: skew(0deg, 8deg);
-  }
-  // right side
-  &:after {
-      transform: skew(0deg, -8deg);
-  }
-  // white
-  &.white, &.white:before, &.white:after {
-      background-color : $white;
-  }
-  // grey
-  &.grey, &.grey:before, &.grey:after {
-      background-color : $grey_lighter;
-  }
-  
+// b) affiliated companies logos - just before footer
+// - look at gallery images in _images.scss
+#affiliates-band {
+    background-color : $white;
+    padding-top : 3rem;
+    padding-bottom : 4.5rem;
+    text-align : center;
+    h4 {
+        font-weight : $normal;
+        margin-bottom : 3rem;
+    }
+    img {
+        width : auto;
+        height : auto;
+        max-width : 250px;
+        max-height : 200px;
+        margin : 1.5rem;
+        vertical-align : middle;
+        @media (min-width: 800px) {
+            img {
+                  margin : 0;
+                  margin-left : 3rem;
+              &:first-child {
+                  margin-left : 0;
+              }
+            }
+        }
+    }
 }
 
 
 
 
+// ________________
+// gradient backgrounds - just used on old animation?
+// .gradient-white-green {
+//   background : $vertical-green;
+// }
 
 
-
-// ______________________________________
-// c) affiliated companies logos - just before footer
-// - look at gallery images in _images.scss
-#affiliates-band {
-  background-color : $white;
-  padding-top : 3rem;
-  padding-bottom : 4.5rem;
-  text-align : center;
-  h4 {
-    font-weight : $normal;
-    margin-bottom : 3rem;
-  }
-  img {
-    width : auto;
-    height : auto;
-    max-width : 250px;
-    max-height : 200px;
-    margin : 1.5rem;
-    vertical-align : middle;
-    @media (min-width: 800px) {
-      img {
-        margin : 0;
-        margin-left : 3rem;
-        &:first-child {
-          margin-left : 0;
-        }
-      }
+// ________________
+// c) disclaimer div
+.disclaimer {
+    h3, h4 {
+        @include contextHeading($white, $green);
     }
-  }
+    > div {
+        @include roundDiv($green, '');
+    }
+    p {
+        margin-bottom : 0;
+    }
+}
+
+
+
+
+// ________________
+// d) card div
+// - latest post, featured post widge, services page parent
+// - smaller cards (not latest post) are the default
+.card {
+
+    
+    @include roundDiv($green, $white);
+
+    // - columns reset
+    &.four.columns {
+        width : 100%;
+        margin-left : 0;
+        @media (min-width: 800px) {
+            width: 30.6666666667%;
+            margin-left: 4%;
+            &:first-child {
+              margin-left : 0;
+            }
+        }
+        // - small card layout is different
+        @include cardSmall(250px, 180px);
+        h4 {
+            padding-top : 2.5rem;
+            transition : all ease-in-out .3s;
+        }
+        p {
+            color : $grey_light;
+        }
+        
+    }
+    
+    
+    // universal styles
+    // - link
+    .overlay {
+        z-index : 1;
+        position : absolute;
+        top : 0;
+        bottom : 0;
+        left : 0;
+        right : 0;
+        &:hover + .card-thumb img {
+            transform : scale(1.125);
+        }
+    }
+    img {
+        transition : transform ease-in-out .5s;
+    }
+    p {
+        margin-bottom : 0;
+    }
+    .author {
+        @include labelLink;
+        background-color : $grey;
+        margin : 0 .5rem;
+    } 
+    
+    
+    // colour schemes
+    // - .card container requires a colour class
+    $colours : 'green', 'orange', 'blue', 'red';    
+    $colour_codes : $green, $orange, $blue, $red;
+    $colours_dark : $green_dark, $orange_dark, $blue_dark, $red_dark;
+    @for $i from 1 through length($colours) {
+        &.#{nth($colours, $i)} {
+            border-color: nth($colour_codes, $i);
+            .author {
+                background-color: nth($colour_codes, $i);
+            }
+            .read-more,
+            .overlay:hover ~ .card-content h1,
+            .overlay:hover ~ .card-content h4 {
+                color: nth($colour_codes, $i);
+            }
+            .overlay:hover ~ .card-content .read-more {
+              color: nth($colours_dark, $i);
+          }
+        }
+    }
+
 }

@@ -429,11 +429,11 @@ function sandbox_blog_widget_title_align_callback() {
 			<label for="blog_widget_title_align_left">Left (Default)</label>
 		</li>
 		<li>
-			<input type="radio" id="blog_widget_title_align_center" name="sandbox_theme_blog_options[blog_widget_title_align]" value="center" '. ( $options['blog_widget_title_align'] == 'center' ? ('checked="checked" class="green--background"')  : '') .' />
+			<input type="radio" id="blog_widget_title_align_center" name="sandbox_theme_blog_options[blog_widget_title_align]" value="text--center" '. ( $options['blog_widget_title_align'] == 'text--center' ? ('checked="checked" class="green--background"')  : '') .' />
 			<label for="blog_widget_title_align_center">Center</label>
 		</li>
 		<li>
-			<input type="radio" id="blog_widget_title_align_right" name="sandbox_theme_blog_options[blog_widget_title_align]" value="right" '. ( $options['blog_widget_title_align'] == 'right' ? ('checked="checked" class="green--background"')  : '') .' />
+			<input type="radio" id="blog_widget_title_align_right" name="sandbox_theme_blog_options[blog_widget_title_align]" value="text--right" '. ( $options['blog_widget_title_align'] == 'text--right' ? ('checked="checked" class="green--background"')  : '') .' />
 			<label for="blog_widget_title_align_right">Right</label>
 		</li>
 	</ul>

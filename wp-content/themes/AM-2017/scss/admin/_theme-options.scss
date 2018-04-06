@@ -106,11 +106,20 @@ $sections: (
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // quick links
 .quick-links {
-  @include disclaimer;
   margin-top : 2.5rem;
+  > h3 {
+    @include contextHeading($white, $green);
+  }
+  > div {
+    @include roundDiv($green, $white);
+  }
+  
   p, ul {
     font-size : 1.4em;
     line-height : 1.4;
+  }
+  p { 
+    margin-bottom : 0;
   }
   a {
     text-decoration : none;

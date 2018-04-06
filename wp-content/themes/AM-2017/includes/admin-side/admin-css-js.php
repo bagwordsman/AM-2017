@@ -26,6 +26,10 @@ function load_admin_js($hook) {
 	if ( $hook == 'profile.php' || $hook == 'user-edit.php' ) {
 		wp_enqueue_script('admin-profile-js', get_stylesheet_directory_uri(). '/js/admin/admin-profile.js', false, false, true );
 	}
+	// widget warning
+	if ( $hook == 'widgets.php' ) {
+		wp_enqueue_script('admin-widgets-js', get_stylesheet_directory_uri(). '/js/admin/admin-widgets.js', false, false, true );
+	}
 	
 	// page template JS
 	wp_enqueue_script('admin-pages-js', get_stylesheet_directory_uri(). '/js/admin/admin-pages.js', false, false, true );

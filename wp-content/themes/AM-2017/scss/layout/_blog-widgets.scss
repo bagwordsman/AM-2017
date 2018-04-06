@@ -39,12 +39,16 @@
 
 
 // latest posts
-// - .card class in _containers.scss
 .widget_recent_entries {
   h4 {
     @include headingIcon('left', 'clock');
   }
 }
+
+
+// featured post. Does not use widget class
+// - uses .card class in _containers.scss
+               
 
 
 
@@ -84,12 +88,6 @@
   > .container {
     z-index : 4;
     // container configuration
-    &.center {
-      text-align : center;
-    }
-    &.right {
-      text-align : right;
-    }
     &.widgets {
       padding-top : 2.5rem;
       padding-bottom : 5rem;

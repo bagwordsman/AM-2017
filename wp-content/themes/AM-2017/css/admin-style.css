@@ -3751,6 +3751,16 @@ ul.admin-list {
 .hidden {
   display: none; }
 
+.red--bg {
+  background-color: #e74e42;
+  color: #ffffff;
+  padding: 3px 5px; }
+
+.green--bg {
+  background-color: #70bf44;
+  color: #ffffff;
+  padding: 3px 5px; }
+
 .top-margin--3-6 {
   margin-top: 3.6rem; }
 
@@ -3816,7 +3826,7 @@ ul.admin-list {
 
 .quick-links {
   margin-top: 2.5rem; }
-  .quick-links h3, .quick-links h4 {
+  .quick-links > h3 {
     display: inline-block;
     font-style: italic;
     margin: 0;
@@ -3825,20 +3835,21 @@ ul.admin-list {
     height: 48px;
     line-height: calc(48px + 5px);
     border-radius: 2.5rem 2.5rem 0 0;
-    background-color: #70bf44;
-    color: #ffffff; }
+    color: #ffffff;
+    background-color: #70bf44; }
   .quick-links > div {
     position: relative;
     border: 5px solid #70bf44;
     border-radius: 2.5rem;
     margin-bottom: 5rem;
     padding: 2.5rem;
-    box-sizing: border-box; }
-  .quick-links p {
-    margin-bottom: 0; }
+    box-sizing: border-box;
+    background-color: #ffffff; }
   .quick-links p, .quick-links ul {
     font-size: 1.4em;
     line-height: 1.4; }
+  .quick-links p {
+    margin-bottom: 0; }
   .quick-links a {
     text-decoration: none;
     color: #70bf44; }
@@ -4375,10 +4386,42 @@ ul.admin-list {
 #poststuff #postimagediv h2 {
   background-color: #70bf44;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6em; }
 #poststuff #postimagediv .inside:before {
   content: 'Upload a Hero Image. This should be at least 1800px wide - for wide screens.';
+  display: inline-block;
+  color: #000000;
+  font-size: 16px;
+  line-height: 1.6em; }
+
+#slugdiv h2 {
+  background-color: #70bf44;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.6em; }
+#slugdiv .inside input[type="text"],
+#slugdiv .inside select,
+#slugdiv .inside textarea {
+  font-size: 1.2rem;
+  font-weight: 400;
+  height: 38px;
+  line-height: 38px;
+  box-shadow: none;
+  color: #6a6a6a;
+  border: 2px solid #6a6a6a; }
+  #slugdiv .inside input[type="text"]:focus,
+  #slugdiv .inside select:focus,
+  #slugdiv .inside textarea:focus {
+    box-shadow: none;
+    border: 2px solid #f07f37; }
+#slugdiv .inside textarea {
+  height: auto;
+  line-height: 1.4; }
+#slugdiv .inside input[type="text"] {
+  min-width: 250px; }
+#slugdiv .inside:after {
+  content: 'Copy and paste the slug into Featured Post Widget to show in the footer of the blog. Make sure you add a featured image here first.';
   display: inline-block;
   color: #000000;
   font-size: 16px;

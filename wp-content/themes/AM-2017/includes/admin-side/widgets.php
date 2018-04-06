@@ -24,8 +24,8 @@ if ( function_exists('register_sidebar') )
      register_sidebar( array(
     'name' => __( 'Blog - Footer'),
     'id' => 'blogpages',
-    'description' => __( 'Widgets placed here will appear in the blog footer. Suitable for 1 or 2 widgets only' ),
-    'before_widget' => '<div class="six columns widget %2$s">',
+    'description' => __( 'Widgets placed here will appear in the blog footer. Suitable for up to 3 widgets only.' ),
+    'before_widget' => '<div class="four columns widget %2$s">',
     'after_widget' => '</div>',
     'before_title'  => '<h4>',
 	'after_title'   => '</h4>'
@@ -122,7 +122,7 @@ function blog_advert() {
 		echo '
 		<div class="wrapper-grey">
 			<div class="container container-narrow">
-				<div class="post advert">
+				<div class="page-advert">
 					<div>
 						<h3>' . $ad_title . '</h3>
 						<p>' . $ad_content . '</p>
@@ -238,7 +238,7 @@ class myposts_widget extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 		'myposts_widget', // widget ID
-		__('Featured Posts', 'myposts_widget_domain'), // widget name
+		__('Featured Post', 'myposts_widget_domain'), // widget name
 		array( 'description' => __( 'Display Featured Post Thumbnails', 'myposts_widget_domain' ), ) // description
 		);
 	}
@@ -261,7 +261,7 @@ class myposts_widget extends WP_Widget {
 		
 		// var_dump($post_info);
 
-		$thumbImg = get_the_post_thumbnail($post_id, 'medium');
+		$thumbImg = get_the_post_thumbnail($post_id, 'widget-thumbnail');
 		$post_title = get_the_title($post_id);
 		$post_link = get_the_permalink($post_id);
 
@@ -274,10 +274,10 @@ class myposts_widget extends WP_Widget {
 		if ( ! empty( $slug ) ) {
 
 			echo $args['before_widget'] . $args['before_content'] . '
-			<div class="six columns widget widget_featured_post">
-				<div class="card'.($colour ? ' '.$colour : '').'">
-					<a href="' . $post_link . '"><span class="hidden">' . $post_title . '</span></a>
-					<div class="thumb">' . $thumbImg . '</div>
+			<div class="four columns card'.($colour ? ' '.$colour : '').'">
+				<a class="overlay" href="' . $post_link . '"><span class="hidden">' . $post_title . '</span></a>
+				<div class="card-thumb">' . $thumbImg . '</div>
+				<div class="card-content">
 					<h4>' . $post_title . '</h4>
 					<p>By
 						<span class="author">'.$post_author.'</span> On '.$post_date.'.

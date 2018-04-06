@@ -41,7 +41,7 @@ get_header(); ?>
 	$tag_desc = tag_description();
 	// make a top sticky post out of category info
 	$tag_info = '
-	<div class="post info">
+	<div class="archive-info">
 		<h1>Tag: ' . $tag_title . '</h1>
 	</div>';
 

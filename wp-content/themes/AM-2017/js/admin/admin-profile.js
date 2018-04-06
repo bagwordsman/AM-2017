@@ -1,5 +1,12 @@
 (function($){
-	// user profiles
+	
+	
+	
+	// JS for Able Mediation User Profiles:
+	// - this is loaded for a specific view, using a hook. It will not run theme - wide
+	
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// 1 - user profiles
 	// - move and add to html, so it can be styled as wished
 	
 	$('#description').parents('tr').remove();
@@ -17,5 +24,6 @@
 	// remove capabilities text
 	$('.user-capabilities-wrap').parents('table').prev('h2').remove();
 	$('.user-capabilities-wrap').parents('table').remove();
+
 
 })(jQuery);
