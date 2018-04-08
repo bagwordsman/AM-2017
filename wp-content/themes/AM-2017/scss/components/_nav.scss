@@ -63,6 +63,7 @@
 	display : none;
 }
 
+
 #toggle:checked {
 	~ .main-menu {
 		display : block;
@@ -95,6 +96,7 @@
 		box-sizing : border-box;
 		text-align : center;
 		content : 'Main Menu';
+		// heading mixin?
 		font-size : 2.4rem;
 		letter-spacing : 0.04rem;
 		line-height : 2.4;
@@ -109,153 +111,108 @@
 	}
 }
 
-
-
-// ––––––––––––––––––––––––––––––––––––––––––––––––––
-// small menu
-.main-menu {
-	position: static;
-	right : 0;
-	display : none;
-	max-width : 100%;
-	opacity : 0;
-	// margin : 0 auto 2rem;
-	margin : 0 auto;
-	border-top : 2px solid $grey;
-	li {
-		margin : 0;
-		a {
-			position : relative;
-			display : block;
-			width : 100%;
-			height : 38px;
-			padding-left : 5%;
-			box-sizing:border-box;
-			font-weight : $bold;
-			line-height : 38px;
-			color : $grey;
-			border-top : 2px solid $grey;
-			transition: all 0.3s ease-in-out;
-		}
-
-		// 1st item - no top border
-		&:first-child a {
-			border-top : 0;
-		}
-
-		
-		// - - - - - - - -
-		// hover behaviour - 1st tier
-		a:hover,
-		a:focus {
-			color : $green;
-			background-color : $grey_pale;
-		}
-		// - - - - - - - -
-		// current page marker
-		&.current_page_item > a,
-		&.current_page_ancestor > a {
-			color : $white;
-			background-color : $green;
-		}
-
-		// - - - - - - - -
-		// first tier with children
-		&.menu-item-has-children > a:after {
-			padding-left : 1.25rem;
-			font-family: $font-icon;
-			content : icon('right');;
-		}
-
-		
-		
-		
-
-
-		// - - - - - - - -
-		// second and third tier
-		ul {
-			position : relative;
-			display : none; // don't need to display it, but a relative position is required
-			top : 0;
-			li a {
-				background-color : transparent;
-				color : $white;
-				&:hover,
-				&:focus,
-				&.current_page_item a {
-					background-color : $green;
-					color : $grey;
-				}
-			}
-			// third tier
-			li li a {
-				background-color : transparent;
-				color : $grey;
-			}
-			li li a:hover,
-			li li a:focus,
-			li li.current_page_item a {
-				background-color : $green;
-				color : $grey;
-			}
-		}
-	}
-} // end .main-menu
-
-
-
-
-
-
-
-// ––––––––––––––––––––––––––––––––––––––––––––––––––
-// large menu
-@media (min-width: 800px) { // was 768px
-
-	// hide toggle
+// large: hide toggle
+@media (min-width: 800px) {	
 	#toggle,
 	.main-toggle {
 		display : none;
 	}
+}
 
-	.main-menu {
-		height : 38px;
-		// overflow-x : hidden;
-		white-space : nowrap;
-		
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// to be applied within li element
+@mixin menuLi($height, $colour, $bg, $hovColour, $hovBg, $activeColour, $activeBg){
+	margin : 0;
+	> a {
+		position : relative;
+		display : block;
+		width : 100%;
+		padding-left : 5%; // .container max-width = 90%
+		box-sizing : border-box;
+		font-weight : $bold;
+		transition: all 0.3s ease-in-out;
+		// variables
+		height : $height;
+		line-height : $height;
+		color : $colour;
+		background-color : $bg;
+		&:hover,
+		&:focus {
+			color : $hovColour;
+			background-color : $hovBg;
+		}
+	}
+	&.current_page_item > a,
+	&.current_page_ancestor > a {
+		color : $activeColour;
+		background-color : $activeBg;
+	}
+	@content;	
+}
+
+
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// top tier menu
+.main-menu {
+	display : none;
+	opacity : 0;
+	position: static;
+	right : 0;
+	max-width : 100%;
+	margin : 0 auto;
+	> li {
+		@include menuLi(48px, $white, $grey, $white, $grey_dark, $white, $green);
+		// - hover style = tbc
+		// first tier with children
+		&.menu-item-has-children > a:after {
+			padding-left : 1.25rem;
+			font-family: $font-icon;
+			content : icon('down');;
+		}
+	}
+
+	// large
+	@media (min-width: 800px){
 		display: block;
 		opacity: 1;
-		max-width : 100%;
-		width : 100%;
-		margin-bottom : 0;
-		background-color : transparent;
-		border-top : none;
-		text-align : center;
 		position : absolute;
+		width : 100%;
+		height : 38px;
 		z-index : 99;
-		
-		
-		// all list items
-		li {
-			a {
-				position : relative;
+		white-space : nowrap; // makes js abbreviations work
+		text-align : center;
+		> li {
+			position : relative;
+			top : 0;
+			display : inline-block;
+			padding : 0 1.5rem 0 0;
+			// reveal child items (list)
+			&:hover ul {
+				display : block;
+			}
+			// style links	
+			> a {
+				height : 38px;
+				line-height : 38px;
 				padding : 0;
-				border-top : 0;
 				color : $grey;
 				background-color : transparent;
 			}
-
-			// hover and current page marker
-			a:hover,
-			a:focus,
+			> a:hover,
+			> a:focus,
 			&.current_page_item > a,
 			&.current_page_ancestor > a {
-				background-color : $grey_lighter;
 				color : $green;
-				padding : 0;
+				background-color : transparent;
 			}
-			// first tier with children
+			// item with children
 			&.menu-item-has-children > a {
 				padding-right : 2.5rem;
 				&:before {
@@ -270,90 +227,76 @@
 					content : "";
 				}
 			}
+		} // end li
+	}
+
+
+	@media (min-width: 900px) {
+		> li {
+			padding : 0 1.5rem;
+		}
+	}
+}
 
 
 
 
-			// - - - - - -
-			// second tier
-			// - show the dropdown
-			&:hover ul {
-				display : block;
-				li a:hover {
-					color : $white;
+
+
+
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// second tier - .sub-menu
+.sub-menu {
+	position : relative;
+	// display : none; // don't need to display it, but a relative position is required
+	top : 0;
+	margin : 0;
+	display : none;
+	// show child items for current item only
+	.current_page_ancestor & {
+		display : block;
+	}
+
+	> li {
+		@include menuLi(40px, $grey_pale, $grey_menu, $white, $grey_menu, $white, $green_light);
+		// indent menu items
+		> a:before {
+			content : "-";
+			padding : 0 1.8rem 0 1rem;
+			transition : all ease-in-out .3s;
+		}
+		> a:hover:before {
+			padding-right : 2.8rem;
+		}
+		
+	}
+
+	
+	// large
+	@media (min-width: 800px){
+		display : none;
+		position : absolute;
+		top : 38px;
+		min-width : 280px; // width of the dropdown
+		z-index : 9999; // do a z-index audit
+		font-size: 90%;
+		text-align : left;
+		> li {
+			> a {
+				padding : 0;
+				background-color : $grey;
+				color : $white;
+				&:before {
+					padding-right : 1rem;
+				}
+				&:hover:before {
+					padding-right : 2rem;
 				}
 			}
-			// child menu
-			ul {
-				font-size: 90%;
-				display : none;
-				position : absolute;
-				top : 33px;
-				left : 0;
-				padding-top : 5px;
-				margin : 0;
-				min-width : 280px; // width of the dropdown
-				z-index : 9999; // do a z-index audit
-				li {
-					// reset
-					&:first-child a {
-						border-top : 0;
-					}
-					// current page
-					&.current_page_item > a,
-					&.current_page_ancestor > a {
-						background-color : $green_light;
-						color : $white;
-						&:hover {
-							background-color : $green;
-						}
-					}
-					
-					a {
-						padding : 0;
-						background-color : $grey;
-						color : $white;
-						border-top : 2px solid $grey_lighter;
-						&:hover
-						&:focus {
-							padding : 0;
-							background-color : $green;
-							border-top : 2px solid $green;
-						}
-					}
-
-					
-				} // end ul li
-				
-			}
-
-
 		}
-
-
-	}
-
-}
-
-
-
-
-// top level list items
-.main-menu > li {
-	@media (min-width: 800px) {
-		position : relative;
-		top : 0;
-		display : inline-block;
-		padding : 0 1.5rem 0 0;
-	}
-	@media (min-width: 900px) {
-		padding : 0 1.5rem;
 	}
 }
-
-
-
-
-
-
-

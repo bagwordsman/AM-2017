@@ -60,6 +60,8 @@ $grey_light : #b3b3b3; // single posts nav and social icons in footer
 // - regular grey fits here
 $grey_dark : #545454; // single posts nav, blog widgets, images
 
+$grey_menu : lighten( $grey, 10% );
+// var name should be changed, as should other greys to be more like green etc.
 
 
 
