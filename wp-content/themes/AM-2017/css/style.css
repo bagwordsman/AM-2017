@@ -1871,6 +1871,8 @@ code {
       z-index: 9999;
       font-size: 90%;
       text-align: left; }
+      .current_page_ancestor .sub-menu {
+        display: none; }
       .sub-menu > li > a {
         padding: 0;
         background-color: #6a6a6a;

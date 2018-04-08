@@ -285,6 +285,11 @@
 		z-index : 9999; // do a z-index audit
 		font-size: 90%;
 		text-align : left;
+		// hide child items for current item only
+		.current_page_ancestor & {
+			display : none;
+		}
+		
 		> li {
 			> a {
 				padding : 0;
