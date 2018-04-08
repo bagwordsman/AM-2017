@@ -36,10 +36,15 @@
   // large menu = 38px
   // admin bar (small) = 48px
   // admin bar (large) = 32px
+
+  // menu-open = class added to the header - small menu toggled open
   
   // logged out
   &.up {
     top : calc(-110px - 57px);
+    &.menu-open {
+      top : -110px; // show close menu button
+    }
     @media (min-width: 800px) {
       top : calc(-110px - 38px);
     }
@@ -51,17 +56,24 @@
     top : 46px;
     &.up {
       top : calc(-110px - 57px + 46px);
+      &.menu-open {
+        top : calc(-110px + 46px); // show close menu button
+      }
     }
     // medium + (32px high admin bar)
     @media (min-width: 782px) {
       top : 32px;
       &.up {
         top : calc(-110px - 57px + 32px);
+        &.menu-open {
+          top : calc(-110px + 32px);
+        }
       }
     }
     // medium / large + (desktop menu)
     @media (min-width: 800px) {
-      &.up {
+      &.up,
+      &.up.menu-open {
         top : calc(-110px - 38px + 32px);
       }
     }

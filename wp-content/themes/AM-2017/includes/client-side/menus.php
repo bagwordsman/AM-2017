@@ -1,5 +1,10 @@
 <?php
 // Menus -> adds extra fields for abbreviated text
+// - these are added as attributes, data-abbrev and data-orig
+
+// - also want to add aria-expanded="false" to items with children. Not necessarily items with abbrev.
+// - solution: add a note in admin screen to remind user to add an abbrev to items with children
+
 // https://gist.github.com/kucrut/3804376
 
 add_action( 'init', array( 'XTeam_Nav_Menu_Item_Custom_Fields', 'setup' ) );
@@ -108,11 +113,12 @@ function mytheme_menu_item_additional_fields( $fields ) {
 add_filter( 'nav_menu_link_attributes', 'my_nav_menu_attribs', 10, 3 );
 function my_nav_menu_attribs( $atts, $item, $args ) {  
     $atts['data-abbrev'] = get_post_meta($item->ID, '_menu_item_abbrev', true); // abbreviated title
-    $atts['data-orig'] = $item->post_title; // original title
-
+	$atts['data-orig'] = $item->post_title; // original title
+	// add aria-expanded
+	// if ( $args->has_children ) {
+	$atts['aria-expanded'] = 'false';
+	// }
   return $atts;
 }
-
-
 
 ?>

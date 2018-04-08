@@ -5,12 +5,13 @@
 
 	// File Contents:
 	// 1 - setup: remove no-js class
-	// 2 - header: hide if scrolled
-    // 3 - menu: abbreviated text for mid sized screens
-    // 4 - cookie bar notice
-    // 5 - mediator profile reveal
-        // TO BE CHANGED:  // 6 - services parent page
-    // 7 - staged column height matching
+    // 2 - header: hide if scrolled (+ hide opened sub-menus)
+    // 3 - menu: js sub-menu dropdowns
+    // 4 - menu: abbreviated text for mid sized screens
+    // 5 - cookie bar notice
+    // 6 - mediator profile reveal
+        // TO BE CHANGED / REMOVED:  // 7 - services parent page
+    // 8 - staged column height matching
 
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -20,13 +21,19 @@
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
     // 2 - header: hide if scrolled
+    // - if menu opened, and screen is small (under 800px)
     if ( $('.page').hasClass('fixed-header') ) {
 
         var didScroll;
         var lastScrollTop = 0;
         var delta = $('div.page').attr('data-offset'); // threshold setting - distance user has to scroll up to reveal header (px)
         var navbarHeight = $('.header').outerHeight();
-        // console.log(delta);
+        // small size, menu open:
+        // - top offset to be 57px less - show close menu button
+        // - menu-open is used in css:
+        $( "#toggle" ).change(function() {
+            $('.header').toggleClass('menu-open');
+        });
         
         // activate function when user scrolls
         $(window).scroll(function(event){
@@ -52,6 +59,8 @@
             if (st > lastScrollTop && st > navbarHeight){
                 // scroll down - add .up class
                 $('.header').removeClass('down').addClass('up');
+                // hide all opened sub-menus + set attr to false
+                $('.main-menu .menu-item-has-children > a').attr('aria-expanded', 'false').next().slideUp(250);
             } else {
                 // scroll up - add .down class
                 if (st + $(window).height() < $(document).height()) {
@@ -65,7 +74,29 @@
         
         
         // ––––––––––––––––––––––––––––––––––––––––––––––––––
-        // 3 - menu: abbreviated text for mid sized screens
+        // 3 - menu: js sub-menu dropdowns
+        $('.main-menu .menu-item-has-children > a').click(function(e){
+            e.preventDefault();
+
+            if ( $(e.target).attr('aria-expanded') == 'false' ) {
+                
+                // hide all other opened sub-menus + set attr to false
+                $('.main-menu .menu-item-has-children > a').attr('aria-expanded', 'false').next().slideUp(250);
+
+                // show clicked items children
+                $(e.target).attr('aria-expanded', 'true').next().slideDown(250);
+            } else {
+                $(e.target).attr('aria-expanded', 'false').next().slideUp(250);
+            }
+        });
+        
+        
+        
+        
+        
+        
+        // ––––––––––––––––––––––––––––––––––––––––––––––––––
+        // 4 - menu: abbreviated text for mid sized screens
         // - note: css sets large menu at 800px
         $( window ).resize(function() {
             var resize = true; // let menuMedium know that it has been called after document resize
@@ -137,7 +168,7 @@
 
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
-    // 4 - cookie bar notice
+    // 5 - cookie bar notice
     var bar_state = $.cookie('cookie_bar_hide');
 
     if( bar_state !== "hidden" ) {
@@ -168,7 +199,7 @@
 
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
-    // 5 - mediator profile reveal
+    // 6 - mediator profile reveal
     $('.mediator-profile .full-profile').addClass('hidden');
     $('.mediator-profile .button').click(function(e){
         e.preventDefault();
@@ -180,7 +211,7 @@
 
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
-    // 6 - services parent page
+    // 7 - services parent page
     var desc = $('.serviceswrapper .button');
 
 
@@ -215,7 +246,7 @@
 
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
-    // 7 - staged column height matching
+    // 8 - staged column height matching
     // - works fine so long as it isnt used on the home page - WHY???
     function stageColumn(resize) {           
         

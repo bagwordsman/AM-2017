@@ -139,8 +139,7 @@
 		line-height : $height;
 		color : $colour;
 		background-color : $bg;
-		&:hover,
-		&:focus {
+		&:hover {
 			color : $hovColour;
 			background-color : $hovBg;
 		}
@@ -176,7 +175,14 @@
 			font-family: $font-icon;
 			content : icon('down');;
 		}
+		// css to handle adjactent active lis
+		// - Mediation Services and Fees and MIAMs can be active at the same time.
+		// - green item next to green item
+		&.current_page_ancestor + .current_page_item > a {
+			background-color : $green_light;
+		}	
 	}
+	
 
 	// large
 	@media (min-width: 800px){
@@ -194,9 +200,10 @@
 			display : inline-block;
 			padding : 0 1.5rem 0 0;
 			// reveal child items (list)
-			&:hover ul {
-				display : block;
-			}
+			// &:hover ul {
+			// 	display : block;
+			// }
+
 			// style links	
 			> a {
 				height : 38px;
@@ -205,10 +212,12 @@
 				color : $grey;
 				background-color : transparent;
 			}
+			// reset
 			> a:hover,
-			> a:focus,
+			// > a:focus,
 			&.current_page_item > a,
-			&.current_page_ancestor > a {
+			&.current_page_ancestor > a,
+			&.current_page_ancestor + .current_page_item > a {
 				color : $green;
 				background-color : transparent;
 			}
@@ -257,9 +266,9 @@
 	margin : 0;
 	display : none;
 	// show child items for current item only
-	.current_page_ancestor & {
-		display : block;
-	}
+	// .current_page_ancestor & {
+	// 	display : block;
+	// }
 
 	> li {
 		@include menuLi(40px, $grey_pale, $grey_menu, $white, $grey_menu, $white, $green_light);
@@ -286,10 +295,10 @@
 		font-size: 90%;
 		text-align : left;
 		// hide child items for current item only
-		.current_page_ancestor & {
-			display : none;
-		}
-		
+		// .current_page_ancestor & {
+		// 	display : none;
+		// }
+
 		> li {
 			> a {
 				padding : 0;
