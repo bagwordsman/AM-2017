@@ -6,7 +6,10 @@ div[class*="wrapper-"] img {
   height : auto; // keep in proportion
   margin : 3rem auto;
 }
-
+div[class*="wrapper-"] .card img {
+  margin : 0;
+  max-width : none;
+}
 .container p > img {
   height : auto;
   margin : 1.5rem auto 3rem;

@@ -5,7 +5,7 @@
 // 1) sidebars
 // 2) wrapping containers (and dividers)
 // 3) text alignment
-// 4) floated + narrow
+// 4) floated + narrow + plain pad-top
 // 5) site wide containers - used on multiple pages + posts etc.
 // - a) three stage columns (and pointers)
 // - b) affiliate logos
@@ -123,7 +123,7 @@ body.single-post {
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
-// 4) floated + narrow
+// 4) floated + narrow + pad top
 @media (min-width: 980px) {
   // right container - reverse the float
   .container--right .seven.columns {
@@ -139,7 +139,9 @@ body.single-post {
   }
 }
 
-
+.container.pad-top {
+  padding-top : 5rem;
+}
 
 
 
@@ -386,13 +388,24 @@ body.single-post {
         }
         // - small card layout is different
         @include cardSmall(250px, 180px);
-        h4 {
+
+        // page / post specific
+        .blog & {
+          h4 {
             padding-top : 2.5rem;
             transition : all ease-in-out .3s;
+          }
+          p {
+              color : $grey_light;
+          }
         }
-        p {
-            color : $grey_light;
+        .page-template-services-page & {
+          h2 {
+            padding-top : 2.5rem;
+            transition : all ease-in-out .3s;
+          }
         }
+       
         
     }
     
@@ -436,6 +449,7 @@ body.single-post {
             }
             .read-more,
             .overlay:hover ~ .card-content h1,
+            .overlay:hover ~ .card-content h2, // services page
             .overlay:hover ~ .card-content h4 {
                 color: nth($colour_codes, $i);
             }

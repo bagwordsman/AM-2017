@@ -2,15 +2,11 @@
 /**
  * Template Name: Able Services Parent Page
  * Description: Template for displaying Services Parent Page
- 
-
-* - auto populate services child pages here
-* - try and set priority with menu position
-* - try and add extra info in appearance > menus
-
-* - might want to look at markup for personal website here - tiles useful
-*
 */
+// - auto populate with child services page info (titles, excerpts, thumbnails)
+// - if a manual excerpt is not available, use the excerpt(length) function
+// - uses .card class (from featured post widget)
+// - option to increment colour for each container > add in theme options
 
 get_header(); ?>
 
@@ -20,13 +16,11 @@ get_header(); ?>
 	// main content area - first section
 	while ( have_posts() ) : the_post(); ?>
 
-	<div class="serviceswrapper">
+	<div class="wrapper-white">
+		<div class="container pad-top">
 
-		
-
-		<div>
 		<?php
-		// id="parent-<?php the_ID();
+		// get the child posts
 		$args = array(
 			'post_type'      => 'page',
 			'posts_per_page' => -1,
@@ -38,64 +32,62 @@ get_header(); ?>
 
 		if ( $parent->have_posts() ) :
 
-			// create counter - left or right containers
+			// create counter - container
 			$count = 0;
-			// start loop
+
+
+			// loop through posts:
 			while ( $parent->have_posts() ) : $parent->the_post();
 
-				// thumbnail function
-				$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "medium_large" );
-				if (has_post_thumbnail()) {
-					$thumbnail_url = $thumbnail[0];
-				} else {
-					$thumbnail_url = get_bloginfo('stylesheet_directory'). '/img/default-hero/able-home-hero.jpg';
-				}
+			// page / section variables
+			// - title is taken from appearance > menus, 'Main Menu'
+			// - fallback is page title
+			$postHeading = ( menu_label($post->ID, 'Main Menu') ? menu_label($post->ID, 'Main Menu') : get_the_title() );
 
-				// compose the thumbnail
-				echo '<div class="thumbnail third" style="background-image:url('.$thumbnail_url.');">';
-				?>
-				<a class="overlay" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" style="background-color:#70bf44"><!-- add bg colour based on image average -->
-					<div class="assistive-text">
-						<span class="h2"><?php the_title(); ?></span>
-					</div>
-				</a>
+			$postLink = get_the_permalink();
+			$thumbImg = get_the_post_thumbnail($post_id, 'widget-thumbnail');
+			// $thumbImgLink = get_edit_post_link( $post->post_id );
+			$excerpt = $post->post_excerpt;
 
-				<div class="info">
-					<div class="title">
-						<h2><?php the_title(); ?></h2>
-						<div class="button">Summary<i class="fa fa-chevron-down"></i></div>
-					</div>
-					<div class="description">
-						<?php
-						$excerpt = $post->post_excerpt;
-						if ($excerpt) {
-							echo '<p>'.$excerpt.'</p><a class="button orange solid" href="'.get_the_permalink().'">Go to Page<i class="fa fa-chevron-right"></i></a>';
-						} else {
-							$edit_link = get_edit_post_link( $post->post_id );
-							echo 'Site Admin to add post excerpt in:<br> <a class="red-text" href="'.$edit_link.'">page editor > excerpt</a>';
-						}
-						?>
-					</div>
+			echo '
+			<div class="four columns card green">
+				<a class="overlay" href="' . $postLink . '"><span class="hidden">' . $postHeading . '</span></a>
+				<div class="card-thumb">'. ( $thumbImg ? $thumbImg : '<div>add a thumbnail / featured image for this page.</div>') .'</div>
+				<div class="card-content">
+					<h2>' . $postHeading . '</h2>
+					<p>'. ( $excerpt ? $excerpt : excerpt(20) ) .'
+					</p>
+					<p><span class="read-more faux">Read More ></span></p>
 				</div>
-			</div><!-- thumbnail -->
+			</div>';
 
-			<?php endwhile; ?>
-
-		<?php endif; wp_reset_query(); ?>
-		</div>
-
-
-		<span class="divider white"></span>
-	</div><!-- services wrapper -->
+			if (($count + 1) % 3 == 0) {
+				echo '
+				</div><div class="container">
+				';
+			}
+			$count ++;
 
 
+			endwhile; // end loop
+			endif; // end posts
+			wp_reset_query();
+
+			?>
+		</div><!-- container -->
+
+
+		<span class="divider grey"></span>
+	</div><!-- wrapper -->
 
 
 
 
 
 
-	<div class="wrapper-white">
+
+
+	<div class="wrapper-grey">
 		<?php
 		$heading_1 = get_field('h1_heading');
 		$title_1 = get_the_title();
@@ -111,8 +103,8 @@ get_header(); ?>
 		</div>
 		';?>
 
-		<span class="divider grey"></span>
-	</div><!-- wrapper-white -->
+		<span class="divider white"></span>
+	</div>
 
 	
 	

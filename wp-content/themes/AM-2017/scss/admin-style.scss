@@ -2,6 +2,9 @@
 @import "variables/AM-variables", // have to import variables first
         "variables/AM-mixins",
 
+        // accordion - user guide widget
+        "components/accordion",
+
         // libraries
         "libraries/font-awesome.min",
         "libraries/jquery-ui.min",
@@ -9,6 +12,6 @@
         // admin specific
         "admin/admin-base",
         "admin/admin-mixins",
-        "admin/theme-options",
+        "admin/theme-settings", // inc. user guide
         "admin/mediator-profiles",
         "admin/in-page"

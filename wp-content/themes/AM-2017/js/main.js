@@ -212,26 +212,26 @@
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
     // 7 - services parent page
-    var desc = $('.serviceswrapper .button');
+    // var desc = $('.serviceswrapper .button');
 
 
     // on button click event
-    $(desc).on('click', function(e){
-        e.preventDefault;
-        var expndBtn = e.target;
+    // $(desc).on('click', function(e){
+    //     e.preventDefault;
+    //     var expndBtn = e.target;
         // console.log(expndBtn);
 
         // show description
-        if ( $( 'i', expndBtn ).hasClass('fa-chevron-down') ) {
+        // if ( $( 'i', expndBtn ).hasClass('fa-chevron-down') ) {
             // button chevrons
             // $( 'i', expndBtn ).removeClass('fa-chevron-down');
             // $( 'i', expndBtn ).addClass('fa-chevron-up');
             
             // alter the display
             // $( expndBtn ).closest('.title').next().slideToggle('250');
-            $( expndBtn ).closest('.info').addClass('add-summary');
-            $( expndBtn ).remove();
-        }
+            // $( expndBtn ).closest('.info').addClass('add-summary');
+            // $( expndBtn ).remove();
+        // }
         // else {
         //   // button chevrons
         //   $( 'i', expndBtn ).addClass('fa-chevron-down');
@@ -240,7 +240,7 @@
         //   $( expndBtn ).closest('.title').next().slideToggle( '250' );
         // }
 
-    });
+    // });
 
 
 

@@ -1,4 +1,6 @@
 // admin base setup
+// - fonts and general styles
+// - anything that doesn't fit anywhere else, e.g. appearance > menus tips (if required)
 
 
 
@@ -55,34 +57,25 @@ ul.admin-list {
 
 
 
-
-
-// ––––––––––––––––––––––––––––––––––––––––––––––––––
-// Custom Fields - page meta
-$cf_fields : 'Title Tag', 'Meta Description', 'Meta Keywords';
-$cf_colours : $pale_red, $pale_orange, $pale_green;
-
-@for $i from 1 through length($cf_fields) {
-  #the-list input[value="#{nth($cf_fields, $i)}"] {
-    background-color : nth($cf_colours, $i);
-    color : $black;
-  }
-}
-
-
-
-
-
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // Utility Classes
 .black--text,
 .dark {color : $black; }
 .light {color : $yellow; }
 
+.light-grey--text {color : $grey_light; }
 .red--text {color : $red; }
 .blue--text { color : $blue; }
 .green--text { color : $green; }
 .purple--text { color : $purple; }
+
+
+.p-red--bg { background-color : $pale_red; }
+.p-orange--bg { background-color : $pale_orange; }
+.p-green--bg { background-color : $pale_green; }
+
+
+
 
 .hidden { display : none; }
 
@@ -104,3 +97,8 @@ $cf_colours : $pale_red, $pale_orange, $pale_green;
 .top-margin--5-6 {margin-top:5.6rem;} // location fields
 .top-margin--7-6 {margin-top:7.6rem;} // api key field
 .top-margin--7-8 {margin-top:7.8rem !important;} // blog widget area title + blog nav checkbox(requires important)
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// appearance > menus tips

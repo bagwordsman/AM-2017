@@ -178,7 +178,9 @@ Basic Stylesheet
       top: -110px; }
     @media (min-width: 800px) {
       .header.up {
-        top: calc(-110px - 38px); } }
+        top: calc(-110px - 38px); }
+        .header.up.menu-open {
+          top: calc(-110px - 38px); } }
   .logged-in .header {
     top: 46px; }
     .logged-in .header.up {
@@ -464,6 +466,9 @@ body.page-template #content > div:not(.hero) .five.columns {
     display: block;
     margin: 0 auto;
     width: 56.6667%; } }
+.container.pad-top {
+  padding-top: 5rem; }
+
 .four.columns.stage {
   position: relative;
   width: 100%;
@@ -643,11 +648,13 @@ body.page-template #content > div:not(.hero) .five.columns {
         .card.four.columns .card-thumb {
           right: 0;
           height: 180px; } }
+      .card.four.columns .card-thumb div {
+        padding: 2.5rem; }
       .card.four.columns .card-thumb img {
         position: absolute;
-        left: -50%;
-        max-width: none;
-        height: calc(250px - 10px); }
+        left: -75%;
+        min-height: calc(250px - 10px);
+        width: auto; }
         @media (min-width: 800px) {
           .card.four.columns .card-thumb img {
             position: relative;
@@ -666,11 +673,14 @@ body.page-template #content > div:not(.hero) .five.columns {
           left: 0;
           height: auto;
           padding: 0; } }
-    .card.four.columns h4 {
+    .blog .card.four.columns h4 {
       padding-top: 2.5rem;
       transition: all ease-in-out .3s; }
-    .card.four.columns p {
+    .blog .card.four.columns p {
       color: #b3b3b3; }
+    .page-template-services-page .card.four.columns h2 {
+      padding-top: 2.5rem;
+      transition: all ease-in-out .3s; }
   .card .overlay {
     z-index: 1;
     position: absolute;
@@ -700,6 +710,7 @@ body.page-template #content > div:not(.hero) .five.columns {
       background-color: #70bf44; }
     .card.green .read-more,
     .card.green .overlay:hover ~ .card-content h1,
+    .card.green .overlay:hover ~ .card-content h2,
     .card.green .overlay:hover ~ .card-content h4 {
       color: #70bf44; }
     .card.green .overlay:hover ~ .card-content .read-more {
@@ -710,6 +721,7 @@ body.page-template #content > div:not(.hero) .five.columns {
       background-color: #f07f37; }
     .card.orange .read-more,
     .card.orange .overlay:hover ~ .card-content h1,
+    .card.orange .overlay:hover ~ .card-content h2,
     .card.orange .overlay:hover ~ .card-content h4 {
       color: #f07f37; }
     .card.orange .overlay:hover ~ .card-content .read-more {
@@ -720,6 +732,7 @@ body.page-template #content > div:not(.hero) .five.columns {
       background-color: #7fc1ff; }
     .card.blue .read-more,
     .card.blue .overlay:hover ~ .card-content h1,
+    .card.blue .overlay:hover ~ .card-content h2,
     .card.blue .overlay:hover ~ .card-content h4 {
       color: #7fc1ff; }
     .card.blue .overlay:hover ~ .card-content .read-more {
@@ -730,6 +743,7 @@ body.page-template #content > div:not(.hero) .five.columns {
       background-color: #e74e42; }
     .card.red .read-more,
     .card.red .overlay:hover ~ .card-content h1,
+    .card.red .overlay:hover ~ .card-content h2,
     .card.red .overlay:hover ~ .card-content h4 {
       color: #e74e42; }
     .card.red .overlay:hover ~ .card-content .read-more {
@@ -1001,11 +1015,8 @@ body.page-template #content > div:not(.hero) .five.columns {
 .single #content .container {
   padding-bottom: 5rem; }
 .blog #content .wrapper-white .container,
-.blog #content .container.pad-top,
 .archive #content .wrapper-white .container,
-.archive #content .container.pad-top,
-.single #content .wrapper-white .container,
-.single #content .container.pad-top {
+.single #content .wrapper-white .container {
   padding-top: 5rem; }
 .blog #content > div:not(.hero) h1 a,
 .blog #content > div:not(.hero) h3 a,
@@ -1571,8 +1582,7 @@ a.red-text {
   transition: color ease-in-out .3s; }
   .read-more.faux {
     text-decoration: underline;
-    color: #70bf44;
-    margin-left: 1rem; }
+    color: #70bf44; }
 
 ul {
   list-style: disc inside; }
@@ -2017,6 +2027,10 @@ div[class*="wrapper-"] img {
   max-width: 100%;
   height: auto;
   margin: 3rem auto; }
+
+div[class*="wrapper-"] .card img {
+  margin: 0;
+  max-width: none; }
 
 .container p > img {
   height: auto;
@@ -2556,98 +2570,6 @@ a.ui-button:active, .ui-button:active,
   display: block; }
   .full-profile.hidden {
     display: none; }
-
-.serviceswrapper {
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 80px; }
-  .serviceswrapper > div:first-child {
-    float: none;
-    display: block;
-    margin: 0 auto; }
-    .serviceswrapper > div:first-child:after {
-      content: "";
-      display: table;
-      clear: both; }
-  .serviceswrapper .divider {
-    z-index: 4;
-    bottom: 0px; }
-
-.thumbnail {
-  position: relative;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-sizing: border-box; }
-  .thumbnail.third {
-    min-height: 300px;
-    height: 100vw;
-    display: block; }
-    @media (min-width: 660px) {
-      .thumbnail.third {
-        width: 50%;
-        height: 50vw;
-        max-height: 430px;
-        float: left; } }
-    @media (min-width: 1200px) {
-      .thumbnail.third {
-        width: 33.333333333%;
-        height: 33.333333333vw; } }
-  .thumbnail .overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-    opacity: 0;
-    transition: opacity ease-in-out .25s; }
-    .thumbnail .overlay:hover, .thumbnail .overlay:focus, .thumbnail .overlay:active {
-      cursor: pointer;
-      opacity: .25; }
-      .thumbnail .overlay:hover + .info, .thumbnail .overlay:focus + .info, .thumbnail .overlay:active + .info {
-        z-index: 3; }
-  .thumbnail .info {
-    position: relative;
-    max-width: auto;
-    z-index: 3;
-    display: inline-block;
-    background-color: rgba(112, 191, 68, 0.75);
-    padding: 2rem 2.5rem;
-    box-sizing: border-box;
-    border-radius: 0 0 1.5rem 0;
-    transition: all ease-in-out .25s; }
-    .thumbnail .info.add-summary {
-      max-width: 90%; }
-      .thumbnail .info.add-summary .description {
-        display: block;
-        max-width: 100%; }
-  .thumbnail .title h2 {
-    color: #ffffff;
-    font-size: 2.4rem;
-    letter-spacing: 0.04rem;
-    line-height: 1.6; }
-  .thumbnail .description {
-    color: #ffffff;
-    display: none;
-    max-width: 0%;
-    transition: all ease-in-out .25s; }
-    .thumbnail .description p {
-      margin: 0; }
-    .thumbnail .description a.button {
-      margin: 1.25rem 0 0; }
-  .thumbnail .button,
-  .thumbnail a.button {
-    margin: 0 0 1.25rem;
-    font-size: 2.1rem;
-    color: #ffffff;
-    border-color: #ffffff; }
-    .thumbnail .button .fa,
-    .thumbnail a.button .fa {
-      margin-top: -4px;
-      pointer-events: none; }
 
 /*
 order in original css:

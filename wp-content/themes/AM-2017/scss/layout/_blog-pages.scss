@@ -1,15 +1,5 @@
 // Blog Pages
-// - includes some resets for widgets
-
-// a) index / blogroll / categories / tags
-// - home.php
-// - category.php, tag.php
-// - pages nav
-
-// b) single posts
-// - single.php
-
-
+// - home.php, category.php, tag.php, single.php
 
 // 1) - resets
 // 2) - post types
@@ -31,8 +21,7 @@
   .container {
     padding-bottom : 5rem;
   }
-  .wrapper-white .container,
-  .container.pad-top {
+  .wrapper-white .container {
     padding-top : 5rem;
   }
   // link reset

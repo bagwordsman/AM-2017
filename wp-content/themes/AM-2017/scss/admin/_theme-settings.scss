@@ -1,4 +1,5 @@
-// theme options scss
+// theme settings scss
+// - also covers user guide widget on dashboard page
 
 $sections: (
   // tab
@@ -16,7 +17,9 @@ $sections: (
   "tweet" : '.AM2017--options form#tweet',
   "map" : '.AM2017--options form#gmap',
   "blog" : '.AM2017--options form#blog',
-  "analytics" : '.AM2017--options form#analytics'
+  "analytics" : '.AM2017--options form#analytics',
+  // welcome panel
+  "guide" : '#user_guide'
 );
 @function sections($key) {
   @return map-get($sections, $key);
@@ -84,28 +87,51 @@ $sections: (
     font-family : $font-main;
     color : $grey;
   }
-  > div h1,
-  > div h2 {
-    margin-top : 0;
-    margin-bottom : 1rem;
-    font-weight : $bold;
-    line-height : 1.8;
-    color : $grey;
+  > div {
+    @include headingText;
   }
-  > div h1 { font-size: 3.0rem; letter-spacing: 0.02rem; }
-  > div h2 { font-size: 2.4rem; letter-spacing: 0.04rem; }
-  > div h3 { font-size: 2.1rem; letter-spacing: 0.05rem; }
-  > div h4 { font-size: 1.8rem; letter-spacing: 0.06rem; }
 }
 
 
-
-
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// dashboard widget - user guide
+#{sections('guide')} {
+  .quick-links {
+    @include headingText;
+    hr {
+      margin : 2.5rem 0;
+    }
+    > div h4 {
+      color : $grey;
+    }
+    li {
+      margin-bottom : 1rem;
+    }
+    .ui-accordion {
+      font-family: $font-main;
+      h4 {
+        margin : 0;
+        padding : .25em .5em .25em .7em;
+        &.ui-state-active {
+          color : $white;
+        }
+      }
+      
+    }
+  }
+}
+// reset jquery ui
+// - could load a portion of this only, it is required for sliders for google maps + header offset
+.ui-state-active .ui-icon,
+.ui-state-active.ui-state-hover .ui-icon {
+  background-image : url("../img/ui-icons_white.png") !important; // override ui css loaded on admin side
+}
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
-// quick links
-.quick-links {
+// quick links and user guide
+.quick-links,
+#dashboard-widgets .inside .quick-links {
   margin-top : 2.5rem;
   > h3 {
     @include contextHeading($white, $green);
@@ -113,24 +139,23 @@ $sections: (
   > div {
     @include roundDiv($green, $white);
   }
-  
-  p, ul {
+  // text styles
+  p, ul, ol {
     font-size : 1.4em;
     line-height : 1.4;
   }
   p { 
-    margin-bottom : 0;
+  margin-bottom : 0;
   }
   a {
-    text-decoration : none;
-    color : $green;
-    &:hover {
-      color : $green_dark;
-    }
+  text-decoration : none;
+  color : $green;
+      &:hover {
+          color : $green_dark;
+      }
   }
 
-
-  // 4 sections (3 divs + p)
+  
   > div {
     // may as well use flexbox, client uses modern browsers
     padding : 1rem;
@@ -138,8 +163,16 @@ $sections: (
     background-color : $white;
     @media (min-width: 980px) {
       display : flex;
+      // home page - 2 sections
+      &.home-widget > div {
+        width : 50%;
+        &:first-child {
+          margin-left : 0;
+        }
+      }
     }
 
+    // 4 sections (3 divs + p) - theme settings
     > p {
       @media (min-width: 980px) {
         align-self : center;

@@ -1,4 +1,105 @@
 @charset "UTF-8";
+.ui-helper-reset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  line-height: 1.3;
+  text-decoration: none;
+  font-size: 100%;
+  list-style: none; }
+
+.ui-accordion .ui-accordion-header {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  margin: 2px 0 0 0;
+  padding: .5em .5em .5em .7em;
+  font-size: 100%; }
+
+.ui-corner-top {
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px; }
+
+.ui-corner-bottom {
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px; }
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+  border: 1px solid #c5c5c5;
+  background: #f6f6f6;
+  font-weight: normal;
+  color: #454545; }
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active, .ui-button:active,
+.ui-button.ui-state-active:hover {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: normal;
+  color: #fff; }
+
+.ui-icon {
+  width: 16px;
+  height: 16px; }
+
+.ui-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -.25em;
+  position: relative;
+  text-indent: -99999px;
+  overflow: hidden;
+  background-repeat: no-repeat; }
+
+.ui-icon-triangle-1-s {
+  background-position: -65px -16px; }
+
+.ui-icon-triangle-1-e {
+  background-position: -32px -16px; }
+
+.ui-widget-content {
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #333; }
+
+.ui-state-default .ui-icon,
+.ui-state-default.ui-state-hover .ui-icon {
+  background-image: url("../img/ui-icons.png");
+  margin-right: 1rem; }
+
+.ui-state-active .ui-icon,
+.ui-state-active.ui-state-hover .ui-icon {
+  background-image: url("../img/ui-icons_white.png");
+  margin-right: 1rem; }
+
+.ui-widget {
+  font-family: "Asap", Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6; }
+  @media (min-width: 660px) {
+    .ui-widget {
+      font-size: 1.8rem; } }
+
+.ui-accordion .ui-accordion-content {
+  padding: 2.5rem 4rem 1rem;
+  line-height: 1.6;
+  border-top: 0;
+  overflow: auto; }
+
+.accordion {
+  text-align: left; }
+  .accordion .ui-state-active {
+    background-color: #70bf44;
+    border: 1px solid #599b35; }
+
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -3717,24 +3818,15 @@ body {
 ul.admin-list {
   list-style: disc inside; }
 
-#the-list input[value="Title Tag"] {
-  background-color: #f6859e;
-  color: #000000; }
-
-#the-list input[value="Meta Description"] {
-  background-color: #f6bf85;
-  color: #000000; }
-
-#the-list input[value="Meta Keywords"] {
-  background-color: #a2f685;
-  color: #000000; }
-
 .black--text,
 .dark {
   color: #000000; }
 
 .light {
   color: #edd44b; }
+
+.light-grey--text {
+  color: #b3b3b3; }
 
 .red--text {
   color: #e74e42; }
@@ -3747,6 +3839,15 @@ ul.admin-list {
 
 .purple--text {
   color: #551a8b; }
+
+.p-red--bg {
+  background-color: #f6859e; }
+
+.p-orange--bg {
+  background-color: #f6bf85; }
+
+.p-green--bg {
+  background-color: #a2f685; }
 
 .hidden {
   display: none; }
@@ -3819,14 +3920,57 @@ ul.admin-list {
   letter-spacing: 0.04rem; }
 .AM2017--options > div h3 {
   font-size: 2.1rem;
-  letter-spacing: 0.05rem; }
+  letter-spacing: 0.05rem;
+  font-weight: 700; }
 .AM2017--options > div h4 {
   font-size: 1.8rem;
-  letter-spacing: 0.06rem; }
+  letter-spacing: 0.06rem;
+  font-weight: 700; }
 
-.quick-links {
+#user_guide .quick-links h1,
+#user_guide .quick-links h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.8;
+  color: #6a6a6a; }
+#user_guide .quick-links h1 {
+  font-size: 3.0rem;
+  letter-spacing: 0.02rem; }
+#user_guide .quick-links h2 {
+  font-size: 2.4rem;
+  letter-spacing: 0.04rem; }
+#user_guide .quick-links h3 {
+  font-size: 2.1rem;
+  letter-spacing: 0.05rem;
+  font-weight: 700; }
+#user_guide .quick-links h4 {
+  font-size: 1.8rem;
+  letter-spacing: 0.06rem;
+  font-weight: 700; }
+#user_guide .quick-links hr {
+  margin: 2.5rem 0; }
+#user_guide .quick-links > div h4 {
+  color: #6a6a6a; }
+#user_guide .quick-links li {
+  margin-bottom: 1rem; }
+#user_guide .quick-links .ui-accordion {
+  font-family: "Asap", Helvetica, Arial, sans-serif; }
+  #user_guide .quick-links .ui-accordion h4 {
+    margin: 0;
+    padding: .25em .5em .25em .7em; }
+    #user_guide .quick-links .ui-accordion h4.ui-state-active {
+      color: #ffffff; }
+
+.ui-state-active .ui-icon,
+.ui-state-active.ui-state-hover .ui-icon {
+  background-image: url("../img/ui-icons_white.png") !important; }
+
+.quick-links,
+#dashboard-widgets .inside .quick-links {
   margin-top: 2.5rem; }
-  .quick-links > h3 {
+  .quick-links > h3,
+  #dashboard-widgets .inside .quick-links > h3 {
     display: inline-block;
     font-style: italic;
     margin: 0;
@@ -3837,7 +3981,8 @@ ul.admin-list {
     border-radius: 2.5rem 2.5rem 0 0;
     color: #ffffff;
     background-color: #70bf44; }
-  .quick-links > div {
+  .quick-links > div,
+  #dashboard-widgets .inside .quick-links > div {
     position: relative;
     border: 5px solid #70bf44;
     border-radius: 2.5rem;
@@ -3845,37 +3990,56 @@ ul.admin-list {
     padding: 2.5rem;
     box-sizing: border-box;
     background-color: #ffffff; }
-  .quick-links p, .quick-links ul {
+  .quick-links p, .quick-links ul, .quick-links ol,
+  #dashboard-widgets .inside .quick-links p,
+  #dashboard-widgets .inside .quick-links ul,
+  #dashboard-widgets .inside .quick-links ol {
     font-size: 1.4em;
     line-height: 1.4; }
-  .quick-links p {
+  .quick-links p,
+  #dashboard-widgets .inside .quick-links p {
     margin-bottom: 0; }
-  .quick-links a {
+  .quick-links a,
+  #dashboard-widgets .inside .quick-links a {
     text-decoration: none;
     color: #70bf44; }
-    .quick-links a:hover {
+    .quick-links a:hover,
+    #dashboard-widgets .inside .quick-links a:hover {
       color: #599b35; }
-  .quick-links > div {
+  .quick-links > div,
+  #dashboard-widgets .inside .quick-links > div {
     padding: 1rem;
     box-sizing: border-box;
     background-color: #ffffff; }
     @media (min-width: 980px) {
-      .quick-links > div {
-        display: flex; } }
+      .quick-links > div,
+      #dashboard-widgets .inside .quick-links > div {
+        display: flex; }
+        .quick-links > div.home-widget > div,
+        #dashboard-widgets .inside .quick-links > div.home-widget > div {
+          width: 50%; }
+          .quick-links > div.home-widget > div:first-child,
+          #dashboard-widgets .inside .quick-links > div.home-widget > div:first-child {
+            margin-left: 0; } }
     @media (min-width: 980px) {
-      .quick-links > div > p {
+      .quick-links > div > p,
+      #dashboard-widgets .inside .quick-links > div > p {
         align-self: center; } }
-    .quick-links > div > div {
+    .quick-links > div > div,
+    #dashboard-widgets .inside .quick-links > div > div {
       margin-top: 2.5rem; }
       @media (min-width: 980px) {
-        .quick-links > div > div {
+        .quick-links > div > div,
+        #dashboard-widgets .inside .quick-links > div > div {
           margin-top: 0;
           width: 27%;
           margin-left: 4%; } }
-      .quick-links > div > div.first {
+      .quick-links > div > div.first,
+      #dashboard-widgets .inside .quick-links > div > div.first {
         margin-top: 0; }
         @media (min-width: 980px) {
-          .quick-links > div > div.first {
+          .quick-links > div > div.first,
+          #dashboard-widgets .inside .quick-links > div > div.first {
             margin-left: 0;
             width: 40%; } }
 
@@ -4383,23 +4547,21 @@ ul.admin-list {
       #mediator-profile div[aria-label="Horizontal line"] button .mce-ico:hover {
         background-color: transparent; }
 
-#poststuff #postimagediv h2 {
+#poststuff #postimagediv h2, #slugdiv h2, #postexcerpt h2 {
   background-color: #70bf44;
   color: #ffffff;
   font-size: 18px;
   line-height: 1.6em; }
-#poststuff #postimagediv .inside:before {
-  content: 'Upload a Hero Image. This should be at least 1800px wide - for wide screens.';
+
+#poststuff #postimagediv .inside:before, #slugdiv .inside:after, #postexcerpt .inside:after {
   display: inline-block;
   color: #000000;
   font-size: 16px;
   line-height: 1.6em; }
 
-#slugdiv h2 {
-  background-color: #70bf44;
-  color: #ffffff;
-  font-size: 18px;
-  line-height: 1.6em; }
+#poststuff #postimagediv .inside:before {
+  content: 'Upload a Hero Image. This should be at least 1800px wide - for wide screens.'; }
+
 #slugdiv .inside input[type="text"],
 #slugdiv .inside select,
 #slugdiv .inside textarea {
@@ -4421,11 +4583,44 @@ ul.admin-list {
 #slugdiv .inside input[type="text"] {
   min-width: 250px; }
 #slugdiv .inside:after {
-  content: 'Copy and paste the slug into Featured Post Widget to show in the footer of the blog. Make sure you add a featured image here first.';
-  display: inline-block;
-  color: #000000;
-  font-size: 16px;
-  line-height: 1.6em; }
+  content: 'Copy and paste the slug into Featured Post Widget to show in the footer of the blog. Make sure you add a featured image here first.'; }
+
+#postexcerpt .inside input[type="text"],
+#postexcerpt .inside select,
+#postexcerpt .inside textarea {
+  font-size: 1.2rem;
+  font-weight: 400;
+  height: 38px;
+  line-height: 38px;
+  box-shadow: none;
+  color: #6a6a6a;
+  border: 2px solid #6a6a6a; }
+  #postexcerpt .inside input[type="text"]:focus,
+  #postexcerpt .inside select:focus,
+  #postexcerpt .inside textarea:focus {
+    box-shadow: none;
+    border: 2px solid #f07f37; }
+#postexcerpt .inside textarea {
+  height: auto;
+  line-height: 1.4; }
+#postexcerpt .inside textarea {
+  min-height: calc(38px * 3); }
+#postexcerpt .inside:after {
+  content: 'Write custom excerpts for each of the services pages. These will appear on the Services Pages Page, \'About Our Services\'. If is not included, the excerpt will show the first 20 characters of the page content.';
+  margin-top: 20px;
+  color: #e74e42; }
+
+#the-list input[value="Title Tag"] {
+  background-color: #f6859e;
+  color: #000000; }
+
+#the-list input[value="Meta Description"] {
+  background-color: #f6bf85;
+  color: #000000; }
+
+#the-list input[value="Meta Keywords"] {
+  background-color: #a2f685;
+  color: #000000; }
 
 ul.acf-checkbox-list li input[type="checkbox"],
 ul.acf-radio-list li input[type="radio"] {

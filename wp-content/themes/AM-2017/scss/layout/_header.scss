@@ -38,6 +38,7 @@
   // admin bar (large) = 32px
 
   // menu-open = class added to the header - small menu toggled open
+  // - make a conditional to add in 57px button height
   
   // logged out
   &.up {
@@ -47,6 +48,9 @@
     }
     @media (min-width: 800px) {
       top : calc(-110px - 38px);
+      &.menu-open {
+        top : calc(-110px - 38px);
+      }
     }
   }
 

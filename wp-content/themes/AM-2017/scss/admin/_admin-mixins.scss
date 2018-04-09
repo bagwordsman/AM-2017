@@ -1,6 +1,24 @@
 // admin mixins
 // - acf scss has lots of repeated styles; suitable for mixins
 
+// text mixins
+@mixin headingText {
+    h1,
+    h2 {
+        margin-top : 0;
+        margin-bottom : 1rem;
+        font-weight : $bold;
+        line-height : 1.8;
+        color : $grey;
+    }
+    h1 { font-size: 3.0rem; letter-spacing: 0.02rem; }
+    h2 { font-size: 2.4rem; letter-spacing: 0.04rem; }
+    h3 { font-size: 2.1rem; letter-spacing: 0.05rem; font-weight : $bold; }
+    h4 { font-size: 1.8rem; letter-spacing: 0.06rem; font-weight : $bold; }
+}
+
+
+// content mixins
 @mixin box {
     &.no_box {
         margin-top : 5rem;
@@ -9,7 +27,6 @@
         @content;
     }
 }
-
 
 @mixin content-white {
     // content

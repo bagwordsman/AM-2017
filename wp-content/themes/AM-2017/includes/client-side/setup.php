@@ -10,12 +10,13 @@
 // c) footer quick links menu
 // 3 - current class on wp_list_pages()
 // 4 - excerpt lengths
-// 5 - 
+// 5 - services page parent:
+// - nav labels as titles in posts loop
 
 
 
 // _______________________________________________________
-// 1) register post formats, menus, post thumbnails, set thumbnail size
+// 1 - register post formats, menus, post thumbnails, set thumbnail size
 function AM2017_setup() {
 
 	// support a variety of post formats.
@@ -125,15 +126,33 @@ function custom_read_more() {
 function excerpt($limit) {
     return wp_trim_words(get_the_excerpt(), $limit, custom_read_more());
 }
-
-
-// _______________________________________________________
-// 5 - custom excerpt lengths
+// format excerpt with read more
 function echo_formatted_content ($more_link_text = '(more...)', $stripteaser = 0, $more_file = '') {
 	$content = get_the_content($more_link_text, $stripteaser, $more_file);
 	$content = apply_filters('the_content', $content);
 	$content = str_replace(']]>', ']]&gt;', $content);
 	return $content;
+}
+
+
+
+
+// _______________________________________________________
+// 5 - services page parent
+
+// a) nav labels as titles in posts loop
+// - use same page titles in appearance > menus as alternative titles for posts
+// - need shorter versions of titles
+function menu_label($post_id, $menu) {
+    $menu_title = '';
+    $nav = wp_get_nav_menu_items($menu);
+    foreach ( $nav as $item ) {
+        if ( $post_id == $item->object_id ) {
+            $menu_title = $item->post_title;
+            break;
+        }
+    }
+    return ($menu_title !== '') ? $menu_title : get_the_title($post_id);
 }
 
 

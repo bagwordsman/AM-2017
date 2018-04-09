@@ -4,23 +4,28 @@
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Non ACF
-
+%greenHeading {
+  background-color : $green;
+  color : $white;
+  font-size : 18px;
+  line-height : 1.6em;
+}
+%helperPara {
+  display : inline-block;
+  color : $black;
+  font-size : 16px;
+  line-height : 1.6em;
+}
 
 // –––––––––––––––––––––––––
 // hero image
 #poststuff #postimagediv {
   h2 {
-    background-color : $green;
-    color : $white;
-    font-size : 18px;
-    line-height : 1.6em;
+    @extend %greenHeading;
   }
   .inside:before {
     content : 'Upload a Hero Image. This should be at least 1800px wide - for wide screens.';
-    display : inline-block;
-    color : $black;
-    font-size : 16px;
-    line-height : 1.6em;
+    @extend %helperPara;
   }
 }
 
@@ -29,10 +34,7 @@
 // slug
 #slugdiv {
   h2 {
-    background-color : $green;
-    color : $white;
-    font-size : 18px;
-    line-height : 1.6em;
+    @extend %greenHeading;
   }
   .inside {
     @include form-fields;
@@ -41,11 +43,44 @@
     }
     &:after {
       content : 'Copy and paste the slug into Featured Post Widget to show in the footer of the blog. Make sure you add a featured image here first.';
-      display : inline-block;
-      color : $black;
-      font-size : 16px;
-      line-height : 1.6em;
+      @extend %helperPara;
     }
+  }
+}
+
+
+// –––––––––––––––––––––––––
+// excerpt
+#postexcerpt {
+  h2 {
+    @extend %greenHeading;
+  }
+  .inside {
+    @include form-fields;
+    textarea {
+      min-height : calc(38px * 3);
+    }
+    &:after {
+      content : 'Write custom excerpts for each of the services pages. These will appear on the Services Pages Page, \'About Our Services\'. If is not included, the excerpt will show the first 20 characters of the page content.';
+      @extend %helperPara;
+      margin-top : 20px;
+      color : $red;
+    }
+  }
+}
+
+
+
+
+// –––––––––––––––––––––––––
+// custom fields - page meta
+$cf_fields : 'Title Tag', 'Meta Description', 'Meta Keywords';
+$cf_colours : $pale_red, $pale_orange, $pale_green;
+
+@for $i from 1 through length($cf_fields) {
+  #the-list input[value="#{nth($cf_fields, $i)}"] {
+    background-color : nth($cf_colours, $i);
+    color : $black;
   }
 }
 

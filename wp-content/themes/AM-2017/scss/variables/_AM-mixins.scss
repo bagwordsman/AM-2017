@@ -153,11 +153,17 @@
             height : $heightLg;
         }
 
+        div {
+            padding : 2.5rem;
+        }
+
         img {
             position : absolute;
-            left : -50%;
-            max-width : none;
-            height : calc(#{$heightSm} - 10px);
+            left : -75%;
+            // max-width : none;
+            min-height : calc(#{$heightSm} - 10px);
+            width : auto;
+            // height : 100%;
             @media (min-width: 800px) {
                 position : relative;
                 left : 0;
@@ -184,7 +190,7 @@
 }
 
 
-//
+// latest post
 @mixin cardLarge($height) {
     padding-top : $height;
     overflow : hidden;
