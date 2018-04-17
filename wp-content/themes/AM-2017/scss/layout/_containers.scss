@@ -23,7 +23,7 @@
 
 // sidebars
 // - pages (not blog) - top border
-body.page-template #content > div:not(.hero) {
+body.page-template #content > div:not(.hero-section) {
   .five.columns {
     @include topBorderPara;
   }
@@ -32,7 +32,7 @@ body.page-template #content > div:not(.hero) {
 // - home page + single posts - align to left
 body.home,
 body.single-post {
-  #content > div:not(.hero){
+  #content > div:not(.hero-section){
     @media (min-width: 980px) {
       .seven.columns + .five.columns {
         margin-left : 0;
@@ -45,10 +45,14 @@ body.single-post {
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // 2) wrapping containers
+// - .wrapper and .divider work together
 %wrapper {
   overflow : hidden;
   position : relative;
-  padding-bottom : 220px;
+  padding-bottom : 140px;
+  @media (min-width: 660px) {
+    padding-bottom : 210px;
+  }
 }
 .wrapper-white {
   @extend %wrapper;
@@ -62,7 +66,7 @@ body.single-post {
 
 // content dividers
 .divider {
-  bottom : 80px;
+  bottom : 50px;
   position : absolute;
   width : 100%;
   display : block; // required for safari
@@ -72,8 +76,11 @@ body.single-post {
       left : 0;
       position : absolute;
       right : 0;
-      height: 220px;
+      height: 140px;
       top: -20px;
+      @media (min-width: 660px) {
+        height: 210px;
+      }
   }
   // left side
   &:before {
@@ -320,33 +327,9 @@ body.single-post {
         font-weight : $normal;
         margin-bottom : 3rem;
     }
-    img {
-        width : auto;
-        height : auto;
-        max-width : 250px;
-        max-height : 200px;
-        margin : 1.5rem;
-        vertical-align : middle;
-        @media (min-width: 800px) {
-            img {
-                  margin : 0;
-                  margin-left : 3rem;
-              &:first-child {
-                  margin-left : 0;
-              }
-            }
-        }
-    }
+    @include galleryImg(900px, false);
 }
 
-
-
-
-// ________________
-// gradient backgrounds - just used on old animation?
-// .gradient-white-green {
-//   background : $vertical-green;
-// }
 
 
 // ________________
@@ -368,71 +351,94 @@ body.single-post {
 
 // ________________
 // d) card div
-// - latest post, featured post widge, services page parent
+// - used by: latest post, featured post widge, services page parent
+// - general setup in AM-mixins.scss
 // - smaller cards (not latest post) are the default
+
+// - needs to be more flexible - different landscape heights for different situations
 .card {
 
-    
+    // include padding + colour mixin:
     @include roundDiv($green, $white);
-
+    
     // - columns reset
     &.four.columns {
-        width : 100%;
-        margin-left : 0;
-        @media (min-width: 800px) {
-            width: 30.6666666667%;
-            margin-left: 4%;
-            &:first-child {
-              margin-left : 0;
-            }
+      width : 100%;
+      margin-left : 0;
+      @media (min-width: 900px) {
+        width: 30.6666666667%;
+        margin-left: 4%;
+        &:first-child {
+          margin-left : 0;
         }
-        // - small card layout is different
-        @include cardSmall(250px, 180px);
+      }
 
-        // page / post specific
-        .blog & {
-          h4 {
-            padding-top : 2.5rem;
-            transition : all ease-in-out .3s;
-          }
-          p {
-              color : $grey_light;
-          }
+
+      // portrait is default
+      @include cardPortrait(180px);
+      
+      // landscape for mid-widths
+      @media (orientation: landscape), (min-width: 550px) {
+        @include cardLandscape(250px);
+      }
+
+      // portrait for large
+      @media (min-width: 900px) {
+        @include landscapeReset(180px);
+        @include cardPortrait(180px);
+      }
+
+      
+
+
+      // include card (landscape height, portrait image height)
+      // @include cardDuo(250px, 180px);
+
+      // blog
+      .blog & {
+        h4 {
+          padding-top : 2.5rem;
+          transition : all ease-in-out .3s;
         }
-        .page-template-services-page & {
-          h2 {
-            padding-top : 2.5rem;
-            transition : all ease-in-out .3s;
-          }
+        p {
+            color : $grey_light;
         }
+      }
+      // services page
+      .page-template-services-page & {
+        h2 {
+          padding-top : 2.5rem;
+          transition : all ease-in-out .3s;
+        }
+      }
        
         
     }
     
     
-    // universal styles
+    // universal styles - used by portrait and landscape mixins
     // - link
     .overlay {
-        z-index : 1;
-        position : absolute;
-        top : 0;
-        bottom : 0;
-        left : 0;
-        right : 0;
-        &:hover + .card-thumb img {
-            transform : scale(1.125);
-        }
+      z-index : 1;
+      position : absolute;
+      top : 0;
+      bottom : 0;
+      left : 0;
+      right : 0;
+      &:hover + .card-thumb img {
+        transform : scale(1.125);
+      }
     }
     img {
-        transition : transform ease-in-out .5s;
+      transition : transform ease-in-out .5s;
     }
     p {
-        margin-bottom : 0;
+      margin-bottom : 0;
     }
     .author {
-        @include labelLink;
-        background-color : $grey;
-        margin : 0 .5rem;
+      @include labelLink;
+      background-color : $grey;
+      margin : 0 .5rem;
     } 
     
     
@@ -442,21 +448,21 @@ body.single-post {
     $colour_codes : $green, $orange, $blue, $red;
     $colours_dark : $green_dark, $orange_dark, $blue_dark, $red_dark;
     @for $i from 1 through length($colours) {
-        &.#{nth($colours, $i)} {
-            border-color: nth($colour_codes, $i);
-            .author {
-                background-color: nth($colour_codes, $i);
-            }
-            .read-more,
-            .overlay:hover ~ .card-content h1,
-            .overlay:hover ~ .card-content h2, // services page
-            .overlay:hover ~ .card-content h4 {
-                color: nth($colour_codes, $i);
-            }
-            .overlay:hover ~ .card-content .read-more {
-              color: nth($colours_dark, $i);
-          }
+      &.#{nth($colours, $i)} {
+        border-color: nth($colour_codes, $i);
+        .author {
+          background-color: nth($colour_codes, $i);
         }
+        .read-more,
+        .overlay:hover ~ .card-content h1,
+        .overlay:hover ~ .card-content h2, // services page
+        .overlay:hover ~ .card-content h4 {
+          color: nth($colour_codes, $i);
+        }
+        .overlay:hover ~ .card-content .read-more {
+        color: nth($colours_dark, $i);
+      }
     }
+  }
 
 }

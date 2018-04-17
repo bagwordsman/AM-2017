@@ -132,7 +132,7 @@ get_header(); ?>
 	$fullwidth_3 = get_field('last_section_-_full_width');
 
 
-	echo '<div class="wrapper-grey">';
+	echo '<div class="wrapper-white">';
 
 
 
@@ -159,26 +159,8 @@ get_header(); ?>
 
 
 <?php
-// linked page
-$header_5 = get_field('linked_page_header');
-$link_5 = get_field('linked_page_link');
-$content_5 = get_field('linked_page_content');
-$linked_contents = explode('<hr />', $content_5);
-$color_5 = get_field('linked_page_colour');
-
-if ($header_5 && $link_5 && $content_5) {
-	echo '
-	<a href="'. $link_5 .'" id="secondary" role="complementary"'. ( $color_5 ? ( 'class="'. $color_5 .'"' )  : '') .'>
-		<div class="thumbnail">
-				<h3>'. $header_5 .'</h3>'. strip_tags($linked_contents[0], '<img>') .'
-				<div class="secondary--divider"></div>
-		</div>
-		<div class="text">
-				'. strip_tags($linked_contents[1], '<p>') .'
-		</div>
-	</a><!-- #secondary -->
-	';
-}
+// in page cta - page-content.php
+pageCta();
 ?>
 
 <?php get_footer(); ?>

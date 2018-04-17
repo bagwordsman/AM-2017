@@ -103,7 +103,7 @@
     // .card is at same level as h3
     .card {
       @include roundDiv($green, '');
-      @include cardLarge(250px);
+      @include cardPortrait(250px); // arg: card image height
     }
     h1 {
       padding-top : 2.5rem;
@@ -121,9 +121,14 @@
     @include topBorderPara;
     margin-top : 5rem;
     border-top : 10px solid $green;
-    &:first-child {
-      margin-top : 0;
+    @media (min-width: 660px) {
+      margin-top : 2.5rem;
+      &:first-child {
+        margin-top : 0;
+      }
     }
+    
+    
   }
 
 
@@ -169,6 +174,11 @@
 // a) advert
 .page-advert {
   @include roundDiv($grey, $white);
+  padding : 1.5rem;
+  @media (min-width: 660px) {
+    padding : 2.5rem;
+  }
+
   > div {
     text-align : center;
     @media (min-width: 660px) {
@@ -182,8 +192,9 @@
       }
     }
   }
+  // img {} - see images.scss
   .button:first-child {
-    margin-right : 2.5rem;
+    margin-right : 1rem;
   }
 }
 

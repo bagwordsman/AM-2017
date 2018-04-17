@@ -599,6 +599,7 @@ function sandbox_affiliates_options_callback() {
 
 
 // callback: logo callback
+// - this is specific to affiliates, therefore not in callbacks.php
 function img_callback($args) {
 	$main_options = get_option( 'sandbox_theme_affiliates_options' );
 	$value = $main_options[$args[0]];
@@ -606,6 +607,7 @@ function img_callback($args) {
 	'<div class="logogroup affiliate-logo_'.$args[1].'">
 		<img class="adminlogo" src="'. get_bloginfo('stylesheet_directory'). '/img/admin-img/affiliate-logo-default.jpg"/>
 		<input type="button" class="button button-primary" value="Upload Affiliate Logo '.$args[1].'" id="upload_'.$args[0].'"/>
+		<div><a class="button red solid" id="remove_'.$args[0].'">Remove Logo</a></div>
 		<!--<label for="'.$args[0].'">Image Location</label>-->
 		<input class="invisible" type="text" id="'.$args[0].'" name="sandbox_theme_affiliates_options['.$args[0].']" value="'.$value.'" />
 	</div>';

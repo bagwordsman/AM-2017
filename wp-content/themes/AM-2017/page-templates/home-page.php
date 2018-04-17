@@ -10,55 +10,22 @@ get_header();
 
 <div id="content" role="main">
 
-	<div class="hero">
-		<?php
-		$styling_options = get_option ( 'sandbox_theme_styling_options' );
-		$heromesh = $styling_options['heromesh'];
-		// hero image - post thumbnail (if set)
-		if (has_post_thumbnail()) {
-				the_post_thumbnail('full');
-		// output default img from theme (if not set)
-		} else {
-			echo '<img src="'. get_bloginfo('stylesheet_directory'). '/img/default-hero/able-home-hero.jpg" alt="'.get_bloginfo('name').'"/>';
-		}
-		?>
-		<div <?php if ($heromesh) echo 'class="mesh"'; ?>>
-		<div class="container">
-			<div class="seven columns" role="main">
+	<?php
+	$styling_options = get_option ( 'sandbox_theme_styling_options' );
+	$heromesh = $styling_options['heromesh'];
+	
+	// get page content to pass into hero:
+	while ( have_posts() ) : the_post();
+		$hero_content = get_the_content();
+		$hero_content = apply_filters('the_content', $hero_content);// apply filters adds html tags, e.g. <p></p>
+	endwhile;
+	$hero_right = get_field('hero_right_hand_content');
+	$hero_right_bg = get_field('hero_right_hand_background_colour');
+	
+	// pass in all info required into hero function:
+	heroSection($hero_content, $hero_right, $hero_right_bg);
+	?>
 
-				<?php
-				// main content / wordpress loop
-				while ( have_posts() ) : the_post(); ?>
-				<h1> <?php the_title(); ?></h1>
-				<?php the_content(); ?>
-				<?php
-				endwhile; ?>
-
-			</div>
-			<div class="five columns" role="complementary">
-				<?php
-				// hero right column
-
-				// could add an option for a quote here
-				$right_column = get_field('hero_right_hand_content');
-				$right_column_background = get_field('hero_right_hand_background_colour');
-
-				// output right column
-				if ($right_column) {
-					// add a colour if 'transparent' is not selected
-					if ($right_column_background !== 'transparent') {
-						echo '<div class="overlay' . ' ' . $right_column_background . '">' . $right_column . '</div>';
-					}
-					else if ($right_column_background === 'transparent') {
-						echo '<div class="overlay">' . $right_column . '</div>';
-					}
-				}
-				?>
-			</div>
-		</div>
-	</div>
-	<span class="divider white"></span>
-	</div><!-- hero -->
 
 
 
@@ -136,7 +103,7 @@ get_header();
 			echo ( $c1 || $c2 || $c3 ? ('</div>')  : '');
 
 			// end of content CTA
-			echo ( $cta ? ('<div class="container container--center container-narrow"><a href="'. $cta_buttonlink .'" class="button solid'. ( $cta_buttoncolour ? (' ' . $cta_buttoncolour)  :  ' green') .'">'. $cta .'</a></div>')  : '');
+			echo ( $cta ? ('<div class="container container--center container-narrow"><a href="'. $cta_buttonlink .'" class="button solid cta-btn'. ( $cta_buttoncolour ? (' ' . $cta_buttoncolour)  :  ' green') .'">'. $cta .'</a></div>')  : '');
 
 
 		if ($header_3 || $content_3) {
@@ -154,27 +121,10 @@ get_header();
 </div><!-- #content -->
 
 
-<!-- linked page -->
-<?php
-$header_5 = get_field('linked_page_header');
-$link_5 = get_field('linked_page_link');
-$content_5 = get_field('linked_page_content');
-$linked_contents = explode('<hr />', $content_5);
-$color_5 = get_field('linked_page_colour');
 
-if ($header_5 && $link_5 && $content_5) {
-	echo '
-	<a href="'. $link_5 .'" id="secondary" role="complementary"'. ( $color_5 ? ( 'class="'. $color_5 .'"' )  : '') .'>
-		<div class="thumbnail">
-			<h3>'. $header_5 .'</h3>'. strip_tags($linked_contents[0], '<img>') .'
-			<div class="secondary--divider"></div>
-		</div>
-		<div class="text">
-			'. strip_tags($linked_contents[1], '<p>') .'
-		</div>
-	</a><!-- #secondary -->
-	';
-}
+<?php
+// in page cta - page-content.php
+pageCta();
 ?>
 
 <?php get_footer(); ?>

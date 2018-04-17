@@ -113,9 +113,10 @@ if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.
 	// determine the type of Call to Action
 	if ($cta_type !== 'none') {
 		$cta = '<div class="nine columns contact">';
+
 		// phone
 		if ($cta_type == 'phone') {
-			$cta = $cta . '<a class="button '.$cta_colour.' solid phone" href="tel:'.$dial.'" title="call us"><span>Call Us:</span>'.$phone.'</a>';
+			$cta = $cta . '<a class="button '.$cta_colour.' solid phone" href="tel:'.$dial.'" title="call us">Call Us<span class="phone--number">'.$phone.'</span></a>';
 		}
 		// other
 		else {

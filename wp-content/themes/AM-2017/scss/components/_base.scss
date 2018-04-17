@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.6;
 }
 h1 {
-  font-size: 3.6rem;
+  font-size: 2.8rem;
   letter-spacing: 0.02rem;
 }
 h2 {
@@ -89,7 +89,8 @@ a {
   }
   // regular text links
   // div:not(.post) &
-  #content > div:not(.hero) & {
+  // #content > div & {
+  #content > div:not(.hero-section) & {
     text-decoration : underline;
     &.button {
       text-decoration : none;
@@ -135,7 +136,8 @@ a.red-text {
 // Lists
 ul {
   list-style : disc inside;
-  #content > div:not(.hero) & {
+  #content > div:not(.hero-section) & {
+  // #content > div:not(.hero) & {
     list-style-position : outside;
     margin-left : 1.8rem;    
   }
@@ -158,27 +160,6 @@ ol ul {
 // li
 li {
   margin-bottom: 1rem;
-  // page content
-  
-  // #content .container div:not(.widget) & {
-  //   margin-bottom : .5rem;
-  // }
-
-
-  // checklist - stars - where is this used?
-  // .sub-columns & {
-  //   position : relative;
-  //   padding-left : 3rem;
-  //   list-style : none;
-  //   &:before {
-  //     position : absolute;
-  //     top : 0;
-  //     left : 0;
-  //     font-family : 'FontAwesome';
-  //     content : "\f00c";
-  //     color : $orange;
-  //   }
-  // }
 }
 
 

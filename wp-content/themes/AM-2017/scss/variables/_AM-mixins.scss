@@ -128,31 +128,30 @@
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // 2) elements
-@mixin cardSmall($heightSm, $heightLg) {
-    height : $heightSm;
-    overflow : hidden;
-    @media (min-width: 800px) {
-        height : auto;
-        padding-top : $heightLg;
-    }
 
+// card: featured post, services page, latest post
+// - landscape and portrait
+// - portrait only over a certain breakpoint, portrait = default
+
+// - styles that apply to both mixins are added directly into .card class
+
+// card: landscape
+@mixin cardLandscape($height) {
+    
+    height : $height;
+    overflow : hidden;
+
+    // image
     .card-thumb {
         position : absolute;
         top : 0;
         left : 0;
         right : 65%;
-        //
         background-color : $grey_pale;
         color : $grey;
         text-align : center;
-        // 
-        height : calc(#{$heightSm} - 10px);
+        height : calc(#{$height} - 10px);
         overflow : hidden;
-        @media (min-width: 800px) {
-            right : 0;
-            height : $heightLg;
-        }
-
         div {
             padding : 2.5rem;
         }
@@ -160,39 +159,49 @@
         img {
             position : absolute;
             left : -75%;
-            // max-width : none;
-            min-height : calc(#{$heightSm} - 10px);
-            width : auto;
-            // height : 100%;
-            @media (min-width: 800px) {
-                position : relative;
-                left : 0;
-            }
-            
+            min-height : calc(#{$height} - 10px);
+            width : auto;         
         }
     }
 
+    // content
     .card-content {
         position : absolute;
         top : 0;
         left : 35%;
         right : 0;
-        height : calc(#{$heightSm} - 10px);
+        height : calc(#{$height} - 10px);
         overflow : hidden;
         padding : 0 2.5rem;
-        @media (min-width: 800px) {
+    }
+}
+
+@mixin landscapeReset($height) {
+    height : auto;
+    padding-top : $height;
+    .card-thumb {
+        right : 0;
+        height : $height;
+        img {
             position : relative;
             left : 0;
-            height : auto;
-            padding : 0;
         }
+    }
+    .card-content {
+        position : relative;
+        left : 0;
+        height : auto;
+        padding : 0;
     }
 }
 
 
-// latest post
-@mixin cardLarge($height) {
-    padding-top : $height;
+
+
+// card: portrait
+// - arg: height of image
+@mixin cardPortrait($imgHeight) {
+    padding-top : $imgHeight;
     overflow : hidden;
     
     // thumbnail
@@ -201,7 +210,7 @@
         top : 0;
         left : 0;
         right : 0;
-        height : $height;
+        height :$imgHeight;
         overflow : hidden;
         //
         background-color : $grey_pale;
@@ -211,10 +220,13 @@
           margin : 0;
           height : auto;
           max-width : none;
-          min-height : $height;
+          min-height : $imgHeight;
         }
     }
 }
+
+
+
 
 
 
@@ -255,5 +267,49 @@
         }
     }
 
+    // add more spacing to top when small
+    margin-top : 2.5rem;
+    @media (min-width: 660px) {
+        margin-top : 0;
+    }
+
+
     @content;
+}
+
+
+
+
+// affiliate images
+// - applies to gallery too
+@mixin galleryImg($breakpoint, $is_gallery) {
+    .img-col,
+    > dl.gallery-item {
+        display : inline-block;
+        padding: 1.5rem;
+        @media (min-width: $breakpoint) {
+            padding: 2.5rem;
+        }
+    }
+    img {
+        width: auto;
+        height: auto;
+        vertical-align: middle;
+        max-width : 150px;
+        max-height : 150px;
+        @media (min-width: $breakpoint) {
+            max-width : 200px;
+            max-height : 200px;
+        }
+        // gallery resets
+        @if $is_gallery == true {
+            border : 0 !important;
+            margin : 0 !important;
+            a,
+            a:hover,
+            a:active {
+                border : 0 !important;
+            }
+        }
+    }
 }

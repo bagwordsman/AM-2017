@@ -171,6 +171,11 @@ if ($lazyload_on != '') {
 	// gallery filter doesn't work here - need to come up with a new solution
 	// add_filter('post_gallery', 'filter_lazyload');
 
+	// note:
+	// - if image is wrapped in an anchor tag, it will duplicate
+	// - this happened on old version of in page cta
+
+
 	// add the class '.lazy' to images that will be lazy loaded
 	function preg_lazyload($img_match) {
 		// $img_replace = $img_match[1] . 'src="' . get_stylesheet_directory_uri() . '/img/loading-icon.gif" class="loading-icon" data-original' . substr($img_match[2], 3) . $img_match[3];

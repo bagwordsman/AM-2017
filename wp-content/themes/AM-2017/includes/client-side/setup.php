@@ -28,7 +28,7 @@ function AM2017_setup() {
 	// custom image size for featured images, displayed on "standard" posts
 	add_theme_support( 'post-thumbnails' );
     set_post_thumbnail_size( 660, 9999 ); // unlimited height, soft crop. was at 624
-    add_image_size( 'widget-thumbnail', 400, 9999 ); // featured post widgets
+    add_image_size( 'widget-thumbnail', 550, 9999 ); // featured post widgets
     add_post_type_support( 'page', 'excerpt' );
 }
 add_action( 'after_setup_theme', 'AM2017_setup' );

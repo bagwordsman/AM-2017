@@ -1,6 +1,7 @@
 // nav css
 
-
+// - breakpoint was 800, now 768
+// - notes added where this has been changed
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // Assistive text - for screen readers
@@ -40,7 +41,7 @@
 .nav {
 	position : relative;
 	background-color : $grey_lighter;
-	@media (min-width: 800px) {
+	@media (min-width: 768px) { // was 800
 		height : 38px;
 	}
 }
@@ -112,7 +113,7 @@
 }
 
 // large: hide toggle
-@media (min-width: 800px) {	
+@media (min-width: 768px) {	// was 800
 	#toggle,
 	.main-toggle {
 		display : none;
@@ -185,7 +186,7 @@
 	
 
 	// large
-	@media (min-width: 800px){
+	@media (min-width: 768px){ // was 800
 		display: block;
 		opacity: 1;
 		position : absolute;
@@ -198,7 +199,7 @@
 			position : relative;
 			top : 0;
 			display : inline-block;
-			padding : 0 1.5rem 0 0;
+			padding : 0 1rem 0 0;
 			// reveal child items (list)
 			// &:hover ul {
 			// 	display : block;
@@ -239,8 +240,13 @@
 		} // end li
 	}
 
+	// added - ipad menu
+	@media (min-width: 800px) {
+		padding : 0 1.5rem 0 0;
+	}
 
-	@media (min-width: 900px) {
+
+	@media (min-width: 900px) { // kept the same
 		> li {
 			padding : 0 1.5rem;
 		}
@@ -278,19 +284,22 @@
 			padding : 0 1.8rem 0 1rem;
 			transition : all ease-in-out .3s;
 		}
-		> a:hover:before {
-			padding-right : 2.8rem;
+		> a:hover {
+			padding-right : .8rem; // 1.8 - 1
+			&:before {
+				padding-right : 2.8rem; // 1.8 + 1
+			}
 		}
 		
 	}
 
 	
 	// large
-	@media (min-width: 800px){
+	@media (min-width: 768px){ // was 800px
 		display : none;
 		position : absolute;
 		top : 38px;
-		min-width : 280px; // width of the dropdown
+		// min-width : 280px; // width of the dropdown
 		z-index : 9999; // do a z-index audit
 		font-size: 90%;
 		text-align : left;
@@ -301,7 +310,7 @@
 
 		> li {
 			> a {
-				padding : 0;
+				padding : 0 1.8rem 0 0;
 				background-color : $grey;
 				color : $white;
 				&:before {

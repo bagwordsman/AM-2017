@@ -1,28 +1,26 @@
 <?php
-// The template for displaying the footer.
-
- $styling_options = get_option ( 'sandbox_theme_styling_options' );
- $footerhero = $styling_options['footerhero'];
-
-
-?>
-
+// Footer
+// - everything after affiliate logos
+// close .page
+echo '
 	</div><!-- .page -->
 </div><!-- .page-wrap -->
+';
 
 
-<?php
-// Affiliated Companies Logos
-$affiliate_logo_options = get_option ( 'sandbox_theme_affiliates_options' );
+// _________________________________
+// get settings
 
-// Title for companies affiliated with
+// - styling
+$styling_options = get_option ( 'sandbox_theme_styling_options' );
+$footerhero = $styling_options['footerhero'];
+
+// - affiliate logos
 $ouraffiliatestitle = $affiliate_logo_options['ouraffiliatestitle'];
-// bold 'Able Mediation' in the title
 $search = array('Able Mediation');
 $replace = array('<strong>Able Mediation</strong>');
-$ouraffiliatestitle = str_replace($search, $replace, $ouraffiliatestitle);
-
-// Logos for companies affiliated with
+$ouraffiliatestitle = str_replace($search, $replace, $ouraffiliatestitle); // bold 'Able Mediation' in the title
+$affiliate_logo_options = get_option ( 'sandbox_theme_affiliates_options' );
 $logo_1 = $affiliate_logo_options['aff_logo_1'];
 $logo_2 = $affiliate_logo_options['aff_logo_2'];
 $logo_3 = $affiliate_logo_options['aff_logo_3'];
@@ -30,27 +28,32 @@ $logo_4 = $affiliate_logo_options['aff_logo_4'];
 $logo_5 = $affiliate_logo_options['aff_logo_5'];
 $logo_6 = $affiliate_logo_options['aff_logo_6'];
 
+
+
+
+
+
+
+
 // if any logo is present, echo the affiliates-band
 if ($logo_1 != '' || $logo_2 != '' || $logo_3 != '' || $logo_4 != '')
 echo '
 <div id="affiliates-band" role="complementary">'
 	. ( $ouraffiliatestitle ? ('<div class="container"><h4>'. $ouraffiliatestitle .'</h4></div>')  : '') .'
 	<div class="container">';
-		// echo each of the logos
-		// remove title and assign to '$BL_title'
+		// get each property of each logo, discarding the title:
 		$BL_title = array_shift($affiliate_logo_options);
-		// create a multidimensional array - split into 3 part chunks
 		$logogroup = array_chunk($affiliate_logo_options, 4);
 
-		// loop through logos
 		foreach( $logogroup as $logo => $items ) {
-			// output logos
 			if ($items[0] != '') {
-				echo '<img src="' . $items[0] .'" alt="' . $items[1] .'" width="' . $items[2] .'" height="' . $items[3] .'" />';
+				echo '
+				<div class="img-col">
+				<img src="' . $items[0] .'" alt="' . $items[1] .'" width="' . $items[2] .'" height="' . $items[3] .'" />
+				</div>';
             }
-		} // end foreach logo
+		}
 
-	// if any logo is present, close the affiliates-band
 	if ($logo_1 != '' || $logo_2 != '' || $logo_3 != '' || $logo_4 != '' || $logo_5 != '' || $logo_6 != '')
 	echo
 	'</div>
@@ -88,12 +91,12 @@ echo '
 				$quicklinks_title = ($quicklinks_title -> name);
 				echo ( $quicklinks_title ? ('<h4>'. $quicklinks_title .'</h4>')  : '<h4>Menu</h4>');
 				?>
-					<ul class="footer-menu">
-					<?php
-					// function to remove <div> and <ul> which wrap the menu by default
-					wp_quicklinks_menu_unwrap( array( 'theme_location' => 'quicklinks-menu') );
-					?>
-					</ul>
+				<ul class="footer-menu">
+				<?php
+				// function to remove <div> and <ul> which wrap the menu by default
+				wp_quicklinks_menu_unwrap( array( 'theme_location' => 'quicklinks-menu') );
+				?>
+				</ul>
 			</div>
 
 			<div class="six columns">
@@ -162,7 +165,7 @@ echo '
 				<li>
 					<a href="'.$twitter.'" target="_blank">
 					<i class="fa fa-twitter-square" aria-hidden="true"></i>'
-					. ( $company_name ? ( '<div class="assistive-text">'.$company_name.' twitter</div>' )  : '') .
+					. ( $company_name ? ( '<div class="assistive-text">'.$company_name.' Twitter</div>' )  : '') .
 					'</a>
 				</li>';
 
@@ -170,7 +173,7 @@ echo '
 				<li>
 					<a href="'.$googleplus.'" target="_blank">
 					<i class="fa fa-google-plus-official" aria-hidden="true"></i>'
-					. ( $company_name ? ( '<div class="assistive-text">'.$company_name.' googleplus</div>' )  : '') .
+					. ( $company_name ? ( '<div class="assistive-text">'.$company_name.' Google Plus</div>' )  : '') .
 					'</a>
 				</li>';
 
@@ -178,7 +181,7 @@ echo '
 				<li>
 					<a href="'.$linkedin.'" target="_blank">
 					<i class="fa fa-linkedin-square" aria-hidden="true"></i>'
-					. ( $company_name ? ( '<div class="assistive-text">'.$company_name.' linkedin</div>' )  : '') .
+					. ( $company_name ? ( '<div class="assistive-text">'.$company_name.' Linkedin</div>' )  : '') .
 					'</a>
 				</li>';
 

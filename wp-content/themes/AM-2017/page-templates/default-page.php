@@ -8,39 +8,25 @@ get_header(); ?>
 
 <div id="content" role="main">
 
-	<div class="hero">
-		<?php
-		$styling_options = get_option ( 'sandbox_theme_styling_options' );
-		$heromesh = $styling_options['heromesh'];
-		// hero image - post thumbnail (if set)
-		if (has_post_thumbnail()) {
-				the_post_thumbnail('full');
-		// output default img from theme (if not set)
-		} else {
-				echo '<img src="'. get_bloginfo('stylesheet_directory'). '/img/default-hero/able-default-hero.jpg" alt="'.get_bloginfo('name').'"/>';
-		}
-		?>
-		<div <?php if ($heromesh) echo 'class="mesh"'; ?>>
-			<div class="container">
-					<h1><?php
-					// display the <h1> heading with ACF
-					if (get_field('h1_heading')) {
-						echo get_field('h1_heading');
-					} else {
-						the_title();
-					}
-					?></h1>
-			</div>
-		</div>
-		<span class="divider white"></span>
-	</div><!-- hero -->
+	
+	
+	<?php
+	
+	?>
 
 
 
 	<?php
 	// SECTION 1
 	// main content area - first section
-	while ( have_posts() ) : the_post(); ?>
+	while ( have_posts() ) : the_post();
+	
+	// hero - page-content.php
+	heroSection($hero_content = '', $hero_right = '', $hero_right_bg = '');
+	
+	?>
+
+
 
 	<div class="wrapper-white">
 		<?php
@@ -300,26 +286,8 @@ get_header(); ?>
 
 
 <?php
-// linked page
-$header_5 = get_field('linked_page_header');
-$link_5 = get_field('linked_page_link');
-$content_5 = get_field('linked_page_content');
-$linked_contents = explode('<hr />', $content_5);
-$color_5 = get_field('linked_page_colour');
-
-if ($header_5 && $link_5 && $content_5) {
-	echo '
-	<a href="'. $link_5 .'" id="secondary" role="complementary"'. ( $color_5 ? ( 'class="'. $color_5 .'"' )  : '') .'>
-			<div class="thumbnail">
-					<h3>'. $header_5 .'</h3>'. strip_tags($linked_contents[0], '<img>') .'
-					<div class="secondary--divider"></div>
-			</div>
-			<div class="text">
-					'. strip_tags($linked_contents[1], '<p>') .'
-			</div>
-	</a><!-- #secondary -->
-	';
-}
+// in page cta - page-content.php
+pageCta();
 ?>
 
 <?php get_footer(); ?>

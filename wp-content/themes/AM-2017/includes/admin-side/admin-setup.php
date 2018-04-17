@@ -95,12 +95,16 @@ function user_guide_function() {
 		<div class="home-widget">
 			<div>
 				<p>A brief user guide / reference point for website settings:</p>
-				<ul>
+				<ul style="margin-bottom : 40px;">
 					<li><strong>Menus</strong><br/>- including: \'Navigation Labels\' and \'Abbreviations\' for shorter page titles.</li>
 					<li><strong>Posts and Pages</strong><br/>- including: Manual Excerpts, where to use Slugs, and Metadata.</li>
 					<li><strong>Widgets</strong><br/>- including: Blog sidebars (categories, tags, featured posts), and Cookie Bar.</li>
 					<li><strong>Theme Settings Page</strong><br/>- everything else.</li>
 				</ul>
+				<p><span class="red--text">A note on character / word count for certain text:</span></p>
+				<p>Please review the lengths of: page headings, page and post excerpts, and in page calls to action when adding them.
+				These sections of text have limited container sizes to fit into. As a general rule of thumb, they will work best at all screen sizes if kept shorter. It is hard to recommend character counts for each, as longer words will affect how the text wraps.</p>
+				<p>It is advised that you test each of these sections at different screen sizes after publishing them.</p>
 			</div>
 			<div>
 
@@ -238,46 +242,6 @@ function user_guide_function() {
 	</script>
 	';
 
-
-
-
-
-	// if ($user->user_level < 10) :
-    // echo "Hello <strong>" . $user->user_login . "</strong>, and welcome to the Able mediation website. Below is a link to the old <strong>Author Guide</strong>, which will show you how to publish <strong>Blog Posts</strong> which include links, images, and documents, and update your User Profile.</br></br>"."<a href='http://localhost/ABLE-mediation/wp-content/uploads/2013/08/author-guide.pdf'>"."Able Mediation Author User Guide"."</a>"."</br>";
-	// elseif($user->user_level > 9) :
-	// echo 'Hello <strong>' . $user->user_login . '</strong>, and welcome to the Able mediation website. Below is a link to the old <strong>Website Administrator Guide</strong>, which will show you how to edit the website, though some parts will no longer apply. </br></br><a href="http://localhost/ABLE-mediation/wp-content/uploads/2013/08/admin-guide.pdf">Able Mediation Website Administrator Guide</a></br></br>The new guide will cover the below topics:</br>
-	// <ol class="mainlist">
-	// 	<li><h3 class="guide greenspan">Plugins (installed by developer)</h3>
-	// 		<ul class="sublist">
-	// 			<li>multiple content blocks <span class="red">(new)</span></li>
-	// 			<li>ninja forms <span class="red">(new)</span></li>
-	// 			<li>easy random quotes</li>
-	// 			<li>visual biography editor (for your profile page)</li>
-	// 			<li>wp clone (for backing up the website)</li>
-	// 		</ul>
-	// 	</li>
-	// 	<li><h3 class="guide orangespan">Editing Pages</h3>
-	// 		<ul class="sublist">
-	// 			<li><strong>A summary of what you need to know:</strong></li>
-	// 			<li>Some visual clues, i.e. <span class="greenspan">highlighted text</span> have been added to help indicate where information goes</li>
-	// 			<li><strong>Meta tags</strong> Are now added in custom fields. These can be found in the page editor by checking the custom fields checkbox in the <strong>Screen Options</strong> dropdown in top right of the screen. You scroll down to bottom of page to view custom fields, and enter values for the following custom fields:</br>
-	// 			<span class="customspan metatitle">Title Tag</span>
-	// 			<span class="customspan metadescription">Meta Description</span>
-	// 			<span class="customspan metakeywords">Meta Keywords</span>
-	// 			</li>
-	// 			<li>Family mediation and Referrals pages use html anchor links, which are defined by fields in the page editor, such as: <strong>First Question ID</strong>. In order for scrolling links to work, these need to be filled in.</li>
-	// 			<li>When adding images in conatiners that are defined as images (for example, <strong>First Box Image (do not link the image)</strong> on the home page), you should make sure that the image does not have a link to the file, or anywhere else. There will be room under these images for you to add a link, for example, <strong>First Box Link</strong>.</li>
-	// 		</ul>
-	// 	</li>
-	// 	<li><h3 class="guide greyspan">User Profile Section</h3></li>
-	// 		<ul class="sublist">
-	// 			<li>In the <strong>(Users > Your Profile)</strong> section and through the user, Juliet, information that is global can be added. In other words, information that is available on all pages of site, in the header and footer. This includes:</strong></li>
-	// 			<li><span class="greyspan">Company Details</span> (address, phone numbers, company number, links to social media pages).</li>
-	// 			<li><span class="orangespan">Referral Page Button</span> (orange button in the header).</li>
-	// 			<li><span class="greenspan">Footer Logos</span> (area to add logos for affiliated organisations).</li>
-	// 		</ul>
-	// </ol>';
-	// endif;
 }
 function example_add_dashboard_widgets() {
 	wp_add_dashboard_widget('user_guide', 'How to use the Able Mediation Website', 'user_guide_function');

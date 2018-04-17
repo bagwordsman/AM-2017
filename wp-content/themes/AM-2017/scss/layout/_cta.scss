@@ -1,218 +1,121 @@
 // cta (call to action)
-// - #secondary - linked page / call to action container
-// - note: this is an anchor link, not a div
 
+// new version:
+// - old version (everything wrapped in anchor link) causing img to duplicate
+// - new version uses bg image that can be removed at small sizes.
+// 550px / 660px
 
-@mixin text-style {
-  position : absolute;
-  top : 0;
-  bottom : 0;
-  left : 0;
-  right : 0;
-  margin : 0;
-  padding : 2rem 3.5rem;
-  box-sizing : border-box;
-  color : $white;
-  text-align : center;
-  transition : all ease-in-out .3s;
-  @content;
-}
-
-
-// colour options
-@mixin colour($colour_class, $colour_var) {
-  &.#{$colour_class} {
-    .thumbnail,
-    .text,
-    .secondary--divider:before,
-    .secondary--divider:after {
-      background-color : $colour_var;
-    }
-  }
-}
-
-
-
-// ______________________________________
-#secondary {
+.in-page-cta {
+  position : relative;
   display : block;
-  border-top : 5px solid $grey;
-  // thumbnail and text
-  > div {
-    overflow : hidden;
-    text-align : center;
-    position : relative;
-  }
-
-  
-  // thumbnail
-  .thumbnail {
-    max-height : 30rem;
-    // heading
-    h3 {
-      @include text-style {
-        z-index : 1;
-        font-size : 4rem;
-        line-height : 26rem;
-        font-weight : $bold;
-        text-shadow : $shadow-down-right_thin;
-      }
-    }
-    // image
-    img {
-      margin : 0;
-      max-width : 100%;
-      height : auto;
-      opacity : .75;
-      transition : all ease-in-out .3s;
-    }
-  }
-
-  
-  // text
-  .text {
-    min-height : 12.5rem;
-    // paragraph
-    p {
-      @include text-style {
-        z-index : 2;
-        font-size : 3rem;
-        line-height : 8.5rem;
-        letter-spacing : 0.03rem;
+  font-size : 2.1rem;
+  // link
+  .overlay {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    // hover styles - affect divider
+    &:hover +.cta-title .divider {
+      bottom : -5px;
+      @media (min-width: 550px) {
+        bottom : 0;
+        left : -15px;
       }
     }
   }
 
+  h3 {
+    text-shadow : $text-outline;
+    margin : 0;
+  }
   
-  // hover
-  &:hover .thumbnail img {opacity : .5;}
-  &:hover .thumbnail h3 {text-shadow : $shadow-down-right_thick;}
-  &:hover .secondary--divider {bottom : 15px;}
-  &:hover .text p {text-shadow : $shadow-down-right_thin}
 
-
-  // colour options
-  @include colour('green', $green);
-  @include colour('orange', $orange);
-  @include colour('blue', $blue);
-  @include colour('red', $red_dark);
-
-
-
-
-
-  // media queries
-  @media (min-width: 980px) {
-    display : table;
-    width : 100%;
-    max-height : 20rem;
-    > div {
-      height : 30rem;
-    }
-    // left
-    .thumbnail {
-      width : 74%;
-      float : left;
-      position : relative;
-      overflow : hidden;
-      h3 {
-        font-size : 5rem;
+  // output different colours - text and bg
+  $colours : 'green', 'orange', 'blue', 'red';   
+  $colour_codes : $green, $orange, $blue, $red;
+  @for $i from 1 through length($colours) {
+    &.#{nth($colours, $i)} {
+      background-color : nth($colour_codes, $i);
+      .cta-text,
+      .divider:before,
+      .divider:after {
+        background-color : nth($colour_codes, $i);
       }
     }
-    // right
-    .text {
-      width : 26%;
-      float : right;
-      p {
-        line-height : 5rem;
-        top : 20%;
-      }
+  }
+
+  @media (min-width: 550px) {
+    font-size : 2.4rem;
+    &:after {
+      content : "";
+      clear : both;
+      display : block;
     }
+  }
 
-  } // end media queries
-
-
-} // end #secondary
+}
 
 
-
-
-
-
-
-// ______________________________________
-
-
-
-
-
-
-
-// - - - -
-// pointer / divider - last child of .thumbnail
-.secondary--divider {
-  position : absolute;
-  left : 0;
-  right : 0;
-  bottom : 30px;
+.cta-title,
+.cta-text {
+  display : block;
   width : 100%;
-  background-color : transparent;
-  transition : all ease-in-out .3s;
-  // point downwards
-  &:before, &:after {
-    content : "";
-    position : absolute;
-    left : 0;
-    right : 0;
-    top : 1rem;
-    height : 15rem;
-    z-index : 1;
-  }
-  // left side
-  &:before {
-    transform : skew(0deg, 10deg);
-  }
-  // right side
-  &:after {
-    transform : skew(0deg, -10deg);
-  }
-
+  padding : 2.5rem 2.5%;
+  box-sizing : border-box;
+  text-align : center;
+  color : $white;
   
-  // media queries
-  @media (min-width: 980px) {
-    width : 100%;
-    height : 100%;
-    top : 0;
-    // top and bottom
-    &:before,
-    &:after {
-      left : auto;
+  @media (min-width: 550px) {
+    
+    // padding : 5rem 5%;
+    width : 50%;
+    float : left;
+    height : 160px;
+    padding : 0 5%;
+    line-height : 160px; 
+  }
+  
+}
+
+
+.cta-title {
+  position : relative;
+  background-size : cover;
+  background-repeat : no-repeat;
+  padding : 5rem 2.5%;
+  overflow : hidden; // contain the divider
+
+  // divider / pointer
+  .divider {
+    left : 0;
+    bottom : -20px;
+    transition : all ease-in-out .3s;
+    @media (min-width: 550px) {
+      width : 100%;
+      height : 100%;
       top : 0;
-      bottom : 0;
-    }
-    // top
-    &:before {
+      // top and bottom
+      &:before,
+      &:after {
+        // left : auto;
+        top : 0;
+        bottom : 0;
         width : 100%;
         height : 100%;
-        left:100%;
-        top : 0;
+        left : 100%;
+        z-index : 2;
+      }
+      // top
+      &:before {
         transform : skew(25deg, 0deg);
-        z-index: 2;
-    }
-    // bottom
-    &:after {
-        width : 100%;
-        height : 100%;
-        left :100%;
-        top : 0;
+      }
+      // bottom
+      &:after {
         transform : skew(-25deg, 0deg);
-        z-index: 2;
+      }
     }
-    // hover
-    #secondary:hover & {
-      left : -15px;
-    }
-
-  } // end media queries
-
+  }
 }

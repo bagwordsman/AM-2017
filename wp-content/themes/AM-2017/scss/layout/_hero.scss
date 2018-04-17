@@ -1,56 +1,62 @@
 // hero section
-// - section, image, overlay, heading
-// - home: text, home: right hand column
+// - .hero-image applies to all pages
+// - .hero-content applies to home only
+// - breaks below 300px wide
 
-.hero {
-  
-  // section
+
+
+// –––––––––––––––––––––––––––
+// all pages
+.hero-section {
+  position : relative;
+}
+
+.hero-image {  
+  // base styles
   overflow : hidden;
   position : relative;
-  margin-bottom : 4rem;
   background-color : $green;
-  // font size reset
-  font-size: 1.8rem;
-  line-height: 1.6;
-  // height
-  @media (min-width: 980px) {
-    max-height : 55rem;
+  min-height : 200px;
+  max-height : 300px;
+
+  @media (min-width: 400px) {
+    min-height : 250px;
   }
-  body:not(.home) & {
-    @media (min-width: 400px) {
-      max-height : 24rem;
+
+  @media (min-width: 900px) {
+    body:not(.home) & {
+      max-height : 400px;
     }
-    @media (min-width: 800px) {
-      min-height : 32rem;
-      max-height : auto;
+    // home specific
+    .home & {
+      min-height : 550px;
     }
   }
-  
+
   
   // image
   img {
     height : auto;
-    min-height : auto;
-    max-height : 85rem;
+    // min-height : auto;
+    // max-height : 85rem;
     width : 100%;
     opacity : .75;
-    // home image needs to be larger to fill full height
+    // home specific
     .home & {
-      width : auto;
-      min-height : 25rem;
-      @media (min-width: 980px) {
-        max-width : 100%;
-        max-height : auto;
+      @media (min-width: 900px) {
+        min-height : 550px;
+        width : auto;
       }
       @media (min-width: 1800px) {
+        min-height : auto;
         width : 100%;
-        max-height : 100%;
       }
+      
     }
+
   }
 
-
-  // content container
+  // heading container
   > div {
     position : absolute;
     top : 0;
@@ -58,35 +64,44 @@
     bottom : 0;
     left : 0;
     z-index : 3;
-    color : $white;
   }
 
 
   // heading
   h1 {
     display : block;
-    margin-top : 4rem;
-    line-height : 1.4;
+    margin-top : 3rem;
     color : $white;
+    text-align : center;
     text-shadow : $text-outline;
-    body:not(.home) & {
+
+    @media (min-width: 400px) {
       margin-top : 6rem;
-      text-align : center;
-      @media (min-width: 600px) {
-        margin-top : 7.2rem;
-      }
-      @media (min-width: 800px) {
+    }
+    
+    @media (min-width: 660px) {
+      margin-top : 7.2rem; // 2x font size
+    }
+
+    @media (min-width: 900px) {
+      body:not(.home) & {
         margin-top : 9.6rem;
         font-size: 4.8rem;
       }
-    } 
+      // home specific - resets
+      .home & {
+        margin-top : 4rem;
+        text-align : left;
+      }
+    }
   }
+
 
 
   // divider and mesh overlay
   .divider {
-    bottom : -10px;
-    z-index : 4; // is this required on every instance?
+    bottom : 30px;
+    z-index : 4;
   }
   .mesh {
     padding : 0;
@@ -96,24 +111,38 @@
       z-index : 3;
     }
   }
-  
+
+
+
+
+
+}
 
 
 
 
 
 
-  // ––––––––––––––––––––––––––––––––––––––––––––––––––
-  // home page specific
 
-  // columns reset
+
+
+
+
+
+// –––––––––––––––––––––––––––
+// home page only
+.hero-content {
+  // reset five and seven column breakpoints
   .columns {
     width : 100%;
     margin-left : 0;
+    font-size : 1.8rem; // make larger. This normalises over 660px.
     // width reset
-    @media (min-width: 980px) {
+    @media (min-width: 900px) {
       &.seven {
         width : 56.6666666667%;
+        padding-top : calc(4rem + 3.6rem + 2.5rem);
+        color : $white;
       }
       &.five {
         width : 39.3333333333%;
@@ -121,63 +150,63 @@
       }
     }
   }
-
+  @media (min-width: 900px) {
+    position : absolute;
+    top : 0;
+    bottom : 0;
+    left : 0;
+    right : 0;
+    z-index : 4;
+  }
 
   // links
   a:not(.button) {
-    color : $white;
-    padding : 2px 5px;
-    background-color : $green;
+    @include labelLink;
+    padding : .2rem .6rem;
     &:hover {
-      background-color : $orange;
+      background-color : $green_dark;
     }
   }
+  
+}
 
-  // button reset
-  a.button {
-    margin-bottom : 0;
+
+
+// sidebar: our services section
+.hero-sidebar {
+  h4 {
+    @include contextHeading($white, $green);
   }
-
-
-  // right hand column / overlay
+  ul {
+    @include roundDiv($green, $white);
+    margin-left : 0;
+    list-style : none;
+  }
+  // set colour scheme
   $colour_classes : 'green', 'orange', 'blue', 'red';
   $colour_codes : $green, $orange, $blue, $red;
-  $colour_link : $green_dark, $orange_dark, $orange, $blue;
-  $colour_hover : $orange, $green, $orange, $blue;  
-  
-  .overlay {
-    margin-top : 3rem;
-    padding : 2.5rem;
-    box-sizing : border-box;
-    border-radius : 1.5rem;
-    box-shadow : $shadow-down-right;
-
-    @media (min-width: 980px) {
-      position : absolute;
-      right : 0;
-      margin-top : 0;
-      padding : 4rem 2.5rem 2.5rem;
-      border-radius : 0 0 1.5rem 1.5rem;
-    }
-    
-    // output different background colours
-    @for $i from 1 through length($colour_classes) {
-      &.#{nth($colour_classes, $i)} {
-        background-color : rgba( nth($colour_codes, $i), .75 );
-        a:not(.button) {
-          background-color : nth($colour_link, $i);
-          &:hover {
-            background-color : nth($colour_hover, $i);
-          }
+  $colour_hover : $green_dark, $orange_dark, $blue_dark, $red_dark; 
+  @for $i from 1 through length($colour_classes) {
+    &.#{nth($colour_classes, $i)} { 
+      h4 {
+        background-color : nth($colour_codes, $i);
+      }
+      ul {
+        border-color : nth($colour_codes, $i);
+      }
+      a:not(.button) {
+        background-color : nth($colour_codes, $i);
+        &:hover {
+          background-color : nth($colour_hover, $i);
         }
       }
     }
-
-    ul {
-      list-style : none;
-      margin-bottom : 0;
-    }
   }
 
-
-} // end hero
+  @media (min-width: 900px) {
+    margin-top : 4rem;
+    ul {
+      background-color : rgba(255, 255, 255, 0.75);
+    }
+  }
+}

@@ -8,6 +8,20 @@
 
 
 
+// menu open when small - modal style
+// - styles intertwined with .header
+@media (max-width: 767px){
+  .menu-open {
+    overflow : hidden;
+    // fixed header on .page
+    .fixed-header .header {
+      top: 0;
+      bottom: 58px; // offsets cookie bar
+      overflow-y: scroll;
+    }
+  }
+}
+
 
 
 // ___________________
@@ -21,15 +35,15 @@
   background-color : $grey_lighter;
   box-sizing : border-box;
   box-shadow : $shadow-down-right;
-  transition: top 0.2s ease-in-out;
+  transition: top .3s ease-in-out;
 
-  
   
   // ___________________
   // fixed header (and offset)
   .fixed-header & {
     position : fixed;
   }
+  
 
   // top container = 110px
   // button = 57px
@@ -38,17 +52,18 @@
   // admin bar (large) = 32px
 
   // menu-open = class added to the header - small menu toggled open
+  // - also makes menu a modal when small. previously used &.menu-open, now & on other side
   // - make a conditional to add in 57px button height
   
   // logged out
   &.up {
     top : calc(-110px - 57px);
-    &.menu-open {
+    .menu-open & {
       top : -110px; // show close menu button
     }
-    @media (min-width: 800px) {
+    @media (min-width: 768px) { // was 800
       top : calc(-110px - 38px);
-      &.menu-open {
+      .menu-open & {
         top : calc(-110px - 38px);
       }
     }
@@ -60,7 +75,7 @@
     top : 46px;
     &.up {
       top : calc(-110px - 57px + 46px);
-      &.menu-open {
+      .menu-open & {
         top : calc(-110px + 46px); // show close menu button
       }
     }
@@ -69,16 +84,20 @@
       top : 32px;
       &.up {
         top : calc(-110px - 57px + 32px);
-        &.menu-open {
+        .menu-open & {
           top : calc(-110px + 32px);
         }
       }
     }
     // medium / large + (desktop menu)
-    @media (min-width: 800px) {
-      &.up,
-      &.up.menu-open {
+    @media (min-width: 768px) { // was 800
+      // &.up,
+      // &.up.menu-open
+      &.up {
         top : calc(-110px - 38px + 32px);
+        .menu-open & {
+          top : calc(-110px - 38px + 32px);
+        }
       }
     }
   }
@@ -142,20 +161,31 @@
       display : inline-block;
       margin-top : calc((70px - 48px)/2);
 
-      // phone icon for small screens
-      @media (max-width: 480px) {
-        &.phone {
-          position : relative;
-          span {
-            display : none;
-          }
+      
+      // show / hide full phone number + icon
+      &:before {
+        padding-right : 10px;
+        font-family : $font-icon;
+        content : icon('phone');
+        @media (min-width: 660px) {
+          padding-right : 0;
+          content : none;
+        }
+      }
+      .phone--number {
+        display : none;
+        @media (min-width: 660px) {
+          display : inline-block;
+          margin-left : 10px;
+          // :
           &:before {
             margin-right : 10px;
-            font-family : $font-icon;
-            content : icon('phone');;
+            font-weight : $bold;
+            content : ':';
           }
         }
       }
+
     } // end .button 
   }
   
@@ -176,7 +206,7 @@
 .fixed-header #content {
   // logged out
   border-top : calc(110px + 57px) solid $grey_lighter;
-  @media (min-width: 800px) {
+  @media (min-width: 768px) { // was 800
     border-top : calc(110px + 38px) solid $grey_lighter;
   }
 }

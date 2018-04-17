@@ -155,17 +155,21 @@ class cookies_widget extends WP_Widget {
 	}
 
 	// cookie bar: front-end
+	// - message switching is handled in main.js
 	public function widget( $args, $instance ) {
-		$content = apply_filters( 'widget_content', $instance['content'] );
+		$content_lg = apply_filters( 'widget_contentlg', $instance['contentlg'] );
+		$content_sm = apply_filters( 'widget_contentsm', $instance['contentsm'] );
 		$link = apply_filters( 'widget_link', $instance['link'] );
 		$linktext = apply_filters( 'widget_linktext', $instance['linktext'] );
 		$hidetext = apply_filters( 'widget_hidetext', $instance['hidetext'] );
 
 		// before and after widget arguments are defined by themes
 		echo $args['before_widget'];
-		if ( ! empty( $content ) )
+		// only output if the large content has been added:
+		if ( ! empty( $content_lg ) )
 			echo $args['before_content'] .'
-			<div class="textwidget">'. $content .'
+			<div class="textwidget" data-small="'. $content_sm .'" data-big="'. $content_lg .'">
+				<span>' . $content_lg .'</span>
 				<a href="'. $link .'">'. $linktext .'</a>
 				<div class="hide">'. $hidetext .'</div>
 			</div>'.
@@ -177,12 +181,14 @@ class cookies_widget extends WP_Widget {
 	// form: back end
 	public function form( $instance ) {
 		if ($instance) {
-			$content = esc_attr($instance[ 'content' ]);
+			$content_lg = esc_attr($instance[ 'contentlg' ]);
+			$content_sm = esc_attr($instance[ 'contentsm' ]);
 			$link = esc_attr($instance[ 'link' ]);
 			$linktext = esc_attr($instance[ 'linktext' ]);
 			$hidetext = esc_attr($instance[ 'hidetext' ]);
 		} else {
-			$content = __( 'Add your cookies message here', 'cookies_widget_domain' );
+			$content_lg = __( 'Cookie bar message: larger screens', 'cookies_widget_domain' );
+			$content_sm = __( 'Cookie bar message: smaller screens', 'cookies_widget_domain' );
 			$link = __( 'Add your privacy policy page link here', 'cookies_widget_domain' );
 			$linktext = __( 'Add your link text here', 'cookies_widget_domain' );
 			$hidetext = __( 'Hide button text', 'cookies_widget_domain' );
@@ -190,8 +196,12 @@ class cookies_widget extends WP_Widget {
 		// cookies widget admin form
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'content' ); ?>"><?php _e( 'Content:' ); ?></label>
-			<textarea class="widefat" id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>" cols="20" rows="5"><?php echo esc_attr( $content ); ?></textarea>
+			<!-- large -->
+			<label for="<?php echo $this->get_field_id( 'contentlg' ); ?>"><?php _e( 'Content (larger screens):' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'contentlg' ); ?>" name="<?php echo $this->get_field_name( 'contentlg' ); ?>" type="text" value="<?php echo esc_attr( $content_lg ); ?>" />
+			<!-- small -->
+			<label for="<?php echo $this->get_field_id( 'contentsm' ); ?>"><?php _e( 'Content (smaller screens):' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'contentsm' ); ?>" name="<?php echo $this->get_field_name( 'contentsm' ); ?>" type="text" value="<?php echo esc_attr( $content_sm ); ?>" />
 			<!-- link -->
 			<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link to Privacy Policy Page:' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" type="text" value="<?php echo esc_attr( $link ); ?>" />
@@ -208,7 +218,8 @@ class cookies_widget extends WP_Widget {
 	// update old instances with new
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
-		$instance['content'] = ( ! empty( $new_instance['content'] ) ) ? strip_tags( $new_instance['content'] ) : '';
+		$instance['contentlg'] = ( ! empty( $new_instance['contentlg'] ) ) ? strip_tags( $new_instance['contentlg'] ) : '';
+		$instance['contentsm'] = ( ! empty( $new_instance['contentsm'] ) ) ? strip_tags( $new_instance['contentsm'] ) : '';
 		$instance['link'] = ( ! empty( $new_instance['link'] ) ) ? strip_tags( $new_instance['link'] ) : '';
 		$instance['linktext'] = ( ! empty( $new_instance['linktext'] ) ) ? strip_tags( $new_instance['linktext'] ) : '';
 		$instance['hidetext'] = ( ! empty( $new_instance['hidetext'] ) ) ? strip_tags( $new_instance['hidetext'] ) : '';

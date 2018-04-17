@@ -6,14 +6,25 @@ div[class*="wrapper-"] img {
   height : auto; // keep in proportion
   margin : 3rem auto;
 }
+
+
+// reset the above:
 div[class*="wrapper-"] .card img {
   margin : 0;
   max-width : none;
+}
+div[class*="wrapper-"] .page-advert img {
+  max-width : 240px;
+  margin : 0 auto;
+  @media (min-width: 900px) {
+    max-width : 100%;
+  }
 }
 .container p > img {
   height : auto;
   margin : 1.5rem auto 3rem;
 }
+
 
 
 // lazyloaded images - in content, ACF, and (hopefully) galleries
@@ -47,27 +58,17 @@ div[class*="wrapper-"] .card img {
 // gallery images - reset inline styles added by WP
 // - used on mediator page - affiliated logos
 // - align styles with -> layout/_affiliated-container.scss
-div[id*="gallery"] > dl.gallery-item {
-  width : 100% !important;
-  float : none !important;
-  margin : 4.5rem auto 0 !important;
-  img {
-    height : auto;
-    width : auto;
-    max-width : 250px;
-    max-height : 200px;
-    border : 0 !important;
-    margin : 3rem auto;
-    a,
-    a:hover,
-    a:active {
-      border:0 !important;
-    }
+div[id*="gallery"] {
+
+  // resets
+  text-align : center;
+  > dl.gallery-item {
+    width : auto !important;
+    float : none !important;
+    margin : 0 !important;
+    vertical-align : middle;
   }
-  @media (min-width: 660px) {
-    width : 33% !important;
-    float : left !important;
-    margin-top : 0 !important; 
-  }
+  
+  @include galleryImg(900px, true);
   
 }

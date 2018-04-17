@@ -10,8 +10,7 @@
     // 4 - menu: abbreviated text for mid sized screens
     // 5 - cookie bar notice
     // 6 - mediator profile reveal
-        // TO BE CHANGED / REMOVED:  // 7 - services parent page
-    // 8 - staged column height matching
+    // 7 - staged column height matching
 
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -21,7 +20,8 @@
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
     // 2 - header: hide if scrolled
-    // - if menu opened, and screen is small (under 800px)
+    // - if menu opened, and screen is small (under 768px)
+    // - menu-open class treats menu as a modal when small - body overflow gets hidden
     if ( $('.page').hasClass('fixed-header') ) {
 
         var didScroll;
@@ -32,7 +32,7 @@
         // - top offset to be 57px less - show close menu button
         // - menu-open is used in css:
         $( "#toggle" ).change(function() {
-            $('.header').toggleClass('menu-open');
+            $('body').toggleClass('menu-open'); // was .header
         });
         
         // activate function when user scrolls
@@ -103,16 +103,20 @@
             menuMedium(resize);
             // run column resize
             stageColumn(resize);
+            // run cookie notice resize - text swap
+            cookieText(resize);
         });
 
 
 
+        // altered for tablets (ipad) - was 800px, now 768
+        
         function menuMedium(resize) {
 
             // if menu text overflows
             if ($('.main-menu')[0].scrollWidth >  $('.main-menu').innerWidth()) {            
                 // large menu (medium) - swap in alternative shorter text
-                if ($('body').innerWidth() >= 800) {
+                if ($('body').innerWidth() >= 768) { // was 800
                     $('.main-menu li a').each(function() {
                         var abbrevTitle = $(this).attr('data-abbrev');
                         // only swap text if alternative text has been entered
@@ -127,7 +131,7 @@
             // if menu text does not overflow
             else {
                 // small menu - restore original text
-                if ($('body').innerWidth() <= 799) {
+                if ($('body').innerWidth() <= 767) { // was 799
                     if (resize == true) {
                         // console.log('resized small menu -> restore original text');
                         $('.main-menu > li > a').each(function(k, i) {
@@ -197,6 +201,35 @@
 
 
 
+    // breakpoint for small text = 500px
+    function cookieText(resize) {
+
+        // small text substitute
+        if ($('body').innerWidth() < 500) {
+            var smText = $('.cookies .textwidget').attr('data-small');
+            var currentText = $('.cookies .textwidget > span').text();
+            // only run once per resize:
+            if (smText !== currentText) {
+                $('.cookies .textwidget > span').text(smText);
+            }               
+        }
+
+        // large text
+        else {
+            var lgText = $('.cookies .textwidget').attr('data-big');
+            var currentText = $('.cookies .textwidget > span').text();
+            // only run once per resize:
+            if (lgText !== currentText) {
+                $('.cookies .textwidget > span').text(lgText);
+            }
+
+        }
+    }
+    // run on load
+    cookieText();
+
+
+
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
     // 6 - mediator profile reveal
@@ -210,51 +243,16 @@
 
 
 
-    // ––––––––––––––––––––––––––––––––––––––––––––––––––
-    // 7 - services parent page
-    // var desc = $('.serviceswrapper .button');
 
-
-    // on button click event
-    // $(desc).on('click', function(e){
-    //     e.preventDefault;
-    //     var expndBtn = e.target;
-        // console.log(expndBtn);
-
-        // show description
-        // if ( $( 'i', expndBtn ).hasClass('fa-chevron-down') ) {
-            // button chevrons
-            // $( 'i', expndBtn ).removeClass('fa-chevron-down');
-            // $( 'i', expndBtn ).addClass('fa-chevron-up');
-            
-            // alter the display
-            // $( expndBtn ).closest('.title').next().slideToggle('250');
-            // $( expndBtn ).closest('.info').addClass('add-summary');
-            // $( expndBtn ).remove();
-        // }
-        // else {
-        //   // button chevrons
-        //   $( 'i', expndBtn ).addClass('fa-chevron-down');
-        //   $( 'i', expndBtn ).removeClass('fa-chevron-up');
-        //   // alter the display
-        //   $( expndBtn ).closest('.title').next().slideToggle( '250' );
-        // }
-
-    // });
 
 
 
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
-    // 8 - staged column height matching
+    // 7 - staged column height matching
     // - works fine so long as it isnt used on the home page - WHY???
     function stageColumn(resize) {           
-        
-        // get height of each column
-        // $('.columns.stage').each(function() {
-        //     console.log( $(this).height() );
-        // });
-        
+
         // set height of staged columns
         if ($('body:not(.home)').innerWidth() >= 980) {
             var maxHeight = Math.max.apply(Math, $('.columns.stage').map(function(i,elem){ 

@@ -1,7 +1,7 @@
 <?php
 // classes
 // - templates for repeated functionality
-// - covers client side php too
+// - covers client side php too (i.e. not just seen on admin side)
 
 
 // header and footer: affiliated organisation logos
@@ -178,6 +178,7 @@ class blogSidebar {
         }
     }
 }
+
 
 
 ?>

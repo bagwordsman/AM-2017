@@ -4155,6 +4155,70 @@ ul.admin-list {
     outline: 0;
     background-color: #70bf44;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
+  .wp-core-ui .AM2017--options form .button.green,
+  .wp-core-ui .AM2017--options form .button-primary.green {
+    border-color: #70bf44;
+    color: #70bf44; }
+    .wp-core-ui .AM2017--options form .button.green:hover,
+    .wp-core-ui .AM2017--options form .button-primary.green:hover {
+      background-color: #70bf44;
+      color: #ffffff; }
+    .wp-core-ui .AM2017--options form .button.green.solid,
+    .wp-core-ui .AM2017--options form .button-primary.green.solid {
+      border-color: transparent;
+      background-color: #70bf44;
+      color: #ffffff; }
+      .wp-core-ui .AM2017--options form .button.green.solid:hover,
+      .wp-core-ui .AM2017--options form .button-primary.green.solid:hover {
+        background-color: #599b35; }
+  .wp-core-ui .AM2017--options form .button.orange,
+  .wp-core-ui .AM2017--options form .button-primary.orange {
+    border-color: #f07f37;
+    color: #f07f37; }
+    .wp-core-ui .AM2017--options form .button.orange:hover,
+    .wp-core-ui .AM2017--options form .button-primary.orange:hover {
+      background-color: #f07f37;
+      color: #ffffff; }
+    .wp-core-ui .AM2017--options form .button.orange.solid,
+    .wp-core-ui .AM2017--options form .button-primary.orange.solid {
+      border-color: transparent;
+      background-color: #f07f37;
+      color: #ffffff; }
+      .wp-core-ui .AM2017--options form .button.orange.solid:hover,
+      .wp-core-ui .AM2017--options form .button-primary.orange.solid:hover {
+        background-color: #e36311; }
+  .wp-core-ui .AM2017--options form .button.blue,
+  .wp-core-ui .AM2017--options form .button-primary.blue {
+    border-color: #7fc1ff;
+    color: #7fc1ff; }
+    .wp-core-ui .AM2017--options form .button.blue:hover,
+    .wp-core-ui .AM2017--options form .button-primary.blue:hover {
+      background-color: #7fc1ff;
+      color: #ffffff; }
+    .wp-core-ui .AM2017--options form .button.blue.solid,
+    .wp-core-ui .AM2017--options form .button-primary.blue.solid {
+      border-color: transparent;
+      background-color: #7fc1ff;
+      color: #ffffff; }
+      .wp-core-ui .AM2017--options form .button.blue.solid:hover,
+      .wp-core-ui .AM2017--options form .button-primary.blue.solid:hover {
+        background-color: #4ca8ff; }
+  .wp-core-ui .AM2017--options form .button.red,
+  .wp-core-ui .AM2017--options form .button-primary.red {
+    border-color: #e74e42;
+    color: #e74e42; }
+    .wp-core-ui .AM2017--options form .button.red:hover,
+    .wp-core-ui .AM2017--options form .button-primary.red:hover {
+      background-color: #e74e42;
+      color: #ffffff; }
+    .wp-core-ui .AM2017--options form .button.red.solid,
+    .wp-core-ui .AM2017--options form .button-primary.red.solid {
+      border-color: transparent;
+      background-color: #e74e42;
+      color: #ffffff; }
+      .wp-core-ui .AM2017--options form .button.red.solid:hover,
+      .wp-core-ui .AM2017--options form .button-primary.red.solid:hover {
+        background-color: #da2a1c; }
   .wp-core-ui .AM2017--options form .button.small,
   .wp-core-ui .AM2017--options form .button-primary.small {
     background-color: #6a6a6a;

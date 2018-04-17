@@ -57,6 +57,10 @@ require_once( __DIR__ . '/includes/client-side/accordion.php');
 // h) disclaimer shortcode
 require_once( __DIR__ . '/includes/client-side/disclaimer.php');
 
+// page content
+// - in page cta
+require_once( __DIR__ . '/includes/client-side/page-content.php');
+
 
 
 

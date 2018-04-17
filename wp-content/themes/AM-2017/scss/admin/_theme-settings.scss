@@ -300,6 +300,30 @@ $colour_codes : $white, $grey_lighter, $grey_pale, $grey;
         background-color : $green;
         text-shadow : $shadow-down-right_thin;
       }
+      // different colour buttons
+      $colour_classes : 'green', 'orange', 'blue', 'red';
+      $colour_codes : $green, $orange, $blue, $red;
+      $colour_hover : $green_dark, $orange_dark, $blue_dark, $red_dark; 
+      @for $i from 1 through length($colour_classes) {
+        &.#{nth($colour_classes, $i)} { 
+          border-color : nth($colour_codes, $i);
+          color : nth($colour_codes, $i);
+          &:hover {
+            background-color : nth($colour_codes, $i);
+            color : $white;
+          }
+          &.solid {
+            border-color : transparent;
+            background-color : nth($colour_codes, $i);
+            color : $white;
+            &:hover {
+              background-color : nth($colour_hover, $i);
+            }
+          }
+        }
+      }
+
+
       // back to top button
       &.small {
         background-color : $grey;

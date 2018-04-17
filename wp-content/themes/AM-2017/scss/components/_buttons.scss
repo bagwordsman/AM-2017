@@ -96,12 +96,11 @@ input[type="button"] {
     text-decoration : none;
   }
   // home page refer
-  .home & {
-    &[href*="refer"] {
-      margin-top : 4rem;
+  &.cta-btn {
+    margin-top : 4rem;
       margin-bottom : 0;
-    }
   }
+
 
 
 

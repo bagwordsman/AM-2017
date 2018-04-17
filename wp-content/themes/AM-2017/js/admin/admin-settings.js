@@ -255,13 +255,14 @@
         this.code = function () {
 			// references to elements, and logo type
 			const btn = $(classID).find("input[type='button']");
+			const removeBtn = $(classID).find("a.button")[0];
 			const txtFields = $(classID).find("input[type='text']");
 			const img = $(classID).find("img"); // const img = $(document).find(`${classID} img`);
 			let logoType = $(document).find(`${classID}`).parent().prev();
 			logoType = $(logoType).clone().children().remove().end().text(); // gets top level text only
 			
 			// upload button click
-			$(btn).live('click', function(){
+			$(btn).on('click', function(){
 				// show thickbox / media upload
 				tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
 		
@@ -305,6 +306,14 @@
 					$(txtFields[3]).val(loadHeight);
 				}
 			}
+
+			// remove logo
+			// img/admin-img/affiliate-logo-default.jpg
+			$(removeBtn).on('click', function(){
+				$(txtFields).removeAttr('value');
+				console.log(txtFields);
+				$(img).attr('src','../wp-content/themes/AM-2017/img/admin-img/affiliate-logo-default.jpg');
+			});
         }
 	}
 
