@@ -166,7 +166,9 @@ Basic Stylesheet
     .menu-open .fixed-header .header {
       top: 0;
       bottom: 58px;
-      overflow-y: scroll; } }
+      overflow-y: scroll; }
+    .menu-open.logged-in .fixed-header .header {
+      top: 46px; } }
 .header {
   width: 100%;
   top: 0;
@@ -417,6 +419,8 @@ Basic Stylesheet
 
 #content {
   min-height: 300px; }
+  #content > div:last-child {
+    padding-bottom: 0; }
 
 body.page-template #content > div:not(.hero-section) .five.columns {
   padding-top: 2.5rem;
@@ -1615,7 +1619,8 @@ a {
   color: #70bf44;
   outline: 0 none;
   text-decoration: none;
-  transition: all 0.3s ease-in-out 0s; }
+  transition: all 0.3s ease-in-out 0s;
+  word-break: break-all; }
   a:hover {
     color: #599b35; }
   #content > div:not(.hero-section) a {

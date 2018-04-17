@@ -84,6 +84,7 @@ a {
   outline : 0 none;
   text-decoration : none;
   transition : all 0.3s ease-in-out 0s;
+  word-break: break-all; // break long links (e.g. urls) onto 2 lines. See disclaimer sections.
   &:hover {
     color : $green_dark;
   }

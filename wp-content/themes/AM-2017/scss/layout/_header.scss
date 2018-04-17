@@ -19,6 +19,10 @@
       bottom: 58px; // offsets cookie bar
       overflow-y: scroll;
     }
+    // logged in
+    &.logged-in .fixed-header .header {
+      top : 46px;
+    }
   }
 }
 
