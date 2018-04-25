@@ -19,8 +19,8 @@
 // 1) content containers
 #content {
   min-height : 300px;
-  > div:last-child {
-    padding-bottom : 0;
+  > div:not(.wrapper):last-child {
+    padding-bottom : 2.5rem;
   }
 }
 
@@ -49,22 +49,21 @@ body.single-post {
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // 2) wrapping containers
 // - .wrapper and .divider work together
-%wrapper {
+.wrapper {
   overflow : hidden;
   position : relative;
   padding-bottom : 140px;
   @media (min-width: 660px) {
     padding-bottom : 210px;
   }
+  &.white-bg {
+    background-color : $white;
+  }
+  &.grey-bg {
+    background-color : $grey_lighter;
+  }
 }
-.wrapper-white {
-  @extend %wrapper;
-  background-color : $white;
-}
-.wrapper-grey {
-  @extend %wrapper;
-  background-color : $grey_lighter;
-}
+
 
 
 // content dividers
@@ -88,10 +87,12 @@ body.single-post {
   // left side
   &:before {
       transform: skew(0deg, 8deg);
+      left : -1px; // prevents img 'overflow' on blog
   }
   // right side
   &:after {
       transform: skew(0deg, -8deg);
+      right : -1px; // prevents img 'overflow' on blog
   }
   // white
   &.white, &.white:before, &.white:after {

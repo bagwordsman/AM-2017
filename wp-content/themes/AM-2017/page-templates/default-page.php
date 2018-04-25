@@ -28,7 +28,7 @@ get_header(); ?>
 
 
 
-	<div class="wrapper-white">
+	<div class="wrapper white-bg">
 		<?php
 		$sidebar_1 = get_field('first_section_sidebar');
 		$sidebar_1_colour = get_field('first_section_sidebar_colour');
@@ -75,7 +75,7 @@ get_header(); ?>
 
 
 	<span class="divider grey"></span>
-	</div><!-- wrapper-white -->
+	</div><!-- wrapper white-bg -->
 
 	<?php
 	// end main content area
@@ -125,7 +125,7 @@ get_header(); ?>
 	// content area
 	// - start grey wrapped
 	if ($header_2 || $content_2 || $columns_2) {
-	echo '<div class="wrapper-grey"'.( $id_2 ? (' id="'.$id_2.'" ')  : '').'>';
+	echo '<div class="wrapper grey-bg"'.( $id_2 ? (' id="'.$id_2.'" ')  : '').'>';
 	}
 
 	

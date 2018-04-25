@@ -1,6 +1,6 @@
 // images - includes captions and lazyloading
 
-div[class*="wrapper-"] img {
+div[class*="wrapper"] img {
   display : block;
   max-width : 100%;
   height : auto; // keep in proportion
@@ -9,11 +9,11 @@ div[class*="wrapper-"] img {
 
 
 // reset the above:
-div[class*="wrapper-"] .card img {
+div[class*="wrapper"] .card img {
   margin : 0;
   max-width : none;
 }
-div[class*="wrapper-"] .page-advert img {
+div[class*="wrapper"] .page-advert img {
   max-width : 240px;
   margin : 0 auto;
   @media (min-width: 900px) {

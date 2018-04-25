@@ -31,7 +31,7 @@ get_header(); ?>
 	// sidebar - classes.php
 	$blog_sidebar = new blogSidebar('blog_sidebar');
 
-	// advert adds .wrapper-white and wrapper-grey containers + advert
+	// advert adds .wrapper white-bg and wrapper grey-bg containers + advert
 	// - look for $ad_enabled
 	$ad_enabled = get_option ( 'sandbox_theme_blog_options' )['blog_ad_check'];
 	
@@ -68,11 +68,11 @@ get_header(); ?>
 	}
 
 	// odd pages:
-	// - with advert: add wrapper-white
+	// - with advert: add wrapper white-bg
 	// - no advert: add pad-top
 	if (($odd_pages) || ($paged == 0)) {
 		echo 
-		($ad_enabled ? '<div class="wrapper-white">' : '') . '
+		($ad_enabled ? '<div class="wrapper white-bg">' : '') . '
 			<div class="container'. ( $ad_enabled ? '' : ' pad-top') .'">
 				<div class="seven columns">' . $tag_info;
 	}
@@ -112,7 +112,7 @@ get_header(); ?>
 	if ($index == 4) {
 
 		// odd pages - with advert:
-		// 	 - close: .seven.columns, .container .wrapper-white
+		// 	 - close: .seven.columns, .container .wrapper white-bg
 		//   - add: sidebar, advert, next container
 		if ( (($odd_pages) || ($paged == 0)) && $ad_enabled ) {
 			echo '

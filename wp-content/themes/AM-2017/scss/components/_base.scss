@@ -78,13 +78,12 @@ em { font-style:italic; }
 
 
 
-// Links (and faux links)
+// links
 a {
   color : $green;
   outline : 0 none;
   text-decoration : none;
   transition : all 0.3s ease-in-out 0s;
-  word-break: break-all; // break long links (e.g. urls) onto 2 lines. See disclaimer sections.
   &:hover {
     color : $green_dark;
   }
@@ -97,6 +96,11 @@ a {
       text-decoration : none;
     }
   }
+  // break long links (e.g. urls) onto 2 lines. See disclaimer sections.
+  // note: this will apply to all anchor links, e.g. blog post headings as well
+  // word-break : break-all;
+  // hyphens : auto;
+  @extend %anchor-wrap;
 }
 
 

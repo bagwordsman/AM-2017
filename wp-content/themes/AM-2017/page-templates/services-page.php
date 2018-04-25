@@ -16,7 +16,7 @@ get_header(); ?>
 	// main content area - first section
 	while ( have_posts() ) : the_post(); ?>
 
-	<div class="wrapper-white">
+	<div class="wrapper white-bg">
 		<div class="container pad-top">
 
 		<?php
@@ -87,7 +87,7 @@ get_header(); ?>
 
 
 
-	<div class="wrapper-grey">
+	<div class="wrapper grey-bg">
 		<?php
 		$heading_1 = get_field('h1_heading');
 		$title_1 = get_the_title();
@@ -132,7 +132,7 @@ get_header(); ?>
 	$fullwidth_3 = get_field('last_section_-_full_width');
 
 
-	echo '<div class="wrapper-white">';
+	echo '<div class="wrapper white-bg">';
 
 
 

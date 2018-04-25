@@ -30,7 +30,7 @@ get_header();
 
 
 	<!-- second section -->
-	<div class="wrapper-white">
+	<div class="wrapper white-bg">
 		<div class="container container--right">
 		<?php
 		$header_2 = get_field('second_section_header');
@@ -52,7 +52,7 @@ get_header();
 		?>			
 		</div><!-- container -->
 	<span class="divider grey"></span>
-	</div><!-- wrapper-white -->
+	</div><!-- wrapper white-bg -->
 
 
 
@@ -81,7 +81,7 @@ get_header();
 		$cta_buttoncolour = get_field('end_of_content_cta_colour');
 
 		if ($header_3 || $content_3) {
-		echo '<div class="wrapper-grey">';
+		echo '<div class="wrapper grey-bg">';
 		}
 
 			// columns header and intro

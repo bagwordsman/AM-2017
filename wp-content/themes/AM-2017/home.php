@@ -44,7 +44,7 @@ get_header(); ?>
 		// sidebar - classes.php
 		$blog_sidebar = new blogSidebar('blog_sidebar');
 
-		// advert adds .wrapper-white and wrapper-grey containers + advert
+		// advert adds .wrapper white-bg and wrapper grey-bg containers + advert
 		// - look for $ad_enabled
 		$ad_enabled = get_option ( 'sandbox_theme_blog_options' )['blog_ad_check'];
 		
@@ -63,11 +63,11 @@ get_header(); ?>
 					<div class="seven columns">';
 			}
 			// odd pages:
-			// - with advert: add wrapper-white
+			// - with advert: add wrapper white-bg
 			// - no advert: add pad-top
 			if ($odd_pages) {
 				echo 
-				($ad_enabled ? '<div class="wrapper-white">' : '') . '
+				($ad_enabled ? '<div class="wrapper white-bg">' : '') . '
 					<div class="container'. ( $ad_enabled ? '' : ' pad-top') .'">
 						<div class="seven columns">';
 			}
@@ -110,10 +110,10 @@ get_header(); ?>
 			// left column
 			if ($index == 0) {
 				// wrapper
-				// - with advert: add wrapper-white
+				// - with advert: add wrapper white-bg
 				// - no advert: add pad-top
 				echo 
-				($ad_enabled ? '<div class="wrapper-white">' : '') . '
+				($ad_enabled ? '<div class="wrapper white-bg">' : '') . '
 					<div class="container'. ( $ad_enabled ? '' : ' pad-top') .'">
 						<div class="seven columns">
 							<div class="post latest">
@@ -149,7 +149,7 @@ get_header(); ?>
 					</div>'; // close .right.column and .container
 					if ($ad_enabled) {
 						echo '<span class="divider grey"></span>
-						</div>'; // close .wrapper-white
+						</div>'; // close .wrapper white-bg
 					}
 			}
 		}
@@ -187,7 +187,7 @@ get_header(); ?>
 			// odd pages - no advert: do nothing
 			
 			// odd pages - with advert:
-			// 	 - close: .seven.columns, .container .wrapper-white
+			// 	 - close: .seven.columns, .container .wrapper white-bg
 			//   - add: sidebar, advert, next container
 			if (($odd_pages) && $ad_enabled) {
 				echo '

@@ -13,6 +13,20 @@ Basic Stylesheet
  - may have to experiment with ordering of the cascade
 
 */
+a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto; }
+
 .container {
   position: relative;
   width: 100%;
@@ -419,8 +433,8 @@ Basic Stylesheet
 
 #content {
   min-height: 300px; }
-  #content > div:last-child {
-    padding-bottom: 0; }
+  #content > div:not(.wrapper):last-child {
+    padding-bottom: 2.5rem; }
 
 body.page-template #content > div:not(.hero-section) .five.columns {
   padding-top: 2.5rem;
@@ -469,19 +483,17 @@ body.page-template #content > div:not(.hero-section) .five.columns {
   body.single-post #content > div:not(.hero-section) .seven.columns + .five.columns {
     margin-left: 0; } }
 
-.wrapper-white, .wrapper-grey {
+.wrapper {
   overflow: hidden;
   position: relative;
   padding-bottom: 140px; }
   @media (min-width: 660px) {
-    .wrapper-white, .wrapper-grey {
+    .wrapper {
       padding-bottom: 210px; } }
-
-.wrapper-white {
-  background-color: #ffffff; }
-
-.wrapper-grey {
-  background-color: #f0f0f0; }
+  .wrapper.white-bg {
+    background-color: #ffffff; }
+  .wrapper.grey-bg {
+    background-color: #f0f0f0; }
 
 .divider {
   bottom: 50px;
@@ -499,9 +511,11 @@ body.page-template #content > div:not(.hero-section) .five.columns {
       .divider:before, .divider:after {
         height: 210px; } }
   .divider:before {
-    transform: skew(0deg, 8deg); }
+    transform: skew(0deg, 8deg);
+    left: -1px; }
   .divider:after {
-    transform: skew(0deg, -8deg); }
+    transform: skew(0deg, -8deg);
+    right: -1px; }
   .divider.white, .divider.white:before, .divider.white:after {
     background-color: #ffffff; }
   .divider.grey, .divider.grey:before, .divider.grey:after {
@@ -1066,9 +1080,9 @@ body.page-template #content > div:not(.hero-section) .five.columns {
 .archive #content .container,
 .single #content .container {
   padding-bottom: 5rem; }
-.blog #content .wrapper-white .container,
-.archive #content .wrapper-white .container,
-.single #content .wrapper-white .container {
+.blog #content .wrapper.white-bg .container,
+.archive #content .wrapper.white-bg .container,
+.single #content .wrapper.white-bg .container {
   padding-top: 5rem; }
 .blog #content > div:not(.hero) h1 a,
 .blog #content > div:not(.hero) h3 a,
@@ -1619,8 +1633,7 @@ a {
   color: #70bf44;
   outline: 0 none;
   text-decoration: none;
-  transition: all 0.3s ease-in-out 0s;
-  word-break: break-all; }
+  transition: all 0.3s ease-in-out 0s; }
   a:hover {
     color: #599b35; }
   #content > div:not(.hero-section) a {
@@ -2090,21 +2103,21 @@ code {
         color: #ffffff;
         background-color: #ed786f; }
 
-div[class*="wrapper-"] img {
+div[class*="wrapper"] img {
   display: block;
   max-width: 100%;
   height: auto;
   margin: 3rem auto; }
 
-div[class*="wrapper-"] .card img {
+div[class*="wrapper"] .card img {
   margin: 0;
   max-width: none; }
 
-div[class*="wrapper-"] .page-advert img {
+div[class*="wrapper"] .page-advert img {
   max-width: 240px;
   margin: 0 auto; }
   @media (min-width: 900px) {
-    div[class*="wrapper-"] .page-advert img {
+    div[class*="wrapper"] .page-advert img {
       max-width: 100%; } }
 
 .container p > img {
@@ -2636,8 +2649,10 @@ a.ui-button:active, .ui-button:active,
   margin-bottom: 3rem; }
 .mediator-profile .profile-pic {
   height: auto;
+  width: 100%;
   margin: 0; }
 .mediator-profile .name-card {
+  margin-top: -1rem;
   padding: 1rem 2rem;
   box-sizing: border-box;
   background-color: #70bf44;

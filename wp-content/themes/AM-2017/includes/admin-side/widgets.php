@@ -93,7 +93,7 @@ function blog_widget_area() {
 // b) blog advert
 // note: this does not use widgets
 
-// - this needs to work with wrapper-white and divider grey in the templates:
+// - this needs to work with wrapper white-bg and divider grey in the templates:
 // - home.php, category.php, tag.php
 // - can't isolate to here unfortunately. Variable '$ad_enabled' is used to manipulate the above templates
 function blog_advert() {
@@ -120,7 +120,7 @@ function blog_advert() {
 
 	if ($ad_enabled) {
 		echo '
-		<div class="wrapper-grey">
+		<div class="wrapper grey-bg">
 			<div class="container container-narrow">
 				<div class="page-advert">
 					<div>
