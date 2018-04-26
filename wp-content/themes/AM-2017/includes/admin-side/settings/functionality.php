@@ -129,65 +129,7 @@ function sandbox_lazyloading_options_callback() {
 	<p>'. back_btn() .'Allow all in-page image assets to be lazy-loaded. This can help reduce the load time of image-heavy pages.</p>
     <p>Images will only be loaded when they come into view, when the user scrolls.</p>';
 }
-
-
-// callback: enqueue scripts / add to page
-$lazyload = get_option( 'sandbox_theme_lazyloading_options' );
-$lazyload_on = $lazyload['lazyloading'];
-
-// if the checkbox is marked, add lazyloading
-if ($lazyload_on != '') {
-
-	// load script
-	function enqueue_lazyload() {
-		wp_enqueue_script('jquery_lazy_load', get_stylesheet_directory_uri() . '/js/lib/jquery.lazyload.min.js', array('jquery'), '1.0');
-	}
-	add_action('wp_enqueue_scripts', 'enqueue_lazyload');
-
-	// add embedded script to footer
-	function footer_lazyload() {
-	echo '
-	<script type="text/javascript">
-	jQuery(document).ready(function( $ ) {
-		$(function() {
-			$("img.lazy").lazyload({
-				load : function(elements_left, settings) {
-					$(this).removeClass("loading-icon");
-				}
-			});
-		});
-	});
-	</script>
-	';
-	}
-	add_action('wp_footer', 'footer_lazyload');
-
-	// filter the_content and acf_the_content
-	function filter_lazyload($content) {
-		return preg_replace_callback('/(<\s*img[^>]+)(src\s*=\s*"[^"]+")([^>]+>)/i', 'preg_lazyload', $content);
-	}
-	add_filter('the_content', 'filter_lazyload');
-	add_filter('acf_the_content', 'filter_lazyload');
-	// gallery filter doesn't work here - need to come up with a new solution
-	// add_filter('post_gallery', 'filter_lazyload');
-
-	// note:
-	// - if image is wrapped in an anchor tag, it will duplicate
-	// - this happened on old version of in page cta
-
-
-	// add the class '.lazy' to images that will be lazy loaded
-	function preg_lazyload($img_match) {
-		// $img_replace = $img_match[1] . 'src="' . get_stylesheet_directory_uri() . '/img/loading-icon.gif" class="loading-icon" data-original' . substr($img_match[2], 3) . $img_match[3];
-		$img_replace = $img_match[1] . ' class="loading-icon" data-original' . substr($img_match[2], 3) . $img_match[3];
-		$img_replace = preg_replace('/class\s*=\s*"/i', 'class="lazy loading-icon ', $img_replace);
-		$img_replace .= '<noscript>' . $img_match[0] . '</noscript>';
-		return $img_replace;
-	}
-
-// end lazyload on
-}
-
+// client side/css-js.php
 
 
 

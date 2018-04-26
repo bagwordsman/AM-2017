@@ -11,6 +11,7 @@
     // 5 - cookie bar notice
     // 6 - mediator profile reveal
     // 7 - staged column height matching
+    // 8 - lazyloading
 
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -250,25 +251,50 @@
 
     // ––––––––––––––––––––––––––––––––––––––––––––––––––
     // 7 - staged column height matching
-    // - works fine so long as it isnt used on the home page - WHY???
+    // - needs to allow for lazyloaded images, as well as resize
     function stageColumn(resize) {           
 
         // set height of staged columns
-        if ($('body:not(.home)').innerWidth() >= 980) {
+        // - previously 'body:not(.home)'
+        if ($('body').innerWidth() >= 980) {
             var maxHeight = Math.max.apply(Math, $('.columns.stage').map(function(i,elem){ 
-                // return Number($(elem).height());
                 return $(elem).height();
             }));
             // console.log(maxHeight + ': max height');
+            if ($('body').hasClass('home')) {
+                // maxHeight = maxHeight + 60;
+            }
             $('.columns.stage').height(maxHeight);
-            // - does not work properly on home page???
-            // $('.home .columns.stage').height(maxHeight + 75);
+
         } else {
             $('.columns.stage').css('height', 'auto');
         }
     }
-    // run on load
-    stageColumn();
+    // run on load - if lazyloading is not enabled
+    if (!$('.page').hasClass('lazyloading')) {
+        stageColumn();
+    }
+
+
+    
+    
+    
+    // ––––––––––––––––––––––––––––––––––––––––––––––––––
+    // 8 - lazyloading
+
+    if ($('.page').hasClass('lazyloading')) {
+        $("img.lazy").lazyload({
+            load : yourhandler
+        });
+    }
+
+    function yourhandler(element, el_left, settings) {
+        $(this).removeClass("loading-icon");
+        // fire the column heights code once images have loaded
+        stageColumn();
+    }
+
+
 
 
 

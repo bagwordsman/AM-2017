@@ -72,6 +72,9 @@ $favicon = $logo_options['favicon'];
 $fixed = get_option ( 'sandbox_theme_header_options' );
 $isFixed = $fixed['fixed_header'];
 $fixedOffset = $fixed['fixed_header_offset'];
+// lazyloading - detected in main.js
+$lazyload = get_option( 'sandbox_theme_lazyloading_options' );
+$lazyload_on = $lazyload['lazyloading'];
 // render the logos in metadata
 if ($mainlogo != '') echo '<meta content="'.$mainlogo.'" property="logo">';
 if ($appletouch != '') echo '<link rel="apple-touch-icon" sizes="" href="'.$appletouch.'">';
@@ -86,7 +89,7 @@ if ($favicon != '') echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.
 
 <?php echo '
 
-<div class="page'. ( is_active_sidebar( 'cookies' ) ? (' has-cookie-bar') : '') . ( $isFixed ? (' fixed-header') : '') . '"' . ( $isFixed ? (' data-offset="' . $fixedOffset . '"') : '') . '>
+<div class="page'. ( is_active_sidebar( 'cookies' ) ? (' has-cookie-bar') : '') . ( $isFixed ? (' fixed-header') : '') . ( $lazyload_on ? (' lazyloading') : '') .'"' . ( $isFixed ? (' data-offset="' . $fixedOffset . '"') : '') . '>
 	<div class="page-wrap">';
 
 	// site title

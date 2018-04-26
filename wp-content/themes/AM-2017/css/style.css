@@ -564,7 +564,9 @@ body.page-template #content > div:not(.hero-section) .five.columns {
       border-top: 0;
       border-left-width: 5px;
       border-left-style: solid;
-      border-image: linear-gradient(to top, #f0f0f0, #6a6a6a 35%, #6a6a6a 65%, #f0f0f0 100%) 1 1 1 1; } }
+      border-image: linear-gradient(to top, #f0f0f0, #6a6a6a 35%, #6a6a6a 65%, #f0f0f0 100%) 1 1 1 1; }
+      .home .four.columns.stage {
+        padding-bottom: 48px; } }
   @media (min-width: 980px) {
     .four.columns.stage .button--container {
       position: absolute;
@@ -588,7 +590,8 @@ body.page-template #content > div:not(.hero-section) .five.columns {
     max-width: 50% !important; }
     @media (min-width: 980px) {
       .four.columns.stage img {
-        max-width: 90% !important; } }
+        max-width: 90% !important;
+        margin-top: 50px; } }
   .home .four.columns.stage .button {
     margin: 0; }
   @media (min-width: 980px) {
@@ -2052,7 +2055,7 @@ code {
   #content input[type="button"] {
     text-decoration: none; }
   .button.cta-btn, button.cta-btn, input[type="submit"].cta-btn, input[type="reset"].cta-btn, input[type="button"].cta-btn {
-    margin-top: 4rem;
+    margin-top: 6rem;
     margin-bottom: 0; }
   @media (min-width: 660px) {
     .button, button, input[type="submit"], input[type="reset"], input[type="button"] {
@@ -2128,9 +2131,8 @@ div[class*="wrapper"] .page-advert img {
   display: none; }
 
 #content .container img.loading-icon {
-  max-width: auto;
-  width: auto;
-  min-height: 144px;
+  width: 144px;
+  height: 144px;
   padding: 1rem;
   box-sizing: border-box;
   background-color: #f0f0f0;

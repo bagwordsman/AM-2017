@@ -183,6 +183,9 @@ body.single-post {
     border-left-width : 5px;
     border-left-style : solid;
     border-image : $fade-in-out-center_vertical;
+    .home & {
+      padding-bottom : 48px;
+    }
   }  
 
   // button container - first child overrides
@@ -219,6 +222,7 @@ body.single-post {
     max-width : 50% !important;
     @media (min-width: 980px) {
       max-width : 90% !important;
+      margin-top : 50px;
     }
   }
 
