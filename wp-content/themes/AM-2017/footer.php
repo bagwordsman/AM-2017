@@ -140,7 +140,6 @@ echo '
 				// lib/twitterfeed.js targets this div:
 				echo '<div id="twitter-feed" data-profile="'.$tweetprofile.'" data-user="'.$tweetuser.'" data-tweets="'.$tweetamount.'" data-path="'.$uri.'"></div>';
 
-
 				// social media
 				$social_options = get_option ( 'sandbox_theme_social_options' );
 				$facebook = $social_options['facebook'];

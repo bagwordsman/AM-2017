@@ -494,6 +494,55 @@ function sandbox_theme_intialize_tweet_options() {
 			'sandbox_theme_tweet_options'
 		)
 	);
+	// API settings
+	// - key
+	add_settings_field(
+    	'twitter_consumer_key',
+    	'<i class="fa fa-key light-grey--text" aria-hidden="true"></i>Consumer Key',
+    	'text_callback',
+    	'sandbox_theme_tweet_options',
+		'tweet_settings_section',
+		array( // $args array - tailor text_callback
+			'twitter_consumer_key',
+			'sandbox_theme_tweet_options'
+		)
+	);
+	add_settings_field(
+    	'twitter_consumer_key_secret',
+    	'<i class="fa fa-user-secret black--text" aria-hidden="true"></i>Consumer Key Secret',
+    	'text_callback',
+    	'sandbox_theme_tweet_options',
+		'tweet_settings_section',
+		array( // $args array - tailor text_callback
+			'twitter_consumer_key_secret',
+			'sandbox_theme_tweet_options'
+		)
+	);
+	// - token
+	add_settings_field(
+    	'twitter_access_token',
+    	'<i class="fa fa-circle yellow--text" aria-hidden="true"></i>Access Token',
+    	'text_callback',
+    	'sandbox_theme_tweet_options',
+		'tweet_settings_section',
+		array( // $args array - tailor text_callback
+			'twitter_access_token',
+			'sandbox_theme_tweet_options'
+		)
+	);
+	add_settings_field(
+    	'twitter_access_token_secret',
+    	'<i class="fa fa-user-secret black--text" aria-hidden="true"></i>Access Token Secret',
+    	'text_callback',
+    	'sandbox_theme_tweet_options',
+		'tweet_settings_section',
+		array( // $args array - tailor text_callback
+			'twitter_access_token_secret',
+			'sandbox_theme_tweet_options'
+		)
+	);
+
+	// Tweet Count
 	add_settings_field(
     	'twitter_tweet_count',
     	'<i class="fa fa-twitter orig" aria-hidden="true"></i>Number of Tweets to Display',

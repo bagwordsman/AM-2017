@@ -3,7 +3,8 @@
 
 jQuery(document).ready(function( $ ) {
 
-    // following 3 need to be added to get-tweets-1.1.php in root of theme, and come from theme settings:
+    // following 3 need to be added to get-tweets-1.1.php in root of theme, and come from theme settings
+    // - unable to get theme settings from get-tweets-1.1.php, but need to
     // number of tweets to display:
     var displaylimit = $("#twitter-feed").attr("data-tweets");
     var numbers = {
@@ -61,6 +62,8 @@ jQuery(document).ready(function( $ ) {
                 var tweetid = feeds[i].id_str;
                 
                 
+                
+                // console.log(feeds);
                 
                 // time
                 // console.log(feeds[i].created_at);

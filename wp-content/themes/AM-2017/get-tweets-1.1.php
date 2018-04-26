@@ -3,42 +3,38 @@
 session_start();
 require_once("twitteroauth-master/twitteroauth/twitteroauth.php"); //Path to twitteroauth library
 
+
+// get theme settings
+// - load wordpress core, ignoring the template engine
+define( 'WP_USE_THEMES', false );
+require_once( '../../../wp-load.php' );
+
+
 // get variables from settings / AM-theme-options.php
-$twitteruser = $tweet_link['twitter_user'];
-$notweets = $tweet_link['no_tweets'];
+$tweet_options = get_option ( 'sandbox_theme_tweet_options' );
 
-if ($notweets = 'one') {
-  $notweets = 1;
-}
-if ($notweets = 'two') {
-  $notweets = 2;
-}
-if ($notweets = 'three') {
-  $notweets = 3;
-}
-// $notweets = 3;
-// var_dump($notweets);
+// load keys / access tokens:
+$consumerkey = $tweet_options['twitter_consumer_key'];
+$consumerkeysecret = $tweet_options['twitter_consumer_key_secret'];
+$accesstoken = $tweet_options['twitter_access_token'];
+$accesstokensecret = $tweet_options['twitter_access_token_secret'];
 
+// load user and number of tweets
+$tweetuser = $tweet_options['twitter_user'];
+$tweetamount = $tweet_options['twitter_tweet_count'];
 
-
-
-// $twitteruser = "ablemediation";
-// $notweets = 1;
-
-// this stuff can be kept here for the time being
-$consumerkey = "wsyJJale89cnyoVaM6fHQQrTs";
-$consumersecret = "uBmfpmFqood7M86xMwZUCYKadzjqcZu8qITrqonBCxapFii5sW";
-$accesstoken = "2995785839-RaY1kbCAW8jT4DonQnrsn3frSmtkpQjoxU3nrmo";
-$accesstokensecret = "JHRrSHhCdVKj1mnt4Q26daGXly3AnUcMQUtIB69K9xwe7";
  
 function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
   $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
   return $connection;
 }
  
-$connection = getConnectionWithAccessToken($consumerkey, $consumersecret, $accesstoken, $accesstokensecret);
+$connection = getConnectionWithAccessToken($consumerkey, $consumerkeysecret, $accesstoken, $accesstokensecret);
  
-$tweets = $connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=".$twitteruser."&count=".$notweets);
+$tweets = $connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=".$tweetuser."&count=".$tweetamount);
+
+// also works like this, user and count seem to be irrelevant
+// $tweets = $connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=&count=");
  
 echo json_encode($tweets);
 ?>
