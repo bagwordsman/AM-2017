@@ -4594,13 +4594,16 @@ ul.admin-list {
     line-height: 1.6rem;
     text-shadow: none; }
   #mediator-profile div[aria-label="Horizontal line"] button,
+  #mediator-profile div[aria-label="Insert Read More tag"] button,
   #mediator-profile #mceu_11 button {
     padding: 0; }
     #mediator-profile div[aria-label="Horizontal line"] button .mce-ico,
+    #mediator-profile div[aria-label="Insert Read More tag"] button .mce-ico,
     #mediator-profile #mceu_11 button .mce-ico {
       color: #ffffff;
       background-color: #f07f37; }
       #mediator-profile div[aria-label="Horizontal line"] button .mce-ico:hover,
+      #mediator-profile div[aria-label="Insert Read More tag"] button .mce-ico:hover,
       #mediator-profile #mceu_11 button .mce-ico:hover {
         background-color: #f49d66; }
   #mediator-profile .profile-info .form-table th:first-child:after {
@@ -4959,13 +4962,16 @@ input[value="red"]:checked + label {
     line-height: 1.6rem;
     text-shadow: none; }
   #acf_471302.acf_postbox #acf-linked_page_content div[aria-label="Horizontal line"] button,
+  #acf_471302.acf_postbox #acf-linked_page_content div[aria-label="Insert Read More tag"] button,
   #acf_471302.acf_postbox #acf-linked_page_content #mceu_11 button {
     padding: 0; }
     #acf_471302.acf_postbox #acf-linked_page_content div[aria-label="Horizontal line"] button .mce-ico,
+    #acf_471302.acf_postbox #acf-linked_page_content div[aria-label="Insert Read More tag"] button .mce-ico,
     #acf_471302.acf_postbox #acf-linked_page_content #mceu_11 button .mce-ico {
       color: #ffffff;
       background-color: #f07f37; }
       #acf_471302.acf_postbox #acf-linked_page_content div[aria-label="Horizontal line"] button .mce-ico:hover,
+      #acf_471302.acf_postbox #acf-linked_page_content div[aria-label="Insert Read More tag"] button .mce-ico:hover,
       #acf_471302.acf_postbox #acf-linked_page_content #mceu_11 button .mce-ico:hover {
         background-color: #f49d66; }
 
@@ -5234,7 +5240,8 @@ input[value="red"]:checked + label {
     border-color: #e74e42;
     background-color: #e74e42; }
 
-#acf_471520.acf_postbox.no_box {
+#acf_471520.acf_postbox.no_box,
+#acf_477633.acf_postbox.no_box {
   margin-top: 5rem;
   margin-bottom: 5rem;
   padding: 1rem 2rem 1.5rem;
@@ -5242,7 +5249,10 @@ input[value="red"]:checked + label {
   padding-right: 0; }
 #acf_471520.acf_postbox input[type="text"],
 #acf_471520.acf_postbox select,
-#acf_471520.acf_postbox textarea {
+#acf_471520.acf_postbox textarea,
+#acf_477633.acf_postbox input[type="text"],
+#acf_477633.acf_postbox select,
+#acf_477633.acf_postbox textarea {
   font-size: 1.2rem;
   font-weight: 400;
   height: 38px;
@@ -5252,15 +5262,21 @@ input[value="red"]:checked + label {
   border: 2px solid #6a6a6a; }
   #acf_471520.acf_postbox input[type="text"]:focus,
   #acf_471520.acf_postbox select:focus,
-  #acf_471520.acf_postbox textarea:focus {
+  #acf_471520.acf_postbox textarea:focus,
+  #acf_477633.acf_postbox input[type="text"]:focus,
+  #acf_477633.acf_postbox select:focus,
+  #acf_477633.acf_postbox textarea:focus {
     box-shadow: none;
     border: 2px solid #f07f37; }
-#acf_471520.acf_postbox textarea {
+#acf_471520.acf_postbox textarea,
+#acf_477633.acf_postbox textarea {
   height: auto;
   line-height: 1.4; }
 #acf_471520.acf_postbox #acf-second_section_columns .label:after,
-#acf_471520.acf_postbox #acf-second_section_columns .profile-info .form-table th:first-child:after {
-  content: "Use the horizontal line tool (-) to separate out columns.";
+#acf_471520.acf_postbox #acf-second_section_columns .profile-info .form-table th:first-child:after,
+#acf_477633.acf_postbox #acf-second_section_columns .label:after,
+#acf_477633.acf_postbox #acf-second_section_columns .profile-info .form-table th:first-child:after {
+  content: "Use the horizontal line tool (-) to separate out columns, or sections of an accordion. The read more tag is used to separate the section header of an accordion from its content.";
   display: inline-block;
   margin-left: .75rem;
   padding: .25rem .75rem;
@@ -5271,14 +5287,54 @@ input[value="red"]:checked + label {
   line-height: 1.6rem;
   text-shadow: none; }
 #acf_471520.acf_postbox #acf-second_section_columns div[aria-label="Horizontal line"] button,
-#acf_471520.acf_postbox #acf-second_section_columns #mceu_11 button {
+#acf_471520.acf_postbox #acf-second_section_columns div[aria-label="Insert Read More tag"] button,
+#acf_471520.acf_postbox #acf-second_section_columns #mceu_11 button,
+#acf_477633.acf_postbox #acf-second_section_columns div[aria-label="Horizontal line"] button,
+#acf_477633.acf_postbox #acf-second_section_columns div[aria-label="Insert Read More tag"] button,
+#acf_477633.acf_postbox #acf-second_section_columns #mceu_11 button {
   padding: 0; }
   #acf_471520.acf_postbox #acf-second_section_columns div[aria-label="Horizontal line"] button .mce-ico,
-  #acf_471520.acf_postbox #acf-second_section_columns #mceu_11 button .mce-ico {
+  #acf_471520.acf_postbox #acf-second_section_columns div[aria-label="Insert Read More tag"] button .mce-ico,
+  #acf_471520.acf_postbox #acf-second_section_columns #mceu_11 button .mce-ico,
+  #acf_477633.acf_postbox #acf-second_section_columns div[aria-label="Horizontal line"] button .mce-ico,
+  #acf_477633.acf_postbox #acf-second_section_columns div[aria-label="Insert Read More tag"] button .mce-ico,
+  #acf_477633.acf_postbox #acf-second_section_columns #mceu_11 button .mce-ico {
     color: #ffffff;
     background-color: #70bf44; }
     #acf_471520.acf_postbox #acf-second_section_columns div[aria-label="Horizontal line"] button .mce-ico:hover,
-    #acf_471520.acf_postbox #acf-second_section_columns #mceu_11 button .mce-ico:hover {
+    #acf_471520.acf_postbox #acf-second_section_columns div[aria-label="Insert Read More tag"] button .mce-ico:hover,
+    #acf_471520.acf_postbox #acf-second_section_columns #mceu_11 button .mce-ico:hover,
+    #acf_477633.acf_postbox #acf-second_section_columns div[aria-label="Horizontal line"] button .mce-ico:hover,
+    #acf_477633.acf_postbox #acf-second_section_columns div[aria-label="Insert Read More tag"] button .mce-ico:hover,
+    #acf_477633.acf_postbox #acf-second_section_columns #mceu_11 button .mce-ico:hover {
+      background-color: #8dcc6a; }
+#acf_471520.acf_postbox #acf-last_content div[aria-label="Horizontal line"] button,
+#acf_471520.acf_postbox #acf-last_content div[aria-label="Insert Read More tag"] button,
+#acf_471520.acf_postbox #acf-third_content div[aria-label="Horizontal line"] button,
+#acf_471520.acf_postbox #acf-third_content div[aria-label="Insert Read More tag"] button,
+#acf_477633.acf_postbox #acf-last_content div[aria-label="Horizontal line"] button,
+#acf_477633.acf_postbox #acf-last_content div[aria-label="Insert Read More tag"] button,
+#acf_477633.acf_postbox #acf-third_content div[aria-label="Horizontal line"] button,
+#acf_477633.acf_postbox #acf-third_content div[aria-label="Insert Read More tag"] button {
+  padding: 0; }
+  #acf_471520.acf_postbox #acf-last_content div[aria-label="Horizontal line"] button .mce-ico,
+  #acf_471520.acf_postbox #acf-last_content div[aria-label="Insert Read More tag"] button .mce-ico,
+  #acf_471520.acf_postbox #acf-third_content div[aria-label="Horizontal line"] button .mce-ico,
+  #acf_471520.acf_postbox #acf-third_content div[aria-label="Insert Read More tag"] button .mce-ico,
+  #acf_477633.acf_postbox #acf-last_content div[aria-label="Horizontal line"] button .mce-ico,
+  #acf_477633.acf_postbox #acf-last_content div[aria-label="Insert Read More tag"] button .mce-ico,
+  #acf_477633.acf_postbox #acf-third_content div[aria-label="Horizontal line"] button .mce-ico,
+  #acf_477633.acf_postbox #acf-third_content div[aria-label="Insert Read More tag"] button .mce-ico {
+    color: #ffffff;
+    background-color: #70bf44; }
+    #acf_471520.acf_postbox #acf-last_content div[aria-label="Horizontal line"] button .mce-ico:hover,
+    #acf_471520.acf_postbox #acf-last_content div[aria-label="Insert Read More tag"] button .mce-ico:hover,
+    #acf_471520.acf_postbox #acf-third_content div[aria-label="Horizontal line"] button .mce-ico:hover,
+    #acf_471520.acf_postbox #acf-third_content div[aria-label="Insert Read More tag"] button .mce-ico:hover,
+    #acf_477633.acf_postbox #acf-last_content div[aria-label="Horizontal line"] button .mce-ico:hover,
+    #acf_477633.acf_postbox #acf-last_content div[aria-label="Insert Read More tag"] button .mce-ico:hover,
+    #acf_477633.acf_postbox #acf-third_content div[aria-label="Horizontal line"] button .mce-ico:hover,
+    #acf_477633.acf_postbox #acf-third_content div[aria-label="Insert Read More tag"] button .mce-ico:hover {
       background-color: #8dcc6a; }
 
 /*# sourceMappingURL=admin-style.css.map */

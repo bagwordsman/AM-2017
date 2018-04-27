@@ -97,7 +97,7 @@ function user_guide_function() {
 				<p>A brief user guide / reference point for website settings:</p>
 				<ul style="margin-bottom : 40px;">
 					<li><strong>Menus</strong><br/>- including: \'Navigation Labels\' and \'Abbreviations\' for shorter page titles.</li>
-					<li><strong>Posts and Pages</strong><br/>- including: Manual Excerpts, where to use Slugs, and Metadata.</li>
+					<li><strong>Posts and Pages</strong><br/>- including: Manual Excerpts, where to use Slugs, Metadata, and accordions</li>
 					<li><strong>Widgets</strong><br/>- including: Blog sidebars (categories, tags, featured posts), and Cookie Bar.</li>
 					<li><strong>Theme Settings Page</strong><br/>- everything else.</li>
 				</ul>
@@ -202,6 +202,65 @@ function user_guide_function() {
 
 						<p>The <span class="red--text">\'Featured Image\'</span> section can be found on the right hand side of the page or post editor,
 						when the respective box in the <em class="light-grey--text">\'Screen Options\'</em> section is checked.</p>
+
+
+						<p><strong>Accordions</strong></p>
+
+						<p>Accordions are a slightly more technical feature that I have included, which serve to make the most out of a smaller amount of space.</p>
+						<p>Each section header can be clicked to reveal it\'s contents, thereby minimising the total vertical height of the page.</p>
+
+						<p>The html required for an accordion is as follows:</p><br/>
+
+						<code>
+						[accordion]
+						<br/>
+						&#160;&#160;
+						&lt;h3&gt;
+						Section heading
+						&lt;&#47;h3&gt;
+
+						<br/>
+						&#160;&#160;
+						&lt;&#33;&#45;&#45;
+						more
+						&#45;&#45;&gt;
+
+						<br/>
+						&#160;&#160;
+						&lt;p&gt;
+						section contents
+						&lt;&#47;p&gt;
+
+						<br/>
+						&#160;&#160;
+						&lt;hr&#47;&gt;
+
+
+						<br/>
+						&#160;&#160;
+						&lt;h3&gt;
+						Section heading
+						&lt;&#47;h3&gt;
+
+						<br/>
+						&#160;&#160;
+						&lt;&#33;&#45;&#45;
+						more
+						&#45;&#45;&gt;
+
+						<br/>
+						&#160;&#160;
+						&lt;p&gt;
+						section contents
+						&lt;&#47;p&gt;
+
+						<br/>
+						[/accordion]
+						</code>
+
+						<p>The \'more\' tag and \'hr\' tag will be highlighted in green in the content editors for the second and third sections in \'Able Default\' page templates.</p>
+						<p>The \'hr\' tag is labelled in the content editor as the \'horizontal line\' button.</p>
+
 					</div>
 
 

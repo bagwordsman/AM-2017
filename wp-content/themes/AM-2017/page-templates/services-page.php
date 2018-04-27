@@ -125,27 +125,12 @@ get_header(); ?>
 
 	<?php
 
-	// 3rd section - last content
-	$id_3 = get_field('last_section_id');
-	$header_3 = get_field('last_header');
-	$content_3 = get_field('last_content');
-	$fullwidth_3 = get_field('last_section_-_full_width');
+	// ____________________________________
+	// last sections: basic sections without a wrapping container
 
-
-	echo '<div class="wrapper white-bg">';
-
-
-
-	// output header
-	echo ( $header_3 ? ('<div class="container container--center container-narrow"'.( $id_3 ? (' id="'.$id_3.'" ')  : '').'><h3>'. $header_3 .'</h3></div>') : '');
-	// fullwidth option applies to content only
-	echo ( $content_3 ? ('<div'. ( $fullwidth_3 ? ('') : ' class="container container--center container-narrow"') . '>' . $content_3 . '</div>')  : '');
-	//. ( $header_3 ? ('<h3>'. $header_3 .'</h3>') : '') .
-	//. ( $fullwidth_3 ? ('') : ' class="container container--center container-narrow"') .
-
-
-	echo '</div>';
-
+	// - last section
+	$last_section = new acfBasic('last');
+	$last_section->add_section();
 
 
 	?>

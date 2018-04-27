@@ -246,32 +246,16 @@ get_header(); ?>
 	} // end second content area
 
 
-
-
-	
 	
 	// ____________________________________
-	// SECTION 3
-	// 3rd section - last content
-	$id_3 = get_field('last_section_id');
-	$header_3 = get_field('last_header');
-	// content separate from header
-	$content_3 = get_field('last_content');
-	$content_3_format = get_field('last_content_formatting');
-	$narrow = $content_3_format[0];
-	$center = $content_3_format[1];
-	// full width for map - overrides everything else
-	$fullwidth_3 = get_field('last_section_-_full_width');
+	// last sections: basic sections without a wrapping container
+	// - 3rd section
+	$third_section = new acfBasic('third');
+	$third_section->add_section();
 
-
-
-	// output header - in a separate container, needs to work on map page
-	echo ( $header_3 ? ('<div class="container'.( $narrow ? (' container-narrow')  : '').( $center ? (' container--center')  : '').'"'.( $id_3 ? (' id="'.$id_3.'" ')  : '').'><h3>'. $header_3 .'</h3></div>') : '');
-
-		
-	// fullwidth option applies to content only
-	echo ( $content_3 ? ('<div'. ( $fullwidth_3 ? ('') : ' class="container'.( $narrow ? (' container-narrow')  : '').( $center ? (' container--center')  : '').'"') . '>' . $content_3 . '</div>')  : '');
-
+	// - last section
+	$last_section = new acfBasic('last');
+	$last_section->add_section();
 
 
 

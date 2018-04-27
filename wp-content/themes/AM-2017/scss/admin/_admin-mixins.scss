@@ -79,6 +79,7 @@
         text-shadow : none;
     }
     div[aria-label="Horizontal line"] button,
+    div[aria-label="Insert Read More tag"] button, // read more
     #mceu_11 button // Users > Your Profile only
         {
         padding : 0;
@@ -93,6 +94,21 @@
     @content;
 }
 
+@mixin accordion-highlight($bg, $hover){
+    div[aria-label="Horizontal line"] button,
+    div[aria-label="Insert Read More tag"] button
+    {
+        padding : 0;
+            .mce-ico {
+            color : $white;
+            background-color : $bg;
+            &:hover {
+                background-color : $hover;
+            }
+        }
+    }
+    @content;
+}
 
 @mixin sidebar {
     margin-right : 10rem;

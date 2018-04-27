@@ -3,6 +3,11 @@
 // - templates for repeated functionality
 // - covers client side php too (i.e. not just seen on admin side)
 
+// affiliate logos
+// map locations
+// blog button
+// blog sidebar
+// basic page section (last sections without wrapper class)
 
 // header and footer: affiliated organisation logos
 class affiliateLogos {
@@ -177,6 +182,50 @@ class blogSidebar {
             dynamic_sidebar( $this->text );
         }
     }
+}
+
+
+
+
+
+
+
+
+
+// ACF: basic section - without .wrapper
+/*
+take the following:
+_section_id
+_header
+_content
+_content_formatting
+_section_-_full_width
+*/
+class acfBasic {
+    var $prefix;
+    function __construct($new_prefix) {		
+        $this->prefix = $new_prefix;
+    }
+
+    function add_section() {
+        // get field values
+        $id = get_field($this->prefix .'_section_id');
+        $title = get_field($this->prefix.'_header');
+        $content = get_field($this->prefix.'_content');
+        $content_format = get_field($this->prefix.'_content_formatting');
+        $narrow = $content_format[0];
+        $center = $content_format[1];
+        $full = get_field($this->prefix.'_section_-_full_width');
+
+        // output header - in a separate container, needs to work on map page
+        echo ( $title ? ('<div class="container'.( $narrow ? (' container-narrow')  : '').( $center ? (' container--center')  : '').'"'.( $id ? (' id="'.$id.'" ')  : '').'><h3>'. $title .'</h3></div>') : '');
+            
+        // output content
+        // - fullwidth option applies to content only
+        echo ( $content ? ('<div'. ( $full ? ('') : ' class="container'.( $narrow ? (' container-narrow')  : '').( $center ? (' container--center')  : '').'"') . '>' . $content . '</div>')  : '');
+    }
+
+
 }
 
 
