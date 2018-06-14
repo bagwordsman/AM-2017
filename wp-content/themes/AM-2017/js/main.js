@@ -260,9 +260,9 @@
             var maxHeight = Math.max.apply(Math, $('.columns.stage').map(function(i,elem){ 
                 return $(elem).height();
             }));
-            // console.log(maxHeight + ': max height');
+            // add height to accommodate buttons on home page
             if ($('body').hasClass('home')) {
-                // maxHeight = maxHeight + 60;
+                maxHeight = maxHeight + 30;
             }
             $('.columns.stage').height(maxHeight);
 
@@ -271,7 +271,7 @@
         }
     }
     // run on load - if lazyloading is not enabled
-    if (!$('.page').hasClass('lazyloading')) {
+    if ($('.page:not(.lazyloading)')) {
         stageColumn();
     }
 
@@ -284,17 +284,15 @@
 
     if ($('.page').hasClass('lazyloading')) {
         $("img.lazy").lazyload({
-            load : yourhandler
+            load : lazyColumns
         });
     }
 
-    function yourhandler(element, el_left, settings) {
+    function lazyColumns(element, el_left, settings) {
         $(this).removeClass("loading-icon");
         // fire the column heights code once images have loaded
         stageColumn();
     }
-
-
 
 
 

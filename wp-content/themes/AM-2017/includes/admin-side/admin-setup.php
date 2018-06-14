@@ -97,7 +97,7 @@ function user_guide_function() {
 				<p>A brief user guide / reference point for website settings:</p>
 				<ul style="margin-bottom : 40px;">
 					<li><strong>Menus</strong><br/>- including: \'Navigation Labels\' and \'Abbreviations\' for shorter page titles.</li>
-					<li><strong>Posts and Pages</strong><br/>- including: Manual Excerpts, where to use Slugs, Metadata, and accordions</li>
+					<li><strong>Posts and Pages</strong><br/>- including: Manual Excerpts, where to use Slugs, Metadata, Accordions and Disclaimers.</li>
 					<li><strong>Widgets</strong><br/>- including: Blog sidebars (categories, tags, featured posts), and Cookie Bar.</li>
 					<li><strong>Theme Settings Page</strong><br/>- everything else.</li>
 				</ul>
@@ -154,6 +154,7 @@ function user_guide_function() {
 						<p>In pages (as opposed to blog posts), you will also be able to toggle content areas provided by the Advanced Custom Fields Plugin. 
 						If a content area or section is not showing, the <em class="light-grey--text">\'Screen Options\'</em> tab should be your first port of call.</p>
 
+						<br/>
 						<p><strong>Excerpt</strong></p>
 
 						<p>Manual Excerpts determine the snippets of information in each of the containers on the 
@@ -165,6 +166,7 @@ function user_guide_function() {
 
 						
 						
+						<br/>
 						<p><strong>Custom Fields</strong></p>
 
 						<p>Custom Fields are used for adding page metadata, specifically the Title Tag and Meta Description that are visible in Google Search results.</p>
@@ -180,6 +182,7 @@ function user_guide_function() {
 
 						
 						
+						<br/>
 						<p><strong>Slug</strong></p>
 
 						<p>Currently, the Slug is only used in combination with the <a href="widgets.php">Featured Post Widget</a>.</p>
@@ -190,6 +193,7 @@ function user_guide_function() {
 
 						
 						
+						<br/>
 						<p><strong>Featured Image</strong></p>
 
 						<p>Also commonly referred to as a <em class="light-grey--text">\'Thumbnail\'</em>, the Featured Image should be added to all posts and pages.</p>
@@ -204,9 +208,42 @@ function user_guide_function() {
 						when the respective box in the <em class="light-grey--text">\'Screen Options\'</em> section is checked.</p>
 
 
+						<br/>
+						<p><strong>Accordions and Disclaimers</strong></p>
+
+						<p>Accordions and Disclaimers both make use of the <a href="https://codex.wordpress.org/Shortcode_API" target="_blank">Shortcode API</a>, 
+						which allow you to add special content with minimal technical knowledge. In this theme, I have created shortcodes for 
+						<span class="green--text">\'Disclaimers\'</span> and <span class="green--text">\'Accordions\'</span>, the latter of which is slightly more complex.
+						</p>
+
+						<p><strong>Disclaimers</strong></p>
+
+						<p>Disclaimers are simply a green bordered box of text, with a title that has a green background. 
+						It is recommended that you use them at the end of pages, to draw attention to important caveats related to it\'s content, should there be any.</p>
+
+						<p>The html required for a disclaimer is as follows:</p><br/>
+
+						<code>
+						[disclaimer]
+						<br/>
+						&#160;&#160;
+						&lt;h4&gt;
+						Title - e.g. \'Please note:\'
+						&lt;&#47;h4&gt;
+
+						<br/>
+						&#160;&#160;
+						&lt;p&gt;
+						section contents
+						&lt;&#47;p&gt;
+
+						<br/>
+						[/disclaimer]
+						</code>
+
 						<p><strong>Accordions</strong></p>
 
-						<p>Accordions are a slightly more technical feature that I have included, which serve to make the most out of a smaller amount of space.</p>
+						<p>Accordions serve to condense more detailed information into a smaller amount of space. When sections are clicked or tapped, they expand to reveal more detailed information.</p>
 						<p>Each section header can be clicked to reveal it\'s contents, thereby minimising the total vertical height of the page.</p>
 
 						<p>The html required for an accordion is as follows:</p><br/>

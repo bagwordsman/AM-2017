@@ -171,8 +171,8 @@
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // 4) - blog specific containers
 
-// a) advert
-.page-advert {
+// a) advert. Don't use the word 'advert' in the class. Ad blockers pick this up.
+.blog-referral {
   @include roundDiv($grey, $white);
   padding : 1.5rem;
   @media (min-width: 660px) {

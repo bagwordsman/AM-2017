@@ -26,7 +26,7 @@ function accordion_shortcode_handler($atts, $content=null) {
 
 		// if section is not empty, compile the result
 		if ($section != '') {
-			$result .= $section_detail[0] .'<div>'. $section_detail[1] .'</div>';
+			$result .= $section_detail[0] .'<div class="collapse">'. $section_detail[1] .'</div>';
 		}
 	}
 

@@ -122,7 +122,7 @@ function blog_advert() {
 		echo '
 		<div class="wrapper grey-bg">
 			<div class="container container-narrow">
-				<div class="page-advert">
+				<div class="blog-referral">
 					<div>
 						<h3>' . $ad_title . '</h3>
 						<p>' . $ad_content . '</p>

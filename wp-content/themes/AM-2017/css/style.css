@@ -17,11 +17,8 @@ a {
   overflow-wrap: break-word;
   word-wrap: break-word;
   -ms-word-break: break-all;
-  /* This is the dangerous one in WebKit, as it breaks things wherever */
   word-break: break-all;
-  /* Instead use this non-standard one: */
   word-break: break-word;
-  /* Adds a hyphen where the word breaks, if supported (No Blink) */
   -ms-hyphens: auto;
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
@@ -456,24 +453,32 @@ body.page-template #content > div:not(.hero-section) .five.columns {
       color: #70bf44; }
       body.page-template #content > div:not(.hero-section) .five.columns.green a:hover {
         color: #599b35; }
+    body.page-template #content > div:not(.hero-section) .five.columns.green blockquote p:first-child {
+      border-left-color: #70bf44; }
   body.page-template #content > div:not(.hero-section) .five.columns.orange {
     border-top-color: #f07f37; }
     body.page-template #content > div:not(.hero-section) .five.columns.orange a {
       color: #f07f37; }
       body.page-template #content > div:not(.hero-section) .five.columns.orange a:hover {
         color: #e36311; }
+    body.page-template #content > div:not(.hero-section) .five.columns.orange blockquote p:first-child {
+      border-left-color: #f07f37; }
   body.page-template #content > div:not(.hero-section) .five.columns.blue {
     border-top-color: #7fc1ff; }
     body.page-template #content > div:not(.hero-section) .five.columns.blue a {
       color: #7fc1ff; }
       body.page-template #content > div:not(.hero-section) .five.columns.blue a:hover {
         color: #4ca8ff; }
+    body.page-template #content > div:not(.hero-section) .five.columns.blue blockquote p:first-child {
+      border-left-color: #7fc1ff; }
   body.page-template #content > div:not(.hero-section) .five.columns.red {
     border-top-color: #e74e42; }
     body.page-template #content > div:not(.hero-section) .five.columns.red a {
       color: #e74e42; }
       body.page-template #content > div:not(.hero-section) .five.columns.red a:hover {
         color: #da2a1c; }
+    body.page-template #content > div:not(.hero-section) .five.columns.red blockquote p:first-child {
+      border-left-color: #e74e42; }
   @media (min-width: 660px) {
     body.page-template #content > div:not(.hero-section) .five.columns {
       margin-top: 0; } }
@@ -1210,24 +1215,32 @@ body.page-template #content > div:not(.hero-section) .five.columns {
       color: #70bf44; }
       .post.recent.green a:hover, .post.index.green a:hover {
         color: #599b35; }
+    .post.recent.green blockquote p:first-child, .post.index.green blockquote p:first-child {
+      border-left-color: #70bf44; }
   .post.recent.orange, .post.index.orange {
     border-top-color: #f07f37; }
     .post.recent.orange a, .post.index.orange a {
       color: #f07f37; }
       .post.recent.orange a:hover, .post.index.orange a:hover {
         color: #e36311; }
+    .post.recent.orange blockquote p:first-child, .post.index.orange blockquote p:first-child {
+      border-left-color: #f07f37; }
   .post.recent.blue, .post.index.blue {
     border-top-color: #7fc1ff; }
     .post.recent.blue a, .post.index.blue a {
       color: #7fc1ff; }
       .post.recent.blue a:hover, .post.index.blue a:hover {
         color: #4ca8ff; }
+    .post.recent.blue blockquote p:first-child, .post.index.blue blockquote p:first-child {
+      border-left-color: #7fc1ff; }
   .post.recent.red, .post.index.red {
     border-top-color: #e74e42; }
     .post.recent.red a, .post.index.red a {
       color: #e74e42; }
       .post.recent.red a:hover, .post.index.red a:hover {
         color: #da2a1c; }
+    .post.recent.red blockquote p:first-child, .post.index.red blockquote p:first-child {
+      border-left-color: #e74e42; }
   @media (min-width: 660px) {
     .post.recent, .post.index {
       margin-top: 0; } }
@@ -1250,7 +1263,7 @@ body.page-template #content > div:not(.hero-section) .five.columns {
   #content .thumb ~ p .read-more {
     margin-bottom: 2.5rem; }
 
-.page-advert {
+.blog-referral {
   position: relative;
   border: 5px solid #6a6a6a;
   border-radius: 2.5rem;
@@ -1260,20 +1273,20 @@ body.page-template #content > div:not(.hero-section) .five.columns {
   background-color: #ffffff;
   padding: 1.5rem; }
   @media (min-width: 660px) {
-    .page-advert {
+    .blog-referral {
       padding: 2.5rem; } }
-  .page-advert > div {
+  .blog-referral > div {
     text-align: center; }
     @media (min-width: 660px) {
-      .page-advert > div {
+      .blog-referral > div {
         text-align: left;
         position: relative;
         display: inline-block;
         vertical-align: middle;
         width: 35%; }
-        .page-advert > div:first-child {
+        .blog-referral > div:first-child {
           width: 60%; } }
-  .page-advert .button:first-child {
+  .blog-referral .button:first-child {
     margin-right: 1rem; }
 
 .nav-links .prev {
