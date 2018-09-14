@@ -5,3 +5,5 @@
 *Thumbs.db
 *.sass-cache*
 *~imageoptim~
+*.vs-code
+*sass-cache

@@ -218,20 +218,39 @@ span.wpcf7-list-item { // checkbox
 div.wpcf7-response-output {
   width : 100%;
   margin : 0;
+  margin-top : 5rem;
   padding : 0.5rem 1rem;
   box-sizing : border-box;
   color : $white;
-}
-div.wpcf7-validation-errors {
-  margin-top : 5rem;
-  background-color : $red;
-  border : none;
 }
 div.wpcf7-spam-blocked {
   margin-top : 2.5rem;
   background-color : $orange;
   border : none;
 }
+
+
+// __________________________
+// error in sending
+div.wpcf7-mail-sent-ng {
+  background-color : $red;
+  border : none;
+}
+// fields not filled in
+div.wpcf7-validation-errors {
+  // margin-top : 5rem;
+  background-color : $red;
+  border : none;
+}
+// submitted ok
+div.wpcf7-mail-sent-ok {
+  background-color : $green;
+  border : none;
+}
+
+
+
+
 
 // google recaptcha
 // @media (min-width: 550px) {
