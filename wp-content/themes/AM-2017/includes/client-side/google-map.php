@@ -41,7 +41,7 @@ function google_map_shortcode_handler($atts, $content=null) {
 
 
     // map locations
-		$location_1_name = $gmaps_data['gmap_location_1_name'];
+	$location_1_name = $gmaps_data['gmap_location_1_name'];
     $location_1_address = $gmaps_data['gmap_location_1_address'];
 
     $location_2_name = $gmaps_data['gmap_location_2_name'];
@@ -51,7 +51,13 @@ function google_map_shortcode_handler($atts, $content=null) {
     $location_3_address = $gmaps_data['gmap_location_3_address'];
 
     $location_4_name = $gmaps_data['gmap_location_4_name'];
-    $location_4_address = $gmaps_data['gmap_location_4_address'];
+	$location_4_address = $gmaps_data['gmap_location_4_address'];
+	
+	$location_5_name = $gmaps_data['gmap_location_5_name'];
+	$location_5_address = $gmaps_data['gmap_location_5_address'];
+	
+	$location_6_name = $gmaps_data['gmap_location_6_name'];
+    $location_6_address = $gmaps_data['gmap_location_6_address'];
 
 
 		// Output the Google Map
@@ -62,7 +68,9 @@ function google_map_shortcode_handler($atts, $content=null) {
 				[\'' . $location_1_name . '\', \'' . $location_1_address . '\', \'' . 'http://maps.google.com/?q=' . $location_1_address . '\' ],
 				[\'' . $location_2_name . '\', \'' . $location_2_address . '\', \'' . 'http://maps.google.com/?q=' . $location_2_address . '\' ],
 				[\'' . $location_3_name . '\', \'' . $location_3_address . '\', \'' . 'http://maps.google.com/?q=' . $location_3_address . '\' ],
-				[\'' . $location_4_name . '\', \'' . $location_4_address . '\', \'' . 'http://maps.google.com/?q=' . $location_4_address . '\' ]
+				[\'' . $location_4_name . '\', \'' . $location_4_address . '\', \'' . 'http://maps.google.com/?q=' . $location_4_address . '\' ],
+				[\'' . $location_5_name . '\', \'' . $location_5_address . '\', \'' . 'http://maps.google.com/?q=' . $location_5_address . '\' ],
+				[\'' . $location_6_name . '\', \'' . $location_6_address . '\', \'' . 'http://maps.google.com/?q=' . $location_6_address . '\' ]
 		];
 		var geocoder;
 		var map;
