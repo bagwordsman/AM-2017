@@ -120,7 +120,7 @@ function google_map_shortcode_handler($atts, $content=null) {
 								bounds.extend(marker.getPosition());
 								map.fitBounds(bounds);
 						} else {
-								alert("geocode of " + address + " failed:" + status);
+								// alert("geocode of " + address + " failed:" + status);
 						}
 		    });
 		}
