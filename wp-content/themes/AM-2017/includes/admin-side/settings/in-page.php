@@ -97,7 +97,7 @@ function sandbox_theme_intialize_map_options() {
 	$five = new mapLocations(5);
 	$five->add_location();
 
-	$six = new mapLocations(5);
+	$six = new mapLocations(6);
 	$six->add_location();
 
 	register_setting(
