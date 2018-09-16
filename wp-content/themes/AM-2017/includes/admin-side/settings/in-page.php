@@ -94,6 +94,12 @@ function sandbox_theme_intialize_map_options() {
 	$four = new mapLocations(4);
 	$four->add_location();
 
+	$five = new mapLocations(5);
+	$five->add_location();
+
+	$six = new mapLocations(5);
+	$six->add_location();
+
 	register_setting(
     	'sandbox_theme_map_options',
     	'sandbox_theme_map_options',
