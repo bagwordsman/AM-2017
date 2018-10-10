@@ -18,8 +18,6 @@ class SSLInsecureContentFixerAdmin {
 		add_action('admin_init', array($this, 'adminInit'));
 		add_action('admin_notices', array($this, 'checkPrerequisites'));
 		add_action('network_admin_notices', array($this, 'checkPrerequisites'));
-		add_action('load-tools_page_ssl-insecure-content-fixer-tests', array($this, 'setNonceCookie'));
-		add_action('load-settings_page_ssl-insecure-content-fixer', array($this, 'setNonceCookie'));
 		add_action('admin_print_styles-settings_page_ssl-insecure-content-fixer', array($this, 'printStylesSettings'));
 		add_action('admin_print_styles-tools_page_ssl-insecure-content-fixer-tests', array($this, 'printStylesTests'));
 		add_action('admin_menu', array($this, 'adminMenu'));
@@ -83,6 +81,9 @@ class SSLInsecureContentFixerAdmin {
 
 		// and PCRE needs to be v8+ or we break! e.g. \K not present until v7.2 and some sites still use v6.6!
 		$pcre_min = '8';
+		if (apply_filters('ssl_insecure_content_pcre_version_permissive', false)) {
+			$pcre_min = '7.2';
+		}
 		if (defined('PCRE_VERSION') && version_compare(PCRE_VERSION, $pcre_min, '<')) {
 			include SSLFIX_PLUGIN_ROOT . 'views/requires-pcre.php';
 		}
@@ -134,11 +135,11 @@ class SSLInsecureContentFixerAdmin {
 				$links[] = sprintf('<a href="%s">%s</a>', esc_url($url), _x('SSL Tests', 'menu link', 'ssl-insecure-content-fixer'));
 			}
 
-			$links[] = sprintf('<a href="https://ssl.webaware.net.au/" target="_blank">%s</a>', _x('Instructions', 'plugin details links', 'ssl-insecure-content-fixer'));
-			$links[] = sprintf('<a href="https://wordpress.org/support/plugin/ssl-insecure-content-fixer" target="_blank">%s</a>', _x('Get help', 'plugin details links', 'ssl-insecure-content-fixer'));
-			$links[] = sprintf('<a href="https://wordpress.org/plugins/ssl-insecure-content-fixer/" target="_blank">%s</a>', _x('Rating', 'plugin details links', 'ssl-insecure-content-fixer'));
-			$links[] = sprintf('<a href="https://translate.wordpress.org/projects/wp-plugins/ssl-insecure-content-fixer" target="_blank">%s</a>', _x('Translate', 'plugin details links', 'ssl-insecure-content-fixer'));
-			$links[] = sprintf('<a href="https://shop.webaware.com.au/donations/?donation_for=SSL+Insecure+Content+Fixer" target="_blank">%s</a>', _x('Donate', 'plugin details links', 'ssl-insecure-content-fixer'));
+			$links[] = sprintf('<a href="https://ssl.webaware.net.au/" target="_blank" rel="noopener">%s</a>', _x('Instructions', 'plugin details links', 'ssl-insecure-content-fixer'));
+			$links[] = sprintf('<a href="https://wordpress.org/support/plugin/ssl-insecure-content-fixer" target="_blank" rel="noopener">%s</a>', _x('Get help', 'plugin details links', 'ssl-insecure-content-fixer'));
+			$links[] = sprintf('<a href="https://wordpress.org/plugins/ssl-insecure-content-fixer/" target="_blank" rel="noopener">%s</a>', _x('Rating', 'plugin details links', 'ssl-insecure-content-fixer'));
+			$links[] = sprintf('<a href="https://translate.wordpress.org/projects/wp-plugins/ssl-insecure-content-fixer" target="_blank" rel="noopener">%s</a>', _x('Translate', 'plugin details links', 'ssl-insecure-content-fixer'));
+			$links[] = sprintf('<a href="https://shop.webaware.com.au/donations/?donation_for=SSL+Insecure+Content+Fixer" target="_blank" rel="noopener">%s</a>', _x('Donate', 'plugin details links', 'ssl-insecure-content-fixer'));
 		}
 
 		return $links;
@@ -185,6 +186,8 @@ class SSLInsecureContentFixerAdmin {
 	* settings admin
 	*/
 	public function settingsPage() {
+		require SSLFIX_PLUGIN_ROOT . 'includes/nonces.php';
+
 		if (is_network_admin()) {
 			// multisite network settings
 			$options = SSLInsecureContentFixer::getInstance()->network_options;
@@ -218,6 +221,7 @@ class SSLInsecureContentFixerAdmin {
 		wp_localize_script('sslfix-admin-settings', 'sslfix', array(
 			'ajax_url_wp'	=> ssl_insecure_content_fix_url(admin_url('admin-ajax.php')),
 			'ajax_url_ssl'	=> ssl_insecure_content_fix_url($ajax_url),
+			'test_nonce'	=> ssl_insecure_content_fix_nonce_value(),
 			'msg'			=> array(
 									'recommended'		=> _x('* detected as recommended setting', 'proxy settings', 'ssl-insecure-content-fixer'),
 								),
@@ -234,13 +238,14 @@ class SSLInsecureContentFixerAdmin {
 
 		$output['fix_level']		= empty($input['fix_level']) ? '' : $input['fix_level'];
 		$output['proxy_fix']		= empty($input['proxy_fix']) ? '' : $input['proxy_fix'];
+		$output['site_only']		= empty($input['site_only']) ? 0  : 1;
 
 		if (!in_array($output['fix_level'], array('off', 'simple', 'content', 'widgets', 'capture', 'capture_all'))) {
 			add_settings_error(SSLFIX_PLUGIN_OPTIONS, 'sslfix-fix_level', _x('Fix level is invalid', 'settings error', 'ssl-insecure-content-fixer'));
 			$this->has_settings_errors = true;
 		}
 
-		if (!in_array($output['proxy_fix'], array('normal', 'HTTP_X_FORWARDED_PROTO', 'HTTP_CLOUDFRONT_FORWARDED_PROTO', 'HTTP_X_FORWARDED_SSL', 'HTTP_CF_VISITOR', 'HTTP_X_ARR_SSL', 'detect_fail'))) {
+		if (!in_array($output['proxy_fix'], array('normal', 'HTTP_X_FORWARDED_PROTO', 'HTTP_CLOUDFRONT_FORWARDED_PROTO', 'HTTP_X_FORWARDED_SSL', 'HTTP_CF_VISITOR', 'HTTP_X_ARR_SSL', 'HTTP_X_FORWARDED_SCHEME', 'detect_fail'))) {
 			add_settings_error(SSLFIX_PLUGIN_OPTIONS, 'sslfix-proxy_fix', _x('HTTPS detection setting is invalid', 'settings error', 'ssl-insecure-content-fixer'));
 			$this->has_settings_errors = true;
 		}
@@ -256,21 +261,10 @@ class SSLInsecureContentFixerAdmin {
 	}
 
 	/**
-	* set a cookie functioning like a nonce for the non-WP AJAX script
-	*/
-	public function setNonceCookie() {
-		require SSLFIX_PLUGIN_ROOT . 'includes/nonces.php';
-
-		$cookie_name  = ssl_insecure_content_fix_nonce_name(SSLFIX_PLUGIN_ROOT);
-		$cookie_value = ssl_insecure_content_fix_nonce_value();
-
-		setcookie($cookie_name, $cookie_value, time() + 30, '/');
-	}
-
-	/**
 	* show SSL tests page
 	*/
 	public function testPage() {
+		require SSLFIX_PLUGIN_ROOT . 'includes/nonces.php';
 		require SSLFIX_PLUGIN_ROOT . 'views/ssl-tests.php';
 
 		$min = SCRIPT_DEBUG ? '' : '.min';
@@ -282,6 +276,7 @@ class SSLInsecureContentFixerAdmin {
 		wp_localize_script('sslfix-admin-settings', 'sslfix', array(
 			'ajax_url_wp'	=> ssl_insecure_content_fix_url(admin_url('admin-ajax.php')),
 			'ajax_url_ssl'	=> ssl_insecure_content_fix_url($ajax_url),
+			'test_nonce'	=> ssl_insecure_content_fix_nonce_value(),
 		));
 	}
 

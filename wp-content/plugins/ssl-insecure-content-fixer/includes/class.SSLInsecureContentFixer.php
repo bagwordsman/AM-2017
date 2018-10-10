@@ -13,6 +13,7 @@ class SSLInsecureContentFixer {
 	public $network_options					= false;
 
 	protected $domain_exclusions			= false;
+	protected $process_only_site			= false;
 
 	/**
 	* static method for getting the instance of this singleton object
@@ -34,10 +35,11 @@ class SSLInsecureContentFixer {
 	private function __construct() {
 		$this->loadOptions();
 		$this->proxyFix();
+		$this->configureSiteOnly();
 
-		add_action('init', array($this, 'init'));
+		add_action('init', array($this, 'loadTranslations'));
 
-		if ($this->options['fix_level'] !== 'off' && is_ssl()) {
+		if ($this->allowFixer()) {
 			add_action('init', array($this, 'runFilters'), 4);
 
 			// filter script and stylesheet links
@@ -46,6 +48,9 @@ class SSLInsecureContentFixer {
 
 			// filter uploads dir so that plugins using it to determine upload URL also work
 			add_filter('upload_dir', array(__CLASS__, 'uploadDir'));
+
+			// catch plugins / themes overriding the user's avatar and breaking it
+			add_filter('get_avatar', array($this, 'fixContent'), 9999);
 
 			// filter image links on front end e.g. in calls to wp_get_attachment_image(), wp_get_attachment_image_src(), etc.
 			if (!is_admin() || $this->isAjax()) {
@@ -104,6 +109,43 @@ class SSLInsecureContentFixer {
 			require SSLFIX_PLUGIN_ROOT . 'includes/class.SSLInsecureContentFixerAdmin.php';
 			new SSLInsecureContentFixerAdmin();
 		}
+	}
+
+	/**
+	* see whether the fixer should be run for this request
+	* @return bool
+	*/
+	protected function allowFixer() {
+		// do nothing if fixer is turned off
+		if ($this->options['fix_level'] === 'off') {
+			return false;
+		}
+
+		// don't mess with WooCommerce downloads
+		if (isset($_GET['download_file']) && isset($_GET['order']) && (isset($_GET['email']) || isset($_GET['uid']))) {
+			// but ensure that WooCommerce is active and will handle this request
+			if ($this->isPluginActive('woocommerce/woocommerce.php')) {
+				return false;
+			}
+		}
+
+		return is_ssl();
+	}
+
+	/**
+	* test whether a plugin is active
+	* @param string $plugin
+	* @return bool
+	*/
+	protected function isPluginActive($plugin) {
+		if (is_multisite()) {
+			$plugins = (array) get_site_option('active_sitewide_plugins', array());
+			if (isset($plugins[$plugin])) {
+				return true;
+			}
+		}
+
+		return in_array($plugin, (array) get_option('active_plugins', array()));
 	}
 
 	/**
@@ -221,6 +263,12 @@ class SSLInsecureContentFixer {
 					}
 					break;
 
+				case 'HTTP_X_FORWARDED_SCHEME':
+					if (!empty($_SERVER['HTTP_X_FORWARDED_SCHEME']) && strtolower($_SERVER['HTTP_X_FORWARDED_SCHEME']) === 'https') {
+						$_SERVER['HTTPS'] = 'on';
+					}
+					break;
+
 				case 'detect_fail':
 					// only force-enable https if site is set to run fully on https
 					if (stripos(get_option('siteurl'), 'https://') === 0) {
@@ -244,9 +292,18 @@ class SSLInsecureContentFixer {
 	}
 
 	/**
+	* if Ignore External Sites is selected, record the http site URL for this website
+	*/
+	protected function configureSiteOnly() {
+		if (!empty($this->options['site_only'])) {
+			$this->process_only_site = site_url('', 'http');
+		}
+	}
+
+	/**
 	* load text translations
 	*/
-	public function init() {
+	public function loadTranslations() {
 		load_plugin_textdomain('ssl-insecure-content-fixer');
 	}
 
@@ -272,6 +329,9 @@ class SSLInsecureContentFixer {
 		);
 		$content = preg_replace_callback($embed_searches, array($this, 'fixContent_embed_callback'), $content);
 
+		// fix responsive images with data-* attributes
+		$content = preg_replace_callback('#<img [^>]*data-[^\'"]+=["\'][^>]+#is', array($this, 'fixContent_data_attr_callback'), $content);
+
 		return $content;
 	}
 
@@ -281,6 +341,10 @@ class SSLInsecureContentFixer {
 	* @return string
 	*/
 	public function fixContent_src_callback($matches) {
+		// support only fixing urls for this website
+		if ($this->process_only_site && stripos($matches[0], $this->process_only_site) !== 0) {
+			return $matches[0];
+		}
 		// allow content URL exclusions for selected domains
 		if (!empty($this->domain_exclusions)) {
 			foreach ($this->domain_exclusions as $domain) {
@@ -302,6 +366,17 @@ class SSLInsecureContentFixer {
 	public function fixContent_embed_callback($matches) {
 		// match from start of http: URL until either end quotes, space, or query parameter separator, thus allowing for URLs in parameters
 		$content = preg_replace_callback('#http://[^\'"&\? ]+#i', array($this, 'fixContent_src_callback'), $matches[0]);
+
+		return $content;
+	}
+
+	/**
+	* callback for fixContent() regex replace for data attributes on images
+	* @param array $matches
+	* @return string
+	*/
+	public function fixContent_data_attr_callback($matches) {
+		$content = preg_replace_callback('#data-[^\'"]+=[\'"]\Khttp://[^\'"]+#i', array($this, 'fixContent_src_callback'), $matches[0]);
 
 		return $content;
 	}
