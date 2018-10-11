@@ -19,8 +19,10 @@ $yellow : #edd44b;
 .quick-links p,
 .quick-links ul,
 #titlediv #title,
-.acf_postbox p.label,
-.acf_postbox p.label label,
+// .acf_postbox p.label,
+// .acf_postbox p.label label,
+.acf-label label,
+.acf-label .description,
 #poststuff #acf_471302 h2 {
   font-size: 1.6em; // currently ems cause chrome bug misinterpreting rems on body element
   line-height: 1.6;
@@ -34,12 +36,14 @@ body {
 
 
 // small
-.acf_postbox p.label {
+.acf-label .description {
   font-size : 1.2em;
+  font-style : normal;
 }
 // medium
-.acf_postbox p.label label,
-#poststuff #acf_471302 h2 {
+.acf-label label,
+// optional linked page header:
+#acf-group_5bbde6e35bfa2 h2 {
   font-size : 1.6em;
   font-weight : $bold;
 }

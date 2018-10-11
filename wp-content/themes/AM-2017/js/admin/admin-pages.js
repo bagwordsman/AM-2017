@@ -23,25 +23,33 @@
 	// ––––––––––––––––––––––––––––––––––––––––––––––––––
 	// 2 - Colour Marker (sidebars etc)
 
-	// checkbox groups
-	const $box1 = 'input[name="fields[field_59467757ba235]"]'; // home page hero
-	const $box2 = 'input[name="fields[field_595c0af112ddc]"]'; // 1st section sidebar
-	const $box3 = 'input[name="fields[field_5a96f5e2ec133]"]'; // 2nd section sidebar (default only)
-	const $box4 = 'input[name="fields[field_595c0e7230aff]"]'; // 2nd section sidebar (home only)
-	const $box5 = 'input[name="fields[field_5943b161451da]"]'; // end of content cta (home only)
-	const $box6 = 'input[name="fields[field_59465b96adac7]"]'; // cta / linked page
+	// checkbox (radio) groups
+	const $box1 = "input[name='acf[field_59467757ba235]']"; // home page hero
+	const $box2 = "input[name='acf[field_595c0af112ddc]']"; // 1st section sidebar - default page
+	const $box3 = "input[name='acf[field_5a96f5e2ec133]']"; // 2nd section sidebar - default page
+	const $box4 = 'input[name="acf[field_595c0e7230aff]"]'; // 2nd section sidebar - home page
+	const $box5 = 'input[name="acf[field_5943b161451da]"]'; // end of content cta - home page
+	const $box6 = 'input[name="acf[field_59465b96adac7]"]'; // cta / linked page
+	
+	// ________
 	// elements
-	const $elem1_a = '#acf_471344'; // home page hero
+	// hero - home page
+	const $elem1_a = '#acf-group_5bbde6e1437ff';
 	const $elem1_b = '';
-	const $elem2_a = '#acf-first_section_sidebar'; // 1st section sidebar
-	const $elem2_b = '#acf-first_section_sidebar_colour .label';
-	const $elem3_a = '#acf-second_section_sidebar'; // 2nd section sidebar (default only)
-	const $elem3_b = '#acf-second_section_sidebar_colour .label';
-	const $elem4_a = '#acf-second_section_sidebar'; // 2nd section sidebar (home only)
-	const $elem4_b = '#acf-second_section_sidebar_colour .label';
-	const $elem5_a = '.label label[for="acf-field-end_of_content_cta_colour"]'; // end of content cta (home only)
-	const $elem5_b = ''; // #acf-end_of_content_cta_colour 
-	const $elem6_a = '#acf_471302'; // cta / linked page
+	// 1st section sidebar - default page
+	const $elem2_a = ".acf-postbox.seamless > .inside > .acf-field[data-name='first_section_sidebar']";
+	const $elem2_b = "div[data-name='first_section_sidebar_colour'] .acf-label label";
+	// 2nd section sidebar - default page
+	const $elem3_a = ".acf-postbox.seamless > .inside > .acf-field[data-name='second_section_sidebar']";
+	const $elem3_b = "div[data-name='second_section_sidebar_colour'] .acf-label label";
+	// 2nd section sidebar - home page
+	const $elem4_a = ".acf-postbox.seamless > .inside > .acf-field[data-name='second_section_sidebar']";
+	const $elem4_b = "div[data-name='second_section_sidebar_colour'] .acf-label label";
+	// end of content - home page
+	const $elem5_a = "div[data-name='end_of_content_cta_colour'] .acf-label label";
+	const $elem5_b = '';
+	// cta / linked page
+	const $elem6_a = '#acf-group_5bbde6e35bfa2';
 	const $elem6_b = '';
 
 	const items = (function() {
@@ -53,48 +61,13 @@
 	}());
 
 	// output colour marker code
-	$(items.checkboxes).each(function(i, v) {
-		const choices = this;
+	$(items.checkboxes).each(function(i) {
+		const checkBox = this;
 		const elements = items.elements[i];
-		const output = new colourMarker(choices, elements);
+		// console.log(checkBox, elements);
+		const output = new colourMarker(checkBox, elements);
 		output.code();
 	});
-
-
-
-	// ––––––––––––––––––––––––––––––––––––––––––––––––––
-	// 3 - Anchor link / ID Helper
-
-	// get permalink (used for all iterations)
-	const pLink = $('#sample-permalink').text();
-
-	// section section anchor
-	const anchor_s2 = $('#acf-second_section_id')[0];
-	const s2_output = new anchorHash(anchor_s2, pLink);
-	s2_output.code();
-
-	// last section anchor
-	const anchor_last = $('#acf-last_section_id')[0];
-	const last_output = new anchorHash(anchor_last, pLink);
-	last_output.code();
-	
-
-	
-	
-	// ––––––––––––––––––––––––––––––––––––––––––––––––––
-	// In Page Anchor Constructor
-	function anchorHash(section, permalink) {
-		this.code = function () {
-			// add permalink to url
-			$(section).find('.anchor-url').text(permalink);
-			// update ID on load and change
-			$(section).find('input[type="text"]').change(updateID).each(updateID);
-			function updateID() {
-				$(section).find('.anchor-id').text(`#${this.value}`);
-			}
-		}
-	}
-
 
 	
 	
@@ -108,6 +81,7 @@
 			$(boxes).each(function() {
 				if(this.checked) {
 					checked = $(this)[0];
+					// console.log($(this)[0]);
 				}
 			});
 			$(boxes).change(applyColour); // on user action
@@ -115,12 +89,51 @@
 			// apply colour
 			function applyColour() {
 				const colour = this.value;
+				// use value, not the index
 				$(elements).each(function(i, v) {
 					$(v).removeClass('default none transparent green orange blue red').addClass(colour);
 				});
 			}
 			
         }
+	}
+
+
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// 3 - Anchor link / ID Helper
+	// - needs fixing after update
+
+	// get permalink for current page
+	// + remove trailing slash
+	const pLink = $('#sample-permalink').text().replace(/\/$/, "");
+	// console.log(pLink);
+
+	// section section anchor
+	const anchor_s2 = $('div[data-name="second_section_id"]')[0];
+	const s2_output = new anchorHash(anchor_s2, pLink);
+	s2_output.code();
+
+	// last section anchor
+	const anchor_last = $('div[data-name="last_section_id"]')[0];
+	const last_output = new anchorHash(anchor_last, pLink);
+	last_output.code();
+	
+
+	
+	
+	// ––––––––––––––––––––––––––––––––––––––––––––––––––
+	// In Page Anchor Constructor
+	// - needs fixing after update
+	function anchorHash(section, permalink) {
+		this.code = function () {
+			// add permalink to url
+			$(section).find('.anchor-url').text(permalink);
+			// update ID on load and change
+			$(section).find('input[type="text"]').change(updateID).each(updateID);
+			function updateID() {
+				$(section).find('.anchor-id').text(`#${this.value}`);
+			}
+		}
 	}
 
 })(jQuery);

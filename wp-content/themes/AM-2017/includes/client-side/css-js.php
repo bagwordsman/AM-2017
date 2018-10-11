@@ -70,21 +70,23 @@ function load_scripts() {
 add_action('wp_enqueue_scripts', 'load_scripts');
 
 
-// defer loading of all scripts
-function js_async_attr($tag){
-	
-	// exclude some scripts from deferral by adding their tags here:
-	$scripts_to_exclude = array('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js');
+// defer loading of all scripts ON ADMIN SIDE ONLY
+if (!is_admin()) {
+	function js_async_attr($tag){
+		
+		// exclude some scripts from deferral by adding their tags here:
+		$scripts_to_exclude = array('https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js');
 
-	foreach($scripts_to_exclude as $exclude_script) {
-		if(true == strpos($tag, $exclude_script ) )
-		return $tag;
+		foreach($scripts_to_exclude as $exclude_script) {
+			if(true == strpos($tag, $exclude_script ) )
+			return $tag;
+		}
+
+		// defer or async all remaining scripts not excluded above
+		return str_replace( ' src', ' defer="defer" src', $tag );
 	}
-
-	// defer or async all remaining scripts not excluded above
-	return str_replace( ' src', ' defer="defer" src', $tag );
+	add_filter( 'script_loader_tag', 'js_async_attr', 10 );
 }
-add_filter( 'script_loader_tag', 'js_async_attr', 10 );
 
 
 

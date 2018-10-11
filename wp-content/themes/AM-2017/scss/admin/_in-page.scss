@@ -89,19 +89,26 @@ $cf_colours : $pale_red, $pale_orange, $pale_green;
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Advanced Custom Fields
+// NOTE: these may change on plugin update
 $sections: (
   // all templates
-  "last" : '#acf_471324.acf_postbox',
-  "cta" : '#acf_471302.acf_postbox',
-  "first-sidebar" : '#acf-first_section_sidebar',
-  "second-sidebar" : '#acf-second_section_sidebar',
+  "last" : '#acf-group_5bbde6e31c226', // was #acf_471324.acf_postbox
+  "cta" : '#acf-group_5bbde6e35bfa2', // was #acf_471302.acf_postbox
+  // first section sidebar
+  "first-sidebar" : '.acf-postbox.seamless > .inside > .acf-field[data-name="first_section_sidebar"]',
+  "first-sidebar-colour" : '.acf-fields > .acf-field[data-name="first_section_sidebar_colour"]',
+  // second section sidebar
+  "second-sidebar" : '.acf-postbox.seamless > .inside > .acf-field[data-name="second_section_sidebar"]',
+  "second-sidebar-colour" : '.acf-fields > .acf-field[data-name="second_section_sidebar_colour"]',
+  // ________
   // home
-  "hero" : '#acf_471344.acf_postbox',
-  "home-second" : '#acf_471346.acf_postbox',
-  "home-third" : '#acf_470781.acf_postbox',
+  "hero" : '#acf-group_5bbde6e1437ff', // was #acf_471344
+  "home-second" : '#acf-group_5bbde6e19bd99', // was #acf_471346.acf_postbox
+  "home-third" : '#acf-group_5bbde6e267026', // was #acf_470781.acf_postbox. Includes end of content
+  // ________
   // default
-  "default-second" : '#acf_471520.acf_postbox',
-  "default-third" : '#acf_477633.acf_postbox'
+  "default-second" : '#acf-group_5bbde6e1d0e9c', // was #acf_471520.acf_postbox
+  "default-third" : '#acf-group_5bbde6e2325b1' // was #acf_477633.acf_postbox
 );
 @function sections($key) {
   @return map-get($sections, $key);
@@ -144,24 +151,28 @@ ul.acf-radio-list li input[type="radio"] {
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // acf - all templates
 
-
 // resets
 .js .postbox .handlediv:focus .toggle-indicator:before {
   box-shadow : none;
 }
-
-
+.acf-postbox.seamless > .inside > .acf-field {
+  border-top : 10px solid;
+}
+.acf-fields > .acf-field {
+  padding : 1rem 2rem;
+}
 
 // –––––––––––––––––––––––––
 // section ID text / anchor link (applies to mulitple sections)
-.acf_postbox p.label.section-id {
+// - works with js, has purple text
+// - broken after ACF update
+.anchor-url,
+.anchor-id {
   color : $purple;
-  .anchor-id {
-    font-weight : $bold;
-  }
 }
-
-
+.anchor-id {
+  font-weight : $bold;
+}
 
 
 // –––––––––––––––––––––––––
@@ -218,9 +229,10 @@ ul.acf-radio-list li input[type="radio"] {
   // form fields
   @include form-fields;
   // image and text separator
-  #acf-linked_page_content {
-    @include wysiwyg-content-split('Use the horizontal line tool (-) to split the image from the description.', $orange, $orange_light);
-  }
+  // - no longer used???
+  // #acf-linked_page_content {
+  //   @include wysiwyg-content-split('Use the horizontal line tool (-) to split the image from the description.', $orange, $orange_light);
+  // }
 }
 
 
@@ -229,9 +241,9 @@ ul.acf-radio-list li input[type="radio"] {
 // –––––––––––––––––––––––––
 // sidebars
 #{sections('first-sidebar')},
-#{sections('first-sidebar')}_colour,
+#{sections('first-sidebar-colour')},
 #{sections('second-sidebar')},
-#{sections('second-sidebar')}_colour {
+#{sections('second-sidebar-colour')} {
   @include sidebar;
 }
 
@@ -280,6 +292,7 @@ ul.acf-radio-list li input[type="radio"] {
 
 // –––––––––––––––––––––––––
 // home third section
+// - includes end of content section
 $home-columns : '1', '2', '3';
 @for $i from 1 through length($home-columns) {
   #acf-column_#{nth($home-columns, $i)} {
@@ -300,34 +313,39 @@ $home-columns : '1', '2', '3';
 #{sections('home-third')} {
   // form fields
   @include form-fields;
+  // label icons - text
+  div[data-name="fields[field_59467757ba235]"] .acf-label label:before {
+    @include link-icon;
+  }
   // text
   @for $i from 1 through length($home-columns) {
-    .label label[for="acf-field-column_#{nth($home-columns, $i)}_button_text"]:before {
+    div[data-name="column_#{nth($home-columns, $i)}_button_text"] .acf-label label:before {
       @include text-icon;
     }
   }
   // links
   @for $i from 1 through length($home-columns) {
-    .label label[for="acf-field-column_#{nth($home-columns, $i)}_button_link"]:before {
+    div[data-name="column_#{nth($home-columns, $i)}_button_link"] .acf-label label:before {
       @include link-icon;
     }
   }
 
 
   // end of content cta
-  #acf-end_of_content_cta_text{
+  div[data-name="end_of_content_cta_text"] {
     margin-top : 5rem;
+    // text
+    .acf-label label:before {
+      @include text-icon; 
+    }
   }
-  // text
-  .label label[for="acf-field-end_of_content_cta_text"]:before {
-    @include text-icon; 
-  }
-  // links
-  .label label[for="acf-field-end_of_content_cta_link"]:before {
+  // link
+  div[data-name="end_of_content_cta_link"] .acf-label label:before {
     @include link-icon;
   }
+
   // solid button - include class options
-  .label label[for="acf-field-end_of_content_cta_colour"] {
+  div[data-name="end_of_content_cta_colour"] .acf-label label {
     @include faux-btn($white) {
       border-color : $green;
       background-color : $green;
@@ -340,7 +358,8 @@ $home-columns : '1', '2', '3';
       }
     }
   }
-}
+
+} // end home-third
 
 
 
@@ -364,17 +383,27 @@ $home-columns : '1', '2', '3';
 
   // column separator
   // - this area may also house an accordion
-  #acf-second_section_columns {
-    @include wysiwyg-content-split('Use the horizontal line tool (-) to separate out columns, or sections of an accordion. The read more tag is used to separate the section header of an accordion from its content.', $green, $green_light);
-  }
+
+  // #acf-second_section_columns {
+  //   @include wysiwyg-content-split('Use the horizontal line tool (-) to separate out columns, or sections of an accordion. The read more tag is used to separate the section header of an accordion from its content.', $green, $green_light);
+  // }
 
   // accordion highlight
-  #acf-last_content,
-  #acf-third_content {
-    @include accordion-highlight($green, $green_light);
-
-  }
+  // #acf-last_content,
+  // #acf-third_content {
+  //   @include accordion-highlight($green, $green_light);
+  // }
   
 
 }
+
+div[data-name="second_section_columns"] {
+  @include wysiwyg-content-split('Use the horizontal line tool (-) to separate out columns, or sections of an accordion. The read more tag is used to separate the section header of an accordion from its content.', $green, $green_light);
+}
+// div[data-name="third_content"],
+// div[data-name="last_content"] {
+//   @include accordion-highlight($green, $green_light);
+// }
+
+
 
